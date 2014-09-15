@@ -33,7 +33,37 @@ class PestController extends Controller
 	public function actionIndex()
 	{
 		// Return all Pests
+		$response = array();
+
+		$pests = Pest::model()->findAll();
 
 
+		if($pests != null)
+		{
+			// Have something to return..
+
+			// Get images for each entry.
+			foreach ($pests as $pest) 
+			{
+				// Get all images for current pest entry.
+				$images = $pest->images;
+				$imageArr = array();
+
+				if($images != null)
+				{
+					//$pest['images'] = array();
+					foreach ($images as $image)
+					{
+					
+						$imageArr[$pest->Id] = array($image->Id=>'http://beberry.lv/potato/images/'.$image->photo->Name);
+					}
+				}
+
+				$response['Entries'][]  = $pest;
+				$response['Images'][] = $imageArr;
+			}
+		}
+
+		$this->sendResponse(200, CJSON::encode($response));
 	}
 }
