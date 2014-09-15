@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteBase /
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(potato/index\.php)
+
+
+# otherwise forward it to index.php
+
+RewriteRule ^(.+)$ potato/index.php?$1 [PT,L,QSA]
