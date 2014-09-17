@@ -35,9 +35,9 @@
 					    			'class' => 'bootstrap.widgets.TbNav',
 					    			'items' => array(
 									array('label'=>'Home', 'url'=>array('/')),
-									array('label'=>'Pests', 'url'=>array('pests/'), 'visible'=>!Yii::app()->user->isGuest),
-									array('label'=>'Plants / Leafs', 'url'=>array('/plants-leafs/'), 'visible'=>!Yii::app()->user->isGuest),
-									array('label'=>'Tubers', 'url'=>array('/tubers/'), 'visible'=>!Yii::app()->user->isGuest),
+									array('label'=>'Pests', 'url'=>array('pest/'), 'visible'=>!Yii::app()->user->isGuest),
+									array('label'=>'Plants / Leafs', 'url'=>array('/plants-leaf/'), 'visible'=>!Yii::app()->user->isGuest),
+									array('label'=>'Tubers', 'url'=>array('/tuber/'), 'visible'=>!Yii::app()->user->isGuest),
 									array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 									TbHtml::navbarSearchForm('#'),
 									array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
