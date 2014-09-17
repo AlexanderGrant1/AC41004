@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `potato_Pest_photo` (
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `potato_NutrientDeficency` (
+CREATE TABLE IF NOT EXISTS `potato_NutrientDeficiency` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
@@ -36,13 +36,13 @@ CREATE TABLE IF NOT EXISTS `potato_NutrientDeficency` (
 COLLATE utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `potato_NutrientDeficency_photo` (
+CREATE TABLE IF NOT EXISTS `potato_NutrientDeficiency_photo` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`NutrientDefId` smallint unsigned NOT NULL,
 	`PhotoId` smallint unsigned NOT NULL,
 	PRIMARY KEY(`Id`),
-	FOREIGN KEY(`NutrientDefId`) REFERENCES `potato_NutrientDeficency`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(`PhotoId`) REFERENCES `potato_NutrientDeficency`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(`NutrientDefId`) REFERENCES `potato_NutrientDeficiency`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`PhotoId`) REFERENCES `potato_Photo`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
 
