@@ -27,6 +27,7 @@ return array(
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
+		'api',
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
@@ -48,11 +49,17 @@ return array(
 		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>false,
+			'caseSensitive' => false,
 			'rules'=>array(
 
 				'gii' => 'gii/default/login',
 				'gii/<controller:\w+>'=>'gii/<controller>',
 				'gii/<controller:\w+>/<action:\w+>/'=>'gii/<controller>/<action>',
+
+				'admin/<controller:\w+>/<id:\d+>'=>'<controller>admin/view',
+				'admin/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>admin/<action>',
+				'admin/<controller:\w+>/<action:\w+>'=>'<controller>admin/<action>',
 
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
