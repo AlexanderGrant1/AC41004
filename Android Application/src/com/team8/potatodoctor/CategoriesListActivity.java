@@ -80,6 +80,7 @@ public class CategoriesListActivity extends Activity
 		categoriesNameList.add("Pests");
 		categoriesNameList.add("Plant/Leaf Symptoms");
 		categoriesNameList.add("Tuber Symptoms");
+		categoriesNameList.add("Tutorials");
 		Log.d("Problem Determination", "getCategoriesNames() EXIT");
 	}
 	
