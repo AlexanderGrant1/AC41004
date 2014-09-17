@@ -1,50 +1,77 @@
 package com.team8.potatodoctor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ImageAdapter extends BaseAdapter {
-    private Context mContext;
+    private List<Item> items = new ArrayList<Item>();
+    private LayoutInflater inflater;
 
-    public ImageAdapter(Context c) {
-        mContext = c;
+    public ImageAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
+
+        items.add(new Item("Potatoe",       R.drawable.ic_placeholder));
+        items.add(new Item("Potato",   		R.drawable.ic_placeholder));
+        items.add(new Item("Spud", 			R.drawable.ic_placeholder));
+        items.add(new Item("Spuddy", 		R.drawable.ic_placeholder));
+        items.add(new Item("Pomme de Terre",     R.drawable.ic_placeholder));
+        
     }
 
+    @Override
     public int getCount() {
-        return mThumbIds.length;
+        return items.size();
     }
 
-    public Object getItem(int position) {
-        return null;
+    @Override
+    public Object getItem(int i) {
+        return items.get(i);
     }
 
-    public long getItemId(int position) {
-        return 0;
+    @Override
+    public long getItemId(int i) {
+        return items.get(i).drawableId;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) {  // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
-        } else {
-            imageView = (ImageView) convertView;
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        View v = view;
+        ImageView picture;
+        TextView name;
+
+        if(v == null) {
+            v = inflater.inflate(R.layout.grid_layout, viewGroup, false);
+            v.setTag(R.id.picture, v.findViewById(R.id.picture));
+            v.setTag(R.id.text, v.findViewById(R.id.text));
         }
 
-        imageView.setImageResource(mThumbIds[position]);
-        return imageView;
+        picture = (ImageView)v.getTag(R.id.picture);
+        name = (TextView)v.getTag(R.id.text);
+
+        Item item = (Item)getItem(i);
+
+        picture.setImageResource(item.drawableId);
+        name.setText(item.name);
+
+        return v;
     }
 
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.ic_placeholder, R.drawable.ic_placeholder,
-            R.drawable.ic_placeholder, R.drawable.ic_placeholder
-    };
+    private class Item {
+        final String name;
+        final int drawableId;
+
+        Item(String name, int drawableId) {
+            this.name = name;
+            this.drawableId = drawableId;
+        }
+    }
 }
