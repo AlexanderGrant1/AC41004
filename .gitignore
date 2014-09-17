@@ -4,3 +4,4 @@ potatoe.sublime-workspace
 .DS_Store
 web/root/protected/config/main.php
 .classpath
+.project
