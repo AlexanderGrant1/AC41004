@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `potato_Pest_photo` (
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `potato_NutrientDeficiency` (
+CREATE TABLE IF NOT EXISTS `potato_PlantLeaf` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
@@ -36,19 +36,18 @@ CREATE TABLE IF NOT EXISTS `potato_NutrientDeficiency` (
 COLLATE utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `potato_NutrientDeficiency_photo` (
+CREATE TABLE IF NOT EXISTS `potato_PlantLeaf_photo` (
 	`Id` smallint unsigned NOT NULL auto_increment,
-	`NutrientDefId` smallint unsigned NOT NULL,
+	`PlantLeafId` smallint unsigned NOT NULL,
 	`PhotoId` smallint unsigned NOT NULL,
 	PRIMARY KEY(`Id`),
-	FOREIGN KEY(`NutrientDefId`) REFERENCES `potato_NutrientDeficiency`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`PlantLeafId`) REFERENCES `potato_PlantLeaf`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(`PhotoId`) REFERENCES `potato_Photo`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
+''
 
-
-
-CREATE TABLE IF NOT EXISTS `potato_Disease` (
+CREATE TABLE IF NOT EXISTS `potato_Tuber` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
@@ -58,34 +57,12 @@ CREATE TABLE IF NOT EXISTS `potato_Disease` (
 COLLATE utf8_general_ci;
 
 
-CREATE TABLE IF NOT EXISTS `potato_Disease_photo` (
+CREATE TABLE IF NOT EXISTS `potato_Tuber_photo` (
 	`Id` smallint unsigned NOT NULL auto_increment,
-	`DiseaseId` smallint unsigned NOT NULL,
+	`TuberId` smallint unsigned NOT NULL,
 	`PhotoId` smallint unsigned NOT NULL,
 	PRIMARY KEY(`Id`),
-	FOREIGN KEY(`DiseaseId`) REFERENCES `potato_Disease`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(`PhotoId`) REFERENCES `potato_Photo`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB CHARACTER SET utf8
-COLLATE utf8_general_ci;
-
-
-
-CREATE TABLE IF NOT EXISTS `potato_Virus` (
-	`Id` smallint unsigned NOT NULL auto_increment,
-	`Name` varchar(50) NOT NULL,
-	`Description` text NOT NULL,
-	UNIQUE(`Name`),
-	PRIMARY KEY(`Id`)
-)ENGINE=InnoDB CHARACTER SET utf8
-COLLATE utf8_general_ci;
-
-
-CREATE TABLE IF NOT EXISTS `potato_Virus_photo` (
-	`Id` smallint unsigned NOT NULL auto_increment,
-	`VirusId` smallint unsigned NOT NULL,
-	`PhotoId` smallint unsigned NOT NULL,
-	PRIMARY KEY(`Id`),
-	FOREIGN KEY(`VirusId`) REFERENCES `potato_Virus`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`TuberId`) REFERENCES `potato_Tuber`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(`PhotoId`) REFERENCES `potato_Photo`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
