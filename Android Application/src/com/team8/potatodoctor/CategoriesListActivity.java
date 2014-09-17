@@ -3,6 +3,7 @@ package com.team8.potatodoctor;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,6 +47,24 @@ public class CategoriesListActivity extends Activity
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3)
 			{
 				String selectedCategory=categoriesNameList.get(position);
+				
+				//TODO: Change to switch statement
+				if(selectedCategory.equals("Pests"))
+				{
+					Intent intentPests = new Intent(getApplicationContext(),PestsActivity.class);
+					startActivity(intentPests);
+				}
+				else if(selectedCategory.equals("Plant/Leaf Symptoms"))
+				{
+					Intent intentLeaves = new Intent(getApplicationContext(),PlantSymptomActivity.class);
+					startActivity(intentLeaves);
+				}
+				else if(selectedCategory.equals("Tuber Symptoms"))
+				{
+					Intent intentTuber = new Intent(getApplicationContext(),TuberSymptomActivity.class);
+					startActivity(intentTuber);
+				}
+				
 			}
 
 		});
@@ -59,9 +78,8 @@ public class CategoriesListActivity extends Activity
 	{
 		Log.d("Problem Determination", "getCategoriesNames() ENTRY");
 		categoriesNameList.add("Pests");
-		categoriesNameList.add("Viruses");
-		categoriesNameList.add("Nutrient Deficiencies");
-		categoriesNameList.add("Tutorials");
+		categoriesNameList.add("Plant/Leaf Symptoms");
+		categoriesNameList.add("Tuber Symptoms");
 		Log.d("Problem Determination", "getCategoriesNames() EXIT");
 	}
 	

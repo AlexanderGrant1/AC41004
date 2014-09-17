@@ -2,9 +2,7 @@ package com.team8.potatodoctor;
 
 import java.io.IOException;
 import java.util.LinkedList;
-
 import org.json.JSONException;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

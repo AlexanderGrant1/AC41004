@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="16" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +25,21 @@
         <activity 
             android:name="com.team8.potatodoctor.CategoriesListActivity"
             android:label="@string/categories"
+        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
+            ></activity>
+        <activity 
+            android:name="com.team8.potatodoctor.PestsActivity"
+            android:label="@string/pests"
+        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
+            ></activity>
+        <activity 
+            android:name="com.team8.potatodoctor.PlantSymptomActivity"
+            android:label="@string/leaves"
+        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
+            ></activity>
+        <activity 
+            android:name="com.team8.potatodoctor.TuberSymptomActivity"
+            android:label="@string/tubers"
         	android:parentActivityName="com.team8.potatodoctor.MainActivity"
             ></activity>
     </application>
