@@ -43,7 +43,7 @@ class DiseaseController extends Controller
 			// Have something to return..
 
 			// Get images for each entry.
-			foreach ($pests as $disease) 
+			foreach ($diseases as $disease) 
 			{
 				// Get all images for current disease entry.
 				$images = $disease->images;
