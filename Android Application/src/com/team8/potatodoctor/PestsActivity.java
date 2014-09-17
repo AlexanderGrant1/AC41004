@@ -24,7 +24,7 @@ public class PestsActivity extends Activity
 		Log.d("Problem Determination", "PestsActivity.onCreate() EXIT");
 		*/
 	}
-
+ 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
