@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends Activity 
 {
@@ -18,7 +19,10 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
+		dbHelper.createTables();
+		dbHelper.insertSession("hello", "mike coutts");
+		Toast.makeText(getApplicationContext(), dbHelper.getSession("hello","mike coutts").getUsername(), Toast.LENGTH_LONG).show();
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");
