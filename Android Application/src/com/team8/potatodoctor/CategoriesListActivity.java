@@ -33,7 +33,7 @@ public class CategoriesListActivity extends Activity
 		
 		//Get the reference of ListViewCategories
 		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
-		categoriesGrid.setAdapter(new ImageAdapterMain(this));
+		categoriesGrid.setAdapter(new ImageAdapterMain(this)); 
 		
 		
 		//Create the Adapter to display ArrayList onto ListView.
