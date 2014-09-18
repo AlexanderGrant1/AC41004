@@ -1,6 +1,9 @@
 package com.team8.potatodoctor;
 
 
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,11 +15,10 @@ import android.util.Log;
 public class DatabaseManager extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "potato.db";
 	private static final int DATABASE_VERSION = 1;
-	public Session ns = new Session();
 
 	private static final String CREATE_PHOTO_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Photo` ("+
 	" `Id` smallint unsigned NOT NULL,"+
-	"`Name` varchar(20) NOT NULL,"+
+	"`Name` varchar(37) NOT NULL,"+
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`)"+
 	");";
@@ -93,6 +95,28 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TUBER_TABLE);
 		db.execSQL(CREATE_TUBER_PHOTOS);
 		db.execSQL(CREATE_TUTORIAL_TABLE);
+	}
+	
+	public void InsertPest(PestEntity pest)
+	{
+			SQLiteDatabase db = this.getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put("Id", pest.getId());
+			values.put("Name", pest.getName());
+			values.put("Description", pest.getDescription());
+			db.insert("potato_Pest", null, values);
+			db.close();
+	}
+	
+	public void InsertPlantLeaf(PlantLeafSymptomsEntity pest)
+	{
+			SQLiteDatabase db = this.getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put("Id", pest.getId());
+			values.put("Name", pest.getName());
+			values.put("Description", pest.getDescription());
+			db.insert("potato_PlantLeaf", null, values);
+			db.close();
 	}
 	
 }
