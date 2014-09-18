@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `potato_Photo` (
 	`Id` smallint unsigned NOT NULL auto_increment,
-	`Name` varchar(20) NOT NULL,
+	`Name` varchar(37) NOT NULL,
 	UNIQUE(`Name`),
 	PRIMARY KEY(`Id`)
 ) ENGINE=InnoDB CHARACTER SET utf8
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `potato_PlantLeaf_photo` (
 	FOREIGN KEY(`PhotoId`) REFERENCES `potato_Photo`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
-''
+
 
 CREATE TABLE IF NOT EXISTS `potato_Tuber` (
 	`Id` smallint unsigned NOT NULL auto_increment,
