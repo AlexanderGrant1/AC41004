@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List PlantLeaf', 'url'=>array('index')),
-	array('label'=>'Manage PlantLeaf', 'url'=>array('admin')),
 );
 ?>
 

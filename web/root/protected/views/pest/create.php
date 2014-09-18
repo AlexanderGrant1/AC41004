@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Pest', 'url'=>array('index')),
-	array('label'=>'Manage Pest', 'url'=>array('admin')),
 );
 ?>
 
