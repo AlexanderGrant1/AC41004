@@ -1,4 +1,4 @@
-package com.team8.potatodoctor;
+package com.team8.potatodoctor.Models;
 
 
 import java.io.IOException;

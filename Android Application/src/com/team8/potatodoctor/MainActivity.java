@@ -3,6 +3,11 @@ package com.team8.potatodoctor;
 import java.io.IOException;
 import java.util.LinkedList;
 import org.json.JSONException;
+
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.Models.HttpGetRequest;
+import com.team8.potatodoctor.Models.DataFetcher;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,12 +24,17 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
-		//dbHelper.createTables();
+		DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
+		dbHelper.createTables();
 		try
 		{
-			Log.w("hello",new HttpGetRequest().execute("http://beberry.lv/potato/api/pest").get());
-			
+			String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/pest").get();
+			DataFetcher jsonParser = new DataFetcher();
+			LinkedList<PestEntity> pests = jsonParser.parsePests(response);
+			for(int i = 0; i < pests.size(); i++)
+			{
+				dbHelper.InsertPest(pests.get(i));
+			}
 		}
 		catch (Exception e)
 		{

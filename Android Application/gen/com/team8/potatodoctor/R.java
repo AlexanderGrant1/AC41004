@@ -22,13 +22,17 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int ic_placeholder=0x7f020001;
-        public static final int ic_potato=0x7f020002;
+        public static final int ic_leaf=0x7f020001;
+        public static final int ic_pest=0x7f020002;
+        public static final int ic_placeholder=0x7f020003;
+        public static final int ic_potato=0x7f020004;
+        public static final int ic_tuber=0x7f020005;
+        public static final int ic_video=0x7f020006;
     }
     public static final class id {
         public static final int action_settings=0x7f080004;
         public static final int gridview=0x7f080000;
-        public static final int listCategories=0x7f080001;
+        public static final int gridview_main=0x7f080001;
         public static final int picture=0x7f080002;
         public static final int text=0x7f080003;
     }
