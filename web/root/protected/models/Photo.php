@@ -36,7 +36,7 @@ class Photo extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('Name', 'required'),
-			array('Name', 'length', 'max'=>20),
+			array('Name', 'length', 'max'=>37),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('Id, Name', 'safe', 'on'=>'search'),
