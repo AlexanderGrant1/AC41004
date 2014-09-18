@@ -10,16 +10,16 @@ import android.util.Log;
 
 /** Helper to the database, manages versions and creation */
 public class DatabaseManager extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME = "kudu.db";
+	private static final String DATABASE_NAME = "potato.db";
 	private static final int DATABASE_VERSION = 1;
 	public Session ns = new Session();
 
 	private static final String CREATE_PHOTO_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Photo` ("+
-" `Id` smallint unsigned NOT NULL,"+
-"`Name` varchar(20) NOT NULL,"+
-"UNIQUE(`Name`),"+
-"PRIMARY KEY(`Id`)"+
-");";
+	" `Id` smallint unsigned NOT NULL,"+
+	"`Name` varchar(20) NOT NULL,"+
+	"UNIQUE(`Name`),"+
+	"PRIMARY KEY(`Id`)"+
+	");";
 	
 	private static final String CREATE_PEST_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Pest` ("+
 	"`Id` smallint unsigned NOT NULL,"+
@@ -68,35 +68,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`));";
 	
-	//SessionTable
-	public static final String SESSION_TABLE = "session";
-	//SessionColumns
-	public static final String SESSION_UUID = "session_uuid";
-	public static final String SESSION_USERNAME = "session_username";
-	//SessionTable - Create Statement
-	public static final String CREATE_TABLE_SESSION = "CREATE TABLE IF NOT EXISTS "
-			+SESSION_TABLE+ "(" + SESSION_USERNAME + " TEXT PRIMARY KEY,"
-			+SESSION_UUID+ " TEXT" + ")";
 	
-	private String[] allSessionColumns = new String[] { SESSION_USERNAME, SESSION_UUID };
+	
 	public DatabaseManager(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(CREATE_TABLE_SESSION);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS " + SESSION_TABLE);
 		onCreate(db);	
 	}
 	
 	public void createTables() {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.execSQL(CREATE_TABLE_SESSION);
 		db.execSQL(CREATE_PEST_TABLE);
 		db.execSQL(CREATE_PHOTO_TABLE);
 		db.execSQL(CREATE_PEST_PHOTOS_TABLE);
@@ -105,58 +93,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TUBER_TABLE);
 		db.execSQL(CREATE_TUBER_PHOTOS);
 		db.execSQL(CREATE_TUTORIAL_TABLE);
-	}
-	
-	/*
-	 * SESSION TABLE
-	 */
-	public void insertSession(String uuid, String username) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		ContentValues values = new ContentValues();
-		values.put(SESSION_UUID, uuid);
-		values.put(SESSION_USERNAME, username);
-		db.insert(SESSION_TABLE, null, values);
-		ns.setUsername(username);
-		ns.setUuid(uuid);
-		db.close();
-	}
-	
-	public Session getSession(String uuid, String username) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.query(SESSION_TABLE, allSessionColumns, null, null, null, null, null);
-		if(cursor!=null && cursor.getCount()>0) {
-			cursor.moveToFirst();
-			String sessionUsername = cursor.getString(0);
-			String sessionUUID = cursor.getString(1);
-			
-			ns.setUsername(sessionUsername);
-			ns.setUuid(sessionUUID);
-			db.close();
-			return ns;
-		} else {
-			insertSession(uuid, username);
-		}
-		return null;
-	}
-	
-	public Session checkSessionExists() {
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.query(SESSION_TABLE, allSessionColumns, null, null, null, null, null);
-		if(cursor!=null && cursor.getCount()>0) {
-			cursor.moveToFirst();
-			return ns;
-		}
-		ns.setUsername(null);
-		ns.setUuid(null);
-		return ns;
-	}
-	
-	public void deleteSession(String uuid, String username) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(SESSION_TABLE, SESSION_USERNAME+" = ?", new String[] { username });
-		ns.setUsername(null);
-		ns.setUuid(null);
-		db.close();
 	}
 	
 }
