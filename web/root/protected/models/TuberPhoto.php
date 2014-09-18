@@ -56,8 +56,8 @@ class TuberPhoto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tuber' => array(self::BELONGS_TO, 'PotatoTuber', 'TuberId'),
-			'photo' => array(self::BELONGS_TO, 'PotatoPhoto', 'PhotoId'),
+			//'tuber' => array(self::BELONGS_TO, 'PotatoTuber', 'TuberId'),
+			'photo' => array(self::BELONGS_TO, 'Photo', 'PhotoId'),
 		);
 	}
 
