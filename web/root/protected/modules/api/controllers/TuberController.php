@@ -34,8 +34,10 @@ class TuberController extends Controller
 	{
 		// Return all Diseases
 		$response = array();
-		$response['Entries'] = array();
-		$response['Images']  = array();
+		$response['PhotoPath']    = 'http://beberry.lv/potato/'.Yii::app()->params['imagePath'];
+		$response['Entries']	  = array();
+		$response['Photos']  	  = array();
+		$response['PhotoLinker']  = array();
 
 		$tubers = Tuber::model()->findAll();
 
@@ -49,22 +51,18 @@ class TuberController extends Controller
 			{
 				// Get all images for current tuber entry.
 				$images = $tuber->images;
-				$imageArr = array();
 
 				if($images != null)
 				{
 					foreach ($images as $image)
 					{
-						$imageArr[$tuber->Id] = array($image->Id=>'http://beberry.lv/potato/images/'.$image->photo->Name);
+						$response['PhotoLinker'][] = array('Id'=>$image->Id, 'EntryId' => $image->TuberId, 'PhotoId' => $image->PhotoId);
+						$response['Photos'][] = array("Id" => $image->photo->Id, "ImageName" => $image->photo->Name);
 					}
 				}
 
 				$response['Entries'][]  = $tuber;
 
-				if(!empty($imageArr))
-				{
-					$response['Images'][] = $imageArr;
-				}
 			}
 		}
 
