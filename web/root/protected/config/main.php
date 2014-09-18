@@ -23,6 +23,7 @@ return array(
 		'application.components.*',
         'bootstrap.behaviors.*',
         'bootstrap.helpers.*',
+        'bootstrap.widgets.*',
 	),
 
 	'modules'=>array(
@@ -41,6 +42,9 @@ return array(
 
 	// application components
 	'components'=>array(
+		'phpThumb'=>array(
+	    	'class'=>'extensions.EPhpThumb.EPhpThumb',
+	    ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -106,6 +110,8 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
+		'projectPath' => '/public_html/potato/',
+		'imagePath' => 'images/u/',
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
