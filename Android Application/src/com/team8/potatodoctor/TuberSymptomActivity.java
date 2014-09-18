@@ -20,12 +20,21 @@ public class TuberSymptomActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
+		
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 	    gridview.setAdapter(new TuberImageAdapter(this));
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
+	        	
+	        	Intent intentGridView = new Intent(getApplicationContext(),GridviewItemActivity.class);
+	        	
+	        	intentGridView.putExtra("Type", "potato_Tuber");
+	        	intentGridView.putExtra("Position", position);
+	        	
+	    		startActivity(intentGridView);
+	        	
 	        }
 
 	    });
@@ -40,4 +49,5 @@ public class TuberSymptomActivity extends Activity
 		*/
 		return true;
 	}
+	
 }

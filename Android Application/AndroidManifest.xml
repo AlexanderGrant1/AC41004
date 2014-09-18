@@ -42,6 +42,13 @@
             android:label="@string/tubers"
         	android:parentActivityName="com.team8.potatodoctor.MainActivity"
             ></activity>
+        
+        <activity 
+            android:name="com.team8.potatodoctor.GridviewItemActivity"
+            android:label="@string/placeholder"
+        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
+            ></activity>
+        
     </application>
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>
