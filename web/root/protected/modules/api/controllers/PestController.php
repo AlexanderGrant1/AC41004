@@ -30,43 +30,39 @@ class PestController extends Controller
 		);
 	}
 
-	public function actionIndex()
+public function actionIndex()
 	{
-		// Return all Pests
+		// Return all Diseases
 		$response = array();
-		$response['Entries'] = array();
-		$response['Images']  = array();
+		$response['PhotoPath']    = 'http://beberry.lv/potato/'.Yii::app()->params['imagePath'];
+		$response['Entries']	  = array();
+		$response['Photos']  	  = array();
+		$response['PhotoLinker']  = array();
 
-		$pests = Pest::model()->findAll();
+		$pestModels = Pest::model()->findAll();
 
 
-		if($pests != null)
+		if($pestModels != null)
 		{
 			// Have something to return..
 
 			// Get images for each entry.
-			foreach ($pests as $pest) 
+			foreach ($pestModels as $pestModel) 
 			{
-				// Get all images for current pest entry.
-				$images = $pest->images;
-				$imageArr = array();
+				// Get all images for current pestModel entry.
+				$images = $pestModel->images;
 
 				if($images != null)
 				{
-					//$pest['images'] = array();
 					foreach ($images as $image)
 					{
-					
-						$imageArr[$pest->Id] = array($image->Id=>'http://beberry.lv/potato/images/'.$image->photo->Name);
+						$response['PhotoLinker'][] = array('Id'=>$image->Id, 'EntryId' => $image->PestId, 'PhotoId' => $image->PhotoId);
+						$response['Photos'][] = array("Id" => $image->photo->Id, "ImageName" => $image->photo->Name);
 					}
 				}
 
-				$response['Entries'][]  = $pest;
+				$response['Entries'][]  = $pestModel;
 
-				if(!empty($imageArr))
-				{
-					$response['Images'][] = $imageArr;
-				}
 			}
 		}
 
