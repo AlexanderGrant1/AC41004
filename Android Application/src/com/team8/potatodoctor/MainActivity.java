@@ -19,10 +19,18 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
-		dbHelper.createTables();
-		dbHelper.insertSession("hello", "mike coutts");
-		Toast.makeText(getApplicationContext(), dbHelper.getSession("hello","mike coutts").getUsername(), Toast.LENGTH_LONG).show();
+		//DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
+		//dbHelper.createTables();
+		try
+		{
+			Log.w("hello",new HttpGetRequest().execute("http://beberry.lv/potato/api/pest").get());
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");
