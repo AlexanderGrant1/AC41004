@@ -14,6 +14,7 @@
 class Tuber extends CActiveRecord
 {
 	public $image;		// Used for uploading file.
+	public $imageName;  // Used as a tmp field to store image name.
 
 
 	/**
@@ -83,7 +84,13 @@ class Tuber extends CActiveRecord
 		if(isset($this->image))
 		{
 			// The user is uploading an image.
+			do 
+			{
+				// Generate a name for this image.
+				$this->imageName = md5(time());
+			}while(file_exists(Yii::app()->params['projectPath'].Yii::app()->params['imagePath'].$this->imageName.'.jpg'));
 
+			$this->createImage();
 		}
 
 		return true;
@@ -101,9 +108,23 @@ class Tuber extends CActiveRecord
 			$thumb->resize(600,600);
 		}
 
-		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'].$this->GalleryId;
+		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'];
 	
-		$thumb->save($path.'/'.$value['prefix'].$this->Picture.'.jpg','jpg');
+		$thumb->save($path.$this->imageName.'.jpg','jpg');
+
+		// Add this image to the db.
+		$pic = new Photo;
+		$pic->Name = $this->imageName.'.jpg';
+
+		if($pic->save())
+		{
+			// Create new linker.
+			$picLinker = new TuberPhoto;
+			$picLinker->TuberId = $this->Id;
+			$picLinker->PhotoId = $pic->Id;
+
+			$picLinker->save();
+		}
 	}
 
 	/**
