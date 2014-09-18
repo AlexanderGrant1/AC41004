@@ -7,22 +7,31 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Potato',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
+
+	// path aliases
+    'aliases' => array(
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+    ),
 
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'bootstrap.behaviors.*',
+        'bootstrap.helpers.*',
 	),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
+		'api',
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
+			'generatorPaths' => array('bootstrap.gii'),
 			'password'=>'test',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>false,
@@ -40,11 +49,17 @@ return array(
 		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>false,
+			'caseSensitive' => false,
 			'rules'=>array(
 
 				'gii' => 'gii/default/login',
 				'gii/<controller:\w+>'=>'gii/<controller>',
 				'gii/<controller:\w+>/<action:\w+>/'=>'gii/<controller>/<action>',
+
+				'admin/<controller:\w+>/<id:\d+>'=>'<controller>admin/view',
+				'admin/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>admin/<action>',
+				'admin/<controller:\w+>/<action:\w+>'=>'<controller>admin/<action>',
 
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
@@ -82,6 +97,10 @@ return array(
 				*/
 			),
 		),
+
+		'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',   
+        ),
 	),
 
 	// application-level parameters that can be accessed
