@@ -12,21 +12,17 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ImageAdapter extends BaseAdapter {
-    private List<Item> items = new ArrayList<Item>();
+public abstract class ImageAdapter extends BaseAdapter {
+    public List<Item> items = new ArrayList<Item>();
     private LayoutInflater inflater;
 
     public ImageAdapter(Context context) {
         inflater = LayoutInflater.from(context);
-
-        items.add(new Item("Potatoe",       R.drawable.ic_placeholder));
-        items.add(new Item("Potato",   		R.drawable.ic_placeholder));
-        items.add(new Item("Spud", 			R.drawable.ic_placeholder));
-        items.add(new Item("Spuddy", 		R.drawable.ic_placeholder));
-        items.add(new Item("Pomme de Terre",     R.drawable.ic_placeholder));
         
     }
 
+    abstract void addItems();
+    
     @Override
     public int getCount() {
         return items.size();
@@ -65,7 +61,7 @@ public class ImageAdapter extends BaseAdapter {
         return v;
     }
 
-    private class Item {
+    class Item {
         final String name;
         final int drawableId;
 
