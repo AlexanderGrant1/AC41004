@@ -67,8 +67,8 @@ public class CategoriesListActivity extends Activity
 				}
 				else if(position == 3)
 				{
-					Intent intentTuber = new Intent(getApplicationContext(),TuberSymptomActivity.class);
-					startActivity(intentTuber);
+					Intent intentVideo = new Intent(getApplicationContext(),VideoActivity.class);
+					startActivity(intentVideo);
 				}
 			}
 

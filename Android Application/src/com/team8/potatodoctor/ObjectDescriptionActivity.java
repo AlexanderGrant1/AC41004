@@ -26,7 +26,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 /*
- * Generalised class to extract information from the database related to a specific Pest/Symptom.
+ * Generalised class to extract information from the database related to a specific Pest/Symptom. 
  */
 public class ObjectDescriptionActivity extends Activity
 {
@@ -60,7 +60,7 @@ public class ObjectDescriptionActivity extends Activity
 	    	position = extras.getInt("Position");
 	    }
 
-	    //Set label on the Action Bar with @param Type.
+	    //Set label on the Action Bar with Pest/Symptom Name.
 	    //TODO set label.
 	    
 	    //Setup ImageGallery
