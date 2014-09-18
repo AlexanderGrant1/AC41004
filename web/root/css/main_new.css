@@ -2,11 +2,12 @@
 	margin-top: 40px;
 	padding-bottom: 60px;
 	overflow: hidden;
+  max-width: 900px;
 }
 
 #footer {
 	/*margin: 20px auto;*/
-	position: absolute;bottom: 10px;
+	/*position: absolute;bottom: 10px;*/
 }
 
 html, body {
@@ -15,7 +16,7 @@ html, body {
 
 @media only screen and (min-width:960px){
     /* styles for browsers larger than 960px; */
-    #wrap { max-width: 960px; margin: 0px auto; }
+    #wrap { max-width: 960px; margin: 0px auto;}
     div#mainmenu .container { max-width: 960px;}
 }
 
@@ -37,7 +38,7 @@ html, body {
 
 /* different techniques for iPad screening */
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-  /* For portrait layouts only */ā
+  /* For portrait layouts only */
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
@@ -50,4 +51,12 @@ html, body {
 	min-height: 100%;
 }
 
+div#content.split { width: 70%; float:left; }
+
+#sidebar { padding-top: 100px;width: 30%; float:left;}
+
+#footer {
+  /*margin: 20px auto;*/
+  position: absolute;bottom: 10px;
+}
 
