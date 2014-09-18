@@ -1,5 +1,7 @@
 package com.team8.potatodoctor;
 
+import com.team8.adapters.PlantImageAdapter;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

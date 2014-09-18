@@ -1,7 +1,11 @@
-package com.team8.potatodoctor;
+package com.team8.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.R.id;
+import com.team8.potatodoctor.R.layout;
 
 import android.content.Context;
 import android.view.LayoutInflater;

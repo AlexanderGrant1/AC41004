@@ -2,6 +2,8 @@ package com.team8.potatodoctor;
 
 import java.util.ArrayList;
 
+import com.team8.adapters.ImageAdapterMain;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
