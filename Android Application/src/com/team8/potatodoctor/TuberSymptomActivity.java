@@ -21,23 +21,7 @@ public class TuberSymptomActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
 		
-		GridView gridview = (GridView) findViewById(R.id.gridview);
-	    gridview.setAdapter(new TuberImageAdapter(this));
-
-	    gridview.setOnItemClickListener(new OnItemClickListener() {
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
-	        	
-	        	Intent intentGridView = new Intent(getApplicationContext(),GridviewItemActivity.class);
-	        	
-	        	intentGridView.putExtra("Type", "potato_Tuber");
-	        	intentGridView.putExtra("Position", position);
-	        	
-	    		startActivity(intentGridView);
-	        	
-	        }
-
-	    });
+		setupGridView();
 	}
 
 	@Override
@@ -50,4 +34,28 @@ public class TuberSymptomActivity extends Activity
 		return true;
 	}
 	
+	/*
+	 * Constructs the Grid View and populates with Images via the TuberImageAdapter.
+	 */
+	private void setupGridView()
+	{
+		//Locate Grid View from .xml Layout.
+		GridView gridview = (GridView) findViewById(R.id.gridview);
+		
+		//Attach TuberImageAdapter and adds Images.
+	    gridview.setAdapter(new TuberImageAdapter(this));
+
+	    //Setup Event Listener to direct user to information page.
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {	        	
+	        	
+	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
+	        	
+	        	intentObjectDescription.putExtra("Type", "potato_Tuber"); //DB Table name.
+	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
+	        	
+	    		startActivity(intentObjectDescription);        	
+	        }
+	    });
+	}
 }

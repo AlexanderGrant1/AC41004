@@ -21,15 +21,7 @@ public class PlantSymptomActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
 		
-	    GridView gridview = (GridView) findViewById(R.id.gridview);
-	    gridview.setAdapter(new PlantImageAdapter(this));
-
-	    gridview.setOnItemClickListener(new OnItemClickListener() {
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
-	        }
-
-	    });
+	    setupGridView();
 	}
 
 	@Override
@@ -42,4 +34,28 @@ public class PlantSymptomActivity extends Activity {
 		return true;
 	}
 
+	/*
+	 * Constructs the Grid View and populates with Images via the PlantImageAdapter.
+	 */
+	private void setupGridView()
+	{
+		//Locate Grid View from .xml Layout.
+		GridView gridview = (GridView) findViewById(R.id.gridview);
+		
+		//Attach PlantImageAdapter and adds Images.
+	    gridview.setAdapter(new PlantImageAdapter(this));
+
+	    //Setup Event Listener to direct user to information page.
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
+	        	
+	        	//TODO Check name of db table and remove this comment.
+	        	intentObjectDescription.putExtra("Type", "potato_Leaf"); //DB Table name.
+	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
+	        	
+	    		startActivity(intentObjectDescription);
+	        }
+	    });
+	}
 }

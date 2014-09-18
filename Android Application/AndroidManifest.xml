@@ -44,7 +44,7 @@
             ></activity>
         
         <activity 
-            android:name="com.team8.potatodoctor.GridviewItemActivity"
+            android:name="com.team8.potatodoctor.ObjectDescriptionActivity"
             android:label="@string/placeholder"
         	android:parentActivityName="com.team8.potatodoctor.MainActivity"
             ></activity>
