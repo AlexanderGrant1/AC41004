@@ -5,3 +5,6 @@ potatoe.sublime-workspace
 web/root/protected/config/main.php
 .classpath
 .project
+.dex
+.apk
+.ap_
