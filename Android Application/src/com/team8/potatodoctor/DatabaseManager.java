@@ -18,7 +18,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 	private static final String CREATE_PHOTO_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Photo` ("+
 	" `Id` smallint unsigned NOT NULL,"+
-	"`Name` varchar(20) NOT NULL,"+
+	"`Name` varchar(37) NOT NULL,"+
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`)"+
 	");";
