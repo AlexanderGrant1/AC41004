@@ -1,12 +1,15 @@
 <?php
 
 /**
- * This is the model class for table "potato_Tuber_photo".
+ * This is the model class for table "potato_Tuber".
  *
- * The followings are the available columns in table 'potato_Tuber_photo':
+ * The followings are the available columns in table 'potato_Tuber':
  * @property integer $Id
- * @property integer $TuberId
- * @property integer $PhotoId
+ * @property string $Name
+ * @property string $Description
+ *
+ * The followings are the available model relations:
+ * @property PotatoTuberPhoto[] $potatoTuberPhotos
  */
 class Tuber extends CActiveRecord
 {
@@ -36,11 +39,11 @@ class Tuber extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('TuberId, PhotoId', 'required'),
-			array('TuberId, PhotoId', 'numerical', 'integerOnly'=>true),
+			array('Name, Description', 'required'),
+			array('Name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('Id, TuberId, PhotoId', 'safe', 'on'=>'search'),
+			array('Id, Name, Description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,7 +55,7 @@ class Tuber extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'images' => array(self::HAS_MANY, 'TuberPhoto', 'TuberId'),
+			'images' => array(self::HAS_MANY, 'PotatoTuberPhoto', 'TuberId'),
 		);
 	}
 
@@ -63,8 +66,8 @@ class Tuber extends CActiveRecord
 	{
 		return array(
 			'Id' => 'ID',
-			'TuberId' => 'Tuber',
-			'PhotoId' => 'Photo',
+			'Name' => 'Name',
+			'Description' => 'Description',
 		);
 	}
 
@@ -80,8 +83,8 @@ class Tuber extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('Id',$this->Id);
-		$criteria->compare('TuberId',$this->TuberId);
-		$criteria->compare('PhotoId',$this->PhotoId);
+		$criteria->compare('Name',$this->Name,true);
+		$criteria->compare('Description',$this->Description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
