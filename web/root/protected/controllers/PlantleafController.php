@@ -1,6 +1,6 @@
 <?php
 
-class PestController extends Controller
+class PlantLeafController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -58,14 +58,14 @@ class PestController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Pest;
+		$model=new PlantLeaf;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Pest']))
+		if(isset($_POST['PlantLeaf']))
 		{
-			$model->attributes=$_POST['Pest'];
+			$model->attributes=$_POST['PlantLeaf'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}
@@ -87,9 +87,9 @@ class PestController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Pest']))
+		if(isset($_POST['PlantLeaf']))
 		{
-			$model->attributes=$_POST['Pest'];
+			$model->attributes=$_POST['PlantLeaf'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}
@@ -114,25 +114,14 @@ class PestController extends Controller
 	}
 
 	/**
-	 * Lists all models.
-	 */
-/*	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Pest');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-*/
-	/**
 	 * Manages all models.
 	 */
 	public function actionIndex()
 	{
-		$model=new Pest('search');
+		$model=new PlantLeaf('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Pest']))
-			$model->attributes=$_GET['Pest'];
+		if(isset($_GET['PlantLeaf']))
+			$model->attributes=$_GET['PlantLeaf'];
 
 		$this->render('index',array(
 			'model'=>$model,
@@ -143,12 +132,12 @@ class PestController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Pest the loaded model
+	 * @return PlantLeaf the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Pest::model()->findByPk($id);
+		$model=PlantLeaf::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -156,11 +145,11 @@ class PestController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Pest $model the model to be validated
+	 * @param PlantLeaf $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='pest-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='plant-leaf-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -36,7 +36,7 @@
 					    			'items' => array(
 									array('label'=>'Home', 'url'=>array('/')),
 									array('label'=>'Pests', 'url'=>array('pest/'), 'visible'=>!Yii::app()->user->isGuest),
-									array('label'=>'Plants / Leafs', 'url'=>array('/plants-leaf/'), 'visible'=>!Yii::app()->user->isGuest),
+									array('label'=>'Plants / Leafs', 'url'=>array('/plantleaf/'), 'visible'=>!Yii::app()->user->isGuest),
 									array('label'=>'Tubers', 'url'=>array('/tuber/'), 'visible'=>!Yii::app()->user->isGuest),
 									array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 									TbHtml::navbarSearchForm('#'),

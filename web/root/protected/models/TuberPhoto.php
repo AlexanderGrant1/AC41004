@@ -7,6 +7,10 @@
  * @property integer $Id
  * @property integer $TuberId
  * @property integer $PhotoId
+ *
+ * The followings are the available model relations:
+ * @property PotatoTuber $tuber
+ * @property PotatoPhoto $photo
  */
 class TuberPhoto extends CActiveRecord
 {
@@ -52,6 +56,8 @@ class TuberPhoto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tuber' => array(self::BELONGS_TO, 'PotatoTuber', 'TuberId'),
+			'photo' => array(self::BELONGS_TO, 'PotatoPhoto', 'PhotoId'),
 		);
 	}
 
