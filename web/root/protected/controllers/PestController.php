@@ -66,6 +66,13 @@ class PestController extends Controller
 		if(isset($_POST['Pest']))
 		{
 			$model->attributes=$_POST['Pest'];
+
+			if(isset($_POST['Pest']['image']))
+        	{
+	            //$model->attributes=$_POST['uploadedFile'];
+	            $model->image=CUploadedFile::getInstance($model,'image');
+	        }
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}
@@ -90,6 +97,13 @@ class PestController extends Controller
 		if(isset($_POST['Pest']))
 		{
 			$model->attributes=$_POST['Pest'];
+
+			if(isset($_POST['Pest']['image']))
+        	{
+	            //$model->attributes=$_POST['uploadedFile'];
+	            $model->image=CUploadedFile::getInstance($model,'image');
+	        }
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}

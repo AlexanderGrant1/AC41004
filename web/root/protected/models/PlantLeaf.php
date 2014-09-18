@@ -10,6 +10,9 @@
  */
 class PlantLeaf extends CActiveRecord
 {
+	public $image;		// Used for uploading file.
+	public $imageName;  // Used as a tmp field to store image name.
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -66,6 +69,58 @@ class PlantLeaf extends CActiveRecord
 			'Name' => 'Name',
 			'Description' => 'Description',
 		);
+	}
+
+	/** 
+	 * Does some extra work after being saved.
+	 *
+	 */
+	public function afterSave()
+	{
+		if(isset($this->image))
+		{
+			// The user is uploading an image.
+			do 
+			{
+				// Generate a name for this image.
+				$this->imageName = md5(time());
+			}while(file_exists(Yii::app()->params['projectPath'].Yii::app()->params['imagePath'].$this->imageName.'.jpg'));
+
+			$this->createImage();
+		}
+
+		return true;
+	}
+
+	/**
+	 * Create images for this article.
+	 */
+	public function createImage()
+	{
+		$thumb = Yii::app()->phpThumb->create($this->image->getTempName());
+
+		if($value['resizeMethod'] == 'resize')
+		{
+			$thumb->resize(600,600);
+		}
+
+		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'];
+	
+		$thumb->save($path.$this->imageName.'.jpg','jpg');
+
+		// Add this image to the db.
+		$pic = new Photo;
+		$pic->Name = $this->imageName.'.jpg';
+
+		if($pic->save())
+		{
+			// Create new linker.
+			$picLinker = new PlantLeafPhoto;
+			$picLinker->PlantLeafId = $this->Id;
+			$picLinker->PhotoId = $pic->Id;
+
+			$picLinker->save();
+		}
 	}
 
 	/**

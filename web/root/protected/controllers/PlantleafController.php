@@ -66,6 +66,13 @@ class PlantLeafController extends Controller
 		if(isset($_POST['PlantLeaf']))
 		{
 			$model->attributes=$_POST['PlantLeaf'];
+
+			if(isset($_POST['PlantLeaf']['image']))
+        	{
+	            //$model->attributes=$_POST['uploadedFile'];
+	            $model->image=CUploadedFile::getInstance($model,'image');
+	        }
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}
@@ -90,6 +97,13 @@ class PlantLeafController extends Controller
 		if(isset($_POST['PlantLeaf']))
 		{
 			$model->attributes=$_POST['PlantLeaf'];
+
+			if(isset($_POST['PlantLeaf']['image']))
+        	{
+	            //$model->attributes=$_POST['uploadedFile'];
+	            $model->image=CUploadedFile::getInstance($model,'image');
+	        }
+	        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}
