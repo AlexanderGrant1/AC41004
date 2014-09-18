@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
 /*
@@ -29,59 +30,48 @@ public class CategoriesListActivity extends Activity
 		setContentView(R.layout.activity_main);
 		
 		//Get the reference of ListViewCategories
-		final ListView categoriesList=(ListView)findViewById(R.id.listCategories);
+		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
+		categoriesGrid.setAdapter(new ImageAdapterMain(this));
 		
-		categoriesNameList = new ArrayList<String>();
-		getCategoriesNames();
 		
 		//Create the Adapter to display ArrayList onto ListView.
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoriesNameList);
+		//ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoriesNameList);
 		
 		//Set the Adapter onto the ListView.
-		categoriesList.setAdapter(arrayAdapter);
+		//categoriesList.setAdapter(arrayAdapter);
 		
 		//Register onClickListener to handle click events on each item.
-		categoriesList.setOnItemClickListener(new OnItemClickListener()
+		categoriesGrid.setOnItemClickListener(new OnItemClickListener()
 		{
 			//Argument position gives the index of item which is clicked.
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3)
 			{
-				String selectedCategory=categoriesNameList.get(position);
-				
+								
 				//TODO: Change to switch statement
-				if(selectedCategory.equals("Pests"))
+				if(position == 0)
 				{
 					Intent intentPests = new Intent(getApplicationContext(),PestsActivity.class);
 					startActivity(intentPests);
 				}
-				else if(selectedCategory.equals("Plant/Leaf Symptoms"))
+				else if(position == 1)
 				{
 					Intent intentLeaves = new Intent(getApplicationContext(),PlantSymptomActivity.class);
 					startActivity(intentLeaves);
 				}
-				else if(selectedCategory.equals("Tuber Symptoms"))
+				else if(position == 2)
 				{
 					Intent intentTuber = new Intent(getApplicationContext(),TuberSymptomActivity.class);
 					startActivity(intentTuber);
 				}
-				
+				else if(position == 3)
+				{
+					Intent intentTuber = new Intent(getApplicationContext(),TuberSymptomActivity.class);
+					startActivity(intentTuber);
+				}
 			}
 
 		});
 		Log.d("Problem Determination", "onCreate() EXIT");
-	}
-
-	/*
-	 * Populates the ArrayList with category values.
-	 */
-	private void getCategoriesNames() 
-	{
-		Log.d("Problem Determination", "getCategoriesNames() ENTRY");
-		categoriesNameList.add("Pests");
-		categoriesNameList.add("Plant/Leaf Symptoms");
-		categoriesNameList.add("Tuber Symptoms");
-		categoriesNameList.add("Tutorials");
-		Log.d("Problem Determination", "getCategoriesNames() EXIT");
 	}
 	
 

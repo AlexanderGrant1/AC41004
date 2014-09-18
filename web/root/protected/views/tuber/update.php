@@ -12,7 +12,6 @@ $this->menu=array(
 	array('label'=>'List Tuber', 'url'=>array('index')),
 	array('label'=>'Create Tuber', 'url'=>array('create')),
 	array('label'=>'View Tuber', 'url'=>array('view', 'id'=>$model->Id)),
-	array('label'=>'Manage Tuber', 'url'=>array('admin')),
 );
 ?>
 

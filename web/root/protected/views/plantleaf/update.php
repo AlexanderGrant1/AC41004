@@ -12,7 +12,6 @@ $this->menu=array(
 	array('label'=>'List PlantLeaf', 'url'=>array('index')),
 	array('label'=>'Create PlantLeaf', 'url'=>array('create')),
 	array('label'=>'View PlantLeaf', 'url'=>array('view', 'id'=>$model->Id)),
-	array('label'=>'Manage PlantLeaf', 'url'=>array('admin')),
 );
 ?>
 

@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class TuberSymptomActivity extends Activity
 {
@@ -13,15 +18,15 @@ public class TuberSymptomActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
-		/*
-		Log.d("Problem Determination", "PestsActivity,onCreate() ENTRY");
+		GridView gridview = (GridView) findViewById(R.id.gridview);
+	    gridview.setAdapter(new TuberImageAdapter(this));
 
-		
-		
-		displayPests();
-		
-		Log.d("Problem Determination", "PestsActivity.onCreate() EXIT");
-		*/
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	        	Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
+	        }
+
+	    });
 	}
 
 	@Override

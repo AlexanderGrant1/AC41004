@@ -12,7 +12,6 @@ $this->menu=array(
 	array('label'=>'List Pest', 'url'=>array('index')),
 	array('label'=>'Create Pest', 'url'=>array('create')),
 	array('label'=>'View Pest', 'url'=>array('view', 'id'=>$model->Id)),
-	array('label'=>'Manage Pest', 'url'=>array('admin')),
 );
 ?>
 

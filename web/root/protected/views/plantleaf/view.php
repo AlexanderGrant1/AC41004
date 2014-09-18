@@ -12,7 +12,6 @@ $this->menu=array(
 	array('label'=>'Create PlantLeaf', 'url'=>array('create')),
 	array('label'=>'Update PlantLeaf', 'url'=>array('update', 'id'=>$model->Id)),
 	array('label'=>'Delete PlantLeaf', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage PlantLeaf', 'url'=>array('admin')),
 );
 ?>
 
