@@ -12,7 +12,6 @@ $this->menu=array(
 	array('label'=>'Create Tuber', 'url'=>array('create')),
 	array('label'=>'Update Tuber', 'url'=>array('update', 'id'=>$model->Id)),
 	array('label'=>'Delete Tuber', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Tuber', 'url'=>array('admin')),
 );
 ?>
 

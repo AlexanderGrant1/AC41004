@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Tuber', 'url'=>array('index')),
-	array('label'=>'Manage Tuber', 'url'=>array('admin')),
 );
 ?>
 
