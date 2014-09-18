@@ -13,6 +13,9 @@
  */
 class Tuber extends CActiveRecord
 {
+	public $image;		// Used for uploading file.
+
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -69,6 +72,38 @@ class Tuber extends CActiveRecord
 			'Name' => 'Name',
 			'Description' => 'Description',
 		);
+	}
+
+	/** 
+	 * Does some extra work after being saved.
+	 *
+	 */
+	public function afterSave()
+	{
+		if(isset($this->image))
+		{
+			// The user is uploading an image.
+
+		}
+
+		return true;
+	}
+
+	/**
+	 * Create images for this article.
+	 */
+	public function createImage()
+	{
+		$thumb = Yii::app()->phpThumb->create($this->image->getTempName());
+
+		if($value['resizeMethod'] == 'resize')
+		{
+			$thumb->resize(600,600);
+		}
+
+		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'].$this->GalleryId;
+	
+		$thumb->save($path.'/'.$value['prefix'].$this->Picture.'.jpg','jpg');
 	}
 
 	/**
