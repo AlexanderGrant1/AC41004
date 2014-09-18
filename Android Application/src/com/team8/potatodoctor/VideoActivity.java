@@ -31,6 +31,9 @@ public class VideoActivity extends Activity
 		return true;
 	}
 	
+	/*
+	 * Refer to: http://code.tutsplus.com/tutorials/streaming-video-in-android-apps--cms-19888
+	 */
 	private void setupMediaPlayer()
 	{
 		VideoView vidView = (VideoView)findViewById(R.id.myVideo);
@@ -38,6 +41,9 @@ public class VideoActivity extends Activity
 		Uri vidUri = Uri.parse(vidAddress);
 		
 		vidView.setVideoURI(vidUri);
+		MediaController vidControl = new MediaController(this);
+		vidControl.setAnchorView(vidView);
+		vidView.setMediaController(vidControl);
 		vidView.start();
 	}
 }
