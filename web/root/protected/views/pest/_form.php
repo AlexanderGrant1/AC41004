@@ -34,6 +34,10 @@
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
+	<?php if(!$model->isNewRecord): ?>
+	<?php echo $this->renderPartial('//site/_imageManager', array('model'=>$model)); ?>
+	<?php endif; ?>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
