@@ -133,6 +133,7 @@ class Pest extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+
 		$criteria->compare('Id',$this->Id);
 		$criteria->compare('Name',$this->Name,true);
 		$criteria->compare('Description',$this->Description,true);
