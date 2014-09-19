@@ -66,6 +66,13 @@ class TutorialController extends Controller
 		if(isset($_POST['Tutorial']))
 		{
 			$model->attributes=$_POST['Tutorial'];
+
+			if(isset($_POST['Tutorial']['video']))
+        	{
+	            //$model->attributes=$_POST['uploadedFile'];
+	            $model->video=CUploadedFile::getInstance($model,'video');
+	        }
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}
@@ -90,6 +97,14 @@ class TutorialController extends Controller
 		if(isset($_POST['Tutorial']))
 		{
 			$model->attributes=$_POST['Tutorial'];
+
+			if(isset($_POST['Tutorial']['video']))
+        	{
+	            //$model->attributes=$_POST['uploadedFile'];
+	            $model->video=CUploadedFile::getInstance($model,'video');
+	        }
+
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->Id));
 		}

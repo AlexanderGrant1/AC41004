@@ -11,6 +11,8 @@
  */
 class Tutorial extends CActiveRecord
 {
+	public $video;		// Used for uploading a file.
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -39,7 +41,8 @@ class Tutorial extends CActiveRecord
 		return array(
 			array('Name, Description', 'required'),
 			array('Name', 'length', 'max'=>50),
-			array('VideoName', 'length', 'max'=>20),
+			array('VideoName', 'length', 'max'=>37),
+			array('video', 'file','types'=>'mp4', 'allowEmpty'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('Id, Name, Description, VideoName', 'safe', 'on'=>'search'),
@@ -55,6 +58,37 @@ class Tutorial extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 		);
+	}
+
+	public function beforeSave()
+	{
+		if(isset($this->video))
+		{
+			// Check whether a video exist.
+			if(isset($this->VideoName))
+			{
+				// Check whether this file exist
+				$path = Yii::app()->params['projectPath'].Yii::app()->params['videoPath'].$this->VideoName;
+
+				if(file_exists($path))
+				{
+					// Delete the old file..
+					unlink($path);
+				}
+			}
+
+			// Generate name for the new video.
+			do 
+			{
+				// Generate a name for this image.
+				$this->VideoName = md5(time()).'.mp4';
+			}while(file_exists(Yii::app()->params['projectPath'].Yii::app()->params['videoPath'].$this->VideoName));
+
+			// Save the video.
+			move_uploaded_file($this->video->getTempName(),Yii::app()->params['projectPath'].Yii::app()->params['videoPath'].$this->VideoName);
+		}
+
+		return true;
 	}
 
 	/**
