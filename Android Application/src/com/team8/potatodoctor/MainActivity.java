@@ -5,8 +5,13 @@ import java.util.LinkedList;
 import org.json.JSONException;
 
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
+import com.team8.potatodoctor.Models.DatabaseManager;
 import com.team8.potatodoctor.Models.HttpGetRequest;
 import com.team8.potatodoctor.Models.DataFetcher;
+import com.team8.potatodoctor.Models.LocalDbUpdater;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -26,15 +31,10 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
 		dbHelper.createTables();
-		try
+		try 
 		{
-			String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/pest").get();
-			DataFetcher jsonParser = new DataFetcher();
-			LinkedList<PestEntity> pests = jsonParser.parsePests(response);
-			for(int i = 0; i < pests.size(); i++)
-			{
-				dbHelper.InsertPest(pests.get(i));
-			}
+			LocalDbUpdater dbUpdater = new LocalDbUpdater(getApplicationContext());
+			dbUpdater.updateTuberTables();
 		}
 		catch (Exception e)
 		{
