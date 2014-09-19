@@ -8,6 +8,7 @@ import org.json.JSONException;
 
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.Models.DatabaseManager;
@@ -15,6 +16,8 @@ import com.team8.potatodoctor.Models.HttpGetRequest;
 import com.team8.potatodoctor.Models.DataFetcher;
 import com.team8.potatodoctor.Models.LocalDbUpdater;
 import com.team8.potatodoctor.Models.PestRepository;
+import com.team8.potatodoctor.Models.PlantLeafRepository;
+import com.team8.potatodoctor.Models.TuberRepository;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,11 +35,18 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		DatabaseManager dbManager = new DatabaseManager(getApplicationContext());
+		dbManager.createTables();
 		PestRepository pestRepository = new PestRepository(getApplicationContext());
+		TuberRepository tuberRepository = new TuberRepository(getApplicationContext());
+		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(getApplicationContext());
 		Log.w("hello","hello1");
 		LocalDbUpdater localDb = new LocalDbUpdater(getApplicationContext());
 		try {
 			localDb.updatePestTables();
+			localDb.updatePlantLeafTables();
+			localDb.updateTuberTables();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,6 +58,15 @@ public class MainActivity extends Activity
 		{
 			Log.w("hello",pest.getName());
 			for(PhotoEntity photo : pest.getPhotos())
+			{
+				Log.w("hello", "Photos: "+photo.getName());
+			}
+		}
+		
+		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+		{
+			Log.w("hello",plantLeaf.getName());
+			for(PhotoEntity photo : plantLeaf.getPhotos())
 			{
 				Log.w("hello", "Photos: "+photo.getName());
 			}

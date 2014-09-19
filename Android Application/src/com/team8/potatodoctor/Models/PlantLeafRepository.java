@@ -46,6 +46,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
             	plantLeaf.setId(cursor.getInt(cursor.getColumnIndex("Id")));
             	plantLeaf.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	plantLeaf.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+            	plantLeaf.setPhotos(getPlantLeafPhotos(plantLeaf));
             	plantLeafs.add(plantLeaf);
             }
             while (cursor.moveToNext());
@@ -65,42 +66,6 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 			db.insert("potato_PlantLeaf", null, values);
 			db.close();
 	}
-	
-    public LinkedList<PhotoLinkerEntity> getAllPlantLeafPhotoLinkers() {
-        LinkedList<PhotoLinkerEntity> plantLeafLinkers = new LinkedList<PhotoLinkerEntity>();
-
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM potato_PlantLeaf_photo", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-            	PhotoLinkerEntity plantLeafLinker = new PhotoLinkerEntity();
-            	plantLeafLinker.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-            	plantLeafLinker.setEntryId(cursor.getInt(cursor.getColumnIndex("PlantLeafId")));
-            	plantLeafLinker.setPhotoId(cursor.getInt(cursor.getColumnIndex("PhotoId")));
-            	plantLeafLinkers.add(plantLeafLinker);
-            }
-            while (cursor.moveToNext());
-        }
-        db.close();
-        return plantLeafLinkers;
-    }
-    
-    private LinkedList<Integer> getPhotoIdsForPlantLeaf(PlantLeafSymptomsEntity plantLeaf) {
-        LinkedList<Integer> photoIds = new LinkedList<Integer>();
-
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT photoId FROM potato_PlantLeaf_photo WHERE Id = "+plantLeaf.getId(), null);
-
-        if (cursor.moveToFirst()) {
-            do {
-            	photoIds.add(cursor.getInt(cursor.getColumnIndex("photoId")));
-            }
-            while (cursor.moveToNext());
-        }
-        db.close();
-        return photoIds;
-    }
 	
 	public void insertPlantLeafPhotoLinker(PhotoLinkerEntity linker)
 	{
@@ -129,7 +94,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	        return photoIds;
 	    }
 		
-		public LinkedList<PhotoEntity> getAllPlantLeafPhotos(PlantLeafSymptomsEntity plantLeaf)
+		public LinkedList<PhotoEntity> getPlantLeafPhotos(PlantLeafSymptomsEntity plantLeaf)
 		{
 			LinkedList<Integer> photoIds = getPestPhotoLinkersForPlantLeaf(plantLeaf);
 			if(photoIds.size() == 0)

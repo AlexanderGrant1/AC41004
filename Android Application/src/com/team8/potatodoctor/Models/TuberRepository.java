@@ -45,6 +45,7 @@ public class TuberRepository extends SQLiteOpenHelper
 	            	tuber.setId(cursor.getInt(cursor.getColumnIndex("Id")));
 	            	tuber.setName(cursor.getString(cursor.getColumnIndex("Name")));
 	                tuber.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+	                tuber.setPhotos(getTuberPhotos(tuber));
 	                tubers.add(tuber);
 	            }
 	            while (cursor.moveToNext());
@@ -76,7 +77,7 @@ public class TuberRepository extends SQLiteOpenHelper
 			db.close();
 		}
 		
-	    private LinkedList<Integer> getPhotoLinkersForTubers(TuberSymptomEntity tuber) {
+	    private LinkedList<Integer> getPhotoLinkersForTuber(TuberSymptomEntity tuber) {
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -92,9 +93,9 @@ public class TuberRepository extends SQLiteOpenHelper
 	        return photoIds;
 	    }
 		
-		public LinkedList<PhotoEntity> getAllTuberPhotos(TuberSymptomEntity tuber)
+		public LinkedList<PhotoEntity> getTuberPhotos(TuberSymptomEntity tuber)
 		{
-			LinkedList<Integer> photoIds = getPhotoLinkersForTubers(tuber);
+			LinkedList<Integer> photoIds = getPhotoLinkersForTuber(tuber);
 			if(photoIds.size() == 0)
 			{
 				return new LinkedList<PhotoEntity>();

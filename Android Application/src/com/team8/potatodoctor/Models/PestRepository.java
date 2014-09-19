@@ -45,7 +45,7 @@ public class PestRepository extends SQLiteOpenHelper
                 pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
                 pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
-                pest.setPhotos(getAllPlantLeafPhotos(pest));
+                pest.setPhotos(getPlantLeafPhotos(pest));
                 pests.add(pest);
             }
             while (cursor.moveToNext());
@@ -91,7 +91,7 @@ public class PestRepository extends SQLiteOpenHelper
         return photoIds;
     }
 	
-	public LinkedList<PhotoEntity> getAllPlantLeafPhotos(PestEntity pest)
+	public LinkedList<PhotoEntity> getPlantLeafPhotos(PestEntity pest)
 	{
 		LinkedList<Integer> photoIds = getPestPhotoLinkersForPest(pest);
 		if(photoIds.size() == 0)
