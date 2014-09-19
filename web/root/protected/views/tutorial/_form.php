@@ -9,6 +9,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'tutorial-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -28,9 +29,10 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'VideoName'); ?>
-		<?php echo $form->textField($model,'VideoName',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'VideoName'); ?>
+		<?php echo $form->labelEx($model,'video'); ?>
+		<p class="note">Only 1 video allowed per tutorial.</p>
+		<?php echo $form->fileField($model,'video'); ?>
+		<?php echo $form->error($model,'video'); ?>
 	</div>
 
 	<div class="row buttons">

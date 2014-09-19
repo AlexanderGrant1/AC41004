@@ -30,6 +30,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
+		<p class="note">You can upload only one image per submission.</p>
 		<?php echo $form->fileField($model,'image'); ?>
 		<?php echo $form->error($model,'image'); ?>
 	</div>

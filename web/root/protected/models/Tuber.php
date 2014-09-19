@@ -13,7 +13,7 @@
  */
 class Tuber extends CActiveRecord
 {
-	public $image;		// Used for uploading file.
+	public $image;		// Used for uploading a file.
 	public $imageName;  // Used as a tmp field to store image name.
 
 
@@ -45,6 +45,7 @@ class Tuber extends CActiveRecord
 		return array(
 			array('Name, Description', 'required'),
 			array('Name', 'length', 'max'=>50),
+			array('image', 'file','types'=>'jpg,png', 'allowEmpty'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('Id, Name, Description', 'safe', 'on'=>'search'),

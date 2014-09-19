@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `potato_Tutorial` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
-	`VideoName` varchar(20),
+	`VideoName` varchar(37),
 	UNIQUE(`Name`),
 	PRIMARY KEY(`Id`)
 )ENGINE=InnoDB CHARACTER SET utf8
