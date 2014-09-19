@@ -57,7 +57,7 @@ public class ImageAdapterMain extends BaseAdapter {
             v.setTag(R.id.picture, v.findViewById(R.id.picture));
             v.setTag(R.id.text, v.findViewById(R.id.text));
             
-            v.setLayoutParams(new GridView.LayoutParams(725,600));
+            //v.setLayoutParams(new GridView.LayoutParams(725,600));
             v.setPadding(50,0,50,50);
         }
 
