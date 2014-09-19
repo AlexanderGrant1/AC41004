@@ -1,13 +1,12 @@
 package com.team8.potatodoctor;
 
 import android.app.Activity;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.widget.MediaController;
-import android.widget.VideoView;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 public class VideoActivity extends Activity
 {
@@ -15,10 +14,17 @@ public class VideoActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video);
-
-		//Setup Media Player
-		setupMediaPlayer();
 		
+		int position = 0;
+		
+		//Extract parameters from the intent.
+	    Bundle extras = getIntent().getExtras();
+	    if(extras !=null)
+	    {
+	    	position = extras.getInt("position");
+	    }
+
+		setupMediaPlayer(position);
 	}
 	
 	@Override
@@ -31,13 +37,16 @@ public class VideoActivity extends Activity
 		return true;
 	}
 	
+	
+	
 	/*
 	 * Refer to: http://code.tutsplus.com/tutorials/streaming-video-in-android-apps--cms-19888
 	 */
-	private void setupMediaPlayer()
+	private void setupMediaPlayer(int position)
 	{
 		VideoView vidView = (VideoView)findViewById(R.id.myVideo);
-		String vidAddress = "android.resource://com.team8.potatodoctor/raw/test_video";
+		String vidAddress = "android.resource://com.team8.potatodoctor/raw/test_video"+position;
+		Log.d("Problem Determination", Integer.toString(position));
 		Uri vidUri = Uri.parse(vidAddress);
 		
 		vidView.setVideoURI(vidUri);
