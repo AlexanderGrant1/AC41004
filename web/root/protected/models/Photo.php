@@ -65,6 +65,18 @@ class Photo extends CActiveRecord
 		);
 	}
 
+	public function beforeDelete()
+	{
+		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'].$this->Name;
+
+		if(file_exists($path))
+		{
+			unlink($path);
+		}
+
+		return true;
+	}
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

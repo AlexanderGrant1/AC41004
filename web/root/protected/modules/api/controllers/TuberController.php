@@ -34,7 +34,7 @@ class TuberController extends Controller
 	{
 		// Return all Diseases
 		$response = array();
-		$response['PhotoPath']    = 'http://beberry.lv/potato/'.Yii::app()->params['imagePath'];
+		$response['PhotoPath']    = Yii::app()->params['siteDomain'].Yii::app()->params['imagePath'];
 		$response['Entries']	  = array();
 		$response['Photos']  	  = array();
 		$response['PhotoLinker']  = array();

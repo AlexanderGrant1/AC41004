@@ -32,7 +32,7 @@ class PestController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update', 'delete'),
+				'actions'=>array('index','create','update', 'delete','delmedia'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -151,6 +151,16 @@ class PestController extends Controller
 		$this->render('index',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionDelmedia($id)
+	{
+		$model=PestPhoto::model()->findByPk($id);
+
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+
+		$model->delete();
 	}
 
 	/**

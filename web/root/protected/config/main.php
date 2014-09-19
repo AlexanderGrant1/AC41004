@@ -43,7 +43,7 @@ return array(
 	// application components
 	'components'=>array(
 		'phpThumb'=>array(
-	    	'class'=>'extensions.EPhpThumb.EPhpThumb',
+	    	'class'=>'application.extensions.EPhpThumb.EPhpThumb',
 	    ),
 		'user'=>array(
 			// enable cookie-based authentication
@@ -110,8 +110,10 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		'projectPath' => '/public_html/potato/',
+		'projectPath' => '/home/exitmusi/public_html/potato/',
+		'siteDomain' => 'http://beberry.lv/potato/',
 		'imagePath' => 'images/u/',
+		'videoPath' => 'videos/u/',
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),

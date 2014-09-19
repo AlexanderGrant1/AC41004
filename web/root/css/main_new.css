@@ -1,6 +1,6 @@
 #content {
 	margin-top: 40px;
-	padding-bottom: 60px;
+	padding-bottom: 90px;
 	overflow: hidden;
   max-width: 900px;
 }
@@ -60,3 +60,27 @@ div#content.split { width: 70%; float:left; }
   position: absolute;bottom: 10px;
 }
 
+
+#image-manager {
+
+}
+
+#image-manager .entry {
+  width: 230px;
+  float: left;
+  margin-right: 10px;
+  border: 1px solid gray;
+  border-left: 0px;
+}
+
+#image-manager .pic {
+  width: 150px;
+  display: inline-block;
+}
+
+#image-manager .remove {
+  width: 50px;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+}
