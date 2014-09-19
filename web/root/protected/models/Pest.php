@@ -100,10 +100,8 @@ class Pest extends CActiveRecord
 	{
 		$thumb = Yii::app()->phpThumb->create($this->image->getTempName());
 
-		if($value['resizeMethod'] == 'resize')
-		{
-			$thumb->resize(600,600);
-		}
+		$thumb->resize(600,600);
+		
 
 		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'];
 	
