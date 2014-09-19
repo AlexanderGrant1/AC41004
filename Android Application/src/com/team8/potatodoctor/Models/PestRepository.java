@@ -7,9 +7,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 
 public class PestRepository extends SQLiteOpenHelper
 
@@ -42,10 +45,10 @@ public class PestRepository extends SQLiteOpenHelper
                 pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
                 pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+                pest.setPhotos(getAllPlantLeafPhotos(pest));
                 pests.add(pest);
             }
             while (cursor.moveToNext());
-
         }
         return pests;
     }
@@ -61,26 +64,6 @@ public class PestRepository extends SQLiteOpenHelper
 			db.close();
 	}
 	
-    public LinkedList<PhotoLinkerEntity> getAllPestPhotoLinkers() {
-        LinkedList<PhotoLinkerEntity> pestLinkers = new LinkedList<PhotoLinkerEntity>();
-
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM potato_Pest_photo", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-            	PhotoLinkerEntity pest = new PhotoLinkerEntity();
-                pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-                pest.setEntryId(cursor.getInt(cursor.getColumnIndex("PestId")));
-                pest.setPhotoId(cursor.getInt(cursor.getColumnIndex("PhotoId")));
-                pestLinkers.add(pest);
-            }
-            while (cursor.moveToNext());
-
-        }
-        return pestLinkers;
-    }
-	
 	public void insertPestPhotoLinker(PhotoLinkerEntity linker)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -88,7 +71,56 @@ public class PestRepository extends SQLiteOpenHelper
 			values.put("Id", linker.getId());
 			values.put("PestId", linker.getEntryId());
 			values.put("PhotoId", linker.getPhotoId());
-			db.insert("potato_Pest", null, values);
+			db.insert("potato_Pest_photo", null, values);
 			db.close();
+	}
+	
+    private LinkedList<Integer> getPestPhotoLinkersForPest(PestEntity pest) {
+        LinkedList<Integer> photoIds = new LinkedList<Integer>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT photoId FROM potato_Pest_photo WHERE PestId = "+pest.getId(), null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	photoIds.add(cursor.getInt(cursor.getColumnIndex("PhotoId")));
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return photoIds;
+    }
+	
+	public LinkedList<PhotoEntity> getAllPlantLeafPhotos(PestEntity pest)
+	{
+		LinkedList<Integer> photoIds = getPestPhotoLinkersForPest(pest);
+		if(photoIds.size() == 0)
+		{
+			return new LinkedList<PhotoEntity>();
+		}
+		String SQLQuery = "SELECT * FROM potato_Photo WHERE Id = ";
+		for(int i = 0; i < photoIds.size(); i++)
+		{
+			SQLQuery+= photoIds.get(i).toString();
+			if(i < photoIds.size() - 1)
+			{
+				SQLQuery+= " OR Id = ";
+			}
+		}
+		LinkedList<PhotoEntity> photos = new LinkedList<PhotoEntity>();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(SQLQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	PhotoEntity photo = new PhotoEntity();
+            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+            	photo.setName(cursor.getString(cursor.getColumnIndex("Name")));
+            	photos.add(photo);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return photos;
 	}
 }

@@ -2,6 +2,7 @@ package com.team8.potatodoctor.Models;
 
 import java.util.LinkedList;
 
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
@@ -11,6 +12,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class PlantLeafRepository extends SQLiteOpenHelper
 
@@ -111,9 +113,52 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
-	//public LinkedList<PhotoEntity> getAllPlantLeafPhotos(PlantLeafSymptomsEntity plantLeafSymptom)
-//	{
-//		LinkedList<Integer> photoIds = getPhotoIdsForPlantLeaf(plantLeafSymptom);
+	 private LinkedList<Integer> getPestPhotoLinkersForPlantLeaf(PlantLeafSymptomsEntity plantLeaf) {
+	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
+
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery("SELECT photoId FROM potato_PlantLeaf_photo WHERE PlantLeafId = "+plantLeaf.getId(), null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	photoIds.add(cursor.getInt(cursor.getColumnIndex("PhotoId")));
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return photoIds;
+	    }
 		
-//	}
+		public LinkedList<PhotoEntity> getAllPlantLeafPhotos(PlantLeafSymptomsEntity plantLeaf)
+		{
+			LinkedList<Integer> photoIds = getPestPhotoLinkersForPlantLeaf(plantLeaf);
+			if(photoIds.size() == 0)
+			{
+				return new LinkedList<PhotoEntity>();
+			}
+			String SQLQuery = "SELECT * FROM potato_Photo WHERE Id = ";
+			for(int i = 0; i < photoIds.size(); i++)
+			{
+				SQLQuery+= photoIds.get(i).toString();
+				if(i < photoIds.size() - 1)
+				{
+					SQLQuery+= " OR Id = ";
+				}
+			}
+			LinkedList<PhotoEntity> photos = new LinkedList<PhotoEntity>();
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery(SQLQuery, null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	PhotoEntity photo = new PhotoEntity();
+	            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+	            	photo.setName(cursor.getString(cursor.getColumnIndex("Name")));
+	            	photos.add(photo);
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return photos;
+		}
 }

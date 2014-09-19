@@ -5,6 +5,7 @@ public class PhotoLinkerEntity {
 	private int Id;
 	private int EntryId;
 	private int PhotoId;
+	
 	public int getId() {
 		return Id;
 	}

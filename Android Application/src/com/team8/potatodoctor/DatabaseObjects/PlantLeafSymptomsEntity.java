@@ -1,28 +1,36 @@
 package com.team8.potatodoctor.DatabaseObjects;
 
+import java.util.LinkedList;
+
 public class PlantLeafSymptomsEntity {
 
-	private int Id;
-	private String Name;
-	private String Description;
+	private int id;
+	private String name;
+	private String description;
+	private LinkedList<PhotoEntity> photos;
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	
+	public LinkedList<PhotoEntity> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(LinkedList<PhotoEntity> photos) {
+		this.photos = photos;
+	}
 }

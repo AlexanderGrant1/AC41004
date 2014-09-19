@@ -2,6 +2,8 @@ package com.team8.potatodoctor.Models;
 
 import java.util.LinkedList;
 
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 
@@ -10,6 +12,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class TuberRepository extends SQLiteOpenHelper
 
@@ -62,26 +65,6 @@ public class TuberRepository extends SQLiteOpenHelper
 				db.close();
 		}
 		
-	    public LinkedList<PhotoLinkerEntity> getAllTuberPhotoLinkers() {
-	        LinkedList<PhotoLinkerEntity> tuberLinkers = new LinkedList<PhotoLinkerEntity>();
-
-	        SQLiteDatabase db = getWritableDatabase();
-	        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tuber_photo", null);
-
-	        if (cursor.moveToFirst()) {
-	            do {
-	            	PhotoLinkerEntity pest = new PhotoLinkerEntity();
-	                pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-	                pest.setEntryId(cursor.getInt(cursor.getColumnIndex("PestId")));
-	                pest.setPhotoId(cursor.getInt(cursor.getColumnIndex("PhotoId")));
-	                tuberLinkers.add(pest);
-	            }
-	            while (cursor.moveToNext());
-	        }
-	        db.close();
-	        return tuberLinkers;
-	    }
-		
 		public void insertTuberPhotoLinker(PhotoLinkerEntity linker)
 		{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -91,5 +74,54 @@ public class TuberRepository extends SQLiteOpenHelper
 			values.put("TuberId", linker.getEntryId());
 			db.insert("potato_Tuber_photo", null, values);
 			db.close();
+		}
+		
+	    private LinkedList<Integer> getPhotoLinkersForTubers(TuberSymptomEntity tuber) {
+	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
+
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery("SELECT photoId FROM potato_Tuber_photo WHERE PestId = "+tuber.getId(), null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	photoIds.add(cursor.getInt(cursor.getColumnIndex("PhotoId")));
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return photoIds;
+	    }
+		
+		public LinkedList<PhotoEntity> getAllTuberPhotos(TuberSymptomEntity tuber)
+		{
+			LinkedList<Integer> photoIds = getPhotoLinkersForTubers(tuber);
+			if(photoIds.size() == 0)
+			{
+				return new LinkedList<PhotoEntity>();
+			}
+			String SQLQuery = "SELECT * FROM potato_Photo WHERE Id = ";
+			for(int i = 0; i < photoIds.size(); i++)
+			{
+				SQLQuery+= photoIds.get(i).toString();
+				if(i < photoIds.size() - 1)
+				{
+					SQLQuery+= " OR Id = ";
+				}
+			}
+			LinkedList<PhotoEntity> photos = new LinkedList<PhotoEntity>();
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery(SQLQuery, null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	PhotoEntity photo = new PhotoEntity();
+	            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+	            	photo.setName(cursor.getString(cursor.getColumnIndex("Name")));
+	            	photos.add(photo);
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return photos;
 		}
 }
