@@ -67,7 +67,7 @@ public class CategoriesListActivity extends Activity
 				}
 				else if(position == 3)
 				{
-					Intent intentVideo = new Intent(getApplicationContext(),VideoActivity.class);
+					Intent intentVideo = new Intent(getApplicationContext(),VideoGridActivity.class);
 					startActivity(intentVideo);
 				}
 			}

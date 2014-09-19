@@ -35,6 +35,11 @@ public class MainActivity extends Activity
 		{
 			LocalDbUpdater dbUpdater = new LocalDbUpdater(getApplicationContext());
 			dbUpdater.updateTuberTables();
+			dbUpdater.updatePestTables();
+			for(PestEntity pest : dbHelper.getAllPests())
+			{
+				Toast.makeText(getApplicationContext(), pest.getName(), Toast.LENGTH_LONG).show();
+			}
 		}
 		catch (Exception e)
 		{
