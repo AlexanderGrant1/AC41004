@@ -32,7 +32,7 @@ class TuberController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update', 'delete','delpic'),
+				'actions'=>array('index','create','update', 'delete','delmedia'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -142,7 +142,7 @@ class TuberController extends Controller
 		));
 	}
 
-	public function actionDelpic($id)
+	public function actionDelmedia($id)
 	{
 		$model=TuberPhoto::model()->findByPk($id);
 
