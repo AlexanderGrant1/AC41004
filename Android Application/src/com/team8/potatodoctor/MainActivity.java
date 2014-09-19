@@ -29,22 +29,6 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		DatabaseManager dbHelper = new DatabaseManager(getApplicationContext());
-		dbHelper.createTables();
-		try 
-		{
-			LocalDbUpdater dbUpdater = new LocalDbUpdater(getApplicationContext());
-			dbUpdater.updateTuberTables();
-			dbUpdater.updatePestTables();
-			for(PestEntity pest : dbHelper.getAllPests())
-			{
-				Toast.makeText(getApplicationContext(), pest.getName(), Toast.LENGTH_LONG).show();
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
 
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);

@@ -1,26 +1,31 @@
 package com.team8.adapters;
 
+import com.team8.adapters.ImageAdapter.Item;
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
+import com.team8.potatodoctor.Models.DatabaseManager;
+import com.team8.potatodoctor.Models.PlantLeafRepository;
 import com.team8.potatodoctor.R.drawable;
 
 import android.content.Context;
 
 public class PlantImageAdapter extends ImageAdapter {
-	
+	private Context context;
 	public PlantImageAdapter(Context context) {
 		super(context);
+		this.context = context;
 		addItems();
 		
 	}
 
 	@Override
 	void addItems() {
-		items.add(new Item("Plant",       R.drawable.ic_placeholder));
-        items.add(new Item("Potato",   		R.drawable.ic_placeholder));
-        items.add(new Item("Spud", 			R.drawable.ic_placeholder));
-        items.add(new Item("Spuddy", 		R.drawable.ic_placeholder));
-        items.add(new Item("Pomme de Terre",     R.drawable.ic_placeholder));
-		
+		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(context);
+		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+		{
+			items.add(new Item(plantLeaf.getName(), R.drawable.ic_placeholder));
+		}
 	}
 
 }

@@ -15,12 +15,18 @@ import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 public class LocalDbUpdater {
 
 	private Context context;
-	private DatabaseManager dbManager;
+	private TuberRepository tuberRepository;
+	private PestRepository pestRepository;
+	private PlantLeafRepository plantLeafRepository;
+	private PhotoRepository photoRepository;
 	private DataFetcher dataFetcher;
 	public LocalDbUpdater(Context context)
 	{
 		this.context = context;
-		dbManager = new DatabaseManager(this.context);
+		tuberRepository = new TuberRepository(context);
+		pestRepository = new PestRepository(context);
+		plantLeafRepository = new PlantLeafRepository(context);
+		photoRepository = new PhotoRepository(context);
 		dataFetcher = new DataFetcher();
 	}
 	
@@ -30,19 +36,19 @@ public class LocalDbUpdater {
 		LinkedList<TuberSymptomEntity> tuberSymptoms = dataFetcher.parseTuberSymptoms(response);
 		for(TuberSymptomEntity tuber : tuberSymptoms)
 		{
-			dbManager.insertTuber(tuber);
+			tuberRepository.insertTuber(tuber);
 		}
 		
 		LinkedList<PhotoLinkerEntity> tuberLinkers = dataFetcher.parsePhotoLinker(response);
 		for(PhotoLinkerEntity linker : tuberLinkers)
 		{
-			dbManager.insertTuberPhotoLinker(linker);
+			tuberRepository.insertTuberPhotoLinker(linker);
 		}
 		
 		LinkedList<PhotoEntity> tuberPhotos = dataFetcher.parsePhotos(response);
 		for(PhotoEntity tuberPhoto : tuberPhotos)
 		{
-			dbManager.insertPhoto(tuberPhoto);
+			photoRepository.insertPhoto(tuberPhoto);
 		}
 	}
 	
@@ -52,19 +58,19 @@ public class LocalDbUpdater {
 		LinkedList<PestEntity> pests = dataFetcher.parsePests(response);
 		for(PestEntity pest : pests)
 		{
-			dbManager.insertPest(pest);
+			pestRepository.insertPest(pest);
 		}
 		
 		LinkedList<PhotoLinkerEntity> pestLinkers = dataFetcher.parsePhotoLinker(response);
 		for(PhotoLinkerEntity linker : pestLinkers)
 		{
-			dbManager.insertTuberPhotoLinker(linker);
+			pestRepository.insertPestPhotoLinker(linker);
 		}
 		
 		LinkedList<PhotoEntity> pestPhotos = dataFetcher.parsePhotos(response);
 		for(PhotoEntity pestPhoto : pestPhotos)
 		{
-			dbManager.insertPhoto(pestPhoto);
+			photoRepository.insertPhoto(pestPhoto);
 		}
 	}
 	
@@ -74,19 +80,19 @@ public class LocalDbUpdater {
 		LinkedList<PlantLeafSymptomsEntity> plantLeafSymptoms = dataFetcher.parsePlantAndLeafSymptoms(response);
 		for(PlantLeafSymptomsEntity plantLeafSymptom : plantLeafSymptoms)
 		{
-			dbManager.insertPlantLeaf(plantLeafSymptom);
+			plantLeafRepository.insertPlantLeaf(plantLeafSymptom);
 		}
 		
 		LinkedList<PhotoLinkerEntity> plantLeafSymptomLinkers = dataFetcher.parsePhotoLinker(response);
 		for(PhotoLinkerEntity linker : plantLeafSymptomLinkers)
 		{
-			dbManager.insertTuberPhotoLinker(linker);
+			plantLeafRepository.insertPlantLeafPhotoLinker(linker);
 		}
 		
 		LinkedList<PhotoEntity> plantLeafSymptomPhotos = dataFetcher.parsePhotos(response);
 		for(PhotoEntity plantLeafSymptomPhoto : plantLeafSymptomPhotos)
 		{
-			dbManager.insertPhoto(plantLeafSymptomPhoto);
+			photoRepository.insertPhoto(plantLeafSymptomPhoto);
 		}
 	}
 }
