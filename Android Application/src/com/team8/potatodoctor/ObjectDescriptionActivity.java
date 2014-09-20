@@ -89,8 +89,6 @@ public class ObjectDescriptionActivity extends Activity
 	    	description = tuberRepository.getAllTubers().get(position).getDescription();
 	    }
 
-	    //Set label on the Action Bar with Pest/Symptom Name.
-	    //TODO set label.
 	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
