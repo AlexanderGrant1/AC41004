@@ -37,18 +37,16 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//new MediaFetcher().execute("http://assets3.parliament.uk/iv/main-large//ImageVault/Images/id_7382/scope_0/ImageVaultHandler.aspx.jpg");
+		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateDatabaseTables();
 		} catch (Exception e) {
 			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
-		}
+		} 
 		PestRepository pestRepository = new PestRepository(getApplicationContext());
-		TuberRepository tuberRepository = new TuberRepository(getApplicationContext());
 		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(getApplicationContext());
-		Log.w("hello","hello1");
 		LocalDbUpdater localDb = new LocalDbUpdater(getApplicationContext());
 		try {
 			localDb.updatePestTables();

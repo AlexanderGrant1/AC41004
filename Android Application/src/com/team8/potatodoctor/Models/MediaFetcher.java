@@ -21,7 +21,7 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 	 */
 	protected String doInBackground(String... params) 
 	{
-		if(params[1] == null)
+		if(params.length == 1)
 		{
 			return fetch(params[0], "");
 		}
@@ -29,7 +29,7 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 	}
 	
 	//Referenced http://stackoverflow.com/questions/16414515/save-image-from-url-to-sdcard
-	public String fetch(String mediaUrl, String sdCardFolder)//sdCardFolder is the folder to store the image in on the sd card
+	public String fetch(String mediaUrl, String sdCardFolder)//sdCardFolder is the folder to store the image in on the sd card e.g Pests
 	{
 		String filepath = "";
 		try
@@ -39,10 +39,15 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 		  urlConnection.setRequestMethod("GET");
 		  urlConnection.setDoOutput(true);                   
 		  urlConnection.connect();                  
-		  File SDCardRoot = Environment.getExternalStorageDirectory().getAbsoluteFile();
-		  String filename="downloadedFile.png";   
-		  Log.i("Local filename:",""+filename);
-		  File file = new File(SDCardRoot,filename);
+		  File SDCardFolder = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/"+sdCardFolder);
+		  if(!SDCardFolder.isDirectory())
+		  {
+			  SDCardFolder.mkdir();
+		  }
+		  Log.w("hello", "SDCard folder = "+SDCardFolder);
+		  String filename=getMediaNameAndExtensionFromURL(mediaUrl);   
+		  Log.w("hello","Local filename:"+filename);
+		  File file = new File(SDCardFolder,filename);
 		  if(file.createNewFile())
 		  {
 		    file.createNewFile();
@@ -51,13 +56,13 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 		  InputStream inputStream = urlConnection.getInputStream();
 		  int totalSize = urlConnection.getContentLength();
 		  int downloadedSize = 0;   
-		  byte[] buffer = new byte[1024];
+		  byte[] buffer = new byte[10240];
 		  int bufferLength = 0;
 		  while ( (bufferLength = inputStream.read(buffer)) > 0 ) 
 		  {                 
 		    fileOutput.write(buffer, 0, bufferLength);                  
 		    downloadedSize += bufferLength;                 
-		    Log.i("Progress:","downloadedSize:"+downloadedSize+"totalSize:"+ totalSize) ;
+		    //Log.w("Progress: downloadedSize:"+downloadedSize+"totalSize:"+ totalSize) ;
 		  }             
 		  fileOutput.close();
 		  if(downloadedSize==totalSize) filepath=file.getPath();    
@@ -71,7 +76,7 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 		  filepath=null;
 		  e.printStackTrace();
 		}
-		Log.i("filepath:"," "+filepath) ;
+		Log.w("hello", "filepath = "+filepath);
 		return filepath;
 	}
 	

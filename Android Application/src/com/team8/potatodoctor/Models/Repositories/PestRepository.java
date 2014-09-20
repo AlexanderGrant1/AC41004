@@ -79,6 +79,7 @@ public class PestRepository extends SQLiteOpenHelper
             }
             while (cursor.moveToNext());
         }
+        db.close();
         return pests;
     }
 	
