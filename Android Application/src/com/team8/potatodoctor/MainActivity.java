@@ -1,5 +1,6 @@
 package com.team8.potatodoctor;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
@@ -21,6 +22,7 @@ import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -30,7 +32,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity 
 {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -46,7 +47,6 @@ public class MainActivity extends Activity
 			e.printStackTrace();
 		} 
 		PestRepository pestRepository = new PestRepository(getApplicationContext());
-		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(getApplicationContext());
 		for(PestEntity pest : pestRepository.getAllPests())
 		{
 			Log.w("hello",pest.getName());
@@ -55,7 +55,7 @@ public class MainActivity extends Activity
 				Log.w("hello", "Photos: "+photo.getName());
 			}
 		}
-		
+		ListFilesInPestDirectory();
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");

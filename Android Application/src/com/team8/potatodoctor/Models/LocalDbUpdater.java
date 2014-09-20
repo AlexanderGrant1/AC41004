@@ -19,8 +19,7 @@ import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
 
 public class LocalDbUpdater {
-
-	private Context context;
+	
 	private TuberRepository tuberRepository;
 	private PestRepository pestRepository;
 	private PlantLeafRepository plantLeafRepository;
@@ -29,7 +28,6 @@ public class LocalDbUpdater {
 	private DataFetcher dataFetcher;
 	public LocalDbUpdater(Context context)
 	{
-		this.context = context;
 		tuberRepository = new TuberRepository(context);
 		pestRepository = new PestRepository(context);
 		plantLeafRepository = new PlantLeafRepository(context);
@@ -40,7 +38,7 @@ public class LocalDbUpdater {
 	
 	public void updateTuberTables() throws InterruptedException, ExecutionException
 	{
-		String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/tuber").get();
+		String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
 		LinkedList<TuberSymptomEntity> tuberSymptoms = dataFetcher.parseTuberSymptoms(response);
 		for(TuberSymptomEntity tuber : tuberSymptoms)
 		{
@@ -62,7 +60,7 @@ public class LocalDbUpdater {
 	
 	public void updatePestTables() throws InterruptedException, ExecutionException
 	{
-		String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/pest").get();
+		String response = new HttpGetRequest().execute(Constants.PEST_API_URL).get();
 		LinkedList<PestEntity> pests = dataFetcher.parsePests(response);
 		for(PestEntity pest : pests)
 		{
@@ -84,7 +82,7 @@ public class LocalDbUpdater {
 	
 	public void updatePlantLeafTables() throws InterruptedException, ExecutionException
 	{
-		String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/plantleaf").get();
+		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
 		LinkedList<PlantLeafSymptomsEntity> plantLeafSymptoms = dataFetcher.parsePlantAndLeafSymptoms(response);
 		for(PlantLeafSymptomsEntity plantLeafSymptom : plantLeafSymptoms)
 		{
@@ -106,7 +104,7 @@ public class LocalDbUpdater {
 	
 	public void updateTutorialTables() throws InterruptedException, ExecutionException
 	{
-		String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/tutorial").get();
+		String response = new HttpGetRequest().execute(Constants.TUTORIAL_API_URL).get();
 		LinkedList<TutorialEntity> tutorials = dataFetcher.parseTutorials(response);
 		for(TutorialEntity tutorial : tutorials)
 		{

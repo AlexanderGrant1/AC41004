@@ -43,15 +43,13 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 		  if(!SDCardFolder.isDirectory())
 		  {
 			  SDCardFolder.mkdir();
+			  Log.w("hello","created folder");
 		  }
 		  Log.w("hello", "SDCard folder = "+SDCardFolder);
 		  String filename=getMediaNameAndExtensionFromURL(mediaUrl);   
 		  Log.w("hello","Local filename:"+filename);
 		  File file = new File(SDCardFolder,filename);
-		  if(file.createNewFile())
-		  {
-		    file.createNewFile();
-		  }                 
+		  file.createNewFile();   
 		  FileOutputStream fileOutput = new FileOutputStream(file);
 		  InputStream inputStream = urlConnection.getInputStream();
 		  int totalSize = urlConnection.getContentLength();
