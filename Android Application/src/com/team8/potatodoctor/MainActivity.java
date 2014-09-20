@@ -55,7 +55,6 @@ public class MainActivity extends Activity
 				Log.w("hello", "Photos: "+photo.getName());
 			}
 		}
-		ListFilesInPestDirectory();
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");
