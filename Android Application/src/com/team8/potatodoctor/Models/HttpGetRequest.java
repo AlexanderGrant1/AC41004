@@ -33,22 +33,14 @@ public class HttpGetRequest extends AsyncTask<String, Void, String>
 	{
 		try
 		{			
-			Log.w("hello",url);
-			Log.w("hello","debug0");
 			 HttpClient httpclient = new DefaultHttpClient();
-			 Log.w("hello","debug1");
 			 HttpGet httpGet = new HttpGet(url);
-			 Log.w("hello","debug2");
 			 ResponseHandler<String> responseHandler = new BasicResponseHandler();
-			 Log.w("hello","debug3");
-			 String response = httpclient.execute(httpGet, responseHandler);
-			 Log.w("hello","debug4");
-			 return response;
+			 return httpclient.execute(httpGet, responseHandler);
 		}
 		catch(IOException e)
 		{
 			e.printStackTrace();
-			Log.w("hello",e.getMessage());
 			return null;
 		}
 	}

@@ -15,9 +15,9 @@ import com.team8.potatodoctor.Models.DatabaseManager;
 import com.team8.potatodoctor.Models.HttpGetRequest;
 import com.team8.potatodoctor.Models.DataFetcher;
 import com.team8.potatodoctor.Models.LocalDbUpdater;
-import com.team8.potatodoctor.Models.PestRepository;
-import com.team8.potatodoctor.Models.PlantLeafRepository;
-import com.team8.potatodoctor.Models.TuberRepository;
+import com.team8.potatodoctor.Models.Repositories.PestRepository;
+import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
+import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
 import android.os.Bundle;
 import android.app.Activity;

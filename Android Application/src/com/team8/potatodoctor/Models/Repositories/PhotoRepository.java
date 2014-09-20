@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Models;
+package com.team8.potatodoctor.Models.Repositories;
 
 import java.util.LinkedList;
 

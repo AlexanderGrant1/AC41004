@@ -11,6 +11,10 @@ import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.Models.Repositories.PestRepository;
+import com.team8.potatodoctor.Models.Repositories.PhotoRepository;
+import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
+import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
 public class LocalDbUpdater {
 

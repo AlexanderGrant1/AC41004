@@ -5,7 +5,7 @@ import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.Models.DatabaseManager;
-import com.team8.potatodoctor.Models.PlantLeafRepository;
+import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.R.drawable;
 
 import android.content.Context;
