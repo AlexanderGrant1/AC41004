@@ -72,23 +72,26 @@ public class ObjectDescriptionActivity extends Activity
 	    	position = extras.getInt("Position");
 	    }
 	    String description = "";
-	    
+	    String title = "";
 	    if(type.equals("potato_PlantLeaf"))
 	    {
+	    	title = plantLeafRepository.getAllPlantLeafs().get(position).getName();
 	    	description = plantLeafRepository.getAllPlantLeafs().get(position).getDescription();
 	    }
 	    else if(type.equals("potato_Pest"))
 	    {
+	    	title = pestRepository.getAllPests().get(position).getName();
 	    	description = pestRepository.getAllPests().get(position).getDescription();
 	    }
 	    else if(type.equals("potato_Tuber"))
 	    {
+	    	title = tuberRepository.getAllTubers().get(position).getName();
 	    	description = tuberRepository.getAllTubers().get(position).getDescription();
 	    }
 
 	    //Set label on the Action Bar with Pest/Symptom Name.
 	    //TODO set label.
-	    
+	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
 	    
