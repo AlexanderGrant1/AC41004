@@ -4,6 +4,9 @@ import java.io.File;
 
 import com.team8.adapters.GalleryImageAdapter;
 import com.team8.adapters.PlantImageAdapter;
+import com.team8.potatodoctor.Models.Repositories.PestRepository;
+import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
+import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +36,10 @@ public class ObjectDescriptionActivity extends Activity
 	//ImageView for full sized image when selected.
 	ImageView selectedImage;
 	
+	private PestRepository pestRepository;
+	private TuberRepository tuberRepository;
+	private PlantLeafRepository plantLeafRepository;
+	
 	//Array of images for the selected image.
 	private Integer[] mImageIds = {
 		R.drawable.ic_shiba1,
@@ -44,11 +51,16 @@ public class ObjectDescriptionActivity extends Activity
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
 	
+	
 	protected void onCreate(Bundle savedInstanceState) 
 	{
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_object_description);
 		
+		pestRepository = new PestRepository(getApplicationContext());
+		tuberRepository = new TuberRepository(getApplicationContext());
+		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
 		String type = "";
 		int position = 0;
 		
@@ -59,6 +71,20 @@ public class ObjectDescriptionActivity extends Activity
 	    	type = extras.getString("Type");
 	    	position = extras.getInt("Position");
 	    }
+	    String description = "";
+	    
+	    if(type.equals("potato_PlantLeaf"))
+	    {
+	    	description = plantLeafRepository.getAllPlantLeafs().get(position).getDescription();
+	    }
+	    else if(type.equals("potato_Pest"))
+	    {
+	    	description = pestRepository.getAllPests().get(position).getDescription();
+	    }
+	    else if(type.equals("potato_Tuber"))
+	    {
+	    	description = tuberRepository.getAllTubers().get(position).getDescription();
+	    }
 
 	    //Set label on the Action Bar with Pest/Symptom Name.
 	    //TODO set label.
@@ -68,6 +94,7 @@ public class ObjectDescriptionActivity extends Activity
 	    
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
+        textView.setText(description);
         textView.setMovementMethod(new ScrollingMovementMethod());
 	}
 

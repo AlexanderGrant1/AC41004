@@ -51,7 +51,7 @@ public class PlantSymptomActivity extends Activity {
 	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
 	        	
 	        	//TODO Check name of db table and remove this comment.
-	        	intentObjectDescription.putExtra("Type", "potato_Leaf"); //DB Table name.
+	        	intentObjectDescription.putExtra("Type", "potato_PlantLeaf"); //DB Table name.
 	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
 	        	
 	    		startActivity(intentObjectDescription);
