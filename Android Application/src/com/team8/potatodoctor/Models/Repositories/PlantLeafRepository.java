@@ -27,11 +27,19 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`));";
 	
+	private static final String CLEAR_PLANT_LEAF_TABLE = "DELETE FROM `potato_PlantLeaf`";
+	
+	private static final String DROP_PLANT_LEAF_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_PlantLeaf`";
+	
 	private static final String CREATE_PLANT_LEAF_PHOTO_TABLE = "CREATE TABLE IF NOT EXISTS `potato_PlantLeaf_photo` ("+
 	"`Id` smallint unsigned NOT NULL,"+
 	"`PlantLeafId` smallint unsigned NOT NULL,"+
 	"`PhotoId` smallint unsigned NOT NULL,"+
 	"PRIMARY KEY(`Id`));";	
+	
+	private static final String CLEAR_PLANT_LEAF_PHOTO_TABLE = "DELETE FROM `potato_PlantLeaf_photo`";
+	
+	private static final String DROP_PLANT_LEAF_PHOTO_TABLE_EXISTS = "DROP TABLE IF EXISTS `potato_PlantLeaf_photo`";
 	
 	public PlantLeafRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,11 +62,19 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public void dropPlantLeafTablesIfExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(DROP_PLANT_LEAF_TABLE_IF_EXISTS);
+		db.execSQL(DROP_PLANT_LEAF_PHOTO_TABLE_EXISTS);
+		db.close();
+	}
+	
 	public void clearPlantLeafTables()
 	{
 		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL("DELETE FROM potato_PlantLeaf");
-		db.execSQL("DELETE FROM potato_PlantLeaf_photo");
+		db.execSQL(CLEAR_PLANT_LEAF_TABLE);
+		db.execSQL(CLEAR_PLANT_LEAF_PHOTO_TABLE);
 		db.close();
 	}
 

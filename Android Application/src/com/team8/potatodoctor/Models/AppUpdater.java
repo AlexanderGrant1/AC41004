@@ -26,23 +26,23 @@ public class AppUpdater {
 	}
 	public void updateDatabaseTables() throws InterruptedException, ExecutionException
 	{
+		pestRepository.dropPestTableIfExists();
 		pestRepository.createPestTablesIfNotExists();
-		pestRepository.clearPestTables();
 		localDbUpdater.updatePestTables();
 		
+		photoRepository.dropPhotoTableIfExists();
 		photoRepository.createPhotoTableIfNotExists();
-		photoRepository.clearPhotoTable();
 		
+		tuberRepository.dropTuberTablesIfExists();
 		tuberRepository.createTuberTablesIfNotExists();
-		tuberRepository.clearTuberTables();
 		localDbUpdater.updateTuberTables();
 		
+		tutorialRepository.dropTutorialTableIfExists();
 		tutorialRepository.createTutorialTableIfNotExists();
-		tutorialRepository.clearTutorialTable();
 		localDbUpdater.updateTutorialTables();
 		
+		plantLeafRepository.dropPlantLeafTablesIfExists();
 		plantLeafRepository.createPlantLeafTablesIfNotExists();
-		plantLeafRepository.clearPlantLeafTables();
 		localDbUpdater.updatePlantLeafTables();
 	}
 	

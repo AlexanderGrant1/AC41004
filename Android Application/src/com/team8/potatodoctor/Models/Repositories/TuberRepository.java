@@ -27,11 +27,19 @@ public class TuberRepository extends SQLiteOpenHelper
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`));";
 	
+	private static final String DROP_TUBER_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Tuber`";
+	
+	private static final String CLEAR_TUBER_TABLE = "DELETE FROM `potato_Tuber`";
+	
 	private static final String CREATE_TUBER_PHOTOS = "CREATE TABLE IF NOT EXISTS `potato_Tuber_photo` ("+
 	"`Id` smallint unsigned NOT NULL,"+
 	"`TuberId` smallint unsigned NOT NULL,"+
 	"`PhotoId` smallint unsigned NOT NULL,"+
 	"PRIMARY KEY(`Id`));";
+	
+	private static final String CLEAR_TUBER_PHOTO_TABLE = "DELETE FROM `potato_Tuber_photo`";
+	
+	private static final String DROP_TUBER_PHOTOS_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Tuber_photo`";
 	
 	public TuberRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,11 +62,19 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public void dropTuberTablesIfExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(DROP_TUBER_TABLE_IF_EXISTS);
+		db.execSQL(DROP_TUBER_PHOTOS_TABLE_IF_EXISTS);
+		db.close();
+	}
+	
 	public void clearTuberTables()
 	{
 		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL("DELETE FROM potato_Tuber");
-		db.execSQL("DELETE FROM potato_Tuber_photo");
+		db.execSQL(CLEAR_TUBER_TABLE);
+		db.execSQL(CLEAR_TUBER_PHOTO_TABLE);
 		db.close();
 	}
 	

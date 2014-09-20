@@ -23,6 +23,10 @@ public class PhotoRepository extends SQLiteOpenHelper
 			"PRIMARY KEY(`Id`)"+
 			");";
 	
+	private final String DROP_PHOTO_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Photo`";
+	
+	private final String CLEAR_PHOTO_TABLE = "DELETE FROM `potato_Photo`";
+	
 	public PhotoRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -43,10 +47,17 @@ public class PhotoRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public void dropPhotoTableIfExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(DROP_PHOTO_TABLE_IF_EXISTS);
+		db.close();
+	}
+	
 	public void clearPhotoTable()
 	{
 		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL("DELETE FROM potato_Photo");
+		db.execSQL(CLEAR_PHOTO_TABLE);
 		db.close();
 	}
 	

@@ -22,6 +22,10 @@ public class TutorialRepository extends SQLiteOpenHelper
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`));";
 	
+	private static final String DROP_TUTORIAL_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Tutorial`";
+	
+	private static final String CLEAR_TUTORIAL_TABLE = "DELETE FROM `potato_Tutorial`";
+	
 	public TutorialRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -42,10 +46,17 @@ public class TutorialRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public void dropTutorialTableIfExists()
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL(DROP_TUTORIAL_TABLE_IF_EXISTS);
+		db.close();
+	}
+	
 	public void clearTutorialTable()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.execSQL("DELETE FROM potato_Tutorial");
+		db.execSQL(CLEAR_TUTORIAL_TABLE);
 		db.close();
 	}
 	

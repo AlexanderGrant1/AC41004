@@ -27,11 +27,19 @@ public class PestRepository extends SQLiteOpenHelper
 	"UNIQUE(`Name`),"+
 	"PRIMARY KEY(`Id`));";
 	
+	private static final String CLEAR_PEST_TABLE = "DELETE FROM `potato_Pest`";
+	
+	private static final String DROP_PESTS_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Pest`";
+	
 	private static final String CREATE_PEST_PHOTOS_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Pest_photo` ("+
 	"`Id` smallint unsigned NOT NULL,"+
 	"`PestId` smallint unsigned NOT NULL,"+
 	"`PhotoId` smallint unsigned NOT NULL,"+
 	"PRIMARY KEY(`Id`));";
+	
+	private static final String CLEAR_PEST_PHOTOS_TABLE = "DELETE FROM `potato_Pest_photo`";
+	
+	private static final String DROP_PESTS_PHOTO_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Pest_photo`";
 	
 	public PestRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,11 +62,19 @@ public class PestRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public void dropPestTableIfExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(DROP_PESTS_TABLE_IF_EXISTS);
+		db.execSQL(DROP_PESTS_PHOTO_TABLE_IF_EXISTS);
+		db.close();
+	}
+	
 	public void clearPestTables()
 	{
 		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL("DELETE FROM potato_Pest");
-		db.execSQL("DELETE FROM potato_Pest_photo");
+		db.execSQL(CLEAR_PEST_TABLE);
+		db.execSQL(CLEAR_PEST_PHOTOS_TABLE);
 		db.close();
 	}
 	
