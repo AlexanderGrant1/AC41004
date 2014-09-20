@@ -39,12 +39,14 @@ public class TutorialRepository extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL(CREATE_TUTORIAL_TABLE);
+		db.close();
 	}
 	
 	public void clearTutorialTable()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL("DELETE FROM potato_Tutorial");
+		db.close();
 	}
 	
 	public void insertTutorial(TutorialEntity tutorial)
