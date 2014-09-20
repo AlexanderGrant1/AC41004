@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.team8.adapters.ImageAdapterMain;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,6 @@ public class CategoriesListActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(saveInstanceState);
 		setContentView(R.layout.activity_main);
-		
 		//Get the reference of ListViewCategories
 		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
 		categoriesGrid.setAdapter(new ImageAdapterMain(this)); 
