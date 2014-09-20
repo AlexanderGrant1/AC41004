@@ -40,12 +40,14 @@ public class PhotoRepository extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CREATE_PHOTO_TABLE);
+		db.close();
 	}
 	
 	public void clearPhotoTable()
 	{
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL("DELETE FROM potato_Photo");
+		db.close();
 	}
 	
     public LinkedList<PhotoEntity> getAllPhotos() {
@@ -64,6 +66,7 @@ public class PhotoRepository extends SQLiteOpenHelper
             while (cursor.moveToNext());
 
         }
+        db.close();
         return photos;
     }
 	
