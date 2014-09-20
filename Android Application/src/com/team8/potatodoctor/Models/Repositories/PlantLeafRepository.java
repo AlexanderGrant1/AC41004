@@ -51,6 +51,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CREATE_PLANT_LEAF_TABLE);
 		db.execSQL(CREATE_PLANT_LEAF_PHOTO_TABLE);
+		db.close();
 	}
 	
 	public void clearPlantLeafTables()
@@ -58,6 +59,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL("DELETE FROM potato_PlantLeaf");
 		db.execSQL("DELETE FROM potato_PlantLeaf_photo");
+		db.close();
 	}
 
     public LinkedList<PlantLeafSymptomsEntity> getAllPlantLeafs() {
