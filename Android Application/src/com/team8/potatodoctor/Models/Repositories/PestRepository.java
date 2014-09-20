@@ -51,6 +51,7 @@ public class PestRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CREATE_PEST_TABLE);
 		db.execSQL(CREATE_PEST_PHOTOS_TABLE);
+		db.close();
 	}
 	
 	public void clearPestTables()
@@ -58,6 +59,7 @@ public class PestRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL("DELETE FROM potato_Pest");
 		db.execSQL("DELETE FROM potato_Pest_photo");
+		db.close();
 	}
 	
     public LinkedList<PestEntity> getAllPests() {

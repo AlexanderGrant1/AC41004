@@ -21,11 +21,15 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 	 */
 	protected String doInBackground(String... params) 
 	{
-		return fetch(params[0]);
+		if(params[1] == null)
+		{
+			return fetch(params[0], "");
+		}
+		return fetch(params[0], params[1]);
 	}
 	
 	//Referenced http://stackoverflow.com/questions/16414515/save-image-from-url-to-sdcard
-	public String fetch(String mediaUrl)
+	public String fetch(String mediaUrl, String sdCardFolder)//sdCardFolder is the folder to store the image in on the sd card
 	{
 		String filepath = "";
 		try
@@ -69,5 +73,11 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 		}
 		Log.i("filepath:"," "+filepath) ;
 		return filepath;
+	}
+	
+	private String getMediaNameAndExtensionFromURL(String mediaURL)
+	{
+		String[] parts = mediaURL.split("/");
+		return parts[parts.length-1];
 	}
 }

@@ -15,6 +15,7 @@ import com.team8.potatodoctor.Models.AppUpdater;
 import com.team8.potatodoctor.Models.HttpGetRequest;
 import com.team8.potatodoctor.Models.DataFetcher;
 import com.team8.potatodoctor.Models.LocalDbUpdater;
+import com.team8.potatodoctor.Models.MediaFetcher;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
@@ -36,7 +37,7 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		//new MediaFetcher().execute("http://assets3.parliament.uk/iv/main-large//ImageVault/Images/id_7382/scope_0/ImageVaultHandler.aspx.jpg");
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateDatabaseTables();
@@ -53,9 +54,10 @@ public class MainActivity extends Activity
 			localDb.updatePestTables();
 			localDb.updatePlantLeafTables();
 			localDb.updateTuberTables();
+			localDb.updateTutorialTables();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.w("hello", e.getMessage());
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
