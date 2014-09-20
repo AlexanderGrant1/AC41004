@@ -47,19 +47,6 @@ public class MainActivity extends Activity
 		} 
 		PestRepository pestRepository = new PestRepository(getApplicationContext());
 		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(getApplicationContext());
-		LocalDbUpdater localDb = new LocalDbUpdater(getApplicationContext());
-		try {
-			localDb.updatePestTables();
-			localDb.updatePlantLeafTables();
-			localDb.updateTuberTables();
-			localDb.updateTutorialTables();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			Log.w("hello", e.getMessage());
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		for(PestEntity pest : pestRepository.getAllPests())
 		{
 			Log.w("hello",pest.getName());
@@ -69,14 +56,6 @@ public class MainActivity extends Activity
 			}
 		}
 		
-		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
-		{
-			Log.w("hello",plantLeaf.getName());
-			for(PhotoEntity photo : plantLeaf.getPhotos())
-			{
-				Log.w("hello", "Photos: "+photo.getName());
-			}
-		}
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");

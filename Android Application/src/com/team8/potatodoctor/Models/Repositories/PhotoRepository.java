@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class PhotoRepository extends SQLiteOpenHelper
 
@@ -47,17 +48,17 @@ public class PhotoRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
-	public void dropPhotoTableIfExists()
-	{
-		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL(DROP_PHOTO_TABLE_IF_EXISTS);
-		db.close();
-	}
-	
 	public void clearPhotoTable()
 	{
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CLEAR_PHOTO_TABLE);
+		db.close();
+	}
+	
+	public void dropPhotoTableIfExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(DROP_PHOTO_TABLE_IF_EXISTS);
 		db.close();
 	}
 	
