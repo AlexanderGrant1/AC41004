@@ -10,6 +10,12 @@ import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 
 public class LocalFileUpdater {
 
+	
+	public void deleteImageDirectories()
+	{
+		File x = new File()
+	}
+	
 	public void fetchPestImages() throws InterruptedException, ExecutionException, JSONException
 	{
 		String response = new HttpGetRequest().execute(Constants.PEST_API_URL).get();
@@ -18,7 +24,7 @@ public class LocalFileUpdater {
 		JSONArray photos = obj.getJSONArray("Photos");
 		for(int i = 0; i < photos.length(); i++)
 		{
-			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"));
+			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"Pests");
 		}
 	}
 	
@@ -30,7 +36,7 @@ public class LocalFileUpdater {
 		JSONArray photos = obj.getJSONArray("Photos");
 		for(int i = 0; i < photos.length(); i++)
 		{
-			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"));
+			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"Tubers");
 		}
 	}
 	
@@ -42,7 +48,7 @@ public class LocalFileUpdater {
 		JSONArray photos = obj.getJSONArray("Photos");
 		for(int i = 0; i < photos.length(); i++)
 		{
-			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"));
+			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"PlantLeafs");
 		}
 	}
 	

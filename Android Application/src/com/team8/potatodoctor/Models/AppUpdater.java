@@ -2,6 +2,8 @@ package com.team8.potatodoctor.Models;
 
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONException;
+
 import android.content.Context;
 
 import com.team8.potatodoctor.Models.Repositories.*;
@@ -14,6 +16,7 @@ public class AppUpdater {
 	private TutorialRepository tutorialRepository;
 	private PlantLeafRepository plantLeafRepository;
 	private LocalDbUpdater localDbUpdater;
+	private LocalFileUpdater localFileUpdater;
 	
 	public AppUpdater(Context context)
 	{
@@ -23,6 +26,7 @@ public class AppUpdater {
 		tutorialRepository = new TutorialRepository(context);
 		plantLeafRepository = new PlantLeafRepository(context);
 		localDbUpdater = new LocalDbUpdater(context);
+		localFileUpdater = new LocalFileUpdater();
 	}
 	public void updateDatabaseTables() throws InterruptedException, ExecutionException
 	{
@@ -46,8 +50,10 @@ public class AppUpdater {
 		localDbUpdater.updatePlantLeafTables();
 	}
 	
-	public void updateLocalFiles()
+	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
 	{
-		
+		localFileUpdater.fetchPestImages();
+		localFileUpdater.fetchPlantLeafImages();
+		localFileUpdater.fetchTuberImages();
 	}
 }
