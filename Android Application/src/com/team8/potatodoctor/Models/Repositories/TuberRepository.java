@@ -51,6 +51,7 @@ public class TuberRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CREATE_TUBER_TABLE);
 		db.execSQL(CREATE_TUBER_PHOTOS);
+		db.close();
 	}
 	
 	public void clearTuberTables()
@@ -58,6 +59,7 @@ public class TuberRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL("DELETE FROM potato_Tuber");
 		db.execSQL("DELETE FROM potato_Tuber_photo");
+		db.close();
 	}
 	
 	 public LinkedList<TuberSymptomEntity> getAllTubers() {
