@@ -11,10 +11,12 @@ import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PhotoRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
+import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
 
 public class LocalDbUpdater {
 
@@ -23,6 +25,7 @@ public class LocalDbUpdater {
 	private PestRepository pestRepository;
 	private PlantLeafRepository plantLeafRepository;
 	private PhotoRepository photoRepository;
+	private TutorialRepository tutorialRepository;
 	private DataFetcher dataFetcher;
 	public LocalDbUpdater(Context context)
 	{
@@ -31,6 +34,7 @@ public class LocalDbUpdater {
 		pestRepository = new PestRepository(context);
 		plantLeafRepository = new PlantLeafRepository(context);
 		photoRepository = new PhotoRepository(context);
+		tutorialRepository = new TutorialRepository(context);
 		dataFetcher = new DataFetcher();
 	}
 	
@@ -97,6 +101,16 @@ public class LocalDbUpdater {
 		for(PhotoEntity plantLeafSymptomPhoto : plantLeafSymptomPhotos)
 		{
 			photoRepository.insertPhoto(plantLeafSymptomPhoto);
+		}
+	}
+	
+	public void updateTutorialTables() throws InterruptedException, ExecutionException
+	{
+		String response = new HttpGetRequest().execute("http://beberry.lv/potato/api/tutorial").get();
+		LinkedList<TutorialEntity> tutorials = dataFetcher.parseTutorials(response);
+		for(TutorialEntity tutorial : tutorials)
+		{
+			tutorialRepository.insertTutorial(tutorial);
 		}
 	}
 }

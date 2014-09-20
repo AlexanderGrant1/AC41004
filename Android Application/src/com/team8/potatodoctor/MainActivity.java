@@ -11,7 +11,7 @@ import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
-import com.team8.potatodoctor.Models.DatabaseManager;
+import com.team8.potatodoctor.Models.AppUpdater;
 import com.team8.potatodoctor.Models.HttpGetRequest;
 import com.team8.potatodoctor.Models.DataFetcher;
 import com.team8.potatodoctor.Models.LocalDbUpdater;
@@ -36,8 +36,13 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		DatabaseManager dbManager = new DatabaseManager(getApplicationContext());
-		dbManager.createTables();
+		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
+		try {
+			appUpdater.updateDatabaseTables();
+		} catch (Exception e) {
+			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		}
 		PestRepository pestRepository = new PestRepository(getApplicationContext());
 		TuberRepository tuberRepository = new TuberRepository(getApplicationContext());
 		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(getApplicationContext());

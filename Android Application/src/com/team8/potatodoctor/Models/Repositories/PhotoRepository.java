@@ -16,6 +16,13 @@ public class PhotoRepository extends SQLiteOpenHelper
 	private static final String DATABASE_NAME = "potato.db";
 	private static final int DATABASE_VERSION = 1;
 	
+	private final String CREATE_PHOTO_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Photo` ("+
+			" `Id` smallint unsigned NOT NULL,"+
+			"`Name` varchar(37) NOT NULL,"+
+			"UNIQUE(`Name`),"+
+			"PRIMARY KEY(`Id`)"+
+			");";
+	
 	public PhotoRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -27,6 +34,18 @@ public class PhotoRepository extends SQLiteOpenHelper
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		onCreate(db);	
+	}
+	
+	public void createPhotoTableIfNotExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(CREATE_PHOTO_TABLE);
+	}
+	
+	public void clearPhotoTable()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL("DELETE FROM potato_Photo");
 	}
 	
     public LinkedList<PhotoEntity> getAllPhotos() {

@@ -2,7 +2,6 @@ package com.team8.adapters;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
-import com.team8.potatodoctor.Models.DatabaseManager;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.R.drawable;
 

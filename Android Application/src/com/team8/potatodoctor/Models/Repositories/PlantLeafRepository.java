@@ -20,6 +20,19 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	private static final String DATABASE_NAME = "potato.db";
 	private static final int DATABASE_VERSION = 1;
 	
+	private static final String CREATE_PLANT_LEAF_TABLE = "CREATE TABLE IF NOT EXISTS `potato_PlantLeaf` ("+
+	"`Id` smallint unsigned NOT NULL,"+
+	"`Name` varchar(50) NOT NULL,"+
+	"`Description` text NOT NULL,"+
+	"UNIQUE(`Name`),"+
+	"PRIMARY KEY(`Id`));";
+	
+	private static final String CREATE_PLANT_LEAF_PHOTO_TABLE = "CREATE TABLE IF NOT EXISTS `potato_PlantLeaf_photo` ("+
+	"`Id` smallint unsigned NOT NULL,"+
+	"`PlantLeafId` smallint unsigned NOT NULL,"+
+	"`PhotoId` smallint unsigned NOT NULL,"+
+	"PRIMARY KEY(`Id`));";	
+	
 	public PlantLeafRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -33,6 +46,19 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		onCreate(db);	
 	}
 	
+	public void createPlantLeafTablesIfNotExists()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL(CREATE_PLANT_LEAF_TABLE);
+		db.execSQL(CREATE_PLANT_LEAF_PHOTO_TABLE);
+	}
+	
+	public void clearPlantLeafTables()
+	{
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL("DELETE FROM potato_PlantLeaf");
+		db.execSQL("DELETE FROM potato_PlantLeaf_photo");
+	}
 
     public LinkedList<PlantLeafSymptomsEntity> getAllPlantLeafs() {
         LinkedList<PlantLeafSymptomsEntity> plantLeafs = new LinkedList<PlantLeafSymptomsEntity>();

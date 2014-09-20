@@ -44,7 +44,6 @@ public class DataFetcher {
 		try {
 			JSONObject obj = new JSONObject(Message);
 			JSONArray arr = obj.getJSONArray("PhotoLinker");
-			Log.w("hello", "length = "+arr.length());
 			for(int i = 0; i < arr.length(); i++)
 			{
 				PhotoLinkerEntity tuberSymptom = new PhotoLinkerEntity();
