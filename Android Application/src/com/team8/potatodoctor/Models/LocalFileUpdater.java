@@ -9,12 +9,6 @@ import org.json.JSONObject;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 
 public class LocalFileUpdater {
-
-	
-	public void deleteImageDirectories()
-	{
-		File x = new File()
-	}
 	
 	public void fetchPestImages() throws InterruptedException, ExecutionException, JSONException
 	{
