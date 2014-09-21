@@ -11,5 +11,6 @@ public class Constants {
 	//Internal folder locations
 	public static final String LOCAL_PEST_FOLDER = "PotatoDoctor/Pests";
 	public static final String LOCAL_TUBER_FOLDER = "PotatoDoctor/Tubers";
-	public static final String LOCAL_PLANTLEAF_FOLDER = "PotatoDoctor/PlantLeaf";
+	public static final String LOCAL_PLANTLEAF_FOLDER = "PotatoDoctor/PlantLeafs";
+	public static final String LOCAL_TUTORIAL_FOLDER = "PotatoDoctor/Tutorials";
 }
