@@ -11,14 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.DatabaseObjects.PestEntity;
-import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
-import com.team8.potatodoctor.Models.AppUpdater;
-import com.team8.potatodoctor.Models.MediaFetcher;
-import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.adapters.ImageAdapterMain;
 
 /*
