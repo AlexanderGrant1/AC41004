@@ -2,17 +2,6 @@ package com.team8.potatodoctor.activities;
 
 import java.util.ArrayList;
 
-import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.DatabaseObjects.PestEntity;
-import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
-import com.team8.potatodoctor.Models.AppUpdater;
-import com.team8.potatodoctor.Models.MediaFetcher;
-import com.team8.potatodoctor.Models.Repositories.PestRepository;
-import com.team8.potatodoctor.R.id;
-import com.team8.potatodoctor.R.layout;
-import com.team8.potatodoctor.adapters.ImageAdapterMain;
-
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,10 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
+
+import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
+import com.team8.potatodoctor.Models.AppUpdater;
+import com.team8.potatodoctor.Models.MediaFetcher;
+import com.team8.potatodoctor.Models.Repositories.PestRepository;
+import com.team8.potatodoctor.adapters.ImageAdapterMain;
 
 /*
  * Populates and displays the list of Categories on the main screen.
@@ -44,23 +39,7 @@ public class CategoriesListActivity extends Activity
 		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
 		categoriesGrid.setAdapter(new ImageAdapterMain(this)); 
 		
-		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
-		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
-		try {
-			appUpdater.updateDatabaseTables();
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
-			e.printStackTrace();
-		} 
-		PestRepository pestRepository = new PestRepository(getApplicationContext());
-		for(PestEntity pest : pestRepository.getAllPests())
-		{
-			Log.w("hello",pest.getName());
-			for(PhotoEntity photo : pest.getPhotos())
-			{
-				Log.w("hello", "Photos: "+photo.getName());
-			}
-		}
+		updateDB(saveInstanceState);
 		
 		//Create the Adapter to display ArrayList onto ListView.
 		//ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoriesNameList);
@@ -74,8 +53,7 @@ public class CategoriesListActivity extends Activity
 			//Argument position gives the index of item which is clicked.
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3)
 			{
-								
-				//TODO: Change to switch statement
+
 				if(position == 0)
 				{
 					Intent intentPests = new Intent(getApplicationContext(),PestsActivity.class);
@@ -102,5 +80,25 @@ public class CategoriesListActivity extends Activity
 		Log.d("Problem Determination", "onCreate() EXIT");
 	}
 	
+	private void updateDB(Bundle savedInstanceState)
+	{
+		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
+		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
+		try {
+			appUpdater.updateDatabaseTables();
+		} catch (Exception e) {
+			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		} 
+		PestRepository pestRepository = new PestRepository(getApplicationContext());
+		for(PestEntity pest : pestRepository.getAllPests())
+		{
+			Log.w("hello",pest.getName());
+			for(PhotoEntity photo : pest.getPhotos())
+			{
+				Log.w("hello", "Photos: "+photo.getName());
+			}
+		}
+	}
 
 }

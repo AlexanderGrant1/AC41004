@@ -1,7 +1,5 @@
 package com.team8.potatodoctor.adapters;
 
-import com.team8.potatodoctor.R;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +7,10 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
+import com.team8.potatodoctor.R;
+
 // Refer to: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
+@SuppressWarnings("deprecation")
 public class GalleryImageAdapter extends BaseAdapter
 {
 	private Context mContext;

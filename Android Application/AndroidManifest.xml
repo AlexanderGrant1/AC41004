@@ -4,6 +4,10 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+ 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="20" />
@@ -68,7 +72,5 @@
         	android:parentActivityName="com.team8.potatodoctor.activities.VideoActivity"></activity>
         
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
- 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
 </manifest>

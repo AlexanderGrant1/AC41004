@@ -3,18 +3,15 @@ package com.team8.potatodoctor.adapters;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.R.id;
-import com.team8.potatodoctor.R.layout;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.team8.potatodoctor.R;
 
 public abstract class ImageAdapter extends BaseAdapter {
     public List<Item> items = new ArrayList<Item>();

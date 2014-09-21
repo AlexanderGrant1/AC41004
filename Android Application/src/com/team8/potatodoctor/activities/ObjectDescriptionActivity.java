@@ -1,40 +1,26 @@
 package com.team8.potatodoctor.activities;
 
-import java.io.File;
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Gallery;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
-import com.team8.potatodoctor.R.drawable;
-import com.team8.potatodoctor.R.id;
-import com.team8.potatodoctor.R.layout;
 import com.team8.potatodoctor.adapters.GalleryImageAdapter;
-import com.team8.potatodoctor.adapters.PlantImageAdapter;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.Gallery;
-import android.widget.GridView;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 /*
  * Generalised class to extract information from the database related to a specific Pest/Symptom. 
  */
+@SuppressWarnings("deprecation")
 public class ObjectDescriptionActivity extends Activity
 {
 	//ImageView for full sized image when selected.

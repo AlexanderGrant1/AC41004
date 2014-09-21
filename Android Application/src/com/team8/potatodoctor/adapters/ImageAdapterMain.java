@@ -3,19 +3,15 @@ package com.team8.potatodoctor.adapters;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.R.drawable;
-import com.team8.potatodoctor.R.id;
-import com.team8.potatodoctor.R.layout;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.team8.potatodoctor.R;
 
 public class ImageAdapterMain extends BaseAdapter {
     private List<Item> items = new ArrayList<Item>();
@@ -24,10 +20,10 @@ public class ImageAdapterMain extends BaseAdapter {
     public ImageAdapterMain(Context context) {
         inflater = LayoutInflater.from(context);
 
-        items.add(new Item("Pests",       R.drawable.ic_pest));
-        items.add(new Item("Plant/Leaf Symptoms",   		R.drawable.ic_leaf));
-        items.add(new Item("Tuber Symptoms", 			R.drawable.ic_tuber));
-        items.add(new Item("Tutorials", 		R.drawable.ic_video));
+        items.add(new Item("Pests",       			R.drawable.ic_pest));
+        items.add(new Item("Plant/Leaf Symptoms",   R.drawable.ic_leaf));
+        items.add(new Item("Tuber Symptoms", 		R.drawable.ic_tuber));
+        items.add(new Item("Tutorials", 			R.drawable.ic_video));
         
     }
 

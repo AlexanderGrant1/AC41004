@@ -1,13 +1,10 @@
 package com.team8.potatodoctor.adapters;
 
+import android.content.Context;
+
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
-import com.team8.potatodoctor.R.drawable;
-import com.team8.potatodoctor.adapters.ImageAdapter.Item;
-
-import android.content.Context;
 
 public class TuberImageAdapter extends ImageAdapter {
 	private Context context;

@@ -1,11 +1,10 @@
 package com.team8.potatodoctor.adapters;
 
+import android.content.Context;
+
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
-import com.team8.potatodoctor.R.drawable;
-
-import android.content.Context;
 
 public class PestImageAdapter extends ImageAdapter {
 	

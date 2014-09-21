@@ -1,12 +1,11 @@
 package com.team8.potatodoctor.Models.Repositories;
 
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
-import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 
 public class TutorialRepository extends SQLiteOpenHelper
 

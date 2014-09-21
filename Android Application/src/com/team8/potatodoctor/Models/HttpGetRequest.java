@@ -2,22 +2,14 @@ package com.team8.potatodoctor.Models;
 
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
-import android.widget.Toast;
 public class HttpGetRequest extends AsyncTask<String, Void, String>
 {
 	@Override

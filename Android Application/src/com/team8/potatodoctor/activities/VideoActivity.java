@@ -1,9 +1,5 @@
 package com.team8.potatodoctor.activities;
 
-import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.R.id;
-import com.team8.potatodoctor.R.layout;
-
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.MediaController;
 import android.widget.VideoView;
+
+import com.team8.potatodoctor.R;
 
 public class VideoActivity extends Activity
 {

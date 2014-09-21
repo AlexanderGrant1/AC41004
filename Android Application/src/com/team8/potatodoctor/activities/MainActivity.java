@@ -1,37 +1,18 @@
 package com.team8.potatodoctor.activities;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.concurrent.ExecutionException;
-
-import org.json.JSONException;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
-import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.Models.AppUpdater;
-import com.team8.potatodoctor.Models.HttpGetRequest;
-import com.team8.potatodoctor.Models.DataFetcher;
-import com.team8.potatodoctor.Models.LocalDbUpdater;
 import com.team8.potatodoctor.Models.MediaFetcher;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
-import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
-import com.team8.potatodoctor.Models.Repositories.TuberRepository;
-import com.team8.potatodoctor.R.layout;
-import com.team8.potatodoctor.R.menu;
-
-import android.os.Bundle;
-import android.os.Environment;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
-import android.widget.Toast;
 
 public class MainActivity extends Activity 
 {

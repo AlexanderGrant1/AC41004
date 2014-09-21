@@ -7,14 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
-import com.team8.potatodoctor.DatabaseObjects.PestPhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
-import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
-
-import android.util.Log;
 
 public class DataFetcher {
 	

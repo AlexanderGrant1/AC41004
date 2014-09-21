@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;

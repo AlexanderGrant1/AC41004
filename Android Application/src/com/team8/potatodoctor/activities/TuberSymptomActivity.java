@@ -1,20 +1,16 @@
 package com.team8.potatodoctor.activities;
 
-import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.R.id;
-import com.team8.potatodoctor.R.layout;
-import com.team8.potatodoctor.adapters.TuberImageAdapter;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+
+import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.adapters.TuberImageAdapter;
 
 public class TuberSymptomActivity extends Activity
 {
