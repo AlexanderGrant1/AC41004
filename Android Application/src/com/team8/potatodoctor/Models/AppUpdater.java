@@ -30,12 +30,12 @@ public class AppUpdater {
 	}
 	public void updateDatabaseTables() throws InterruptedException, ExecutionException
 	{
+		photoRepository.dropPhotoTableIfExists();
+		photoRepository.createPhotoTableIfNotExists();
+		
 		pestRepository.dropPestTableIfExists();
 		pestRepository.createPestTablesIfNotExists();
 		localDbUpdater.updatePestTables();
-		
-		photoRepository.dropPhotoTableIfExists();
-		photoRepository.createPhotoTableIfNotExists();
 		
 		tuberRepository.dropTuberTablesIfExists();
 		tuberRepository.createTuberTablesIfNotExists();
