@@ -6,61 +6,69 @@
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="20" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_potato"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Holo" >
+        
+        <!-- Main Activity - Deprecated -->
         <activity
             android:name="com.team8.potatodoctor.MainActivity"
+            android:label="@string/app_name" >          
+        </activity>
+        
+        <!-- CategoriesListActivity - Main-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.CategoriesListActivity"
             android:label="@string/app_name" >
+            
+            <!-- Set as startup Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>            
         </activity>
+        
+        <!-- PestsActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.CategoriesListActivity"
-            android:label="@string/categories"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
-        <activity 
-            android:name="com.team8.potatodoctor.PestsActivity"
+            android:name="com.team8.potatodoctor.activities.PestsActivity"
             android:label="@string/pests"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- PlantSymptomActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.PlantSymptomActivity"
+            android:name="com.team8.potatodoctor.activities.PlantSymptomActivity"
             android:label="@string/leaves"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- TuberSymptomActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.TuberSymptomActivity"
+            android:name="com.team8.potatodoctor.activities.TuberSymptomActivity"
             android:label="@string/tubers"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
+        <!-- ObjectDescriptionActivity - No parentActivityName-->
         <activity 
-            android:name="com.team8.potatodoctor.GridviewItemActivity"
+            android:name="com.team8.potatodoctor.activities.ObjectDescriptionActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
+        	></activity>
         
-                <activity 
-            android:name="com.team8.potatodoctor.ObjectDescriptionActivity"
+        <!-- VideoActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.VideoActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
-                <activity 
-            android:name="com.team8.potatodoctor.VideoActivity"
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- VideoGridActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.VideoGridActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.MainActivity"
-            ></activity>
-                
+        	android:parentActivityName="com.team8.potatodoctor.activities.VideoActivity"></activity>
+        
     </application>
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-<uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+ 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
