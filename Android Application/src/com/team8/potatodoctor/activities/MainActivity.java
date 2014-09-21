@@ -22,23 +22,13 @@ public class MainActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
-		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
-		try {
-			appUpdater.updateDatabaseTables();
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
-			e.printStackTrace();
-		} 
-		PestRepository pestRepository = new PestRepository(getApplicationContext());
-		for(PestEntity pest : pestRepository.getAllPests())
-		{
-			Log.w("hello",pest.getName());
-			for(PhotoEntity photo : pest.getPhotos())
-			{
-				Log.w("hello", "Photos: "+photo.getName());
-			}
-		}
+
+		new Thread(new Runnable() {
+	        public void run() {
+	        	updateDB();
+	        }
+	    }).start();
+		
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");
@@ -52,5 +42,25 @@ public class MainActivity extends Activity
 		return true;
 	}
 
-	
+	private void updateDB()
+	{
+		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
+		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
+		try {
+			appUpdater.updateDatabaseTables();
+		} catch (Exception e) {
+			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		} 
+		
+		PestRepository pestRepository = new PestRepository(getApplicationContext());
+		for(PestEntity pest : pestRepository.getAllPests())
+		{
+			Log.w("hello",pest.getName());
+			for(PhotoEntity photo : pest.getPhotos())
+			{
+				Log.w("hello", "Photos: "+photo.getName());
+			}
+		}
+	}
 }

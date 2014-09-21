@@ -19,17 +19,17 @@ public class PestsActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
+
+	    setupGridView();
 		
-		setupGridView();
 	}
  
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		/*
+	{	
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		*/
+		
 		return true;
 	}
 
@@ -41,7 +41,7 @@ public class PestsActivity extends Activity
 		//Locate Grid View from .xml Layout.
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		
-		//Attach TuberImageAdapter and adds Images.
+		//Attach PestImageAdapter and adds Images.
 	    gridview.setAdapter(new PestImageAdapter(this));
 
 	    //Setup Event Listener to direct user to information page.
@@ -57,4 +57,5 @@ public class PestsActivity extends Activity
 	        }
 	    });
 	}
+
 }

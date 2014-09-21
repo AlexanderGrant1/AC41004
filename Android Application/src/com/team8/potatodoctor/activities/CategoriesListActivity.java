@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -39,14 +40,6 @@ public class CategoriesListActivity extends Activity
 		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
 		categoriesGrid.setAdapter(new ImageAdapterMain(this)); 
 		
-		updateDB(saveInstanceState);
-		
-		//Create the Adapter to display ArrayList onto ListView.
-		//ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoriesNameList);
-		
-		//Set the Adapter onto the ListView.
-		//categoriesList.setAdapter(arrayAdapter);
-		
 		//Register onClickListener to handle click events on each item.
 		categoriesGrid.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -77,28 +70,17 @@ public class CategoriesListActivity extends Activity
 			}
 
 		});
+		
 		Log.d("Problem Determination", "onCreate() EXIT");
 	}
 	
-	private void updateDB(Bundle savedInstanceState)
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
-		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
-		try {
-			appUpdater.updateDatabaseTables();
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
-			e.printStackTrace();
-		} 
-		PestRepository pestRepository = new PestRepository(getApplicationContext());
-		for(PestEntity pest : pestRepository.getAllPests())
-		{
-			Log.w("hello",pest.getName());
-			for(PhotoEntity photo : pest.getPhotos())
-			{
-				Log.w("hello", "Photos: "+photo.getName());
-			}
-		}
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	}
 
 }
