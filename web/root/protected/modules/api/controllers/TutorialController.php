@@ -49,7 +49,7 @@ class TutorialController extends Controller
 			{
 				// Get all images for current tutorial entry.
 
-				$response['Entries'][]  = array('Name' => $tutorial->Name, 'Description' => $tutorial->Description, 'VideoName' =>$tutorial->VideoName);
+				$response['Entries'][]  = array('Id'=>$tutorial->Id, 'Name' => $tutorial->Name, 'Description' => $tutorial->Description, 'VideoName' =>$tutorial->VideoName);
 
 			}
 		}
