@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 import android.content.Context;
 import android.util.Log;
 
+import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;

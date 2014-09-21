@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 
 public class LocalFileUpdater {
