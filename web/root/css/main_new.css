@@ -84,3 +84,9 @@ div#content.split { width: 70%; float:left; }
   padding: 5px;
   cursor: pointer;
 }
+
+p.main-greet {
+  margin-top: 150px;
+  font-size:34px;
+  color: #2693FF;
+}
