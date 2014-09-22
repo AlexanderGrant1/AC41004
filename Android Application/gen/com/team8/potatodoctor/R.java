@@ -34,7 +34,10 @@ public final class R {
         public static final int ic_video=0x7f02000a;
     }
     public static final class id {
-        public static final int action_settings=0x7f090008;
+        public static final int action_exit=0x7f09000b;
+        public static final int action_imageshare=0x7f090008;
+        public static final int action_settings=0x7f09000a;
+        public static final int action_update=0x7f090009;
         public static final int gridview=0x7f090000;
         public static final int gridview_main=0x7f090001;
         public static final int imageGallery=0x7f090002;
@@ -46,10 +49,14 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_category=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_object_description=0x7f030002;
-        public static final int activity_video=0x7f030003;
-        public static final int grid_layout=0x7f030004;
+        public static final int activity_exit=0x7f030001;
+        public static final int activity_imageshare=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_object_description=0x7f030004;
+        public static final int activity_settings=0x7f030005;
+        public static final int activity_update=0x7f030006;
+        public static final int activity_video=0x7f030007;
+        public static final int grid_layout=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -60,19 +67,24 @@ public final class R {
         public static final int test_video2=0x7f040002;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
+        public static final int action_exit=0x7f060005;
+        public static final int action_imageshare=0x7f060003;
+        /**  Menu Bar Actions 
+         */
+        public static final int action_settings=0x7f060002;
+        public static final int action_update=0x7f060004;
         public static final int app_name=0x7f060000;
         /**  Categories Selection Screen 
          */
-        public static final int categories=0x7f060003;
-        public static final int gridLinearLayout=0x7f060008;
-        public static final int leaves=0x7f060005;
-        public static final int pests=0x7f060004;
-        public static final int placeholder=0x7f060002;
+        public static final int categories=0x7f060006;
+        public static final int gridLinearLayout=0x7f06000b;
+        public static final int leaves=0x7f060008;
+        public static final int pests=0x7f060007;
+        public static final int placeholder=0x7f060001;
         /**  GridView Screen 
          */
-        public static final int sampleText=0x7f060007;
-        public static final int tubers=0x7f060006;
+        public static final int sampleText=0x7f06000a;
+        public static final int tubers=0x7f060009;
     }
     public static final class style {
         /** 

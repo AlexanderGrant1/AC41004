@@ -20,56 +20,58 @@
         
         <!-- Main Activity - Deprecated -->
         <activity
-            android:name="com.team8.potatodoctor.MainActivity"
-            android:label="@string/app_name" >          
-        </activity>
-        
-        <!-- CategoriesListActivity - Main-->
-        <activity 
-            android:name="com.team8.potatodoctor.activities.CategoriesListActivity"
-            android:label="@string/app_name" >
+            android:name="com.team8.potatodoctor.Activities.MainActivity"
+            android:label="@string/app_name" >   
             
             <!-- Set as startup Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>            
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>  
+        </activity>
+        
+        <!-- CategoriesListActivity - Main-->
+        <activity 
+            android:name="com.team8.potatodoctor.Activities.CategoriesListActivity"
+            android:label="@string/app_name" >
+            
+                      
         </activity>
         
         <!-- PestsActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.PestsActivity"
+            android:name="com.team8.potatodoctor.Activities.PestsActivity"
             android:label="@string/pests"
-        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
         
         <!-- PlantSymptomActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.PlantSymptomActivity"
+            android:name="com.team8.potatodoctor.Activities.PlantSymptomActivity"
             android:label="@string/leaves"
-        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
         
         <!-- TuberSymptomActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.TuberSymptomActivity"
+            android:name="com.team8.potatodoctor.Activities.TuberSymptomActivity"
             android:label="@string/tubers"
-        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
         
         <!-- ObjectDescriptionActivity - No parentActivityName-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.ObjectDescriptionActivity"
+            android:name="com.team8.potatodoctor.Activities.ObjectDescriptionActivity"
             android:label="@string/placeholder"
         	></activity>
         
         <!-- VideoActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.VideoActivity"
+            android:name="com.team8.potatodoctor.Activities.VideoActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
         
         <!-- VideoGridActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.VideoGridActivity"
+            android:name="com.team8.potatodoctor.Activities.VideoGridActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.activities.VideoActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.Activities.VideoActivity"></activity>
         
     </application>
     

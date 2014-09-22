@@ -69,6 +69,19 @@ class Administrator extends CActiveRecord
 	}
 
 	/**
+	 * Hash the password, so that it is not stored in plain text.
+	 */
+	public static function hashPassword($password)
+	{
+		// 10Computing29
+		$salt = '@£2@$@NT!£@%£KPml555)()!q523zm54562MO3@3r456uk';
+
+		$hashed = sha1(md5($password.$salt).$salt);
+
+		return $hashed;
+	}
+
+	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
