@@ -20,7 +20,7 @@ import com.team8.potatodoctor.Adapters.ImageAdapterMain;
  */
 public class CategoriesListActivity extends Activity
 {
-	ArrayList<String> categoriesNameList;
+	ArrayList<String> categoriesNameList; 
 	
 	/*
 	 * Displays ArrayList of values onto the UI.
@@ -65,7 +65,7 @@ public class CategoriesListActivity extends Activity
 
 		});
 		
-		Log.d("Problem Determination", "onCreate() EXIT");
+		Log.d("Problem Determination", "onCreate() EXIT"); 
 	}
 	
 
