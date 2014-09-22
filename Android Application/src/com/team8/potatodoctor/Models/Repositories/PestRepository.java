@@ -7,7 +7,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 
+import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
@@ -159,7 +161,7 @@ public class PestRepository extends SQLiteOpenHelper
             do {
             	PhotoEntity photo = new PhotoEntity();
             	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-            	photo.setName(cursor.getString(cursor.getColumnIndex("Name")));
+            	photo.setName(Environment.getExternalStorageDirectory()+"/Pests/"+cursor.getString(cursor.getColumnIndex("Name")));
             	photos.add(photo);
             }
             while (cursor.moveToNext());

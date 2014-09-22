@@ -1,5 +1,9 @@
 package com.team8.potatodoctor.activities;
 
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,18 +24,36 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		Log.d("Problem Determination", "onCreate() ENTRY");
+		//Log.w("hello","reached"); 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		new Thread(new Runnable() {
 	        public void run() {
 	        	updateDB();
 	        }
 	    }).start();
-		
+		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
+		try {
+			appUpdater.updateLocalFiles();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");
+	}
+	
+	private void findFiles()
+	{
+		
 	}
 
 	@Override
@@ -44,7 +66,7 @@ public class MainActivity extends Activity
 
 	private void updateDB()
 	{
-		new MediaFetcher().execute("http://www.rentokil.co.za/blog/wp-content/uploads/2013/08/Common-house-fly.jpg","Pests");
+		new MediaFetcher().execute("http://www.beberry.lv/potato/images/u/9b3daf26cffd95878fc3e6bbf5b22b27.jpg","Pests");
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateDatabaseTables();
@@ -56,7 +78,7 @@ public class MainActivity extends Activity
 		PestRepository pestRepository = new PestRepository(getApplicationContext());
 		for(PestEntity pest : pestRepository.getAllPests())
 		{
-			Log.w("hello",pest.getName());
+			Log.w("hello",pest.getName()+" 1");
 			for(PhotoEntity photo : pest.getPhotos())
 			{
 				Log.w("hello", "Photos: "+photo.getName());
