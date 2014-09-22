@@ -64,7 +64,10 @@ class Photo extends CActiveRecord
 			'Name' => 'Name',
 		);
 	}
-
+	
+	/**
+	 * Do extra clean-up.
+	 */
 	public function beforeDelete()
 	{
 		$path = Yii::app()->params['projectPath'].Yii::app()->params['imagePath'].$this->Name;

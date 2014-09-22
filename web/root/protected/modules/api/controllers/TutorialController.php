@@ -30,12 +30,14 @@ class TutorialController extends Controller
 		);
 	}
 
+	/**
+	 * Return all Tutorials
+	 */
 	public function actionIndex()
 	{
-		// Return all Diseases
 		$response = array();
-		$response['VideoPath']    = Yii::app()->params['siteDomain'].Yii::app()->params['videoPath'];
-		$response['Entries']	  = array();
+		$response['VideoPath'] = Yii::app()->params['siteDomain'].Yii::app()->params['videoPath'];
+		$response['Entries']   = array();
 
 		$tutorials = Tutorial::model()->findAll();
 
@@ -48,9 +50,7 @@ class TutorialController extends Controller
 			foreach ($tutorials as $tutorial) 
 			{
 				// Get all images for current tutorial entry.
-
 				$response['Entries'][]  = array('Id'=>$tutorial->Id, 'Name' => $tutorial->Name, 'Description' => $tutorial->Description, 'VideoName' =>$tutorial->VideoName);
-
 			}
 		}
 

@@ -18,6 +18,9 @@ class UserIdentity extends CUserIdentity
 
 	private $_id;
 
+	/**
+	 * Method for authenticating the administrators.
+	 */
 	public function authenticate()
 	{
 		$user = Administrator::model()->findByAttributes(array('Username' => $this->username));

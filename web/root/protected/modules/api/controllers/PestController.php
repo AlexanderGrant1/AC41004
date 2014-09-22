@@ -30,14 +30,16 @@ class PestController extends Controller
 		);
 	}
 
+	/**
+	 * Return all Pests
+	 */
 	public function actionIndex()
 	{
-		// Return all Diseases
 		$response = array();
-		$response['PhotoPath']    = Yii::app()->params['siteDomain'].Yii::app()->params['imagePath'];
-		$response['Entries']	  = array();
-		$response['Photos']  	  = array();
-		$response['PhotoLinker']  = array();
+		$response['PhotoPath']   = Yii::app()->params['siteDomain'].Yii::app()->params['imagePath'];
+		$response['Entries']  	 = array();
+		$response['Photos']  	 = array();
+		$response['PhotoLinker'] = array();
 
 		$pestModels = Pest::model()->findAll();
 

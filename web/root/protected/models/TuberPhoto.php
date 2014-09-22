@@ -73,6 +73,9 @@ class TuberPhoto extends CActiveRecord
 		);
 	}
 
+	/**
+	 * Do extra clean-up.
+	 */
 	public function beforeDelete()
 	{
 		$this->photo->delete();

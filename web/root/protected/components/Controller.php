@@ -44,6 +44,7 @@ class Controller extends CController
 	/**
 	 * Return the http status message based on integer status code
 	 * Originally taken from https://gist.github.com/cherifGsoul/3180857
+	 *
 	 * @param int $status HTTP status code
 	 * @return string status message
 	 */

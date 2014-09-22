@@ -41,7 +41,7 @@ class Administrator extends CActiveRecord
 			array('LoginKey', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('Id, Username, LoginKey', 'safe', 'on'=>'search'),
+			array('Id, Username', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,7 +73,6 @@ class Administrator extends CActiveRecord
 	 */
 	public static function hashPassword($password)
 	{
-		// 10Computing29
 		$salt = '@£2@$@NT!£@%£KPml555)()!q523zm54562MO3@3r456uk';
 
 		$hashed = sha1(md5($password.$salt).$salt);
@@ -94,7 +93,6 @@ class Administrator extends CActiveRecord
 
 		$criteria->compare('Id',$this->Id);
 		$criteria->compare('Username',$this->Username,true);
-		$criteria->compare('LoginKey',$this->LoginKey,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

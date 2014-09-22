@@ -142,6 +142,9 @@ class TuberController extends Controller
 		));
 	}
 
+	/**
+	 * Method for deleting media assigned to this
+	 */
 	public function actionDelmedia($id)
 	{
 		$model=TuberPhoto::model()->findByPk($id);
