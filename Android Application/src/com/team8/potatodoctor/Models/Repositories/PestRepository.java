@@ -184,7 +184,7 @@ public class PestRepository extends SQLiteOpenHelper
             do {
             	PhotoEntity photo = new PhotoEntity();
             	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-            	photo.setName(Environment.getExternalStorageDirectory()+"/Pests/"+cursor.getString(cursor.getColumnIndex("Name")));
+            	photo.setFullyQualifiedPath(Environment.getExternalStorageDirectory()+"/Pests/"+cursor.getString(cursor.getColumnIndex("Name")));
             	photos.add(photo);
             }
             while (cursor.moveToNext());

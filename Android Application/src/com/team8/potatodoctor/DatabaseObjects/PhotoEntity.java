@@ -2,19 +2,19 @@ package com.team8.potatodoctor.DatabaseObjects;
 
 public class PhotoEntity {
 
-	private int Id;
-	private String Name;
+	private int id;
+	private String fullyQualifiedPath;
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
-	public String getName() {
-		return Name;
+	public String getFullyQualifiedPath() {
+		return fullyQualifiedPath;
 	}
-	public void setName(String name) {
-		Name = name;
+	public void setFullyQualifiedPath(String fullyQualifiedPath) {
+		this.fullyQualifiedPath = fullyQualifiedPath;
 	}
 }

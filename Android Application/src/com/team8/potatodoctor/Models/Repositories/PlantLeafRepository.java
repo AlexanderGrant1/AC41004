@@ -161,7 +161,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	            do {
 	            	PhotoEntity photo = new PhotoEntity();
 	            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-	            	photo.setName(Environment.getExternalStorageDirectory()+"/PlantLeafs/"+cursor.getString(cursor.getColumnIndex("Name")));
+	            	photo.setFullyQualifiedPath(Environment.getExternalStorageDirectory()+"/PlantLeafs/"+cursor.getString(cursor.getColumnIndex("Name")));
 	            	photos.add(photo);
 	            }
 	            while (cursor.moveToNext());

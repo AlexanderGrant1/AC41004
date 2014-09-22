@@ -28,7 +28,7 @@ public class TuberImageAdapter extends ImageAdapter {
 			}
 			else
 			{
-				items.add(new Item(tuberSymptom.getName(), Uri.parse(tuberSymptom.getPhotos().get(0).getName())));
+				items.add(new Item(tuberSymptom.getName(), Uri.parse(tuberSymptom.getPhotos().get(0).getFullyQualifiedPath())));
 			}
 		}
 	}

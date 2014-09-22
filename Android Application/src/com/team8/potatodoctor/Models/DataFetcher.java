@@ -65,7 +65,7 @@ public class DataFetcher {
 			{
 				PhotoEntity photo = new PhotoEntity();
 				photo.setId(Integer.parseInt(arr.getJSONObject(i).getString("Id")));
-				photo.setName(arr.getJSONObject(i).getString("ImageName"));
+				photo.setFullyQualifiedPath(arr.getJSONObject(i).getString("ImageName"));
 				photos.add(photo);
 			}
 		} catch (JSONException e) {

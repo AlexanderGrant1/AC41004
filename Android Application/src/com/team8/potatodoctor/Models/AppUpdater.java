@@ -6,8 +6,13 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 import com.team8.potatodoctor.Models.Repositories.*;
 
 public class AppUpdater {
@@ -54,21 +59,57 @@ public class AppUpdater {
 	
 	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
 	{
-		localFileUpdater.fetchPestImages();
-		localFileUpdater.fetchPlantLeafImages();
-		localFileUpdater.fetchTuberImages();
+		for(PestEntity pest : pestRepository.getAllPests())
+		{
+			for(PhotoEntity photo : pest.getPhotos())
+			{
+				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
+				if(!imageExists(imageNameAndExtension,"Pests"))
+				{
+					localFileUpdater.fetchPestImage(imageNameAndExtension);
+				}
+			}
+		}
+		for(TuberSymptomEntity tuber : tuberRepository.getAllTubers())
+		{
+			for(PhotoEntity photo : tuber.getPhotos())
+			{
+				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
+				if(!imageExists(imageNameAndExtension,"Tubers"))
+				{
+					localFileUpdater.fetchPestImage(imageNameAndExtension);
+				}
+			}
+		}
+		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+		{
+			for(PhotoEntity photo : plantLeaf.getPhotos())
+			{
+				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
+				if(!imageExists(imageNameAndExtension,"PlantLeaf"))
+				{
+					localFileUpdater.fetchPestImage(imageNameAndExtension);
+				}
+			}
+		} 
 	}
 	
-	private boolean checkImageExists(String imageName, String folderName)
+	private String getImageNameAndExtensionFromFullyQualifiedPath(String fullyQualifiedPath)
 	{
-		File dir = new File(folderName);
+		String[] splitPath = fullyQualifiedPath.split("/");
+		return splitPath[splitPath.length - 1];
+	}
+	
+	private boolean imageExists(String imageName, String folderName)
+	{
+		File dir = new File(Environment.getExternalStorageDirectory() + "/" +folderName);
 		if(dir.isDirectory())
 		{
+			Log.w("hello", dir.getAbsolutePath() + " is a directory");
 			File[] directoryListing = dir.listFiles();
 			  if (directoryListing != null) {
-			    for (File child : directoryListing) {
-			    	String fileWithExtension = child.getName()+"."+getFileExtension(child);
-			    	if(fileWithExtension.equals(imageName))
+			    for (File child : directoryListing) { 
+			    	if(child.getName().equals(imageName)) 
 			    	{
 			    		return true;
 			    	}
@@ -76,14 +117,5 @@ public class AppUpdater {
 			  }
 		}
 		return false;
-	}
-	
-	private String getFileExtension(File file) {
-	    String name = file.getName();
-	    int lastIndexOf = name.lastIndexOf(".");
-	    if (lastIndexOf == -1) {
-	        return ""; // empty extension
-	    }
-	    return name.substring(lastIndexOf);
 	}
 }

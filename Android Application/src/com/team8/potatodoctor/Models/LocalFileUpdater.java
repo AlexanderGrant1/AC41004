@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.team8.potatodoctor.Constants;
 
 public class LocalFileUpdater {
@@ -64,11 +66,14 @@ public class LocalFileUpdater {
 	
 	public void fetchPlantLeafImage(String imageName) throws InterruptedException, ExecutionException, JSONException
 	{
+
 		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
 		JSONObject obj = new JSONObject(response);
 		String photoPath = cleanJSONUrl(obj.getString("PhotoPath"));
 		new MediaFetcher().execute(photoPath + imageName,"PlantLeaf");
 	}
+	
+
 	
 	private String cleanJSONUrl(String jsonURL)
 	{

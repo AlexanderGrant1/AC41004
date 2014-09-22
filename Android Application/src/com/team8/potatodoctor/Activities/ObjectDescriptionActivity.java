@@ -119,7 +119,7 @@ public class ObjectDescriptionActivity extends Activity
                 gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
                 if(currentPest.getPhotos().size() > 0)
                 {
-                	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getName()));
+                	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getFullyQualifiedPath()));
                 }
                  
 	    	} 
@@ -129,7 +129,7 @@ public class ObjectDescriptionActivity extends Activity
 	            gallery.setAdapter(new GalleryImageAdapter(this,tuber));
 	    		if(tuber.getPhotos().size() > 0)
 	    		{
-	    			selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(0).getName()));
+	    			selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(0).getFullyQualifiedPath()));
 	    		}
 	    	}
 	    	else if(type.equals("potato_PlantLeaf"))
@@ -138,7 +138,7 @@ public class ObjectDescriptionActivity extends Activity
 	            gallery.setAdapter(new GalleryImageAdapter(this,plantLeaf));
 	    		if(plantLeaf.getPhotos().size() > 0)
 	    		{
-	    			selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(0).getName()));
+	    			selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(0).getFullyQualifiedPath()));
 	    		}
 	    	}
         
@@ -154,17 +154,17 @@ public class ObjectDescriptionActivity extends Activity
         	    	if(type.equals("potato_Pest"))
         	    	{
                         PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
-                        selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(position).getName()));
+                        selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else if(type.equals("potato_Tuber"))
         	    	{
         	    		TuberSymptomEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
-        	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getName()));
+        	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else if(type.equals("potato_PlantLeafs"))
         	    	{
         	    		PlantLeafSymptomsEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
-        	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getName()));
+        	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else
         	    	{

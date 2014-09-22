@@ -32,6 +32,7 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 	//Referenced http://stackoverflow.com/questions/16414515/save-image-from-url-to-sdcard
 	public String fetch(String mediaUrl, String sdCardFolder) 
 	{
+		Log.w("hello", "DOWNLOADING "+mediaUrl + " to "+ sdCardFolder);
 		try
 		{
 			String imageName = getMediaNameAndExtensionFromURL(mediaUrl);

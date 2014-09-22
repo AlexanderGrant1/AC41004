@@ -57,7 +57,7 @@ public class MainActivity extends Activity
 
 	private void updateDB()
 	{
-		new MediaFetcher().execute("http://www.beberry.lv/potato/images/u/9b3daf26cffd95878fc3e6bbf5b22b27.jpg","Pests");
+		Log.w("hello", "UPDATING DB TABLES");
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateDatabaseTables();
@@ -72,8 +72,9 @@ public class MainActivity extends Activity
 			Log.w("hello",pest.getName()+" 1");
 			for(PhotoEntity photo : pest.getPhotos())
 			{
-				Log.w("hello", "Photos: "+photo.getName());
-			}
+				Log.w("hello", "Photos: "+photo.getFullyQualifiedPath());
+			} 
 		}
+		Log.w("hello", "LEAVING UPDATING DB TABLES");
 	}
 }

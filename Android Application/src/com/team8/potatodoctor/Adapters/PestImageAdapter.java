@@ -28,7 +28,7 @@ public class PestImageAdapter extends ImageAdapter {
 			}
 			else
 			{
-				items.add(new Item(pest.getName(), Uri.parse(pest.getPhotos().get(0).getName())));
+				items.add(new Item(pest.getName(), Uri.parse(pest.getPhotos().get(0).getFullyQualifiedPath())));
 			}
 		}
 	}

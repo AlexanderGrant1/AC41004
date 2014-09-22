@@ -27,7 +27,7 @@ public class PlantImageAdapter extends ImageAdapter {
 			}
 			else
 			{
-				items.add(new Item(plantLeaf.getName(), Uri.parse(plantLeaf.getPhotos().get(0).getName())));
+				items.add(new Item(plantLeaf.getName(), Uri.parse(plantLeaf.getPhotos().get(0).getFullyQualifiedPath())));
 			}
 			
 		}

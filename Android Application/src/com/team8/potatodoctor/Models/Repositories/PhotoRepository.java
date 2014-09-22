@@ -71,7 +71,7 @@ public class PhotoRepository extends SQLiteOpenHelper
             do {
             	PhotoEntity pest = new PhotoEntity();
                 pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-                pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
+                pest.setFullyQualifiedPath(cursor.getString(cursor.getColumnIndex("Name")));
                 photos.add(pest);
             }
             while (cursor.moveToNext());
@@ -86,7 +86,7 @@ public class PhotoRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("Id", photo.getId());
-		values.put("Name", photo.getName());
+		values.put("Name", photo.getFullyQualifiedPath());
 		db.insert("potato_Photo", null, values);
 		db.close();
 	}

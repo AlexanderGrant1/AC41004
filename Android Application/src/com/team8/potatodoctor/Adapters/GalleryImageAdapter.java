@@ -51,7 +51,7 @@ public class GalleryImageAdapter extends BaseAdapter
 	public View getView(int index, View view, ViewGroup viewGroup) {
 		ImageView i = new ImageView(mContext);
 		
-        i.setImageURI(Uri.parse(dbItem.getPhotos().get(index).getName()));
+        i.setImageURI(Uri.parse(dbItem.getPhotos().get(index).getFullyQualifiedPath()));
         i.setLayoutParams(new Gallery.LayoutParams(200, 200));
     
         i.setScaleType(ImageView.ScaleType.FIT_XY);
