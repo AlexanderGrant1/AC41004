@@ -62,7 +62,6 @@ class TuberController extends Controller
 				}
 
 				$response['Entries'][]  = $tuber;
-
 			}
 		}
 

@@ -142,6 +142,9 @@ class PlantLeafController extends Controller
 		));
 	}
 
+	/**
+	 * Method for deleting media assigned to this
+	 */
 	public function actionDelmedia($id)
 	{
 		$model=PlantLeafPhoto::model()->findByPk($id);

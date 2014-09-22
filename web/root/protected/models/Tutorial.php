@@ -60,6 +60,9 @@ class Tutorial extends CActiveRecord
 		);
 	}
 
+	/**
+	 * Do extra work before saving.
+	 */
 	public function beforeSave()
 	{
 		if(isset($this->video))

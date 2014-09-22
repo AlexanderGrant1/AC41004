@@ -69,7 +69,6 @@ class PestController extends Controller
 
 			if(isset($_POST['Pest']['image']))
         	{
-	            //$model->attributes=$_POST['uploadedFile'];
 	            $model->image=CUploadedFile::getInstance($model,'image');
 	        }
 
@@ -100,7 +99,6 @@ class PestController extends Controller
 
 			if(isset($_POST['Pest']['image']))
         	{
-	            //$model->attributes=$_POST['uploadedFile'];
 	            $model->image=CUploadedFile::getInstance($model,'image');
 	        }
 
@@ -128,17 +126,6 @@ class PestController extends Controller
 	}
 
 	/**
-	 * Lists all models.
-	 */
-/*	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Pest');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-*/
-	/**
 	 * Manages all models.
 	 */
 	public function actionIndex()
@@ -153,6 +140,9 @@ class PestController extends Controller
 		));
 	}
 
+	/**
+	 * Method for deleting media assigned to this
+	 */
 	public function actionDelmedia($id)
 	{
 		$model=PestPhoto::model()->findByPk($id);
