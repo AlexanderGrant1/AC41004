@@ -53,7 +53,6 @@ public class AppUpdater {
 	
 	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
 	{
-		Log.w("hello","reached");
 		localFileUpdater.fetchPestImages();
 		localFileUpdater.fetchPlantLeafImages();
 		localFileUpdater.fetchTuberImages();

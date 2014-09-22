@@ -36,8 +36,14 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 		{
 			String imageName = getMediaNameAndExtensionFromURL(mediaUrl);
 			URL url = new URL (mediaUrl); 
-			InputStream input = url.openStream();    
-			    OutputStream output = new FileOutputStream (Environment.getExternalStorageDirectory()+"/"+sdCardFolder+"/"+imageName);         
+			InputStream input = url.openStream(); 
+			String folder = Environment.getExternalStorageDirectory()+"/"+sdCardFolder;
+			File f = new File(folder);
+			if(!f.isDirectory())
+			{
+				f.mkdir();
+			}
+			    OutputStream output = new FileOutputStream (folder+"/"+imageName);         
 			        byte[] buffer = new byte[2040];         
 			        int bytesRead = 0;         
 			        while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {

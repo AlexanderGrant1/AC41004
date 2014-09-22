@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
@@ -29,12 +29,6 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	    updateDB();
-		PestRepository pestRepo = new PestRepository(getApplicationContext());
-		LinkedList<PestEntity> pests = pestRepo.searchPests("pest2");
-		for(int i = 0; i < pests.size(); i++)
-		{
-			Toast.makeText(getApplicationContext(), pests.get(i).getName(), Toast.LENGTH_LONG).show();
-		}
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateLocalFiles();
