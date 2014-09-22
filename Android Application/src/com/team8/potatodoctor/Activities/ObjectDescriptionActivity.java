@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.Adapters.GalleryImageAdapter;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
-import com.team8.potatodoctor.adapters.GalleryImageAdapter;
 
 /*
  * Generalised class to extract information from the database related to a specific Pest/Symptom. 

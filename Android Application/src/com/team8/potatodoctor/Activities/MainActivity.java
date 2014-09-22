@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.content.Intent;

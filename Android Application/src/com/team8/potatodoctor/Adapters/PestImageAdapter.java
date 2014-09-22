@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.adapters;
+package com.team8.potatodoctor.Adapters;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import java.util.ArrayList;
 
@@ -13,8 +13,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.adapters.ImageAdapterMain;
-
+import com.team8.potatodoctor.Adapters.ImageAdapterMain;
+ 
 /*
  * Populates and displays the list of Categories on the main screen.
  */

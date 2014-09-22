@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,18 +10,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.adapters.VideoAdapter;
+import com.team8.potatodoctor.Adapters.PlantImageAdapter;
 
-public class VideoGridActivity extends Activity
-{
+public class PlantSymptomActivity extends Activity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
-		setupGridView();
+		
+	    setupGridView();
 	}
- 
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -30,28 +31,29 @@ public class VideoGridActivity extends Activity
 		getMenuInflater().inflate(R.menu.main, menu);
 		*/
 		return true;
-	} 
+	}
 
 	/*
-	 * Constructs the Grid View and populates with Images via the PestImageAdapter.
+	 * Constructs the Grid View and populates with Images via the PlantImageAdapter.
 	 */
 	private void setupGridView()
 	{
 		//Locate Grid View from .xml Layout.
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		
-		//Attach TuberImageAdapter and adds Images.
-	    gridview.setAdapter(new VideoAdapter(this));
+		//Attach PlantImageAdapter and adds Images.
+	    gridview.setAdapter(new PlantImageAdapter(this));
 
 	    //Setup Event Listener to direct user to information page.
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),VideoActivity.class);
+	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
 	        	
 	        	//TODO Check name of db table and remove this comment.
-	        	intentVideoPlayer.putExtra("position", position); //DB Table name.
+	        	intentObjectDescription.putExtra("Type", "potato_PlantLeaf"); //DB Table name.
+	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
 	        	
-	    		startActivity(intentVideoPlayer);
+	    		startActivity(intentObjectDescription);
 	        }
 	    });
 	}

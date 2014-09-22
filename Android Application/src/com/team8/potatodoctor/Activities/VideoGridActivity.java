@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,28 +10,27 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.adapters.PestImageAdapter;
+import com.team8.potatodoctor.Adapters.VideoAdapter;
 
-public class PestsActivity extends Activity
+public class VideoGridActivity extends Activity
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
-
-	    setupGridView();
-		
+		setupGridView();
 	}
  
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
-	{	
+	{
+		/*
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		
+		*/
 		return true;
-	}
+	} 
 
 	/*
 	 * Constructs the Grid View and populates with Images via the PestImageAdapter.
@@ -41,21 +40,19 @@ public class PestsActivity extends Activity
 		//Locate Grid View from .xml Layout.
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		
-		//Attach PestImageAdapter and adds Images.
-	    gridview.setAdapter(new PestImageAdapter(this));
+		//Attach TuberImageAdapter and adds Images.
+	    gridview.setAdapter(new VideoAdapter(this));
 
 	    //Setup Event Listener to direct user to information page.
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
+	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),VideoActivity.class);
 	        	
 	        	//TODO Check name of db table and remove this comment.
-	        	intentObjectDescription.putExtra("Type", "potato_Pest"); //DB Table name.
-	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
+	        	intentVideoPlayer.putExtra("position", position); //DB Table name.
 	        	
-	    		startActivity(intentObjectDescription);
+	    		startActivity(intentVideoPlayer);
 	        }
 	    });
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.adapters.TuberImageAdapter;
+import com.team8.potatodoctor.Adapters.TuberImageAdapter;
 
 public class TuberSymptomActivity extends Activity
 {

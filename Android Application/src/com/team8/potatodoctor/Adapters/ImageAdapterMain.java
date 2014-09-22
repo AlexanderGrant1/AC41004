@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.adapters;
+package com.team8.potatodoctor.Adapters;
 
 import java.util.ArrayList;
 import java.util.List;
