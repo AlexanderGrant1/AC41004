@@ -24,7 +24,7 @@ public class PestImageAdapter extends ImageAdapter {
 		{
 			if(pest.getPhotos().size() == 0)
 			{
-				items.add(new Item(pest.getName(), R.drawable.ic_placeholder));
+				items.add(new Item(pest.getName(), R.drawable.ic_default));
 			}
 			else
 			{

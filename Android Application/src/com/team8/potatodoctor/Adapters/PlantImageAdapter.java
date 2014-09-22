@@ -23,7 +23,7 @@ public class PlantImageAdapter extends ImageAdapter {
 		{
 			if(plantLeaf.getPhotos().size() == 0)
 			{
-				items.add(new Item(plantLeaf.getName(), R.drawable.ic_placeholder));
+				items.add(new Item(plantLeaf.getName(), R.drawable.ic_default));
 			}
 			else
 			{

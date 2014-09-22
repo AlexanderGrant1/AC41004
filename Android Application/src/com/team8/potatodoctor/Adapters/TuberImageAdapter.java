@@ -24,7 +24,7 @@ public class TuberImageAdapter extends ImageAdapter {
 		{
 			if(tuberSymptom.getPhotos().size() == 0)
 			{
-				items.add(new Item(tuberSymptom.getName(), R.drawable.ic_placeholder));
+				items.add(new Item(tuberSymptom.getName(), R.drawable.ic_default));
 			}
 			else
 			{

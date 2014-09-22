@@ -86,7 +86,7 @@ public class ObjectDescriptionActivity extends Activity
 	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
-	    
+	     
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
@@ -121,8 +121,8 @@ public class ObjectDescriptionActivity extends Activity
                 {
                 	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getName()));
                 }
-                
-	    	}
+                 
+	    	} 
 	    	else if(type.equals("potato_Tuber"))
 	    	{
 	    		TuberSymptomEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
