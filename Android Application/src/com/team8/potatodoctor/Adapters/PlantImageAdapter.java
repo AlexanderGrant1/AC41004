@@ -1,6 +1,7 @@
 package com.team8.potatodoctor.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
@@ -20,7 +21,15 @@ public class PlantImageAdapter extends ImageAdapter {
 		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(context);
 		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
 		{
-			items.add(new Item(plantLeaf.getName(), R.drawable.ic_placeholder));
+			if(plantLeaf.getPhotos().size() == 0)
+			{
+				items.add(new Item(plantLeaf.getName(), R.drawable.ic_placeholder));
+			}
+			else
+			{
+				items.add(new Item(plantLeaf.getName(), Uri.parse(plantLeaf.getPhotos().get(0).getName())));
+			}
+			
 		}
 	}
 

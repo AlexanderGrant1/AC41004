@@ -1,8 +1,10 @@
 package com.team8.potatodoctor.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.Adapters.ImageAdapter.Item;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
@@ -20,7 +22,14 @@ public class TuberImageAdapter extends ImageAdapter {
 		TuberRepository tuberRepository = new TuberRepository(context);
 		for(TuberSymptomEntity tuberSymptom : tuberRepository.getAllTubers())
 		{
-			items.add(new Item(tuberSymptom.getName(), R.drawable.ic_placeholder));
+			if(tuberSymptom.getPhotos().size() == 0)
+			{
+				items.add(new Item(tuberSymptom.getName(), R.drawable.ic_placeholder));
+			}
+			else
+			{
+				items.add(new Item(tuberSymptom.getName(), Uri.parse(tuberSymptom.getPhotos().get(0).getName())));
+			}
 		}
 	}
 

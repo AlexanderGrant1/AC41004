@@ -2,7 +2,7 @@ package com.team8.potatodoctor.DatabaseObjects;
 
 import java.util.LinkedList;
 
-public class PlantLeafSymptomsEntity {
+public class PlantLeafSymptomsEntity implements IDatabaseObject {
 
 	private int id;
 	private String name;

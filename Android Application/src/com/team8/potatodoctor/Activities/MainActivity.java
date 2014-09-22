@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Activities;
+package com.team8.potatodoctor.activities;
 
 import java.util.concurrent.ExecutionException;
 

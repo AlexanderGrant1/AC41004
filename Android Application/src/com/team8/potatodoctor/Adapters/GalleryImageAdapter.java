@@ -11,6 +11,7 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.DatabaseObjects.IDatabaseObject;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 
 // Refer to: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
@@ -18,19 +19,19 @@ import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 public class GalleryImageAdapter extends BaseAdapter
 {
 	private Context mContext;
-	private PestEntity pest;
+	private IDatabaseObject dbItem;
     
 	//Constructor
-    public GalleryImageAdapter(Context context, PestEntity pest) 
+    public GalleryImageAdapter(Context context, IDatabaseObject dbItem) 
     {
         mContext = context;
-        this.pest = pest;
+        this.dbItem = dbItem;
     }
     
     //Required Method
 	@Override
 	public int getCount() {
-		return pest.getPhotos().size();
+		return dbItem.getPhotos().size();
 	}
 
 	//Required Method
@@ -49,8 +50,8 @@ public class GalleryImageAdapter extends BaseAdapter
 	@Override
 	public View getView(int index, View view, ViewGroup viewGroup) {
 		ImageView i = new ImageView(mContext);
-
-        i.setImageURI(Uri.parse(pest.getPhotos().get(index).getName()));
+		
+        i.setImageURI(Uri.parse(dbItem.getPhotos().get(index).getName()));
         i.setLayoutParams(new Gallery.LayoutParams(200, 200));
     
         i.setScaleType(ImageView.ScaleType.FIT_XY);

@@ -1,9 +1,10 @@
-package com.team8.potatodoctor.Activities;
+package com.team8.potatodoctor.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -11,6 +12,10 @@ import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.Adapters.PestImageAdapter;
+import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
 
 public class PestsActivity extends Activity
 {
@@ -56,6 +61,28 @@ public class PestsActivity extends Activity
 	    		startActivity(intentObjectDescription);
 	        }
 	    });
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+	    switch (item.getItemId())
+	    {
+	    case (R.id.action_imageshare):
+	        this.startActivity(new Intent(this, ImageShareActivity.class));
+	        return true;
+	    case (R.id.action_update):
+	        this.startActivity(new Intent(this, UpdateActivity.class));
+	        return true;
+	    case (R.id.action_settings):
+	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        return true;
+	    case (R.id.action_exit):
+	        this.startActivity(new Intent(this, ExitActivity.class));
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
 	}
 
 }
