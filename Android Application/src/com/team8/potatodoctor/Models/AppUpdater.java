@@ -67,10 +67,11 @@ public class AppUpdater {
 			File[] directoryListing = dir.listFiles();
 			  if (directoryListing != null) {
 			    for (File child : directoryListing) {
-			      if((child.getName()+"."+getFileExtension(child)).equals(imageName))
-			      {
-			    	  return true;
-			      }
+			    	String fileWithExtension = child.getName()+"."+getFileExtension(child);
+			    	if(fileWithExtension.equals(imageName))
+			    	{
+			    		return true;
+			    	}
 			    }
 			  }
 		}

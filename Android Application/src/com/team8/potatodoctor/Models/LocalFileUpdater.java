@@ -22,6 +22,14 @@ public class LocalFileUpdater {
 		}
 	}
 	
+	public void fetchPestImage(String imageName) throws InterruptedException, ExecutionException, JSONException
+	{
+		String response = new HttpGetRequest().execute(Constants.PEST_API_URL).get();
+		JSONObject obj = new JSONObject(response);
+		String photoPath = cleanJSONUrl(obj.getString("PhotoPath"));
+		new MediaFetcher().execute(photoPath + imageName,"Pests");
+	}
+	
 	public void fetchTuberImages() throws InterruptedException, ExecutionException, JSONException
 	{
 		String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
@@ -34,6 +42,14 @@ public class LocalFileUpdater {
 		}
 	}
 	
+	public void fetchTuberImage(String imageName) throws InterruptedException, ExecutionException, JSONException
+	{
+		String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
+		JSONObject obj = new JSONObject(response);
+		String photoPath = cleanJSONUrl(obj.getString("PhotoPath"));
+		new MediaFetcher().execute(photoPath + imageName,"Tubers");
+	}
+	
 	public void fetchPlantLeafImages() throws InterruptedException, ExecutionException, JSONException
 	{
 		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
@@ -44,6 +60,14 @@ public class LocalFileUpdater {
 		{
 			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"PlantLeaf");
 		}
+	}
+	
+	public void fetchPlantLeafImage(String imageName) throws InterruptedException, ExecutionException, JSONException
+	{
+		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
+		JSONObject obj = new JSONObject(response);
+		String photoPath = cleanJSONUrl(obj.getString("PhotoPath"));
+		new MediaFetcher().execute(photoPath + imageName,"PlantLeaf");
 	}
 	
 	private String cleanJSONUrl(String jsonURL)
