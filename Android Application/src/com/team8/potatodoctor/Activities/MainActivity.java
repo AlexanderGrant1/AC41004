@@ -1,5 +1,6 @@
 package com.team8.potatodoctor.activities;
 
+import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -27,12 +28,13 @@ public class MainActivity extends Activity
 		//Log.w("hello","reached"); 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		new Thread(new Runnable() {
-	        public void run() {
-	        	updateDB();
-	        }
-	    }).start();
+	    updateDB();
+		PestRepository pestRepo = new PestRepository(getApplicationContext());
+		LinkedList<PestEntity> pests = pestRepo.searchPests("pest2");
+		for(int i = 0; i < pests.size(); i++)
+		{
+			Toast.makeText(getApplicationContext(), pests.get(i).getName(), Toast.LENGTH_LONG).show();
+		}
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateLocalFiles();
@@ -49,11 +51,6 @@ public class MainActivity extends Activity
 		Intent intentCategoriesList = new Intent(getApplicationContext(),CategoriesListActivity.class);
 		startActivity(intentCategoriesList);
 		Log.d("Problem Determination", "onCreate() EXIT");
-	}
-	
-	private void findFiles()
-	{
-		
 	}
 
 	@Override

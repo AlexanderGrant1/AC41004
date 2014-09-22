@@ -78,6 +78,29 @@ public class PestRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public LinkedList<PestEntity> searchPests(String keywords)
+	{
+        LinkedList<PestEntity> foundPests = new LinkedList<PestEntity>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_Pest WHERE `Name` LIKE '%"+keywords+"%' OR `Description` LIKE '%"+keywords+"%'", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                PestEntity pest = new PestEntity();
+                pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+                pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
+                pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+                pest.setPhotos(getPlantLeafPhotos(pest));
+                foundPests.add(pest);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return foundPests;
+	}
+	
     public LinkedList<PestEntity> getAllPests() {
         LinkedList<PestEntity> pests = new LinkedList<PestEntity>();
 
