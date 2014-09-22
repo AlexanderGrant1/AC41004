@@ -7,12 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.ImageAdapterMain;
  
 /*
@@ -63,7 +68,7 @@ public class CategoriesListActivity extends Activity
 				}
 			}
 
-		});
+		}); 
 		
 		Log.d("Problem Determination", "onCreate() EXIT"); 
 	}
@@ -77,4 +82,25 @@ public class CategoriesListActivity extends Activity
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+	    switch (item.getItemId())
+	    {
+	    case (R.id.action_imageshare):
+	        this.startActivity(new Intent(this, ImageShareActivity.class));
+	        return true;
+	    case (R.id.action_update):
+	        this.startActivity(new Intent(this, UpdateActivity.class));
+	        return true;
+	    case (R.id.action_settings):
+	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        return true;
+	    case (R.id.action_exit):
+	        this.startActivity(new Intent(this, ExitActivity.class));
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
 }
