@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `Administrator` (
+CREATE TABLE IF NOT EXISTS `potato_Administrator` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Username` varchar(30) NOT NULL,
 	`LoginKey` varchar(40) NOT NULL,
