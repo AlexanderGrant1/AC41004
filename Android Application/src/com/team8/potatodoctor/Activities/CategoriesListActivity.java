@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Activities;
+package com.team8.potatodoctor.activities;
 
 import java.util.ArrayList;
 
@@ -14,10 +14,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.ImageAdapterMain;
  
 /*
