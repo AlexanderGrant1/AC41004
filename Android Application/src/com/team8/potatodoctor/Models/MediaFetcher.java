@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,53 +30,28 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 	}
 	
 	//Referenced http://stackoverflow.com/questions/16414515/save-image-from-url-to-sdcard
-	public String fetch(String mediaUrl, String sdCardFolder)//sdCardFolder is the folder to store the image in on the sd card e.g Pests
+	public String fetch(String mediaUrl, String sdCardFolder) 
 	{
-		String filepath = "";
 		try
-		{   
-		  URL url = new URL(mediaUrl);
-		  HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-		  urlConnection.setRequestMethod("GET");
-		  urlConnection.setDoOutput(true);                   
-		  urlConnection.connect();                  
-		  File SDCardFolder = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/"+sdCardFolder);
-		  if(!SDCardFolder.isDirectory())
-		  {
-			  SDCardFolder.mkdir();
-			  Log.w("hello","created folder");
-		  }
-		  Log.w("hello", "SDCard folder = "+SDCardFolder);
-		  String filename=getMediaNameAndExtensionFromURL(mediaUrl);   
-		  Log.w("hello","Local filename:"+filename);
-		  File file = new File(SDCardFolder,filename);
-		  file.createNewFile();   
-		  FileOutputStream fileOutput = new FileOutputStream(file);
-		  InputStream inputStream = urlConnection.getInputStream();
-		  int totalSize = urlConnection.getContentLength();
-		  int downloadedSize = 0;   
-		  byte[] buffer = new byte[10240];
-		  int bufferLength = 0;
-		  while ( (bufferLength = inputStream.read(buffer)) > 0 ) 
-		  {                 
-		    fileOutput.write(buffer, 0, bufferLength);                  
-		    downloadedSize += bufferLength;                 
-		    //Log.w("Progress: downloadedSize:"+downloadedSize+"totalSize:"+ totalSize) ;
-		  }             
-		  fileOutput.close();
-		  if(downloadedSize==totalSize) filepath=file.getPath();    
-		} 
-		catch (MalformedURLException e) 
 		{
-		  e.printStackTrace();
-		} 
-		catch (IOException e)
-		{
-		  filepath=null;
-		  e.printStackTrace();
+			String imageName = getMediaNameAndExtensionFromURL(mediaUrl);
+			URL url = new URL (mediaUrl); 
+			InputStream input = url.openStream();    
+			    OutputStream output = new FileOutputStream (Environment.getExternalStorageDirectory()+"/"+sdCardFolder+"/"+imageName);         
+			        byte[] buffer = new byte[2040];         
+			        int bytesRead = 0;         
+			        while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {
+			                output.write(buffer, 0, bytesRead);            
+			        }
+			        output.close();
 		}
-		Log.w("hello", "filepath = "+filepath);
-		return filepath;
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return e.getMessage();
+		}
+
+        return "";
 	}
 	
 	private String getMediaNameAndExtensionFromURL(String mediaURL)

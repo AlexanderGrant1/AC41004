@@ -1,6 +1,7 @@
 package com.team8.potatodoctor.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
@@ -21,7 +22,14 @@ public class PestImageAdapter extends ImageAdapter {
 		PestRepository pestRepository = new PestRepository(context);
 		for(PestEntity pest : pestRepository.getAllPests())
 		{
-			items.add(new Item(pest.getName(), R.drawable.ic_placeholder));
+			if(pest.getPhotos().size() == 0)
+			{
+				items.add(new Item(pest.getName(), R.drawable.ic_placeholder));
+			}
+			else
+			{
+				items.add(new Item(pest.getName(), Uri.parse(pest.getPhotos().get(0).getName())));
+			}
 		}
 	}
 

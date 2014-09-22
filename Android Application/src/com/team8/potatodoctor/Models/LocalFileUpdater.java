@@ -18,7 +18,7 @@ public class LocalFileUpdater {
 		JSONArray photos = obj.getJSONArray("Photos");
 		for(int i = 0; i < photos.length(); i++)
 		{
-			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),Constants.LOCAL_PEST_FOLDER);
+			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"Pests");
 		}
 	}
 	
@@ -30,7 +30,7 @@ public class LocalFileUpdater {
 		JSONArray photos = obj.getJSONArray("Photos");
 		for(int i = 0; i < photos.length(); i++)
 		{
-			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),Constants.LOCAL_TUBER_FOLDER);
+			//new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"Tubers");
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class LocalFileUpdater {
 		JSONArray photos = obj.getJSONArray("Photos");
 		for(int i = 0; i < photos.length(); i++)
 		{
-			new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),Constants.LOCAL_PLANTLEAF_FOLDER);
+			//new MediaFetcher().execute(photoPath + photos.getJSONObject(i).getString("ImageName"),"PlantLeaf");
 		}
 	}
 	

@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.team8.potatodoctor.Models.Repositories.*;
 
@@ -52,6 +53,7 @@ public class AppUpdater {
 	
 	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
 	{
+		Log.w("hello","reached");
 		localFileUpdater.fetchPestImages();
 		localFileUpdater.fetchPlantLeafImages();
 		localFileUpdater.fetchTuberImages();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public abstract class ImageAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return items.get(i).drawableId;
+    	return items.get(i).drawableId;
     }
 
     @Override
@@ -50,7 +51,6 @@ public abstract class ImageAdapter extends BaseAdapter {
             v.setTag(R.id.picture, v.findViewById(R.id.picture));
             v.setTag(R.id.text, v.findViewById(R.id.text));
             
-            //v.setLayoutParams(new GridView.LayoutParams(350,430));
             v.setPadding(5, 5, 5, 5); 
         }
 
@@ -59,7 +59,15 @@ public abstract class ImageAdapter extends BaseAdapter {
 
         Item item = (Item)getItem(i);
 
-        picture.setImageResource(item.drawableId);
+        if(item.imageUri != null)
+        {
+        	picture.setImageURI(item.imageUri);
+        }
+        else
+        {
+        	picture.setImageResource(item.drawableId);
+        }
+        
         name.setText(item.name);
 
         return v;
@@ -67,11 +75,20 @@ public abstract class ImageAdapter extends BaseAdapter {
 
     class Item {
         final String name;
+        final Uri imageUri;
         final int drawableId;
 
-        Item(String name, int drawableId) {
+        Item(String name, Uri imageUri) {
             this.name = name;
-            this.drawableId = drawableId;
+            this.imageUri = imageUri;
+            this.drawableId = 0;
+        }
+        
+        Item(String name, int drawableId)
+        {
+        	this.name = name;
+        	this.imageUri = null;
+        	this.drawableId = drawableId;
         }
     }
 }

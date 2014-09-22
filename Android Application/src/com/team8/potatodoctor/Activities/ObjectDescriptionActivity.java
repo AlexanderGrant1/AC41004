@@ -1,6 +1,7 @@
-package com.team8.potatodoctor.Activities;
+package com.team8.potatodoctor.activities;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
@@ -12,10 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.Adapters.GalleryImageAdapter;
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
+import com.team8.potatodoctor.adapters.GalleryImageAdapter;
 
 /*
  * Generalised class to extract information from the database related to a specific Pest/Symptom. 
@@ -106,15 +108,24 @@ public class ObjectDescriptionActivity extends Activity
 	    Gallery gallery = (Gallery) findViewById(R.id.imageGallery);
         selectedImage=(ImageView)findViewById(R.id.imageSelected);
         gallery.setSpacing(1);
-        gallery.setAdapter(new GalleryImageAdapter(this));
-        selectedImage.setImageResource(mImageIds[0]);
+        Bundle extras = getIntent().getExtras();
+        
+        PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
+        gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
+        if(currentPest.getPhotos().size() > 0)
+        {
+        	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getName()));
+        }
+        
 
         //Set up Event Listener for Images.
         gallery.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
              
-                // Show the selected Image
-                selectedImage.setImageResource(mImageIds[position]);
+                Bundle extras = getIntent().getExtras();
+                
+                PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
+                selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(position).getName()));
             }
         });
 	}

@@ -1,6 +1,9 @@
 package com.team8.potatodoctor.Adapters;
 
+import java.net.URI;
+
 import android.content.Context;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,31 +11,26 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 
 // Refer to: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
 @SuppressWarnings("deprecation")
 public class GalleryImageAdapter extends BaseAdapter
 {
 	private Context mContext;
-
-	//Array of images for the image gallery.
-	private Integer[] mImageIds = {
-		R.drawable.ic_shiba1,
-		R.drawable.ic_shiba2,
-		R.drawable.ic_shiba3,
-		R.drawable.ic_shiba4,
-	};
+	private PestEntity pest;
     
 	//Constructor
-    public GalleryImageAdapter(Context context) 
+    public GalleryImageAdapter(Context context, PestEntity pest) 
     {
         mContext = context;
+        this.pest = pest;
     }
     
     //Required Method
 	@Override
 	public int getCount() {
-		return mImageIds.length;
+		return pest.getPhotos().size();
 	}
 
 	//Required Method
@@ -52,7 +50,7 @@ public class GalleryImageAdapter extends BaseAdapter
 	public View getView(int index, View view, ViewGroup viewGroup) {
 		ImageView i = new ImageView(mContext);
 
-        i.setImageResource(mImageIds[index]);
+        i.setImageURI(Uri.parse(pest.getPhotos().get(index).getName()));
         i.setLayoutParams(new Gallery.LayoutParams(200, 200));
     
         i.setScaleType(ImageView.ScaleType.FIT_XY);
