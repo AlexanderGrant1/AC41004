@@ -1,3 +1,12 @@
+CREATE TABLE IF NOT EXISTS `Administrator` (
+	`Id` smallint unsigned NOT NULL auto_increment,
+	`Username` varchar(30) NOT NULL,
+	`LoginKey` varchar(40) NOT NULL,
+	PRIMARY KEY(`Id`),
+	UNIQUE(`Username`)
+) ENGINE=InnoDB CHARACTER SET utf8
+COLLATE utf8_general_ci;
+
 CREATE TABLE IF NOT EXISTS `potato_Photo` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(37) NOT NULL,
