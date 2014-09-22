@@ -30,7 +30,7 @@ class PestController extends Controller
 		);
 	}
 
-public function actionIndex()
+	public function actionIndex()
 	{
 		// Return all Diseases
 		$response = array();
