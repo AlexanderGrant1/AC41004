@@ -43,13 +43,13 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 			{
 				f.mkdir();
 			}
-			    OutputStream output = new FileOutputStream (folder+"/"+imageName);         
-			        byte[] buffer = new byte[2040];         
-			        int bytesRead = 0;         
-			        while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {
-			                output.write(buffer, 0, bytesRead);            
-			        }
-			        output.close();
+		    OutputStream output = new FileOutputStream (folder+"/"+imageName);         
+	        byte[] buffer = new byte[2040];         
+	        int bytesRead = 0;         
+	        while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {
+	                output.write(buffer, 0, bytesRead);            
+	        }
+	        output.close();
 		}
 		catch(Exception e)
 		{

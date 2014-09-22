@@ -1,5 +1,6 @@
 package com.team8.potatodoctor.Models;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -56,5 +57,32 @@ public class AppUpdater {
 		localFileUpdater.fetchPestImages();
 		localFileUpdater.fetchPlantLeafImages();
 		localFileUpdater.fetchTuberImages();
+	}
+	
+	private boolean checkImageExists(String imageName, String folderName)
+	{
+		File dir = new File(folderName);
+		if(dir.isDirectory())
+		{
+			File[] directoryListing = dir.listFiles();
+			  if (directoryListing != null) {
+			    for (File child : directoryListing) {
+			      if((child.getName()+"."+getFileExtension(child)).equals(imageName))
+			      {
+			    	  return true;
+			      }
+			    }
+			  }
+		}
+		return false;
+	}
+	
+	private String getFileExtension(File file) {
+	    String name = file.getName();
+	    int lastIndexOf = name.lastIndexOf(".");
+	    if (lastIndexOf == -1) {
+	        return ""; // empty extension
+	    }
+	    return name.substring(lastIndexOf);
 	}
 }
