@@ -8,3 +8,8 @@ web/root/protected/config/main.php
 .dex
 .apk
 .ap_
+*$*.class
+classes.dex
+Potato_Doctor.apk
+*.class
+*.class
