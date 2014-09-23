@@ -199,22 +199,18 @@ public class ObjectDescriptionActivity extends Activity
     	String type = extras.getString("Type");
     	if(type.equals("potato_Pest"))
     	{
-    		Log.w("hello", "PEST ACTIVITY");
     		return new Intent(this, PestsActivity.class);
     	}
     	else if(type.equals("potato_Tuber"))
     	{
-    		Log.w("hello", "TUBER SYMPTOM ACTIVITY");
     		return new Intent(this, TuberSymptomActivity.class);
     	}
     	else if(type.equals("potato_PlantLeaf"))
     	{
-    		Log.w("hello", "PLANT LEAF ACTIVITY");
     		return new Intent(this, PlantSymptomActivity.class);
     	}
     	else
     	{
-    		Log.w("hello", "CATEGORIESLIST ACTIVITY");
     		return new Intent(this, CategoriesListActivity.class);
     	}
 	}
