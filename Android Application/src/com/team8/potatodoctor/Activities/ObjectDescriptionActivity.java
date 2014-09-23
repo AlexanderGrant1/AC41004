@@ -174,7 +174,7 @@ public class ObjectDescriptionActivity extends Activity
         	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
         	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
-        	    	else if(type.equals("potato_PlantLeafs"))
+        	    	else if(type.equals("potato_PlantLeaf"))
         	    	{
         	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
         	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getFullyQualifiedPath()));
@@ -199,18 +199,22 @@ public class ObjectDescriptionActivity extends Activity
     	String type = extras.getString("Type");
     	if(type.equals("potato_Pest"))
     	{
+    		Log.w("hello", "PEST ACTIVITY");
     		return new Intent(this, PestsActivity.class);
     	}
     	else if(type.equals("potato_Tuber"))
     	{
+    		Log.w("hello", "TUBER SYMPTOM ACTIVITY");
     		return new Intent(this, TuberSymptomActivity.class);
     	}
-    	else if(type.equals("potato_PlantLeafs"))
+    	else if(type.equals("potato_PlantLeaf"))
     	{
+    		Log.w("hello", "PLANT LEAF ACTIVITY");
     		return new Intent(this, PlantSymptomActivity.class);
     	}
     	else
     	{
+    		Log.w("hello", "CATEGORIESLIST ACTIVITY");
     		return new Intent(this, CategoriesListActivity.class);
     	}
 	}
