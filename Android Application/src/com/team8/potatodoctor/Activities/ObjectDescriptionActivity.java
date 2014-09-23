@@ -111,8 +111,9 @@ public class ObjectDescriptionActivity extends Activity
 	    Gallery gallery = (Gallery) findViewById(R.id.imageGallery);
         selectedImage=(ImageView)findViewById(R.id.imageSelected);
         gallery.setSpacing(1);
-        gallery.setScaleX(1.5f);
-        gallery.setScaleY(1.5f);
+        gallery.setScaleX(1.8f);
+        gallery.setScaleY(1.8f);
+        gallery.setY(80f);
         Bundle extras = getIntent().getExtras();
         String type = extras.getString("Type");
         Log.w("hello","TYPE = "+type);
