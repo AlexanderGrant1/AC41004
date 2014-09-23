@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXGroup section */
-		95AB47E219D2225C00B8003F = {
+		95CAD52419D22291000ECECD = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -16,19 +16,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXProject section */
-		95AB47E319D2225C00B8003F /* Project object */ = {
+		95CAD52519D22291000ECECD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
 			};
-			buildConfigurationList = 95AB47E619D2225C00B8003F /* Build configuration list for PBXProject "Potato Doctor" */;
+			buildConfigurationList = 95CAD52819D22291000ECECD /* Build configuration list for PBXProject "Potato Doctor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 95AB47E219D2225C00B8003F;
+			mainGroup = 95CAD52419D22291000ECECD;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -37,13 +37,13 @@
 /* End PBXProject section */
 
 /* Begin XCBuildConfiguration section */
-		95AB47E719D2225C00B8003F /* Debug */ = {
+		95CAD52919D22291000ECECD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		95AB47E819D2225C00B8003F /* Release */ = {
+		95CAD52A19D22291000ECECD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -52,16 +52,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		95AB47E619D2225C00B8003F /* Build configuration list for PBXProject "Potato Doctor" */ = {
+		95CAD52819D22291000ECECD /* Build configuration list for PBXProject "Potato Doctor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				95AB47E719D2225C00B8003F /* Debug */,
-				95AB47E819D2225C00B8003F /* Release */,
+				95CAD52919D22291000ECECD /* Debug */,
+				95CAD52A19D22291000ECECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 95AB47E319D2225C00B8003F /* Project object */;
+	rootObject = 95CAD52519D22291000ECECD /* Project object */;
 }
