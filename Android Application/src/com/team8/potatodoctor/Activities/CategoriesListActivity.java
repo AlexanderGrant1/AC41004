@@ -1,6 +1,9 @@
 package com.team8.potatodoctor.Activities;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +22,7 @@ import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.ImageAdapterMain;
+import com.team8.potatodoctor.Models.AppUpdater;
  
 /*
  * Populates and displays the list of Categories on the main screen.
@@ -69,7 +73,20 @@ public class CategoriesListActivity extends Activity
 			}
 
 		}); 
-		
+		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
+		try {
+			appUpdater.updateDatabaseTables();
+			appUpdater.updateLocalFiles();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Log.d("Problem Determination", "onCreate() EXIT"); 
 	}
 	

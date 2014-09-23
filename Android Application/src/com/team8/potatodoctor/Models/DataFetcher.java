@@ -9,21 +9,21 @@ import org.json.JSONObject;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 
 public class DataFetcher {
 	
-	public LinkedList<TuberSymptomEntity> parseTuberSymptoms(String Message)
+	public LinkedList<TuberEntity> parseTuberSymptoms(String Message)
 	{
-		LinkedList<TuberSymptomEntity> tuberSymptoms = new LinkedList<TuberSymptomEntity>();
+		LinkedList<TuberEntity> tuberSymptoms = new LinkedList<TuberEntity>();
 		try {
 			JSONObject obj = new JSONObject(Message);
 			JSONArray arr = obj.getJSONArray("Entries");
 			for(int i = 0; i < arr.length(); i++)
 			{
-				TuberSymptomEntity tuberSymptom = new TuberSymptomEntity();
+				TuberEntity tuberSymptom = new TuberEntity();
 				tuberSymptom.setId(Integer.parseInt(arr.getJSONObject(i).getString("Id")));
 				tuberSymptom.setName(arr.getJSONObject(i).getString("Name"));
 				tuberSymptom.setDescription(arr.getJSONObject(i).getString("Description"));
@@ -94,15 +94,15 @@ public class DataFetcher {
 		return pests;
 	}
 	
-	public LinkedList<PlantLeafSymptomsEntity> parsePlantAndLeafSymptoms(String Message)
+	public LinkedList<PlantLeafEntity> parsePlantAndLeafSymptoms(String Message)
 	{
-		LinkedList<PlantLeafSymptomsEntity> plantLeafSymptoms = new LinkedList<PlantLeafSymptomsEntity>();
+		LinkedList<PlantLeafEntity> plantLeafSymptoms = new LinkedList<PlantLeafEntity>();
 		try {
 			JSONObject obj = new JSONObject(Message);
 			JSONArray arr = obj.getJSONArray("Entries");
 			for(int i = 0; i < arr.length(); i++)
 			{
-				PlantLeafSymptomsEntity pest = new PlantLeafSymptomsEntity();
+				PlantLeafEntity pest = new PlantLeafEntity();
 				pest.setId(Integer.parseInt(arr.getJSONObject(i).getString("Id")));
 				pest.setName(arr.getJSONObject(i).getString("Name"));
 				pest.setDescription(arr.getJSONObject(i).getString("Description"));

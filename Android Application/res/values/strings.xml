@@ -14,7 +14,7 @@
     <!-- Categories Selection Screen -->
     <string name="categories">Categories</string>
     <string name="pests">Pests</string>
-    <string name="leaves">Plant / Leave Symptons</string>
+    <string name="leaves">Plant / Leaf Symptons</string>
     <string name="tubers">Tuber Symptons</string>
     
     <!-- GridView Screen -->

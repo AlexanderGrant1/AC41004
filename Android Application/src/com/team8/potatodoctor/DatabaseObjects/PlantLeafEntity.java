@@ -2,8 +2,8 @@ package com.team8.potatodoctor.DatabaseObjects;
 
 import java.util.LinkedList;
 
-public class TuberSymptomEntity implements IDatabaseObject {
-	
+public class PlantLeafEntity implements IDatabaseObject {
+
 	private int id;
 	private String name;
 	private String description;
@@ -33,5 +33,4 @@ public class TuberSymptomEntity implements IDatabaseObject {
 	public void setPhotos(LinkedList<PhotoEntity> photos) {
 		this.photos = photos;
 	}
-	
 }

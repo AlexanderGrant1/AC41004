@@ -22,8 +22,8 @@ import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.GalleryImageAdapter;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
@@ -91,6 +91,7 @@ public class ObjectDescriptionActivity extends Activity
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
         textView.setMovementMethod(new ScrollingMovementMethod());
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
   
@@ -110,6 +111,9 @@ public class ObjectDescriptionActivity extends Activity
 	    Gallery gallery = (Gallery) findViewById(R.id.imageGallery);
         selectedImage=(ImageView)findViewById(R.id.imageSelected);
         gallery.setSpacing(1);
+        gallery.setScaleX(1.8f);
+        gallery.setScaleY(1.8f);
+        gallery.setY(80f);
         Bundle extras = getIntent().getExtras();
         String type = extras.getString("Type");
         Log.w("hello","TYPE = "+type);
@@ -121,25 +125,37 @@ public class ObjectDescriptionActivity extends Activity
                 {
                 	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getFullyQualifiedPath()));
                 }
+                else
+                {
+                	selectedImage.setImageResource(R.drawable.ic_default);
+                }
                  
 	    	} 
 	    	else if(type.equals("potato_Tuber"))
 	    	{
-	    		TuberSymptomEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
+	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
 	            gallery.setAdapter(new GalleryImageAdapter(this,tuber));
 	    		if(tuber.getPhotos().size() > 0)
 	    		{
 	    			selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(0).getFullyQualifiedPath()));
 	    		}
+                else
+                {
+                	selectedImage.setImageResource(R.drawable.ic_default);
+                }
 	    	}
 	    	else if(type.equals("potato_PlantLeaf"))
 	    	{
-	    		PlantLeafSymptomsEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
+	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
 	            gallery.setAdapter(new GalleryImageAdapter(this,plantLeaf));
 	    		if(plantLeaf.getPhotos().size() > 0)
 	    		{
 	    			selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(0).getFullyQualifiedPath()));
 	    		}
+                else
+                {
+                	selectedImage.setImageResource(R.drawable.ic_default);
+                }
 	    	}
         
         //Set up Event Listener for Images.
@@ -158,12 +174,12 @@ public class ObjectDescriptionActivity extends Activity
         	    	}
         	    	else if(type.equals("potato_Tuber"))
         	    	{
-        	    		TuberSymptomEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
+        	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
         	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
-        	    	else if(type.equals("potato_PlantLeafs"))
+        	    	else if(type.equals("potato_PlantLeaf"))
         	    	{
-        	    		PlantLeafSymptomsEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
+        	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
         	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else
@@ -178,6 +194,28 @@ public class ObjectDescriptionActivity extends Activity
 
             }
         });
+	}
+	@Override
+	public Intent getParentActivityIntent()
+	{
+		Bundle extras = getIntent().getExtras();
+    	String type = extras.getString("Type");
+    	if(type.equals("potato_Pest"))
+    	{
+    		return new Intent(this, PestsActivity.class);
+    	}
+    	else if(type.equals("potato_Tuber"))
+    	{
+    		return new Intent(this, TuberSymptomActivity.class);
+    	}
+    	else if(type.equals("potato_PlantLeaf"))
+    	{
+    		return new Intent(this, PlantSymptomActivity.class);
+    	}
+    	else
+    	{
+    		return new Intent(this, CategoriesListActivity.class);
+    	}
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ import android.os.Environment;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
 
 public class PlantLeafRepository extends SQLiteOpenHelper
 
@@ -41,8 +41,11 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	
 	private static final String DROP_PLANT_LEAF_PHOTO_TABLE_EXISTS = "DROP TABLE IF EXISTS `potato_PlantLeaf_photo`";
 	
+	private Context context;
+	
 	public PlantLeafRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -79,9 +82,9 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	}
 
 	
-	public LinkedList<PlantLeafSymptomsEntity> searchPlantLeafSymptoms(String keywords)
+	public LinkedList<PlantLeafEntity> searchPlantLeafSymptoms(String keywords)
 	{
-        LinkedList<PlantLeafSymptomsEntity> foundEntries = new LinkedList<PlantLeafSymptomsEntity>();
+        LinkedList<PlantLeafEntity> foundEntries = new LinkedList<PlantLeafEntity>();
 
         SQLiteDatabase db = getWritableDatabase();
         
@@ -89,7 +92,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 
         if (cursor.moveToFirst()) {
             do {
-            	PlantLeafSymptomsEntity plantLeaf = new PlantLeafSymptomsEntity();
+            	PlantLeafEntity plantLeaf = new PlantLeafEntity();
             	plantLeaf.setId(cursor.getInt(cursor.getColumnIndex("Id")));
             	plantLeaf.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	plantLeaf.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
@@ -103,15 +106,15 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	}
 	
 	
-    public LinkedList<PlantLeafSymptomsEntity> getAllPlantLeafs() {
-        LinkedList<PlantLeafSymptomsEntity> plantLeafs = new LinkedList<PlantLeafSymptomsEntity>();
+    public LinkedList<PlantLeafEntity> getAllPlantLeafs() {
+        LinkedList<PlantLeafEntity> plantLeafs = new LinkedList<PlantLeafEntity>();
 
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM potato_PlantLeaf", null);
 
         if (cursor.moveToFirst()) {
             do {
-            	PlantLeafSymptomsEntity plantLeaf = new PlantLeafSymptomsEntity();
+            	PlantLeafEntity plantLeaf = new PlantLeafEntity();
             	plantLeaf.setId(cursor.getInt(cursor.getColumnIndex("Id")));
             	plantLeaf.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	plantLeaf.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
@@ -125,7 +128,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
         return plantLeafs;
     }
 	
-	public void insertPlantLeaf(PlantLeafSymptomsEntity pest)
+	public void insertPlantLeaf(PlantLeafEntity pest)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
 			ContentValues values = new ContentValues();
@@ -147,7 +150,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
-	 private LinkedList<Integer> getPestPhotoLinkersForPlantLeaf(PlantLeafSymptomsEntity plantLeaf) {
+	 private LinkedList<Integer> getPestPhotoLinkersForPlantLeaf(PlantLeafEntity plantLeaf) {
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -163,7 +166,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	        return photoIds;
 	    }
 		
-		public LinkedList<PhotoEntity> getPlantLeafPhotos(PlantLeafSymptomsEntity plantLeaf)
+		public LinkedList<PhotoEntity> getPlantLeafPhotos(PlantLeafEntity plantLeaf)
 		{
 			LinkedList<Integer> photoIds = getPestPhotoLinkersForPlantLeaf(plantLeaf);
 			if(photoIds.size() == 0)
@@ -187,7 +190,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	            do {
 	            	PhotoEntity photo = new PhotoEntity();
 	            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-	            	photo.setFullyQualifiedPath(Environment.getExternalStorageDirectory()+"/PlantLeafs/"+cursor.getString(cursor.getColumnIndex("Name")));
+	            	photo.setFullyQualifiedPath(context.getFilesDir()+"/PlantLeafs/"+cursor.getString(cursor.getColumnIndex("Name")));
 	            	photos.add(photo);
 	            }
 	            while (cursor.moveToNext());

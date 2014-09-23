@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 
 public class PlantImageAdapter extends ImageAdapter {
@@ -19,7 +19,7 @@ public class PlantImageAdapter extends ImageAdapter {
 	@Override
 	void addItems() {
 		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(context);
-		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+		for(PlantLeafEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
 		{
 			if(plantLeaf.getPhotos().size() == 0)
 			{

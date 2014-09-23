@@ -11,8 +11,8 @@ import android.os.Environment;
 
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 
 public class TuberRepository extends SQLiteOpenHelper
 
@@ -41,8 +41,11 @@ public class TuberRepository extends SQLiteOpenHelper
 	
 	private static final String DROP_TUBER_PHOTOS_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Tuber_photo`";
 	
+	private Context context;
+	
 	public TuberRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -78,9 +81,9 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
-	public LinkedList<TuberSymptomEntity> searchTubers(String keywords)
+	public LinkedList<TuberEntity> searchTubers(String keywords)
 	{
-        LinkedList<TuberSymptomEntity> foundEntries = new LinkedList<TuberSymptomEntity>();
+        LinkedList<TuberEntity> foundEntries = new LinkedList<TuberEntity>();
 
         SQLiteDatabase db = getWritableDatabase();
         
@@ -88,7 +91,7 @@ public class TuberRepository extends SQLiteOpenHelper
 
         if (cursor.moveToFirst()) {
             do {
-            	TuberSymptomEntity tuber = new TuberSymptomEntity();
+            	TuberEntity tuber = new TuberEntity();
             	tuber.setId(cursor.getInt(cursor.getColumnIndex("Id")));
             	tuber.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	tuber.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
@@ -101,15 +104,15 @@ public class TuberRepository extends SQLiteOpenHelper
         return foundEntries;
 	}
 	
-	 public LinkedList<TuberSymptomEntity> getAllTubers() {
-	        LinkedList<TuberSymptomEntity> tubers = new LinkedList<TuberSymptomEntity>();
+	 public LinkedList<TuberEntity> getAllTubers() {
+	        LinkedList<TuberEntity> tubers = new LinkedList<TuberEntity>();
 
 	        SQLiteDatabase db = getWritableDatabase();
 	        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tuber", null);
 
 	        if (cursor.moveToFirst()) {
 	            do {
-	            	TuberSymptomEntity tuber = new TuberSymptomEntity();
+	            	TuberEntity tuber = new TuberEntity();
 	            	tuber.setId(cursor.getInt(cursor.getColumnIndex("Id")));
 	            	tuber.setName(cursor.getString(cursor.getColumnIndex("Name")));
 	                tuber.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
@@ -123,7 +126,7 @@ public class TuberRepository extends SQLiteOpenHelper
 	        return tubers;
 	    }
 		
-		public void insertTuber(TuberSymptomEntity tuber)
+		public void insertTuber(TuberEntity tuber)
 		{
 				SQLiteDatabase db = this.getWritableDatabase();
 				ContentValues values = new ContentValues();
@@ -145,7 +148,7 @@ public class TuberRepository extends SQLiteOpenHelper
 			db.close();
 		}
 		
-	    private LinkedList<Integer> getPhotoLinkersForTuber(TuberSymptomEntity tuber) {
+	    private LinkedList<Integer> getPhotoLinkersForTuber(TuberEntity tuber) {
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -161,7 +164,7 @@ public class TuberRepository extends SQLiteOpenHelper
 	        return photoIds;
 	    }
 		
-		public LinkedList<PhotoEntity> getTuberPhotos(TuberSymptomEntity tuber)
+		public LinkedList<PhotoEntity> getTuberPhotos(TuberEntity tuber)
 		{
 			LinkedList<Integer> photoIds = getPhotoLinkersForTuber(tuber);
 			if(photoIds.size() == 0)
@@ -185,7 +188,7 @@ public class TuberRepository extends SQLiteOpenHelper
 	            do {
 	            	PhotoEntity photo = new PhotoEntity();
 	            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-	            	photo.setFullyQualifiedPath(Environment.getExternalStorageDirectory()+"/Tubers/"+cursor.getString(cursor.getColumnIndex("Name")));
+	            	photo.setFullyQualifiedPath(context.getFilesDir()+"/Tubers/"+cursor.getString(cursor.getColumnIndex("Name")));
 	            	photos.add(photo);
 	            }
 	            while (cursor.moveToNext());

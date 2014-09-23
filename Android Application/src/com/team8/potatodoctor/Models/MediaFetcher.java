@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.team8.potatodoctor.Activities.MainActivity;
+
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -30,21 +32,20 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 	}
 	
 	//Referenced http://stackoverflow.com/questions/16414515/save-image-from-url-to-sdcard
-	public String fetch(String mediaUrl, String sdCardFolder) 
+	public String fetch(String mediaUrl, String folderPath) 
 	{
-		Log.w("hello", "DOWNLOADING "+mediaUrl + " to "+ sdCardFolder);
+		Log.w("hello", "DOWNLOADING "+mediaUrl + " to "+ folderPath);
 		try
 		{
 			String imageName = getMediaNameAndExtensionFromURL(mediaUrl);
 			URL url = new URL (mediaUrl); 
 			InputStream input = url.openStream(); 
-			String folder = Environment.getExternalStorageDirectory()+"/"+sdCardFolder;
-			File f = new File(folder);
+			File f = new File(folderPath);
 			if(!f.isDirectory())
 			{
 				f.mkdir();
 			}
-		    OutputStream output = new FileOutputStream (folder+"/"+imageName);         
+		    OutputStream output = new FileOutputStream (folderPath+"/"+imageName);         
 	        byte[] buffer = new byte[2040];         
 	        int bytesRead = 0;         
 	        while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {
