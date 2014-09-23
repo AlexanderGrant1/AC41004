@@ -1,6 +1,7 @@
 package com.team8.potatodoctor.Models;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -24,6 +25,7 @@ public class AppUpdater {
 	private PlantLeafRepository plantLeafRepository;
 	private LocalDbUpdater localDbUpdater;
 	private LocalFileUpdater localFileUpdater;
+	private Context context;
 	
 	public AppUpdater(Context context)
 	{
@@ -33,7 +35,8 @@ public class AppUpdater {
 		tutorialRepository = new TutorialRepository(context);
 		plantLeafRepository = new PlantLeafRepository(context);
 		localDbUpdater = new LocalDbUpdater(context);
-		localFileUpdater = new LocalFileUpdater();
+		localFileUpdater = new LocalFileUpdater(context);
+		this.context = context;
 	}
 	public void updateDatabaseTables() throws InterruptedException, ExecutionException
 	{
@@ -59,6 +62,9 @@ public class AppUpdater {
 	
 	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
 	{
+		deleteUnusedPestPhotos();
+		deleteUnusedTuberPhotos();
+		deleteUnusedPlantLeafPhotos();
 		for(PestEntity pest : pestRepository.getAllPests())
 		{
 			for(PhotoEntity photo : pest.getPhotos())
@@ -93,6 +99,110 @@ public class AppUpdater {
 			}
 		} 
 	}
+	//REFACTOR ME
+	private void deleteUnusedPestPhotos()
+	{
+		File dir = new File(context.getFilesDir() + "/" +"Pests");
+		if(dir.isDirectory())
+		{
+			LinkedList<String> fileNames = new LinkedList<String>();
+			File[] directoryListing = dir.listFiles();
+			for(File file : directoryListing)
+			{
+				fileNames.add(file.getName());
+			}
+			LinkedList<String> serverPhotos = new LinkedList<String>();
+			for(PestEntity pest : pestRepository.getAllPests())
+			{
+				for(PhotoEntity photo : pest.getPhotos())
+				{
+					serverPhotos.add(getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String fileName : fileNames)
+			{
+				if(!serverPhotos.contains(fileName))
+				{
+					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
+					f.delete();
+				}
+			}
+		}
+		else
+		{
+			dir.mkdir();
+		}
+	}
+	//REFACTOR ME
+	private void deleteUnusedTuberPhotos()
+	{
+		File dir = new File(context.getFilesDir() + "/" +"Tubers");
+		if(dir.isDirectory())
+		{
+			LinkedList<String> fileNames = getImagesInFolder("Tubers");
+			LinkedList<String> serverPhotos = new LinkedList<String>();
+			for(PestEntity pest : pestRepository.getAllPests())
+			{
+				for(PhotoEntity photo : pest.getPhotos())
+				{
+					serverPhotos.add(getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String fileName : fileNames)
+			{
+				if(!serverPhotos.contains(fileName))
+				{
+					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
+					f.delete();
+				}
+			}
+		}
+		else
+		{
+			dir.mkdir();
+		}
+	}
+	//REFACTOR ME
+	private void deleteUnusedPlantLeafPhotos()
+	{
+		File dir = new File(context.getFilesDir() + "/" +"Tubers");
+		if(dir.isDirectory())
+		{
+			LinkedList<String> fileNames = getImagesInFolder("Tubers");
+			LinkedList<String> serverPhotos = new LinkedList<String>();
+			for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+			{
+				for(PhotoEntity photo : plantLeaf.getPhotos())
+				{
+					serverPhotos.add(getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String fileName : fileNames)
+			{
+				if(!serverPhotos.contains(fileName))
+				{
+					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
+					f.delete();
+				}
+			}
+		}
+		else
+		{
+			dir.mkdir();
+		}
+	}
+	
+	public LinkedList<String> getImagesInFolder(String folder)
+	{
+		File dir = new File(context.getFilesDir() + "/" +folder);
+		LinkedList<String> fileNames = new LinkedList<String>();
+		File[] directoryListing = dir.listFiles();
+		for(File file : directoryListing)
+		{
+			fileNames.add(file.getName());
+		}
+		return fileNames;
+	}
 	
 	private String getImageNameAndExtensionFromFullyQualifiedPath(String fullyQualifiedPath)
 	{
@@ -102,7 +212,7 @@ public class AppUpdater {
 	
 	private boolean imageExists(String imageName, String folderName)
 	{
-		File dir = new File(Environment.getExternalStorageDirectory() + "/" +folderName);
+		File dir = new File(context.getFilesDir() + "/" +folderName);
 		if(dir.isDirectory())
 		{
 			File[] directoryListing = dir.listFiles();
@@ -118,3 +228,5 @@ public class AppUpdater {
 		return false;
 	}
 }
+
+

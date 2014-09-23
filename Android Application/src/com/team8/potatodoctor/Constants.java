@@ -9,8 +9,8 @@ public class Constants {
 	public static final String TUTORIAL_API_URL = "http://beberry.lv/potato/api/tutorial";
 	
 	//Internal folder locations
-	public static final String LOCAL_PEST_FOLDER = "PotatoDoctor/Pests";
-	public static final String LOCAL_TUBER_FOLDER = "PotatoDoctor/Tubers";
-	public static final String LOCAL_PLANTLEAF_FOLDER = "PotatoDoctor/PlantLeafs";
-	public static final String LOCAL_TUTORIAL_FOLDER = "PotatoDoctor/Tutorials";
+	public static final String LOCAL_PEST_FOLDER = "Pests";
+	public static final String LOCAL_TUBER_FOLDER = "Tubers";
+	public static final String LOCAL_PLANTLEAF_FOLDER = "PlantLeafs";
+	public static final String LOCAL_TUTORIAL_FOLDER = "Tutorials";
 }

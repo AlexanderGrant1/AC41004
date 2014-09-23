@@ -41,8 +41,11 @@ public class PestRepository extends SQLiteOpenHelper
 	
 	private static final String DROP_PESTS_PHOTO_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Pest_photo`";
 	
+	private Context context;
+	
 	public PestRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -184,7 +187,7 @@ public class PestRepository extends SQLiteOpenHelper
             do {
             	PhotoEntity photo = new PhotoEntity();
             	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-            	photo.setFullyQualifiedPath(Environment.getExternalStorageDirectory()+"/Pests/"+cursor.getString(cursor.getColumnIndex("Name")));
+            	photo.setFullyQualifiedPath(context.getFilesDir()+"/Pests/"+cursor.getString(cursor.getColumnIndex("Name")));
             	photos.add(photo);
             }
             while (cursor.moveToNext());

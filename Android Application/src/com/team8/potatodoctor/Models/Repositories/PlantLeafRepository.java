@@ -41,8 +41,11 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	
 	private static final String DROP_PLANT_LEAF_PHOTO_TABLE_EXISTS = "DROP TABLE IF EXISTS `potato_PlantLeaf_photo`";
 	
+	private Context context;
+	
 	public PlantLeafRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -187,7 +190,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	            do {
 	            	PhotoEntity photo = new PhotoEntity();
 	            	photo.setId(cursor.getInt(cursor.getColumnIndex("Id")));
-	            	photo.setFullyQualifiedPath(Environment.getExternalStorageDirectory()+"/PlantLeafs/"+cursor.getString(cursor.getColumnIndex("Name")));
+	            	photo.setFullyQualifiedPath(context.getFilesDir()+"/PlantLeafs/"+cursor.getString(cursor.getColumnIndex("Name")));
 	            	photos.add(photo);
 	            }
 	            while (cursor.moveToNext());
