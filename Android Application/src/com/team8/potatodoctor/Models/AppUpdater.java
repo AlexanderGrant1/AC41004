@@ -212,7 +212,6 @@ public class AppUpdater {
 	
 	private boolean imageExists(String imageName, String folderName)
 	{
-		Log.w("hello", "checking if "+imageName + " exists in "+ folderName);
 		File dir = new File(context.getFilesDir() + "/" +folderName);
 		if(dir.isDirectory())
 		{

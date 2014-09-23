@@ -91,6 +91,7 @@ public class ObjectDescriptionActivity extends Activity
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
         textView.setMovementMethod(new ScrollingMovementMethod());
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
   
@@ -190,6 +191,28 @@ public class ObjectDescriptionActivity extends Activity
 
             }
         });
+	}
+	@Override
+	public Intent getParentActivityIntent()
+	{
+		Bundle extras = getIntent().getExtras();
+    	String type = extras.getString("Type");
+    	if(type.equals("potato_Pest"))
+    	{
+    		return new Intent(this, PestsActivity.class);
+    	}
+    	else if(type.equals("potato_Tuber"))
+    	{
+    		return new Intent(this, TuberSymptomActivity.class);
+    	}
+    	else if(type.equals("potato_PlantLeafs"))
+    	{
+    		return new Intent(this, PlantSymptomActivity.class);
+    	}
+    	else
+    	{
+    		return new Intent(this, CategoriesListActivity.class);
+    	}
 	}
 	
 	@Override
