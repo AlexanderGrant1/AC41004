@@ -21,18 +21,18 @@
         <!-- Main Activity -->
         <activity
             android:name="com.team8.potatodoctor.Activities.MainActivity"
-            android:label="@string/app_name" >
-            
-            <!-- Set as startup Activity-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
-        </activity>
+            android:label="@string/app_name" ></activity>
         
         <!-- CategoriesListActivity -->
         <activity 
             android:name="com.team8.potatodoctor.Activities.CategoriesListActivity"
-            android:label="@string/app_name" ></activity>
+            android:label="@string/app_name" >
+            
+            	<!-- Set as startup Activity-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+            </activity>
         
         <!-- PestsActivity-->
         <activity 
