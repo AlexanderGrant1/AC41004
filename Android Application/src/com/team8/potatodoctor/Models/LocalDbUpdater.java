@@ -9,8 +9,8 @@ import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PhotoRepository;
@@ -39,8 +39,8 @@ public class LocalDbUpdater {
 	public void updateTuberTables() throws InterruptedException, ExecutionException
 	{
 		String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
-		LinkedList<TuberSymptomEntity> tuberSymptoms = dataFetcher.parseTuberSymptoms(response);
-		for(TuberSymptomEntity tuber : tuberSymptoms)
+		LinkedList<TuberEntity> tuberSymptoms = dataFetcher.parseTuberSymptoms(response);
+		for(TuberEntity tuber : tuberSymptoms)
 		{
 			tuberRepository.insertTuber(tuber);
 		}
@@ -83,8 +83,8 @@ public class LocalDbUpdater {
 	public void updatePlantLeafTables() throws InterruptedException, ExecutionException
 	{
 		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
-		LinkedList<PlantLeafSymptomsEntity> plantLeafSymptoms = dataFetcher.parsePlantAndLeafSymptoms(response);
-		for(PlantLeafSymptomsEntity plantLeafSymptom : plantLeafSymptoms)
+		LinkedList<PlantLeafEntity> plantLeafSymptoms = dataFetcher.parsePlantAndLeafSymptoms(response);
+		for(PlantLeafEntity plantLeafSymptom : plantLeafSymptoms)
 		{
 			plantLeafRepository.insertPlantLeaf(plantLeafSymptom);
 		}

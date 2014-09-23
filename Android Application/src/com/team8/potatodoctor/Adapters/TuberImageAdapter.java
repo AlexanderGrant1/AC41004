@@ -5,7 +5,7 @@ import android.net.Uri;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.Adapters.ImageAdapter.Item;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
 public class TuberImageAdapter extends ImageAdapter {
@@ -20,7 +20,7 @@ public class TuberImageAdapter extends ImageAdapter {
 	@Override
 	void addItems() {
 		TuberRepository tuberRepository = new TuberRepository(context);
-		for(TuberSymptomEntity tuberSymptom : tuberRepository.getAllTubers())
+		for(TuberEntity tuberSymptom : tuberRepository.getAllTubers())
 		{
 			if(tuberSymptom.getPhotos().size() == 0)
 			{

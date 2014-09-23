@@ -12,8 +12,8 @@ import android.util.Log;
 
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
-import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
-import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.Models.Repositories.*;
 
 public class AppUpdater {
@@ -69,36 +69,36 @@ public class AppUpdater {
 		{
 			for(PhotoEntity photo : pest.getPhotos())
 			{
-				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
+				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
 				if(!imageExists(imageNameAndExtension,"Pests"))
 				{
 					localFileUpdater.fetchPestImage(imageNameAndExtension);
 				}
 			}
 		}
-		for(TuberSymptomEntity tuber : tuberRepository.getAllTubers())
+		for(TuberEntity tuber : tuberRepository.getAllTubers())
 		{
 			for(PhotoEntity photo : tuber.getPhotos())
 			{
-				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
+				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
 				if(!imageExists(imageNameAndExtension,"Tubers"))
 				{
 					localFileUpdater.fetchTuberImage(imageNameAndExtension);
 				}
 			}
 		}
-		for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+		for(PlantLeafEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
 		{
 			for(PhotoEntity photo : plantLeaf.getPhotos())
 			{
-				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
+				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
 				if(!imageExists(imageNameAndExtension,"PlantLeaf"))
 				{
 					localFileUpdater.fetchPlantLeafImage(imageNameAndExtension);
 				}
 			}
 		} 
-	}
+	} 
 	//REFACTOR ME
 	private void deleteUnusedPestPhotos()
 	{
@@ -116,7 +116,7 @@ public class AppUpdater {
 			{
 				for(PhotoEntity photo : pest.getPhotos())
 				{
-					serverPhotos.add(getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath()));
+					serverPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
 				}
 			}
 			for(String fileName : fileNames)
@@ -141,11 +141,11 @@ public class AppUpdater {
 		{
 			LinkedList<String> fileNames = getImagesInFolder("Tubers");
 			LinkedList<String> serverPhotos = new LinkedList<String>();
-			for(PestEntity pest : pestRepository.getAllPests())
+			for(TuberEntity tuber : tuberRepository.getAllTubers())
 			{
-				for(PhotoEntity photo : pest.getPhotos())
+				for(PhotoEntity photo : tuber.getPhotos())
 				{
-					serverPhotos.add(getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath()));
+					serverPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
 				}
 			}
 			for(String fileName : fileNames)
@@ -165,16 +165,16 @@ public class AppUpdater {
 	//REFACTOR ME
 	private void deleteUnusedPlantLeafPhotos()
 	{
-		File dir = new File(context.getFilesDir() + "/" +"Tubers");
+		File dir = new File(context.getFilesDir() + "/" +"PlantLeaf");
 		if(dir.isDirectory())
 		{
-			LinkedList<String> fileNames = getImagesInFolder("Tubers");
+			LinkedList<String> fileNames = getImagesInFolder("PlantLeaf");
 			LinkedList<String> serverPhotos = new LinkedList<String>();
-			for(PlantLeafSymptomsEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+			for(PlantLeafEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
 			{
 				for(PhotoEntity photo : plantLeaf.getPhotos())
 				{
-					serverPhotos.add(getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath()));
+					serverPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
 				}
 			}
 			for(String fileName : fileNames)
@@ -202,9 +202,9 @@ public class AppUpdater {
 			fileNames.add(file.getName());
 		}
 		return fileNames;
-	}
+	} 
 	
-	private String getImageNameAndExtensionFromFullyQualifiedPath(String fullyQualifiedPath)
+	private String getImageNameAndExtensionFromFilePath(String fullyQualifiedPath)
 	{
 		String[] splitPath = fullyQualifiedPath.split("/");
 		return splitPath[splitPath.length - 1];
