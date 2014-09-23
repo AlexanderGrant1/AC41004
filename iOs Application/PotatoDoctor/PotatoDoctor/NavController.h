@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  NavController.h
 //  PotatoDoctor
 //
 //  Created by Jekabs Stikans on 23/09/2014.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface NavController : UINavigationController
 
 
 @end

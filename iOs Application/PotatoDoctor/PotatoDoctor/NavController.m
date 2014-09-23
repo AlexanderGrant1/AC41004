@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  NavController.m
 //  PotatoDoctor
 //
 //  Created by Jekabs Stikans on 23/09/2014.
 //  Copyright (c) 2014 Jekabs Stikans. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "NavController.h"
 
-@interface ViewController ()
+@interface NavController ()
 
 @end
 
-@implementation ViewController
+@implementation NavController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

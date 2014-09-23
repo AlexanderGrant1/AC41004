@@ -10,7 +10,7 @@
 		95CAD53A19D222B4000ECECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53919D222B4000ECECD /* main.m */; };
 		95CAD53D19D222B4000ECECD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53C19D222B4000ECECD /* AppDelegate.m */; };
 		95CAD54019D222B4000ECECD /* PotatoDoctor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */; };
-		95CAD54319D222B4000ECECD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD54219D222B4000ECECD /* ViewController.m */; };
+		95CAD54319D222B4000ECECD /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD54219D222B4000ECECD /* NavController.m */; };
 		95CAD54619D222B4000ECECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CAD54419D222B4000ECECD /* Main.storyboard */; };
 		95CAD54819D222B4000ECECD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95CAD54719D222B4000ECECD /* Images.xcassets */; };
 		95CAD54B19D222B5000ECECD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95CAD54919D222B5000ECECD /* LaunchScreen.xib */; };
@@ -34,8 +34,8 @@
 		95CAD53B19D222B4000ECECD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95CAD53C19D222B4000ECECD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		95CAD53F19D222B4000ECECD /* PotatoDoctor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PotatoDoctor.xcdatamodel; sourceTree = "<group>"; };
-		95CAD54119D222B4000ECECD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		95CAD54219D222B4000ECECD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		95CAD54119D222B4000ECECD /* NavController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavController.h; sourceTree = "<group>"; };
+		95CAD54219D222B4000ECECD /* NavController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavController.m; sourceTree = "<group>"; };
 		95CAD54519D222B4000ECECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95CAD54719D222B4000ECECD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		95CAD54A19D222B5000ECECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -83,10 +83,11 @@
 		95CAD53619D222B4000ECECD /* PotatoDoctor */ = {
 			isa = PBXGroup;
 			children = (
+				95CAD56019D2280B000ECECD /* Controllers */,
 				95CAD53B19D222B4000ECECD /* AppDelegate.h */,
 				95CAD53C19D222B4000ECECD /* AppDelegate.m */,
-				95CAD54119D222B4000ECECD /* ViewController.h */,
-				95CAD54219D222B4000ECECD /* ViewController.m */,
+				95CAD54119D222B4000ECECD /* NavController.h */,
+				95CAD54219D222B4000ECECD /* NavController.m */,
 				95CAD54419D222B4000ECECD /* Main.storyboard */,
 				95CAD54719D222B4000ECECD /* Images.xcassets */,
 				95CAD54919D222B5000ECECD /* LaunchScreen.xib */,
@@ -120,6 +121,13 @@
 				95CAD55519D222B5000ECECD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95CAD56019D2280B000ECECD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,7 +232,7 @@
 			files = (
 				95CAD53D19D222B4000ECECD /* AppDelegate.m in Sources */,
 				95CAD53A19D222B4000ECECD /* main.m in Sources */,
-				95CAD54319D222B4000ECECD /* ViewController.m in Sources */,
+				95CAD54319D222B4000ECECD /* NavController.m in Sources */,
 				95CAD54019D222B4000ECECD /* PotatoDoctor.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
