@@ -7,14 +7,16 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 
 import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
 
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
-import com.team8.potatodoctor.Models.Repositories.*;
+import com.team8.potatodoctor.Models.Repositories.PestRepository;
+import com.team8.potatodoctor.Models.Repositories.PhotoRepository;
+import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
+import com.team8.potatodoctor.Models.Repositories.TuberRepository;
+import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
 
 public class AppUpdater {
 

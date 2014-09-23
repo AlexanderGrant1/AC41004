@@ -1,7 +1,5 @@
 package com.team8.potatodoctor.Adapters;
 
-import java.net.URI;
-
 import android.content.Context;
 import android.net.Uri;
 import android.view.View;
@@ -10,9 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
-import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.DatabaseObjects.IDatabaseObject;
-import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 
 // Refer to: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
 @SuppressWarnings("deprecation")
