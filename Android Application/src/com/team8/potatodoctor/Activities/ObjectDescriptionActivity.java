@@ -121,6 +121,10 @@ public class ObjectDescriptionActivity extends Activity
                 {
                 	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getFullyQualifiedPath()));
                 }
+                else
+                {
+                	selectedImage.setImageResource(R.drawable.ic_default);
+                }
                  
 	    	} 
 	    	else if(type.equals("potato_Tuber"))
@@ -131,6 +135,10 @@ public class ObjectDescriptionActivity extends Activity
 	    		{
 	    			selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(0).getFullyQualifiedPath()));
 	    		}
+                else
+                {
+                	selectedImage.setImageResource(R.drawable.ic_default);
+                }
 	    	}
 	    	else if(type.equals("potato_PlantLeaf"))
 	    	{
@@ -140,6 +148,10 @@ public class ObjectDescriptionActivity extends Activity
 	    		{
 	    			selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(0).getFullyQualifiedPath()));
 	    		}
+                else
+                {
+                	selectedImage.setImageResource(R.drawable.ic_default);
+                }
 	    	}
         
         //Set up Event Listener for Images.
