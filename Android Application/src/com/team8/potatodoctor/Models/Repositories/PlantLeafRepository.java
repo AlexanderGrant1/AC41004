@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
@@ -77,6 +78,31 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 
+	
+	public LinkedList<PlantLeafSymptomsEntity> searchPlantLeafSymptoms(String keywords)
+	{
+        LinkedList<PlantLeafSymptomsEntity> foundEntries = new LinkedList<PlantLeafSymptomsEntity>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_PlantLeaf WHERE `Name` LIKE '%"+keywords+"%' OR `Description` LIKE '%"+keywords+"%'", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	PlantLeafSymptomsEntity plantLeaf = new PlantLeafSymptomsEntity();
+            	plantLeaf.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+            	plantLeaf.setName(cursor.getString(cursor.getColumnIndex("Name")));
+            	plantLeaf.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+                plantLeaf.setPhotos(getPlantLeafPhotos(plantLeaf));
+                foundEntries.add(plantLeaf);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return foundEntries;
+	}
+	
+	
     public LinkedList<PlantLeafSymptomsEntity> getAllPlantLeafs() {
         LinkedList<PlantLeafSymptomsEntity> plantLeafs = new LinkedList<PlantLeafSymptomsEntity>();
 

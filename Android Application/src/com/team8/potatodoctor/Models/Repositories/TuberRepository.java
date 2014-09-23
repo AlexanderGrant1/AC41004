@@ -11,6 +11,7 @@ import android.os.Environment;
 
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
+import com.team8.potatodoctor.DatabaseObjects.PlantLeafSymptomsEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberSymptomEntity;
 
 public class TuberRepository extends SQLiteOpenHelper
@@ -75,6 +76,29 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.execSQL(CLEAR_TUBER_TABLE);
 		db.execSQL(CLEAR_TUBER_PHOTO_TABLE);
 		db.close();
+	}
+	
+	public LinkedList<TuberSymptomEntity> searchTubers(String keywords)
+	{
+        LinkedList<TuberSymptomEntity> foundEntries = new LinkedList<TuberSymptomEntity>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tuber WHERE `Name` LIKE '%"+keywords+"%' OR `Description` LIKE '%"+keywords+"%'", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	TuberSymptomEntity tuber = new TuberSymptomEntity();
+            	tuber.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+            	tuber.setName(cursor.getString(cursor.getColumnIndex("Name")));
+            	tuber.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+            	tuber.setPhotos(getTuberPhotos(tuber));
+                foundEntries.add(tuber);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return foundEntries;
 	}
 	
 	 public LinkedList<TuberSymptomEntity> getAllTubers() {
