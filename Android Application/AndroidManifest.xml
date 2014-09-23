@@ -9,7 +9,7 @@
  	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="16"
         android:targetSdkVersion="20" />
 
     <application
@@ -18,21 +18,21 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo" >
         
-        <!-- Main Activity - Startup -->
+        <!-- Main Activity - Deprecated -->
         <activity
             android:name="com.team8.potatodoctor.Activities.MainActivity"
-            android:label="@string/app_name" >   
-            
-            <!-- Set as startup Activity-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>  
-        </activity>
+            android:label="@string/app_name" ></activity>
         
         <!-- CategoriesListActivity -->
         <activity 
             android:name="com.team8.potatodoctor.Activities.CategoriesListActivity"
-            android:label="@string/app_name" ></activity>
+            android:label="@string/app_name" >
+            
+            <!-- Set as startup Activity-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
         
         <!-- PestsActivity-->
         <activity 

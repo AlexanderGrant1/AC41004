@@ -9,7 +9,7 @@
  	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="16"
         android:targetSdkVersion="20" />
 
     <application
@@ -21,20 +21,17 @@
         <!-- Main Activity - Deprecated -->
         <activity
             android:name="com.team8.potatodoctor.Activities.MainActivity"
-            android:label="@string/app_name" >   
-            
-            <!-- Set as startup Activity-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>  
-        </activity>
+            android:label="@string/app_name" ></activity>
         
-        <!-- CategoriesListActivity - Main-->
+        <!-- CategoriesListActivity -->
         <activity 
             android:name="com.team8.potatodoctor.Activities.CategoriesListActivity"
             android:label="@string/app_name" >
             
-                      
+            <!-- Set as startup Activity-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>
         
         <!-- PestsActivity-->
@@ -72,6 +69,26 @@
             android:name="com.team8.potatodoctor.Activities.VideoGridActivity"
             android:label="@string/placeholder"
         	android:parentActivityName="com.team8.potatodoctor.Activities.VideoActivity"></activity>
+        
+        <!-- ImageShareActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity"
+            android:label="@string/action_imageshare"></activity>
+        
+        <!-- UpdateActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity"
+            android:label="@string/action_update"></activity>
+        
+        <!-- SettingsActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity"
+            android:label="@string/action_settings"></activity>
+        
+        <!-- ExitActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity"
+            android:label="@string/action_exit"></activity>
         
     </application>
     
