@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
@@ -88,6 +87,9 @@ public class CategoriesListActivity extends Activity
 	{
 	    switch (item.getItemId())
 	    {
+	    case (R.id.action_search):
+	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        return true;
 	    case (R.id.action_imageshare):
 	        this.startActivity(new Intent(this, ImageShareActivity.class));
 	        return true;

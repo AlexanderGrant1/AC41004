@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ExitActivity extends Activity{
-	
+public class SearchAcitivity extends Activity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_exit);
+		setContentView(R.layout.activity_update);
 		
 	}
 	
@@ -25,7 +25,7 @@ public class ExitActivity extends Activity{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -50,4 +50,5 @@ public class ExitActivity extends Activity{
 	        return super.onOptionsItemSelected(item);
 	    }
 	}
+	
 }

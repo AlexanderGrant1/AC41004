@@ -68,6 +68,9 @@ public class VideoActivity extends Activity
 	{
 	    switch (item.getItemId())
 	    {
+	    case (R.id.action_search):
+	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        return true;
 	    case (R.id.action_imageshare):
 	        this.startActivity(new Intent(this, ImageShareActivity.class));
 	        return true;
