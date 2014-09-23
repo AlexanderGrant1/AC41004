@@ -83,7 +83,7 @@ public class AppUpdater {
 				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
 				if(!imageExists(imageNameAndExtension,"Tubers"))
 				{
-					localFileUpdater.fetchPestImage(imageNameAndExtension);
+					localFileUpdater.fetchTuberImage(imageNameAndExtension);
 				}
 			}
 		}
@@ -94,7 +94,7 @@ public class AppUpdater {
 				String imageNameAndExtension = getImageNameAndExtensionFromFullyQualifiedPath(photo.getFullyQualifiedPath());
 				if(!imageExists(imageNameAndExtension,"PlantLeaf"))
 				{
-					localFileUpdater.fetchPestImage(imageNameAndExtension);
+					localFileUpdater.fetchPlantLeafImage(imageNameAndExtension);
 				}
 			}
 		} 
@@ -212,6 +212,7 @@ public class AppUpdater {
 	
 	private boolean imageExists(String imageName, String folderName)
 	{
+		Log.w("hello", "checking if "+imageName + " exists in "+ folderName);
 		File dir = new File(context.getFilesDir() + "/" +folderName);
 		if(dir.isDirectory())
 		{
