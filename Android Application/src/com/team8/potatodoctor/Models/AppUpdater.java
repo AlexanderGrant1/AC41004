@@ -105,7 +105,6 @@ public class AppUpdater {
 		File dir = new File(Environment.getExternalStorageDirectory() + "/" +folderName);
 		if(dir.isDirectory())
 		{
-			Log.w("hello", dir.getAbsolutePath() + " is a directory");
 			File[] directoryListing = dir.listFiles();
 			  if (directoryListing != null) {
 			    for (File child : directoryListing) { 

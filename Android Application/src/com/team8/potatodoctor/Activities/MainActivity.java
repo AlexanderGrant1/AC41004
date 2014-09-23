@@ -54,10 +54,9 @@ public class MainActivity extends Activity
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+ 
 	private void updateDB()
 	{
-		Log.w("hello", "UPDATING DB TABLES");
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateDatabaseTables();
@@ -65,16 +64,5 @@ public class MainActivity extends Activity
 			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		} 
-		
-		PestRepository pestRepository = new PestRepository(getApplicationContext());
-		for(PestEntity pest : pestRepository.getAllPests())
-		{
-			Log.w("hello",pest.getName()+" 1");
-			for(PhotoEntity photo : pest.getPhotos())
-			{
-				Log.w("hello", "Photos: "+photo.getFullyQualifiedPath());
-			} 
-		}
-		Log.w("hello", "LEAVING UPDATING DB TABLES");
 	}
 }
