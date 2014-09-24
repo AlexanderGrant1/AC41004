@@ -34,9 +34,9 @@ public class MediaFetcher extends AsyncTask<String, Void, String>
 			String imageName = getMediaNameAndExtensionFromURL(mediaUrl);
 			URL url = new URL (mediaUrl); 
 			InputStream input = url.openStream(); 
-			File f = new File(folderPath);
+			File f = new File(folderPath); 
 			if(!f.isDirectory())
-			{
+			{ 
 				f.mkdir();
 			}
 		    OutputStream output = new FileOutputStream (folderPath+"/"+imageName);         

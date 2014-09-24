@@ -5,7 +5,7 @@ public class TutorialEntity {
 	private int Id;
 	private String Name;
 	private String Description;
-	private String VideoName;
+	private String FullyQualifiedPath;
 	
 	public int getId() {
 		return Id;
@@ -25,11 +25,12 @@ public class TutorialEntity {
 	public void setDescription(String description) {
 		Description = description;
 	}
-	public String getVideoName() {
-		return VideoName;
+	public String getFullyQualifiedPath() {
+		return FullyQualifiedPath;
 	}
-	public void setVideoName(String videoName) {
-		VideoName = videoName;
+	public void setFullyQualifiedPath(String fullyQualifiedPath) {
+		FullyQualifiedPath = fullyQualifiedPath;
 	}
+
 	
 }

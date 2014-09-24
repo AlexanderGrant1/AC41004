@@ -24,7 +24,8 @@ public class VideoGridActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
-		setupGridView();
+		setupGridView(); 
+		setTitle("Select a Tutorial"); 
 	}
  
 	@Override
@@ -50,7 +51,7 @@ public class VideoGridActivity extends Activity
 	    //Setup Event Listener to direct user to information page.
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),VideoActivity.class);
+	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),TutorialActivity.class);
 	        	
 	        	//TODO Check name of db table and remove this comment.
 	        	intentVideoPlayer.putExtra("position", position); //DB Table name.

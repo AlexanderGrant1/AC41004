@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoLinkerEntity;
@@ -14,6 +16,13 @@ import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 
 public class DataFetcher {
+	
+	private Context context;
+	
+	public DataFetcher(Context context)
+	{
+		this.context = context;
+	}
 	
 	public LinkedList<TuberEntity> parseTuberSymptoms(String Message)
 	{
@@ -126,7 +135,7 @@ public class DataFetcher {
 				tutorial.setId(Integer.parseInt(arr.getJSONObject(i).getString("Id")));
 				tutorial.setName(arr.getJSONObject(i).getString("Name"));
 				tutorial.setDescription(arr.getJSONObject(i).getString("Description"));
-				tutorial.setVideoName(arr.getJSONObject(i).getString("VideoName"));
+				tutorial.setFullyQualifiedPath(context.getFilesDir() + "/Tutorials/"+arr.getJSONObject(i).getString("VideoName"));
 				tutorials.add(tutorial);
 			}
 		} catch (JSONException e) {

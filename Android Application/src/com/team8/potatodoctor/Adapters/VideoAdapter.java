@@ -1,22 +1,29 @@
 package com.team8.potatodoctor.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
+import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
+import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
 
 public class VideoAdapter extends ImageAdapter {
-	
+	private Context context;
 	public VideoAdapter(Context context) {
 		super(context);
+		this.context = context;
 		addItems();
 		
 	}
 
 	@Override
 	void addItems() {
-		items.add(new Item("Kit Test Video",     R.drawable.ic_default));
-        items.add(new Item("Leaf Press Video",   R.drawable.ic_default));
-        items.add(new Item("The last video",   	 R.drawable.ic_default));
+		TutorialRepository tutorialRepository = new TutorialRepository(context);
+		for(TutorialEntity tutorial : tutorialRepository.getAllTutorials())
+		{
+			items.add(new Item(tutorial.getName(), R.drawable.ic_default));
+		}
 	}
 
 }
