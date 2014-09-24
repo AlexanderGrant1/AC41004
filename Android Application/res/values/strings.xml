@@ -4,6 +4,10 @@
     <string name="app_name">PotatoDoctor</string>
     <string name="placeholder"> Sample Text</string>
     
+    <!-- Search -->
+    <string name="app_label">Potato Doctor</string>
+    <string name="search_hint">Search Pest or Symptom</string>
+    
     <!-- Menu Bar Actions -->
     <string name="action_search">Search</string>
     <string name="action_settings">Settings</string>
