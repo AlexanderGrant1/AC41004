@@ -3,9 +3,6 @@ package com.team8.potatodoctor.activities;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-
-import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +15,6 @@ import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ExitActivity;
@@ -27,7 +23,6 @@ import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
 import com.team8.potatodoctor.adapters.ImageAdapterMain;
-import com.team8.potatodoctor.models.AppUpdater;
  
 /*
  * Populates and displays the list of Categories on the main screen.

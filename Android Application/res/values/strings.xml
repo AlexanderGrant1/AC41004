@@ -3,6 +3,7 @@
 
     <string name="app_name">PotatoDoctor</string>
     <string name="placeholder"> Sample Text</string>
+    <string name="description">Enlarged Image</string>
     
     <!-- Search -->
     <string name="app_label">Potato Doctor</string>

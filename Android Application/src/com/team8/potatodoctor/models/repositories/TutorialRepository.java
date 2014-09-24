@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.team8.potatodoctor.database_objects.TuberEntity;
 import com.team8.potatodoctor.database_objects.TutorialEntity;
 
 public class TutorialRepository extends SQLiteOpenHelper
@@ -30,7 +29,9 @@ public class TutorialRepository extends SQLiteOpenHelper
 	
 	private static final String CLEAR_TUTORIAL_TABLE = "DELETE FROM `potato_Tutorial`";
 	
+	@SuppressWarnings("unused")
 	private Context context;
+	
 	public TutorialRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		this.context = context;
