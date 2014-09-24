@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 package com.team8.potatodoctor.Activities.MenuBarActivities;
-=======
-package com.team8.potatodoctor.activities.MenuBarActivities;
 
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
->>>>>>> 49a6e515221470020e4beb26a9d5e3fbd6158a46
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,8 +15,6 @@ import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.Models.AppUpdater;
-
-import com.team8.potatodoctor.R;
 
 public class UpdateActivity extends Activity{
 	

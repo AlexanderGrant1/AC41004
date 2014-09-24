@@ -6,8 +6,6 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;

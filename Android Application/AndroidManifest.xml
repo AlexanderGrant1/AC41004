@@ -68,11 +68,7 @@
         
         <!-- TutorialActivity-->
         <activity 
-<<<<<<< HEAD
-            android:name="com.team8.potatodoctor.Activities.VideoActivity"
-=======
             android:name="com.team8.potatodoctor.activities.TutorialActivity"
->>>>>>> 49a6e515221470020e4beb26a9d5e3fbd6158a46
             android:label="@string/placeholder"
         	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
         
