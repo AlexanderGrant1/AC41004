@@ -97,17 +97,8 @@ public class ObjectDescriptionActivity extends Activity
         textView.setMovementMethod(new ScrollingMovementMethod());
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
-      //Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
-      		try {
-      	        ViewConfiguration config = ViewConfiguration.get(this);
-      	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-      	        if(menuKeyField != null) {
-      	            menuKeyField.setAccessible(true);
-      	            menuKeyField.setBoolean(config, false);
-      	        }
-      	    } catch (Exception ex) {
-      	        // Ignore
-      	    }
+        disableHardwareMenuKey();
+        
 	}
 
   
@@ -257,5 +248,23 @@ public class ObjectDescriptionActivity extends Activity
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	/*
+	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 */
+	private void disableHardwareMenuKey()
+	{
+		try
+		{
+			ViewConfiguration config = ViewConfiguration.get(this);
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if(menuKeyField != null) {
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(config, false);
+			}
+		} catch (Exception ex) {
+			// Ignore
+		}
 	}
 }
