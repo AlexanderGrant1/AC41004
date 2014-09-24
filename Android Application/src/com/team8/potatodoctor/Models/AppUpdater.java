@@ -10,6 +10,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
@@ -25,6 +26,7 @@ public class AppUpdater {
 	private PlantLeafRepository plantLeafRepository;
 	private LocalDbUpdater localDbUpdater;
 	private LocalFileUpdater localFileUpdater;
+	private DataFetcher dataFetcher;
 	private Context context;
 	
 	public AppUpdater(Context context)
@@ -36,6 +38,7 @@ public class AppUpdater {
 		plantLeafRepository = new PlantLeafRepository(context);
 		localDbUpdater = new LocalDbUpdater(context);
 		localFileUpdater = new LocalFileUpdater(context);
+		dataFetcher = new DataFetcher();
 		this.context = context;
 	}
 	public void updateDatabaseTables() throws InterruptedException, ExecutionException
@@ -58,6 +61,78 @@ public class AppUpdater {
 		plantLeafRepository.dropPlantLeafTablesIfExists();
 		plantLeafRepository.createPlantLeafTablesIfNotExists();
 		localDbUpdater.updatePlantLeafTables();
+	}
+	
+	public int getNumberOfPhotosToDownload() throws InterruptedException, ExecutionException
+	{
+		int count = 0;
+		File pestDir = new File(context.getFilesDir() + "/Pests");
+		if(pestDir.isDirectory())
+		{
+			String response = new HttpGetRequest().execute(Constants.PEST_API_URL).get();
+			LinkedList<PestEntity> pests = dataFetcher.parsePests(response);
+			LinkedList<String> fileNames = getImagesInFolder("Pests");
+			LinkedList<String> serverPestPhotos = new LinkedList<String>();
+			for(PestEntity pest : pests)
+			{
+				for(PhotoEntity photo : pest.getPhotos())
+				{
+					serverPestPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String serverPhoto : serverPestPhotos)
+			{
+				if(!fileNames.contains(serverPhoto))
+				{
+					count++;
+				}
+			}
+		}
+		File tuberDir = new File(context.getFilesDir() + "/Tubers");
+		if(tuberDir.isDirectory())
+		{
+			String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
+			LinkedList<TuberEntity> tubers = dataFetcher.parseTuberSymptoms(response);
+			LinkedList<String> fileNames = getImagesInFolder("Tubers");
+			LinkedList<String> serverPestPhotos = new LinkedList<String>();
+			for(TuberEntity tuber : tubers)
+			{
+				for(PhotoEntity photo : tuber.getPhotos())
+				{
+					serverPestPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String serverPhoto : serverPestPhotos)
+			{
+				if(!fileNames.contains(serverPhoto))
+				{
+					count++;
+				}
+			}
+		}
+		File plantLeafDir = new File(context.getFilesDir() + "/PlantLeaf");
+		if(plantLeafDir.isDirectory())
+		{
+			String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
+			LinkedList<PlantLeafEntity> plantLeafs = dataFetcher.parsePlantAndLeafSymptoms(response);
+			LinkedList<String> fileNames = getImagesInFolder("PlantLeaf");
+			LinkedList<String> serverPestPhotos = new LinkedList<String>();
+			for(PlantLeafEntity plantLeaf : plantLeafs)
+			{
+				for(PhotoEntity photo : plantLeaf.getPhotos())
+				{
+					serverPestPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String serverPhoto : serverPestPhotos)
+			{
+				if(!fileNames.contains(serverPhoto))
+				{
+					count++;
+				}
+			}
+		}
+		return count;
 	}
 	
 	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
