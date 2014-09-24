@@ -1,5 +1,6 @@
 package com.team8.potatodoctor.Activities;
 
+import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -12,7 +13,11 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.DatabaseObjects.PestEntity;
+import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.Models.AppUpdater;
+import com.team8.potatodoctor.Models.MediaFetcher;
+import com.team8.potatodoctor.Models.Repositories.PestRepository;
 
 public class MainActivity extends Activity 
 {

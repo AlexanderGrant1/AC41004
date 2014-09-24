@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
@@ -112,8 +113,8 @@ public class ObjectDescriptionActivity extends Activity
 	    Gallery gallery = (Gallery) findViewById(R.id.imageGallery);
         selectedImage=(ImageView)findViewById(R.id.imageSelected);
         gallery.setSpacing(1);
-        gallery.setScaleX(1.8f);
-        gallery.setScaleY(1.8f);
+        gallery.setScaleX(1.7f);
+        gallery.setScaleY(1.7f);
         gallery.setY(80f);
         Bundle extras = getIntent().getExtras();
         String type = extras.getString("Type");

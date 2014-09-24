@@ -18,6 +18,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo" >
         
+<<<<<<< HEAD
         <!-- Enable the search dialog to send searches to SearchableActivity -->
         <meta-data android:name="android.app.default_searachable"
             android:value=".SearchActivity" />
@@ -25,6 +26,9 @@
         <!-- ========================== Primary Activities ========================== -->
         
         <!-- Main Activity -->
+=======
+        <!-- Main Activity - Deprecated -->
+>>>>>>> 18e96ece152131e6f6860e2e4690866360c7ff65
         <activity
             android:name="com.team8.potatodoctor.Activities.MainActivity"
             android:label="@string/app_name" ></activity>
@@ -34,11 +38,14 @@
             android:name="com.team8.potatodoctor.Activities.CategoriesListActivity"
             android:label="@string/app_name" >
             
-            	<!-- Set as startup Activity-->
+            <!-- Set as startup Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 18e96ece152131e6f6860e2e4690866360c7ff65
         </activity>
         
         <!-- PestsActivity-->
