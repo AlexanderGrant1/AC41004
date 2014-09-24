@@ -29,8 +29,7 @@ public class PestsActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
 
-	    setupGridView();
-		
+	    setupGridView();		
 	    disableHardwareMenuKey();
 	}
  
@@ -58,7 +57,7 @@ public class PestsActivity extends Activity
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
 	        	
-	        	//TODO Check name of db table and remove this comment.
+	        	//Add additional parameters to intent for queries and information.
 	        	intentObjectDescription.putExtra("Type", "potato_Pest"); //DB Table name.
 	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
 	        	

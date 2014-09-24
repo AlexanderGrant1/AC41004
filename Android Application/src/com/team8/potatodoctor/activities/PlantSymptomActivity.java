@@ -30,8 +30,7 @@ public class PlantSymptomActivity extends Activity {
 		setContentView(R.layout.activity_category);
 		
 	    setupGridView();
-	    
-	  disableHardwareMenuKey();
+	    disableHardwareMenuKey();
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class PlantSymptomActivity extends Activity {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
 	        	
-	        	//TODO Check name of db table and remove this comment.
+	        	//Add additional parameters to intent for queries and information.
 	        	intentObjectDescription.putExtra("Type", "potato_PlantLeaf"); //DB Table name.
 	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
 	        	

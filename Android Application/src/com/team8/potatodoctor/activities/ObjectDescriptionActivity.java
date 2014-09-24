@@ -44,15 +44,12 @@ public class ObjectDescriptionActivity extends Activity
 	private PestRepository pestRepository;
 	private TuberRepository tuberRepository;
 	private PlantLeafRepository plantLeafRepository;
-	
-	
+		
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
 	
-	
 	protected void onCreate(Bundle savedInstanceState) 
-	{
-		
+	{		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_object_description);
 		
@@ -69,8 +66,11 @@ public class ObjectDescriptionActivity extends Activity
 	    	type = extras.getString("Type");
 	    	position = extras.getInt("Position");
 	    }
+	    
 	    String description = "";
 	    String title = "";
+	    
+	    //Set the Title and Description depending on the intent parameters.
 	    if(type.equals("potato_PlantLeaf"))
 	    {
 	    	title = plantLeafRepository.getAllPlantLeafs().get(position).getName();
@@ -104,8 +104,7 @@ public class ObjectDescriptionActivity extends Activity
   
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		
+	{	
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		

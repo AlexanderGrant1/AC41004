@@ -29,8 +29,7 @@ public class TuberSymptomActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
 		
-		setupGridView();
-		
+		setupGridView();	
 		disableHardwareMenuKey();
 	}
 
@@ -60,6 +59,7 @@ public class TuberSymptomActivity extends Activity
 	        	
 	        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
 	        	
+	        	//Add additional parameters to intent for queries and information.
 	        	intentObjectDescription.putExtra("Type", "potato_Tuber"); //DB Table name.
 	        	intentObjectDescription.putExtra("Position", position); //DB Table row index.
 	        	

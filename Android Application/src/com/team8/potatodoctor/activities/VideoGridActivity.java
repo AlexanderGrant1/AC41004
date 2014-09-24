@@ -28,9 +28,10 @@ public class VideoGridActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
-		setupGridView(); 
-		setTitle("Select a Tutorial");  
 		
+		setTitle("Select a Tutorial"); 
+		
+		setupGridView(); 
 		disableHardwareMenuKey();
 	}
  
@@ -59,7 +60,7 @@ public class VideoGridActivity extends Activity
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),TutorialActivity.class);
 	        	
-	        	//TODO Check name of db table and remove this comment.
+	        	//Add additional parameters to intent for queries and information.
 	        	intentVideoPlayer.putExtra("position", position); //DB Table name.
 	        	
 	    		startActivity(intentVideoPlayer);

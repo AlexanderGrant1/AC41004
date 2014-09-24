@@ -44,6 +44,7 @@ public class CategoriesListActivity extends Activity
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(saveInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		//Get the reference of ListViewCategories
 		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
 		categoriesGrid.setAdapter(new ImageAdapterMain(this)); 
@@ -91,10 +92,6 @@ public class CategoriesListActivity extends Activity
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-			
-		// Get the SearchView and set the searchable configuration
-	    //SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    //SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
 	
 		return true;
 	}
