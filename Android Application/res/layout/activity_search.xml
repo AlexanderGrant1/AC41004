@@ -10,26 +10,36 @@
     android:layout_height="wrap_content"
     android:hint="@string/search_hint"
     android:inputType="text"
+    android:paddingLeft="20.5sp"
+    android:paddingStart="20.5sp"
+    android:paddingRight="14.5sp"
+    android:paddingEnd="14.5sp"
+    android:paddingTop="14.5sp"
+    android:paddingBottom="10sp"
     android:imeActionLabel="@string/search" />
     
     <TableLayout
         android:id="@+id/pest_results"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" > </TableLayout>
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray" > </TableLayout>
 
     <TableLayout
         android:id="@+id/plantleaf_results"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" > </TableLayout>
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray" > </TableLayout>
     
     <TableLayout
         android:id="@+id/tuber_results"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" > </TableLayout>
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray" > </TableLayout>
     
     <TableLayout
         android:id="@+id/tutorial_results"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" > </TableLayout>
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray" > </TableLayout>
 
 </LinearLayout>

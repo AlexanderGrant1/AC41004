@@ -140,6 +140,7 @@ public class SearchActivity extends Activity {
 		plantleafTable.removeAllViews();
 		tuberTable.removeAllViews();
 		tutorialTable.removeAllViews();
+		
 		if(!pests.isEmpty())
 		{
 			//pestTable
@@ -147,11 +148,12 @@ public class SearchActivity extends Activity {
 			{
 				//Create new Table Row, to be added to pestTable.
 				TableRow row = new TableRow(this);
-				
+				row.setPadding(40, 25, 10, 5);
 				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
 				//Create a TextView to hold pest details.
 				TextView pestObject = new TextView(this);
+				pestObject.setTextSize(18);
 				pestObject.setText(pest.getName()); 
 				
 				//Add the Textview to the TableRow
@@ -169,11 +171,12 @@ public class SearchActivity extends Activity {
 			{
 				//Create new Table Row, to be added to plantleafTable.
 				TableRow row = new TableRow(this);
-				
+				row.setPadding(40, 25, 10, 5);				
 				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
 				//Create a TextView to hold pest details.
 				TextView plantObject = new TextView(this);
+				plantObject.setTextSize(18);
 				plantObject.setText(plant.getName()); 
 				
 				//Add the Textview to the TableRow
@@ -191,11 +194,12 @@ public class SearchActivity extends Activity {
 			{
 				//Create new Table Row, to be added to tuberTable.
 				TableRow row = new TableRow(this);
-				
+				row.setPadding(40, 25, 10, 5);
 				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
 				//Create a TextView to hold pest details.
 				TextView tuberObject = new TextView(this);
+				tuberObject.setTextSize(18);
 				tuberObject.setText(tuber.getName()); 
 				
 				//Add the Textview to the TableRow
@@ -213,11 +217,12 @@ public class SearchActivity extends Activity {
 			{
 				//Create new Table Row, to be added to tuberTable.
 				TableRow row = new TableRow(this);
-				
+				row.setPadding(40, 25, 10, 5);
 				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
 				//Create a TextView to hold pest details.
 				TextView tutorialObject = new TextView(this);
+				tutorialObject.setTextSize(18);
 				tutorialObject.setText(tutorial.getName()); 
 				
 				//Add the Textview to the TableRow
