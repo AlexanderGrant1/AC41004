@@ -29,7 +29,7 @@ import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
- 
+  
 public class SearchActivity extends Activity {
 
 	public TableLayout pestTable;// = (TableLayout)findViewById(R.id.pest_results);
