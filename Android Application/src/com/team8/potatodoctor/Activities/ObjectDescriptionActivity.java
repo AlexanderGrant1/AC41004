@@ -1,5 +1,7 @@
 package com.team8.potatodoctor.Activities;
 
+import java.lang.reflect.Field;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
@@ -93,6 +96,18 @@ public class ObjectDescriptionActivity extends Activity
         textView.setText(description);
         textView.setMovementMethod(new ScrollingMovementMethod());
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        
+      //Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+      		try {
+      	        ViewConfiguration config = ViewConfiguration.get(this);
+      	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+      	        if(menuKeyField != null) {
+      	            menuKeyField.setAccessible(true);
+      	            menuKeyField.setBoolean(config, false);
+      	        }
+      	    } catch (Exception ex) {
+      	        // Ignore
+      	    }
 	}
 
   

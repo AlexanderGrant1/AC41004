@@ -1,5 +1,7 @@
 package com.team8.potatodoctor.Activities;
 
+import java.lang.reflect.Field;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -39,6 +42,18 @@ public class TutorialActivity extends Activity
 	    }
 	    setTitle(tutorialRepository.getAllTutorials().get(position).getName());
 		setupMediaPlayer(position);
+		
+		//Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+				try {
+			        ViewConfiguration config = ViewConfiguration.get(this);
+			        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			        if(menuKeyField != null) {
+			            menuKeyField.setAccessible(true);
+			            menuKeyField.setBoolean(config, false);
+			        }
+			    } catch (Exception ex) {
+			        // Ignore
+			    }
 	}
 	
 	@Override
