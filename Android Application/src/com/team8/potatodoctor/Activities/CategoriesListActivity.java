@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
@@ -75,6 +76,7 @@ public class CategoriesListActivity extends Activity
 		}); 
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
+			Toast.makeText(getApplicationContext(), ""+appUpdater.getNumberOfPhotosToDownload(), Toast.LENGTH_LONG).show();
 			appUpdater.updateDatabaseTables();
 			appUpdater.updateLocalFiles();
 		} catch (InterruptedException e) {
