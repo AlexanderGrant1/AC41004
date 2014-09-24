@@ -1,10 +1,13 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
 
+import java.lang.reflect.Field;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 
 import com.team8.potatodoctor.R;
 
@@ -16,6 +19,7 @@ public class ImageShareActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
 		
+		disableHardwareMenuKey();
 	}
 	
 	@Override
@@ -49,5 +53,23 @@ public class ImageShareActivity extends Activity{
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	/*
+	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 */
+	private void disableHardwareMenuKey()
+	{
+		try
+		{
+			ViewConfiguration config = ViewConfiguration.get(this);
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if(menuKeyField != null) {
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(config, false);
+			}
+		} catch (Exception ex) {
+			// Ignore
+		}
 	}
 }

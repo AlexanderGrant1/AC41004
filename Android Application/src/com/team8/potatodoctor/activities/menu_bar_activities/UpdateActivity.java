@@ -1,5 +1,6 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
 
+import java.lang.reflect.Field;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
@@ -14,6 +15,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
@@ -28,6 +30,8 @@ public class UpdateActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
 		
+		disableHardwareMenuKey();
+		
 		if(isNetworkConnected())
 		{
 			updateApplication();
@@ -36,6 +40,7 @@ public class UpdateActivity extends Activity{
 		{
 			Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show();
 		}
+		
 		 
 	}
 	
@@ -126,5 +131,23 @@ public class UpdateActivity extends Activity{
 		})
 		.setIcon(android.R.drawable.ic_dialog_alert)
 		.show();
+	}
+	
+	/*
+	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 */
+	private void disableHardwareMenuKey()
+	{
+		try
+		{
+			ViewConfiguration config = ViewConfiguration.get(this);
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if(menuKeyField != null) {
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(config, false);
+			}
+		} catch (Exception ex) {
+			// Ignore
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
 
+import java.lang.reflect.Field;
 import java.util.LinkedList;
 
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -68,32 +70,15 @@ public class SearchActivity extends Activity {
 		plantleafTable = (TableLayout)findViewById(R.id.plantleaf_results);
 		tuberTable = (TableLayout)findViewById(R.id.tuber_results);
 		tutorialTable = (TableLayout)findViewById(R.id.tutorial_results);
-		
-		// Get the intent, verify the action and get the query
-		/*Intent intent = getIntent();
-		if(Intent.ACTION_SEARCH.equals(intent.getAction()))
-		{
-			//Obtain user entered string
-			String query = intent.getStringExtra(SearchManager.QUERY);
-			Log.v("Search", "Query = "+query);
-			
-			//Do some code with query.
-		}*/
+
+		disableHardwareMenuKey();
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-				
-		// Get the SearchView and set the searchable configuration
-	    //SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    //SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-	    
-	    // Assumes current activity is the searchable activity
-	    //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    //searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default	    
+		getMenuInflater().inflate(R.menu.main, menu); 
 		
 		return true;
 	}
@@ -241,6 +226,24 @@ public class SearchActivity extends Activity {
 			    //Add the Table Row to the Tuber Table
 			    tutorialTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
+		}
+	}
+	
+	/*
+	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 */
+	private void disableHardwareMenuKey()
+	{
+		try
+		{
+			ViewConfiguration config = ViewConfiguration.get(this);
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if(menuKeyField != null) {
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(config, false);
+			}
+		} catch (Exception ex) {
+			// Ignore
 		}
 	}
 }
