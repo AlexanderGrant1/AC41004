@@ -1,5 +1,7 @@
 package com.team8.potatodoctor.Activities;
  
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -75,21 +78,19 @@ public class CategoriesListActivity extends Activity
 			}
 
 		}); 
-		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
+		
+		//Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
 		try {
-			Toast.makeText(getApplicationContext(), ""+appUpdater.getNumberOfPhotosToDownload(), Toast.LENGTH_LONG).show();
-			appUpdater.updateDatabaseTables();
-			appUpdater.updateLocalFiles();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	        ViewConfiguration config = ViewConfiguration.get(this);
+	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+	        if(menuKeyField != null) {
+	            menuKeyField.setAccessible(true);
+	            menuKeyField.setBoolean(config, false);
+	        }
+	    } catch (Exception ex) {
+	        // Ignore
+	    }
+		
 		Log.d("Problem Determination", "onCreate() EXIT"); 
 				
 	}

@@ -1,13 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	  xmlns:com.team8.potatodoctor="http://schemas.android.com/apk/res-auto">
-  
-    <!-- <searchview
-    android:id="@+id/menu_action_search"
-    android:actionViewClass="android.widget.SearchView"
-    android:icon="@drawable/ic_action_search"
-    android:showAsAction="ifRoom"
-    android:title="@string/action_search"/> -->
-    
+      
     <item android:id="@+id/action_search"
           android:title="@string/action_search"
           android:icon="@drawable/ic_action_search"
