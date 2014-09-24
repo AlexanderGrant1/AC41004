@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Activities;
+package com.team8.potatodoctor.activities;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -21,13 +21,13 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.ImageAdapterMain;
 import com.team8.potatodoctor.Models.AppUpdater;
+import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.SearchActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
  
 /*
  * Populates and displays the list of Categories on the main screen.
