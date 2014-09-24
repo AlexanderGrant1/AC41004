@@ -6,8 +6,11 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,44 +28,15 @@ public class UpdateActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
 		
-		new AlertDialog.Builder(this)
-	    .setTitle("Update application")
-	    .setMessage("Are you sure you want to update this application? There may be extra data charges.")
-	    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) { 
-	            // continue with update
-	        	AppUpdater apUp = new AppUpdater(getApplicationContext());
-	        	
-	        	try {
-					apUp.updateDatabaseTables();
-					apUp.updateLocalFiles();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        	
-
-	        	Toast.makeText(getApplicationContext(), "Update complete!", Toast.LENGTH_LONG);
-	        	  
-	        	
-	            UpdateActivity.this.finish();
-
-	        }
-	     })
-	    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) { 
-	            // do nothing
-	        }
-	     })
-	    .setIcon(android.R.drawable.ic_dialog_alert)
-	     .show();
-		
+		if(isNetworkConnected())
+		{
+			updateApplication();
+		}
+		else
+		{
+			Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show();
+		}
+		 
 	}
 	
 	@Override
@@ -96,5 +70,61 @@ public class UpdateActivity extends Activity{
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	/*
+	 * Referenced from: http://stackoverflow.com/questions/9570237/android-check-internet-connection
+	 */
+	private boolean isNetworkConnected() 
+	{
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo ni = cm.getActiveNetworkInfo();
+		if (ni == null) {
+			// There are no active networks.
+			return false;
+		} else
+			return true;
+	}   
+	
+	/*
+	 * Prompt user to download update if available.
+	 */
+	private void updateApplication()
+	{
+		new AlertDialog.Builder(this)
+		.setTitle("Update application")
+		.setMessage("Are you sure you want to update this application? There may be extra data charges.")
+		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) { 
+				// continue with update
+				AppUpdater apUp = new AppUpdater(getApplicationContext());
+
+				try {
+					apUp.updateDatabaseTables();
+					apUp.updateLocalFiles();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
+
+				UpdateActivity.this.finish();
+
+			}
+		})
+		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) { 
+				// do nothing
+			}
+		})
+		.setIcon(android.R.drawable.ic_dialog_alert)
+		.show();
 	}
 }
