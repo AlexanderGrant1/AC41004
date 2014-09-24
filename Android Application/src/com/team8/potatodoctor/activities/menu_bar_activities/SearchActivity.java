@@ -1,5 +1,5 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
-
+ 
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 

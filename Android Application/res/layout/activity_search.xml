@@ -18,23 +18,59 @@
     android:paddingBottom="10sp"
     android:imeActionLabel="@string/search" />
     
+    <TextView
+        android:id="@+id/pest_table_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pest_header"
+        android:textSize="20sp"
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp"> </TextView>"
+    
     <TableLayout
         android:id="@+id/pest_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray" > </TableLayout>
 
+    <TextView
+        android:id="@+id/plant_table_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plant_header"
+        android:textSize="20sp"
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp">> </TextView>
+    
     <TableLayout
         android:id="@+id/plantleaf_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray" > </TableLayout>
     
+    <TextView
+        android:id="@+id/tuber_table_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tuber_header"
+        android:textSize="20sp"
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp">> </TextView>
+    
     <TableLayout
         android:id="@+id/tuber_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray" > </TableLayout>
+    
+    <TextView
+        android:id="@+id/tutorial_table_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tutorial_header"
+        android:textSize="20sp"
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp">> </TextView>
     
     <TableLayout
         android:id="@+id/tutorial_results"
