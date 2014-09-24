@@ -25,7 +25,7 @@ import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
- 
+  
 public class SearchActivity extends Activity {
 
 	public TableLayout pestTable;// = (TableLayout)findViewById(R.id.pest_results);
@@ -151,6 +151,10 @@ public class SearchActivity extends Activity {
 	 */
 	public void displaySearchResults(LinkedList<PestEntity> pests, LinkedList<PlantLeafEntity> plants, LinkedList<TuberEntity> tubers, LinkedList<TutorialEntity> tutorials)
 	{
+		pestTable.removeAllViews();
+		plantleafTable.removeAllViews();
+		tuberTable.removeAllViews();
+		tutorialTable.removeAllViews();
 		if(!pests.isEmpty())
 		{
 			//pestTable

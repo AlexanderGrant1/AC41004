@@ -26,7 +26,7 @@ public class VideoGridActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
 		setupGridView(); 
-		setTitle("Select a Tutorial"); 
+		setTitle("Select a Tutorial");  
 	}
  
 	@Override
