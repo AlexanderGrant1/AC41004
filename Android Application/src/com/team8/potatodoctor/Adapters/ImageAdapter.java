@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,10 @@ public abstract class ImageAdapter extends BaseAdapter {
         {
         	picture.setImageURI(item.imageUri);
         }
+        else if(item.bitmap != null)
+        {
+        	picture.setImageBitmap(item.bitmap);
+        }
         else
         {
         	picture.setImageResource(item.drawableId);
@@ -77,11 +82,13 @@ public abstract class ImageAdapter extends BaseAdapter {
         final String name;
         final Uri imageUri;
         final int drawableId;
+        final Bitmap bitmap;
 
         Item(String name, Uri imageUri) {
             this.name = name;
             this.imageUri = imageUri;
             this.drawableId = 0;
+            this.bitmap = null;
         }
         
         Item(String name, int drawableId)
@@ -89,6 +96,15 @@ public abstract class ImageAdapter extends BaseAdapter {
         	this.name = name;
         	this.imageUri = null;
         	this.drawableId = drawableId;
+        	this.bitmap = null;
+        }
+        
+        Item(String name, Bitmap bitmap)
+        {
+        	this.name = name;
+        	this.imageUri = null;
+        	this.drawableId = 0;
+        	this.bitmap = bitmap;
         }
     }
 }
