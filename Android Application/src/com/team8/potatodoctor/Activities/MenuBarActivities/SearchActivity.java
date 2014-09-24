@@ -1,14 +1,21 @@
 package com.team8.potatodoctor.Activities.MenuBarActivities;
 
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
  
@@ -58,7 +65,7 @@ public class SearchActivity extends Activity {
 	    switch (item.getItemId())
 	    {
 	    case (R.id.action_search):
-	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
 	        this.startActivity(new Intent(this, ImageShareActivity.class));
@@ -75,6 +82,14 @@ public class SearchActivity extends Activity {
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	/*
+	 * Main Search Query
+	 */
+	public void searchDatabase(String query)
+	{
+		
 	}
 	
 }

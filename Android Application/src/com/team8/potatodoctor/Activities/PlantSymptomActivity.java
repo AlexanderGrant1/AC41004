@@ -13,6 +13,7 @@ import android.widget.GridView;
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.PlantImageAdapter;
@@ -68,7 +69,7 @@ public class PlantSymptomActivity extends Activity {
 	    switch (item.getItemId())
 	    {
 	    case (R.id.action_search):
-	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
 	        this.startActivity(new Intent(this, ImageShareActivity.class));

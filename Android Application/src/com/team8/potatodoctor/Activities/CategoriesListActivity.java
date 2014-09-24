@@ -15,14 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
 import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.ImageAdapterMain;
@@ -46,7 +47,7 @@ public class CategoriesListActivity extends Activity
 		//Get the reference of ListViewCategories
 		final GridView categoriesGrid=(GridView)findViewById(R.id.gridview_main);
 		categoriesGrid.setAdapter(new ImageAdapterMain(this)); 
-		
+
 		//Register onClickListener to handle click events on each item.
 		categoriesGrid.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -93,6 +94,7 @@ public class CategoriesListActivity extends Activity
 			e.printStackTrace();
 		}
 		Log.d("Problem Determination", "onCreate() EXIT"); 
+				
 	}
 	
 
@@ -101,16 +103,11 @@ public class CategoriesListActivity extends Activity
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		
-		/*
+					
 		// Get the SearchView and set the searchable configuration
 	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 	    SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-	    // Assumes current activity is the searchable activity
-	    //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    //searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-	    */
-		
+	
 		return true;
 	}
 
@@ -120,10 +117,7 @@ public class CategoriesListActivity extends Activity
 	    switch (item.getItemId())
 	    {
 	    case (R.id.action_search):
-	        //this.startActivity(new Intent(this, SettingsActivity.class));
-	    	Log.v("Problem Determination", "Selection: Search ENTRY");
-	    	this.onSearchRequested();
-	    	Log.v("Problem Determination", "Selection: Search EXIT");
+	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
 	        this.startActivity(new Intent(this, ImageShareActivity.class));
