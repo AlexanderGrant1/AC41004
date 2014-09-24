@@ -33,7 +33,7 @@ public class LocalDbUpdater {
 		plantLeafRepository = new PlantLeafRepository(context);
 		photoRepository = new PhotoRepository(context);
 		tutorialRepository = new TutorialRepository(context);
-		dataFetcher = new DataFetcher();
+		dataFetcher = new DataFetcher(context);
 	}
 	
 	public void updateTuberTables() throws InterruptedException, ExecutionException

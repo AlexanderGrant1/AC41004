@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Activities.MenuBarActivities;
+package com.team8.potatodoctor.activities.MenuBarActivities;
 
 import com.team8.potatodoctor.R;
 

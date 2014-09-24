@@ -1,10 +1,15 @@
 package com.team8.potatodoctor.Models.Repositories;
 
+import java.util.LinkedList;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 
 public class TutorialRepository extends SQLiteOpenHelper
@@ -25,8 +30,10 @@ public class TutorialRepository extends SQLiteOpenHelper
 	
 	private static final String CLEAR_TUTORIAL_TABLE = "DELETE FROM `potato_Tutorial`";
 	
+	private Context context;
 	public TutorialRepository(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -59,6 +66,28 @@ public class TutorialRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	 public LinkedList<TutorialEntity> getAllTutorials() {
+	        LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
+
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tutorial", null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	TutorialEntity tutorial = new TutorialEntity();
+	            	tutorial.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+	            	tutorial.setName(cursor.getString(cursor.getColumnIndex("Name")));
+	            	tutorial.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+	            	tutorial.setFullyQualifiedPath(cursor.getString(cursor.getColumnIndex("VideoName")));
+	            	Log.w("hello","SETTING PATH TO: "+cursor.getString(cursor.getColumnIndex("VideoName")));
+	            	tutorials.add(tutorial);
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return tutorials;
+	    }
+	
 	public void insertTutorial(TutorialEntity tutorial)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -66,7 +95,7 @@ public class TutorialRepository extends SQLiteOpenHelper
 			values.put("Id", tutorial.getId());
 			values.put("Name", tutorial.getName());
 			values.put("Description", tutorial.getDescription());
-			values.put("VideoName", tutorial.getVideoName());
+			values.put("VideoName", tutorial.getFullyQualifiedPath());
 			db.insert("potato_Tutorial", null, values);
 			db.close();
 	}

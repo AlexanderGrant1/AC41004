@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Activities;
+package com.team8.potatodoctor.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,12 +11,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
-import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.VideoAdapter;
+import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.SearchActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
 
 public class VideoGridActivity extends Activity
 {
@@ -25,7 +25,8 @@ public class VideoGridActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
-		setupGridView();
+		setupGridView(); 
+		setTitle("Select a Tutorial"); 
 	}
  
 	@Override
@@ -51,7 +52,7 @@ public class VideoGridActivity extends Activity
 	    //Setup Event Listener to direct user to information page.
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),VideoActivity.class);
+	        	Intent intentVideoPlayer = new Intent(getApplicationContext(),TutorialActivity.class);
 	        	
 	        	//TODO Check name of db table and remove this comment.
 	        	intentVideoPlayer.putExtra("position", position); //DB Table name.

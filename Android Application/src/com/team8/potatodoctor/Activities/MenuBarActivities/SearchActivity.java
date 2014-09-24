@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.Activities.MenuBarActivities;
+package com.team8.potatodoctor.activities.MenuBarActivities;
 
 import java.util.LinkedList;
 

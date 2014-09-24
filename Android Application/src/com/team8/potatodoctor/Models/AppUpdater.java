@@ -15,6 +15,7 @@ import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PhotoEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
 import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
+import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 import com.team8.potatodoctor.Models.Repositories.*;
 
 public class AppUpdater {
@@ -146,7 +147,7 @@ public class AppUpdater {
 			for(PhotoEntity photo : pest.getPhotos())
 			{
 				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
-				if(!imageExists(imageNameAndExtension,"Pests"))
+				if(!fileExists(imageNameAndExtension,"Pests"))
 				{
 					localFileUpdater.fetchPestImage(imageNameAndExtension);
 				}
@@ -157,7 +158,7 @@ public class AppUpdater {
 			for(PhotoEntity photo : tuber.getPhotos())
 			{
 				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
-				if(!imageExists(imageNameAndExtension,"Tubers"))
+				if(!fileExists(imageNameAndExtension,"Tubers"))
 				{
 					localFileUpdater.fetchTuberImage(imageNameAndExtension);
 				}
@@ -168,12 +169,20 @@ public class AppUpdater {
 			for(PhotoEntity photo : plantLeaf.getPhotos())
 			{
 				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
-				if(!imageExists(imageNameAndExtension,"PlantLeaf"))
+				if(!fileExists(imageNameAndExtension,"PlantLeaf"))
 				{
 					localFileUpdater.fetchPlantLeafImage(imageNameAndExtension);
 				}
 			}
-		} 
+		}
+		for(TutorialEntity tutorial : tutorialRepository.getAllTutorials())
+		{
+			String videoNameAndExtension = getImageNameAndExtensionFromFilePath(tutorial.getFullyQualifiedPath());
+			if(!fileExists(videoNameAndExtension,"Tutorials"))
+			{
+				localFileUpdater.fetchTutorialVideo(videoNameAndExtension);
+			}
+		}
 	} 
 	//REFACTOR ME
 	private void deleteUnusedPestPhotos()
@@ -286,7 +295,7 @@ public class AppUpdater {
 		return splitPath[splitPath.length - 1];
 	}
 	
-	private boolean imageExists(String imageName, String folderName)
+	private boolean fileExists(String fileName, String folderName)
 	{
 		File dir = new File(context.getFilesDir() + "/" +folderName);
 		if(dir.isDirectory())
@@ -294,7 +303,7 @@ public class AppUpdater {
 			File[] directoryListing = dir.listFiles();
 			  if (directoryListing != null) {
 			    for (File child : directoryListing) { 
-			    	if(child.getName().equals(imageName)) 
+			    	if(child.getName().equals(fileName)) 
 			    	{
 			    		return true;
 			    	}
