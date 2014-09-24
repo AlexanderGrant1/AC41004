@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95CAD53A19D222B4000ECECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53919D222B4000ECECD /* main.m */; };
+		95CAD53D19D222B4000ECECD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53C19D222B4000ECECD /* AppDelegate.m */; };
+		95CAD54019D222B4000ECECD /* PotatoDoctor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */; };
+		95CAD54319D222B4000ECECD /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD54219D222B4000ECECD /* NavController.m */; };
+		95CAD54619D222B4000ECECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CAD54419D222B4000ECECD /* Main.storyboard */; };
+		95CAD54819D222B4000ECECD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95CAD54719D222B4000ECECD /* Images.xcassets */; };
+		95CAD54B19D222B5000ECECD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95CAD54919D222B5000ECECD /* LaunchScreen.xib */; };
+		95CAD55719D222B5000ECECD /* PotatoDoctorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD55619D222B5000ECECD /* PotatoDoctorTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		95CAD55119D222B5000ECECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95CAD52C19D222B4000ECECD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95CAD53319D222B4000ECECD;
+			remoteInfo = PotatoDoctor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		95CAD53419D222B4000ECECD /* PotatoDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PotatoDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95CAD53819D222B4000ECECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95CAD53919D222B4000ECECD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95CAD53B19D222B4000ECECD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		95CAD53C19D222B4000ECECD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		95CAD53F19D222B4000ECECD /* PotatoDoctor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PotatoDoctor.xcdatamodel; sourceTree = "<group>"; };
+		95CAD54119D222B4000ECECD /* NavController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavController.h; sourceTree = "<group>"; };
+		95CAD54219D222B4000ECECD /* NavController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavController.m; sourceTree = "<group>"; };
+		95CAD54519D222B4000ECECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		95CAD54719D222B4000ECECD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		95CAD54A19D222B5000ECECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		95CAD55019D222B5000ECECD /* PotatoDoctorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PotatoDoctorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95CAD55519D222B5000ECECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95CAD55619D222B5000ECECD /* PotatoDoctorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PotatoDoctorTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95CAD53119D222B4000ECECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CAD54D19D222B5000ECECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95CAD52B19D222B4000ECECD = {
+			isa = PBXGroup;
+			children = (
+				95CAD53619D222B4000ECECD /* PotatoDoctor */,
+				95CAD55319D222B5000ECECD /* PotatoDoctorTests */,
+				95CAD53519D222B4000ECECD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		95CAD53519D222B4000ECECD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95CAD53419D222B4000ECECD /* PotatoDoctor.app */,
+				95CAD55019D222B5000ECECD /* PotatoDoctorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95CAD53619D222B4000ECECD /* PotatoDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				95CAD56019D2280B000ECECD /* Controllers */,
+				95CAD53B19D222B4000ECECD /* AppDelegate.h */,
+				95CAD53C19D222B4000ECECD /* AppDelegate.m */,
+				95CAD54119D222B4000ECECD /* NavController.h */,
+				95CAD54219D222B4000ECECD /* NavController.m */,
+				95CAD54419D222B4000ECECD /* Main.storyboard */,
+				95CAD54719D222B4000ECECD /* Images.xcassets */,
+				95CAD54919D222B5000ECECD /* LaunchScreen.xib */,
+				95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */,
+				95CAD53719D222B4000ECECD /* Supporting Files */,
+			);
+			path = PotatoDoctor;
+			sourceTree = "<group>";
+		};
+		95CAD53719D222B4000ECECD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95CAD53819D222B4000ECECD /* Info.plist */,
+				95CAD53919D222B4000ECECD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95CAD55319D222B5000ECECD /* PotatoDoctorTests */ = {
+			isa = PBXGroup;
+			children = (
+				95CAD55619D222B5000ECECD /* PotatoDoctorTests.m */,
+				95CAD55419D222B5000ECECD /* Supporting Files */,
+			);
+			path = PotatoDoctorTests;
+			sourceTree = "<group>";
+		};
+		95CAD55419D222B5000ECECD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95CAD55519D222B5000ECECD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95CAD56019D2280B000ECECD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95CAD53319D222B4000ECECD /* PotatoDoctor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95CAD55A19D222B5000ECECD /* Build configuration list for PBXNativeTarget "PotatoDoctor" */;
+			buildPhases = (
+				95CAD53019D222B4000ECECD /* Sources */,
+				95CAD53119D222B4000ECECD /* Frameworks */,
+				95CAD53219D222B4000ECECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PotatoDoctor;
+			productName = PotatoDoctor;
+			productReference = 95CAD53419D222B4000ECECD /* PotatoDoctor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		95CAD54F19D222B5000ECECD /* PotatoDoctorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95CAD55D19D222B5000ECECD /* Build configuration list for PBXNativeTarget "PotatoDoctorTests" */;
+			buildPhases = (
+				95CAD54C19D222B5000ECECD /* Sources */,
+				95CAD54D19D222B5000ECECD /* Frameworks */,
+				95CAD54E19D222B5000ECECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95CAD55219D222B5000ECECD /* PBXTargetDependency */,
+			);
+			name = PotatoDoctorTests;
+			productName = PotatoDoctorTests;
+			productReference = 95CAD55019D222B5000ECECD /* PotatoDoctorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95CAD52C19D222B4000ECECD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Jekabs Stikans";
+				TargetAttributes = {
+					95CAD53319D222B4000ECECD = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					95CAD54F19D222B5000ECECD = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 95CAD53319D222B4000ECECD;
+					};
+				};
+			};
+			buildConfigurationList = 95CAD52F19D222B4000ECECD /* Build configuration list for PBXProject "PotatoDoctor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 95CAD52B19D222B4000ECECD;
+			productRefGroup = 95CAD53519D222B4000ECECD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95CAD53319D222B4000ECECD /* PotatoDoctor */,
+				95CAD54F19D222B5000ECECD /* PotatoDoctorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95CAD53219D222B4000ECECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95CAD54619D222B4000ECECD /* Main.storyboard in Resources */,
+				95CAD54B19D222B5000ECECD /* LaunchScreen.xib in Resources */,
+				95CAD54819D222B4000ECECD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CAD54E19D222B5000ECECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95CAD53019D222B4000ECECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95CAD53D19D222B4000ECECD /* AppDelegate.m in Sources */,
+				95CAD53A19D222B4000ECECD /* main.m in Sources */,
+				95CAD54319D222B4000ECECD /* NavController.m in Sources */,
+				95CAD54019D222B4000ECECD /* PotatoDoctor.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CAD54C19D222B5000ECECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95CAD55719D222B5000ECECD /* PotatoDoctorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95CAD55219D222B5000ECECD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95CAD53319D222B4000ECECD /* PotatoDoctor */;
+			targetProxy = 95CAD55119D222B5000ECECD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		95CAD54419D222B4000ECECD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95CAD54519D222B4000ECECD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		95CAD54919D222B5000ECECD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95CAD54A19D222B5000ECECD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95CAD55819D222B5000ECECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		95CAD55919D222B5000ECECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		95CAD55B19D222B5000ECECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PotatoDoctor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		95CAD55C19D222B5000ECECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PotatoDoctor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		95CAD55E19D222B5000ECECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PotatoDoctorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PotatoDoctor.app/PotatoDoctor";
+			};
+			name = Debug;
+		};
+		95CAD55F19D222B5000ECECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PotatoDoctorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PotatoDoctor.app/PotatoDoctor";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95CAD52F19D222B4000ECECD /* Build configuration list for PBXProject "PotatoDoctor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95CAD55819D222B5000ECECD /* Debug */,
+				95CAD55919D222B5000ECECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95CAD55A19D222B5000ECECD /* Build configuration list for PBXNativeTarget "PotatoDoctor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95CAD55B19D222B5000ECECD /* Debug */,
+				95CAD55C19D222B5000ECECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		95CAD55D19D222B5000ECECD /* Build configuration list for PBXNativeTarget "PotatoDoctorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95CAD55E19D222B5000ECECD /* Debug */,
+				95CAD55F19D222B5000ECECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				95CAD53F19D222B4000ECECD /* PotatoDoctor.xcdatamodel */,
+			);
+			currentVersion = 95CAD53F19D222B4000ECECD /* PotatoDoctor.xcdatamodel */;
+			path = PotatoDoctor.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 95CAD52C19D222B4000ECECD /* Project object */;
+}

@@ -2,17 +2,11 @@ package com.team8.potatodoctor.Models;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.team8.potatodoctor.Activities.MainActivity;
-
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.util.Log;
 
 public class MediaFetcher extends AsyncTask<String, Void, String>

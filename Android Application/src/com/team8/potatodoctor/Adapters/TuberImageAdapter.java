@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.Adapters.ImageAdapter.Item;
 import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
 
