@@ -116,19 +116,19 @@ public class SearchActivity extends Activity {
 		LinkedList<PestEntity> pestResults = new LinkedList<PestEntity>();
 		LinkedList<PlantLeafEntity> plantleafResults = new LinkedList<PlantLeafEntity>();
 		LinkedList<TuberEntity> tuberResults = new LinkedList<TuberEntity>();
-		LinkedList<TutorialEntity> videoResults = new LinkedList<TutorialEntity>();
+		LinkedList<TutorialEntity> tutorialResults = new LinkedList<TutorialEntity>();
 		
 		PestRepository pestSearcher = new PestRepository(this);
 		PlantLeafRepository plantleafSearcher = new PlantLeafRepository(this);
 		TuberRepository tuberSearcher = new TuberRepository(this);
-		TutorialRepository videoSearcher = new TutorialRepository(this);
+		TutorialRepository tutorialSearcher = new TutorialRepository(this);
 				
 		pestResults = pestSearcher.searchPests(query);
 		plantleafResults = plantleafSearcher.searchPlantLeafSymptoms(query);
 		tuberResults = tuberSearcher.searchTubers(query);
-		//videoResults = videoSearcher.searchTutorials(query);
+		tutorialResults = tutorialSearcher.searchTutorials(query);
 		
-		displaySearchResults(pestResults, plantleafResults, tuberResults, videoResults);
+		displaySearchResults(pestResults, plantleafResults, tuberResults, tutorialResults);
 	}
 	
 	/*

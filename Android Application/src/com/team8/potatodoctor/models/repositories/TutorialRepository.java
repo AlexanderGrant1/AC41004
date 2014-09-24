@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.team8.potatodoctor.database_objects.TuberEntity;
 import com.team8.potatodoctor.database_objects.TutorialEntity;
 
 public class TutorialRepository extends SQLiteOpenHelper
@@ -97,5 +98,28 @@ public class TutorialRepository extends SQLiteOpenHelper
 			values.put("VideoName", tutorial.getFullyQualifiedPath());
 			db.insert("potato_Tutorial", null, values);
 			db.close();
+	}
+	
+	public LinkedList<TutorialEntity> searchTutorials(String keywords)
+	{
+        LinkedList<TutorialEntity> foundEntries = new LinkedList<TutorialEntity>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tutorial WHERE `Name` LIKE '%"+keywords+"%' OR `Description` LIKE '%"+keywords+"%'", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	TutorialEntity tutorial = new TutorialEntity();
+            	tutorial.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+            	tutorial.setName(cursor.getString(cursor.getColumnIndex("Name")));
+            	tutorial.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
+            	//tutorial.setPhotos(getTutorialPhotos(tutorial));
+                foundEntries.add(tutorial);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return foundEntries;
 	}
 }
