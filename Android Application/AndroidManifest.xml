@@ -29,12 +29,12 @@
         <!-- Main Activity - Deprecated -->
 
         <activity
-            android:name="com.team8.potatodoctor.Activities.MainActivity"
+            android:name="com.team8.potatodoctor.activities.MainActivity"
             android:label="@string/app_name" ></activity>
         
         <!-- CategoriesListActivity -->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.CategoriesListActivity"
+            android:name="com.team8.potatodoctor.activities.CategoriesListActivity"
             android:label="@string/app_name" >
             
             <!-- Set as startup Activity-->
@@ -46,25 +46,25 @@
         
         <!-- PestsActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.PestsActivity"
+            android:name="com.team8.potatodoctor.activities.PestsActivity"
             android:label="@string/pests"
-        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
         <!-- PlantSymptomActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.PlantSymptomActivity"
+            android:name="com.team8.potatodoctor.activities.PlantSymptomActivity"
             android:label="@string/leaves"
-        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
         <!-- TuberSymptomActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.TuberSymptomActivity"
+            android:name="com.team8.potatodoctor.activities.TuberSymptomActivity"
             android:label="@string/tubers"
-        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
         <!-- ObjectDescriptionActivity - No parentActivityName-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.ObjectDescriptionActivity"
+            android:name="com.team8.potatodoctor.activities.ObjectDescriptionActivity"
             android:label="@string/placeholder"
         	></activity>
         
@@ -72,13 +72,13 @@
         <activity 
             android:name="com.team8.potatodoctor.activities.TutorialActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.Activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
         <!-- VideoGridActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.VideoGridActivity"
+            android:name="com.team8.potatodoctor.activities.VideoGridActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.Activities.VideoActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.VideoActivity"></activity>
         
         <!-- ========================== Menu Bar Activities ========================== -->
         
@@ -95,7 +95,7 @@
         
         <!-- SearchActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity"
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity"
             android:label="@string/action_search">
             
             <!-- Define as the search activity -->
@@ -111,22 +111,22 @@
         
         <!-- ImageShareActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity"
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity"
             android:label="@string/action_imageshare"></activity>
         
         <!-- UpdateActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity"
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity"
             android:label="@string/action_update"></activity>
         
         <!-- SettingsActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity"
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity"
             android:label="@string/action_settings"></activity>
         
         <!-- ExitActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity"
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.ExitActivity"
             android:label="@string/action_exit"></activity>
         
     </application>
