@@ -21,13 +21,13 @@ public class VideoAdapter extends ImageAdapter {
 	}
 
 	@Override
-	void addItems() {
+	void addItems() {  
 		TutorialRepository tutorialRepository = new TutorialRepository(context);
 		for(TutorialEntity tutorial : tutorialRepository.getAllTutorials())
 		{
 			Bitmap thumb = ThumbnailUtils.createVideoThumbnail(tutorial.getFullyQualifiedPath(), MediaStore.Images.Thumbnails.MINI_KIND);
-			items.add(new Item(tutorial.getName(),thumb));
+			items.add(new Item(tutorial.getName(),thumb)); 
 		}
 	}
-
+ 
 }

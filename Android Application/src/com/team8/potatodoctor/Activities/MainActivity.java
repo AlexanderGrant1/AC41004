@@ -28,7 +28,7 @@ public class MainActivity extends Activity
 		//Log.w("hello","reached"); 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	    updateDB();
+	    //updateDB();
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
 			appUpdater.updateLocalFiles();
@@ -55,7 +55,7 @@ public class MainActivity extends Activity
 		return true;
 	}
  
-	private void updateDB()
+	/*private void updateDB()
 	{
 		AppUpdater appUpdater = new AppUpdater(getApplicationContext());
 		try {
@@ -64,5 +64,5 @@ public class MainActivity extends Activity
 			Toast.makeText(getApplicationContext(), "Failed to update the database", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		} 
-	}
+	}*/
 }
