@@ -155,6 +155,10 @@ public class SearchActivity extends Activity {
 	 */
 	public void displaySearchResults(LinkedList<PestEntity> pests, LinkedList<PlantLeafEntity> plants, LinkedList<TuberEntity> tubers, LinkedList<TutorialEntity> tutorials)
 	{
+		pestTable.removeAllViews();
+		plantleafTable.removeAllViews();
+		tuberTable.removeAllViews();
+		tutorialTable.removeAllViews();
 		if(!pests.isEmpty())
 		{
 			//pestTable

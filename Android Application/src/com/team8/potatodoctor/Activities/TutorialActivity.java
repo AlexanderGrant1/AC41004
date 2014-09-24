@@ -57,6 +57,7 @@ public class TutorialActivity extends Activity
 	 */
 	private void setupMediaPlayer(int position)
 	{
+		tutorialRepository.getAllTutorials();
 		String videoPath = tutorialRepository.getAllTutorials().get(position).getFullyQualifiedPath();
 		VideoView vidView = (VideoView)findViewById(R.id.myVideo);
 		Log.d("Problem Determination", Integer.toString(position));

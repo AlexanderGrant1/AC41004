@@ -66,9 +66,9 @@
             android:label="@string/placeholder"
         	></activity>
         
-        <!-- VideoActivity-->
+        <!-- TutorialActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.VideoActivity"
+            android:name="com.team8.potatodoctor.activities.TutorialActivity"
             android:label="@string/placeholder"
         	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
