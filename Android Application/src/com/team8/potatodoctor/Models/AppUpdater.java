@@ -60,7 +60,7 @@ public class AppUpdater {
 		plantLeafRepository.createPlantLeafTablesIfNotExists();
 		localDbUpdater.updatePlantLeafTables();
 	}
-	
+	//You must update the database before calling this method
 	public int getNumberOfPhotosToDownload()
 	{
 		try {
