@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.GalleryImageAdapter;
 import com.team8.potatodoctor.DatabaseObjects.PestEntity;
 import com.team8.potatodoctor.DatabaseObjects.PlantLeafEntity;
@@ -23,11 +28,6 @@ import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.Models.Repositories.PestRepository;
 import com.team8.potatodoctor.Models.Repositories.PlantLeafRepository;
 import com.team8.potatodoctor.Models.Repositories.TuberRepository;
-import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.SearchActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
 
 /*
  * Generalised class to extract information from the database related to a specific Pest/Symptom. 

@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities.MenuBarActivities;
+package com.team8.potatodoctor.Activities.MenuBarActivities;
 
 import android.app.Activity;
 import android.content.Intent;

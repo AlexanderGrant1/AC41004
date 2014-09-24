@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 
 public class TutorialRepository extends SQLiteOpenHelper

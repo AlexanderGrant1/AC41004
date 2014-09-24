@@ -1,5 +1,5 @@
-package com.team8.potatodoctor.activities;
-
+package com.team8.potatodoctor.Activities;
+ 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -21,13 +21,13 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SearchActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Adapters.ImageAdapterMain;
 import com.team8.potatodoctor.Models.AppUpdater;
-import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.SearchActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
  
 /*
  * Populates and displays the list of Categories on the main screen.
@@ -103,10 +103,10 @@ public class CategoriesListActivity extends Activity
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-					
+			
 		// Get the SearchView and set the searchable configuration
-	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+	    //SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	    //SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
 	
 		return true;
 	}

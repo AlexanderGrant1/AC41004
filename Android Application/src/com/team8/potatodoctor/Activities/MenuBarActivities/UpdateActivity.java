@@ -1,12 +1,12 @@
-package com.team8.potatodoctor.activities.MenuBarActivities;
-
-import com.team8.potatodoctor.R;
+package com.team8.potatodoctor.Activities.MenuBarActivities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.team8.potatodoctor.R;
 
 public class UpdateActivity extends Activity{
 	

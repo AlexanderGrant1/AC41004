@@ -1,4 +1,4 @@
-package com.team8.potatodoctor.activities;
+package com.team8.potatodoctor.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +11,11 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ExitActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.ImageShareActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.SettingsActivity;
+import com.team8.potatodoctor.Activities.MenuBarActivities.UpdateActivity;
 import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
-import com.team8.potatodoctor.activities.MenuBarActivities.ExitActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.ImageShareActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.SettingsActivity;
-import com.team8.potatodoctor.activities.MenuBarActivities.UpdateActivity;
 //Extract parameters from the intent.
 // Inflate the menu; this adds items to the action bar if it is present.
 /*

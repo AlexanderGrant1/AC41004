@@ -2,7 +2,6 @@ package com.team8.potatodoctor.Models;
 
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

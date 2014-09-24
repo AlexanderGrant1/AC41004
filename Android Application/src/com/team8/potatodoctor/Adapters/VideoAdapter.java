@@ -1,10 +1,8 @@
 package com.team8.potatodoctor.Adapters;
 
 import android.content.Context;
-import android.net.Uri;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.DatabaseObjects.TuberEntity;
 import com.team8.potatodoctor.DatabaseObjects.TutorialEntity;
 import com.team8.potatodoctor.Models.Repositories.TutorialRepository;
 

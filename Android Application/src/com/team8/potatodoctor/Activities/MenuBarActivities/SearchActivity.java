@@ -1,10 +1,8 @@
-package com.team8.potatodoctor.activities.MenuBarActivities;
+package com.team8.potatodoctor.Activities.MenuBarActivities;
 
 import java.util.LinkedList;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,8 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -92,8 +88,8 @@ public class SearchActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 				
 		// Get the SearchView and set the searchable configuration
-	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+	    //SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	    //SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
 	    
 	    // Assumes current activity is the searchable activity
 	    //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
