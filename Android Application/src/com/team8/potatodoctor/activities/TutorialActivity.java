@@ -14,7 +14,6 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.activities.menu_bar_activities.ExitActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
@@ -92,7 +91,10 @@ public class TutorialActivity extends Activity
 			this.startActivity(new Intent(this, SettingsActivity.class));
 		return true;
 		case (R.id.action_exit):
-			this.startActivity(new Intent(this, ExitActivity.class));
+			Intent intent = new Intent(Intent.ACTION_MAIN); 
+    		intent.addCategory(Intent.CATEGORY_HOME);
+    		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+    		startActivity(intent);
 		return true;
 		default:
 			return super.onOptionsItemSelected(item);

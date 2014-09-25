@@ -40,6 +40,7 @@ public class UpdateActivity extends Activity{
 		else
 		{
 			Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show();
+			finish();
 		}
 		
 		 
@@ -71,7 +72,10 @@ public class UpdateActivity extends Activity{
 	        this.startActivity(new Intent(this, SettingsActivity.class));
 	        return true;
 	    case (R.id.action_exit):
-	        this.startActivity(new Intent(this, ExitActivity.class));
+	    	Intent intent = new Intent(Intent.ACTION_MAIN); 
+			intent.addCategory(Intent.CATEGORY_HOME);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+			startActivity(intent);
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
@@ -121,12 +125,13 @@ public class UpdateActivity extends Activity{
 
 				Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
 				startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
+				finish();
 
 			}
 		})
 		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
-				// do nothing
+				finish();
 			}
 		})
 		.setIcon(android.R.drawable.ic_dialog_alert)
