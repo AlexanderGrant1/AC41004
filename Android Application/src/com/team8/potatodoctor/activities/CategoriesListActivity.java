@@ -117,6 +117,14 @@ public class CategoriesListActivity extends Activity
 	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
+	    	final Intent intgent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	    intgent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(getFilesDir() +"/imagesharing/temp.jpg")) ); 
+		startActivityForResult(intgent, 1);
+
+		final File path = new File( Environment.getExternalStorageDirectory(), "temp.jpg" );
+		if(!path.exists()){
+		  path.mkdir();
+		}
 
 	        return true;
 	    case (R.id.action_update):
