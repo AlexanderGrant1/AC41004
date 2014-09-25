@@ -28,6 +28,7 @@ import com.team8.potatodoctor.activities.ObjectDescriptionActivity;
 import com.team8.potatodoctor.activities.PestsActivity;
 import com.team8.potatodoctor.activities.PlantSymptomActivity;
 import com.team8.potatodoctor.activities.TuberSymptomActivity;
+import com.team8.potatodoctor.activities.TutorialActivity;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
 import com.team8.potatodoctor.database_objects.TuberEntity;
@@ -40,6 +41,10 @@ import com.team8.potatodoctor.models.repositories.TutorialRepository;
 public class SearchActivity extends Activity {
 
 	public TableLayout searchTable;
+	private TuberRepository tuberRepository;
+	private PlantLeafRepository plantLeafRepository;
+	private PestRepository pestRepository;
+	private TutorialRepository tutorialRepository;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -47,6 +52,10 @@ public class SearchActivity extends Activity {
 		Log.v("Problem Determination", "SearchActivity.onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
+		tuberRepository = new TuberRepository(getApplicationContext());
+		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
+		pestRepository = new PestRepository(getApplicationContext());
+		tutorialRepository = new TutorialRepository(getApplicationContext());
 		Log.v("Problem Determination", "SearchActivity.onCreate() EXIT");
 		
 		final EditText searchBox = (EditText)findViewById(R.id.search_box);
@@ -107,15 +116,11 @@ public class SearchActivity extends Activity {
 		LinkedList<TuberEntity> tuberResults = new LinkedList<TuberEntity>();
 		LinkedList<TutorialEntity> tutorialResults = new LinkedList<TutorialEntity>();
 		
-		PestRepository pestSearcher = new PestRepository(this);
-		PlantLeafRepository plantleafSearcher = new PlantLeafRepository(this);
-		TuberRepository tuberSearcher = new TuberRepository(this);
-		TutorialRepository tutorialSearcher = new TutorialRepository(this);
 				
-		pestResults = pestSearcher.searchPests(query);
-		plantleafResults = plantleafSearcher.searchPlantLeafSymptoms(query);
-		tuberResults = tuberSearcher.searchTubers(query);
-		tutorialResults = tutorialSearcher.searchTutorials(query);
+		pestResults = pestRepository.searchPests(query);
+		plantleafResults = plantLeafRepository.searchPlantLeafSymptoms(query);
+		tuberResults = tuberRepository.searchTubers(query);
+		tutorialResults = tutorialRepository.searchTutorials(query);
 		if(!query.equals(""))
 		{
 			displaySearchResults(pestResults, plantleafResults, tuberResults, tutorialResults);
@@ -144,10 +149,10 @@ public class SearchActivity extends Activity {
 			headerRow.addView(pestTitle);
 		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			//pestTable
-		    int position = 0;
 			for(PestEntity pest : pests)
 			{
-				final int count = position;
+				
+				final int count = pestRepository.getIndexOfPestByName(pest.getName());;
 				//Create new Table Row, to be added to pestTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
@@ -158,14 +163,8 @@ public class SearchActivity extends Activity {
 				pestObject.setTextSize(18);
 				pestObject.setText(pest.getName()); 
 				pestObject.setTextColor(Color.WHITE);
-				if(position % 2 == 0)
-				{
-					row.setBackgroundColor(Color.DKGRAY);
-				}
-				else
-				{
-					row.setBackgroundColor(Color.GRAY);
-				}
+				row.setBackgroundColor(Color.GRAY);
+				
 				//Add the Textview to the TableRow
 			    row.addView(pestObject);
 			    row.setOnClickListener(new OnClickListener(){
@@ -185,7 +184,6 @@ public class SearchActivity extends Activity {
 			    });
 			    //Add the Table Row to the Pest Table
 			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			    position++;
 			}
 		}
 		
@@ -201,10 +199,9 @@ public class SearchActivity extends Activity {
 			headerRow.addView(plantTitle);
 		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			//plantleafTable
-		    int position = 0;
 			for(PlantLeafEntity plant : plants)
 			{
-				final int count = position;
+				final int count = plantLeafRepository.getIndexOfPlantLeafByName(plant.getName());
 				//Create new Table Row, to be added to plantleafTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);				
@@ -215,14 +212,7 @@ public class SearchActivity extends Activity {
 				plantObject.setTextSize(18);
 				plantObject.setText(plant.getName()); 
 				plantObject.setTextColor(Color.WHITE);
-				if(position % 2 == 0)
-				{
-					row.setBackgroundColor(Color.DKGRAY);
-				}
-				else
-				{
-					row.setBackgroundColor(Color.GRAY);
-				}
+				row.setBackgroundColor(Color.DKGRAY);
 				//Add the Textview to the TableRow
 			    row.addView(plantObject);
 			    row.setOnClickListener(new OnClickListener(){
@@ -242,7 +232,6 @@ public class SearchActivity extends Activity {
 			    });
 			    //Add the Table Row to the PlantLeaf Table
 			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			    position++;
 			}
 		}
 		
@@ -261,7 +250,7 @@ public class SearchActivity extends Activity {
 		    int position = 0;
 			for(TuberEntity tuber : tubers)
 			{
-				final int count = position;
+				final int count = tuberRepository.getIndexOfTuberByName(tuber.getName());
 				//Create new Table Row, to be added to tuberTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
@@ -272,14 +261,7 @@ public class SearchActivity extends Activity {
 				tuberObject.setTextSize(18);
 				tuberObject.setText(tuber.getName()); 
 				tuberObject.setTextColor(Color.WHITE);
-				if(position % 2 == 0)
-				{
-					row.setBackgroundColor(Color.DKGRAY);
-				}
-				else
-				{
-					row.setBackgroundColor(Color.GRAY);
-				}
+				row.setBackgroundColor(Color.DKGRAY);
 				//Add the Textview to the TableRow
 			    row.addView(tuberObject);
 			    
@@ -319,7 +301,7 @@ public class SearchActivity extends Activity {
 		    int position = 0;
 			for(TutorialEntity tutorial : tutorials)
 			{
-				final int count = position;
+				final int count = tutorialRepository.getIndexOfTutorialByName(tutorial.getName());
 				//Create new Table Row, to be added to tuberTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
@@ -334,8 +316,19 @@ public class SearchActivity extends Activity {
 				
 				//Add the Textview to the TableRow
 			    row.addView(tutorialObject);
-			    
-			    position++;
+			    row.setOnClickListener(new OnClickListener()
+			    {
+
+					@Override
+					public void onClick(View v) {
+						Intent tutorialActivity = new Intent(getApplicationContext(),TutorialActivity.class);
+						tutorialActivity.putExtra("Position", count); //DB Table row index.
+			        	
+			    		startActivity(tutorialActivity); 
+						
+					}
+			    	
+			    });
 			    
 			    //Add the Table Row to the Tuber Table
 			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));

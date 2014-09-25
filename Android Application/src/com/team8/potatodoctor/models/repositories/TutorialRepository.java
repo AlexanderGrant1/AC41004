@@ -67,6 +67,25 @@ public class TutorialRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public int getIndexOfTutorialByName(String name)
+	{
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tutorial",null);
+        int index = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                if(cursor.getString(cursor.getColumnIndex("Name")).equals(name))
+                {
+                	return index;
+                }
+                index++;
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return -1;
+	}
+	
 	 public LinkedList<TutorialEntity> getAllTutorials() {
 	        LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
 
