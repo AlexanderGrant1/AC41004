@@ -5,12 +5,15 @@ import java.util.LinkedList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -19,6 +22,11 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.activities.CategoriesListActivity;
+import com.team8.potatodoctor.activities.ObjectDescriptionActivity;
+import com.team8.potatodoctor.activities.PestsActivity;
+import com.team8.potatodoctor.activities.PlantSymptomActivity;
+import com.team8.potatodoctor.activities.TuberSymptomActivity;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
 import com.team8.potatodoctor.database_objects.TuberEntity;
@@ -30,10 +38,7 @@ import com.team8.potatodoctor.models.repositories.TutorialRepository;
   
 public class SearchActivity extends Activity {
 
-	public TableLayout pestTable;// = (TableLayout)findViewById(R.id.pest_results);
-	public TableLayout plantleafTable;// = (TableLayout)findViewById(R.id.plantleaf_results);
-	public TableLayout tuberTable;// = (TableLayout)findViewById(R.id.tuber_results);
-	public TableLayout tutorialTable;// = (TableLayout)findViewById(R.id.tutorial_results);
+	public TableLayout searchTable;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -66,10 +71,7 @@ public class SearchActivity extends Activity {
 	    });
 		
 		
-		pestTable = (TableLayout)findViewById(R.id.pest_results);
-		plantleafTable = (TableLayout)findViewById(R.id.plantleaf_results);
-		tuberTable = (TableLayout)findViewById(R.id.tuber_results);
-		tutorialTable = (TableLayout)findViewById(R.id.tutorial_results);
+		searchTable = (TableLayout)findViewById(R.id.search_results);
 
 		disableHardwareMenuKey();
 	}
@@ -127,8 +129,14 @@ public class SearchActivity extends Activity {
 		plantleafResults = plantleafSearcher.searchPlantLeafSymptoms(query);
 		tuberResults = tuberSearcher.searchTubers(query);
 		tutorialResults = tutorialSearcher.searchTutorials(query);
-		
-		displaySearchResults(pestResults, plantleafResults, tuberResults, tutorialResults);
+		if(!query.equals(""))
+		{
+			displaySearchResults(pestResults, plantleafResults, tuberResults, tutorialResults);
+		}
+		else
+		{
+			searchTable.removeAllViews();
+		}
 	}
 	
 	/*
@@ -136,16 +144,23 @@ public class SearchActivity extends Activity {
 	 */
 	public void displaySearchResults(LinkedList<PestEntity> pests, LinkedList<PlantLeafEntity> plants, LinkedList<TuberEntity> tubers, LinkedList<TutorialEntity> tutorials)
 	{
-		pestTable.removeAllViews();
-		plantleafTable.removeAllViews();
-		tuberTable.removeAllViews();
-		tutorialTable.removeAllViews();
-		
+		searchTable.removeAllViews();
 		if(!pests.isEmpty())
 		{
+			TableRow headerRow = new TableRow(this);
+			headerRow.setPadding(40, 25, 10, 5);
+			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			TextView pestTitle = new TextView(this);
+			pestTitle.setTextSize(24);
+			pestTitle.setText("Pests"); 
+			pestTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			headerRow.addView(pestTitle);
+		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			//pestTable
+		    int position = 0;
 			for(PestEntity pest : pests)
 			{
+				final int count = position;
 				//Create new Table Row, to be added to pestTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
@@ -158,17 +173,43 @@ public class SearchActivity extends Activity {
 				
 				//Add the Textview to the TableRow
 			    row.addView(pestObject);
-			    
+			    row.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+			        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
+			        	
+			        	//Add additional parameters to intent for queries and information.
+			        	intentObjectDescription.putExtra("Type", "potato_Pest"); //DB Table name.
+			        	intentObjectDescription.putExtra("Position", count); //DB Table row index.
+			        	
+			    		startActivity(intentObjectDescription);     
+						
+					}
+			    	
+			    });
 			    //Add the Table Row to the Pest Table
-			    pestTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    position++;
 			}
 		}
 		
 		if(!plants.isEmpty())
 		{
+			TableRow headerRow = new TableRow(this);
+			headerRow.setPadding(40, 50, 10, 5);
+			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			TextView plantTitle = new TextView(this);
+			plantTitle.setTextSize(24);
+			plantTitle.setText("Plant/Leaf Symptoms"); 
+			plantTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			headerRow.addView(plantTitle);
+		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			//plantleafTable
+		    int position = 0;
 			for(PlantLeafEntity plant : plants)
 			{
+				final int count = position;
 				//Create new Table Row, to be added to plantleafTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);				
@@ -181,17 +222,43 @@ public class SearchActivity extends Activity {
 				
 				//Add the Textview to the TableRow
 			    row.addView(plantObject);
-			    
+			    row.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+			        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
+			        	
+			        	//Add additional parameters to intent for queries and information.
+			        	intentObjectDescription.putExtra("Type", "potato_PlantLeaf"); //DB Table name.
+			        	intentObjectDescription.putExtra("Position", count); //DB Table row index.
+			        	
+			    		startActivity(intentObjectDescription);     
+						
+					}
+			    	
+			    });
 			    //Add the Table Row to the PlantLeaf Table
-			    plantleafTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    position++;
 			}
 		}
 		
 		if(!tubers.isEmpty())
 		{
+			TableRow headerRow = new TableRow(this);
+			headerRow.setPadding(40, 50, 10, 5);
+			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			TextView tuberTitle = new TextView(this);
+			tuberTitle.setTextSize(24);
+			tuberTitle.setText("Tubers"); 
+			tuberTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			headerRow.addView(tuberTitle);
+		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			//tuberTable
+		    int position = 0;
 			for(TuberEntity tuber : tubers)
 			{
+				final int count = position;
 				//Create new Table Row, to be added to tuberTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
@@ -205,16 +272,43 @@ public class SearchActivity extends Activity {
 				//Add the Textview to the TableRow
 			    row.addView(tuberObject);
 			    
+			    row.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+			        	Intent intentObjectDescription = new Intent(getApplicationContext(),ObjectDescriptionActivity.class);
+			        	
+			        	//Add additional parameters to intent for queries and information.
+			        	intentObjectDescription.putExtra("Type", "potato_Tuber"); //DB Table name.
+			        	intentObjectDescription.putExtra("Position", count); //DB Table row index.
+			        	
+			    		startActivity(intentObjectDescription);     
+						
+					}
+			    	
+			    });
 			    //Add the Table Row to the Tuber Table
-			    tuberTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    position++;
 			}
 		}
 		
 		if(!tutorials.isEmpty())
 		{
+			TableRow headerRow = new TableRow(this);
+			headerRow.setPadding(40, 50, 10, 5);
+			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			TextView tutorialTitle = new TextView(this);
+			tutorialTitle.setTextSize(24);
+			tutorialTitle.setText("Tutorials"); 
+			tutorialTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			headerRow.addView(tutorialTitle);
+		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			//tutorialTable
+		    int position = 0;
 			for(TutorialEntity tutorial : tutorials)
 			{
+				final int count = position;
 				//Create new Table Row, to be added to tuberTable.
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
@@ -228,8 +322,10 @@ public class SearchActivity extends Activity {
 				//Add the Textview to the TableRow
 			    row.addView(tutorialObject);
 			    
+			    position++;
+			    
 			    //Add the Table Row to the Tuber Table
-			    tutorialTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
 		}
 	}
