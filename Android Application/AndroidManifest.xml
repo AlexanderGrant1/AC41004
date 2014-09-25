@@ -20,17 +20,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo" >
         
-        <!-- Enable the search dialog to send searches to SearchableActivity -->
-        <meta-data android:name="android.app.default_searachable"
-            android:value=".SearchableActivity" />
-        
         <!-- ========================== Primary Activities ========================== -->
-        
-        <!-- Main Activity - Deprecated -->
-
-        <activity
-            android:name="com.team8.potatodoctor.activities.MainActivity"
-            android:label="@string/app_name" ></activity>
         
         <!-- CategoriesListActivity -->
         <activity 
@@ -82,33 +72,11 @@
         	android:parentActivityName="com.team8.potatodoctor.activities.VideoActivity"></activity>
         
         <!-- ========================== Menu Bar Activities ========================== -->
-        
-        <!-- DELETE --><!-- this is the searchable activity; it performs searches -->
-        <activity android:name=".SearchableActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-        
+                
         <!-- SearchActivity-->
         <activity 
             android:name="com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity"
-            android:label="@string/action_search">
-            
-            <!-- Define as the search activity -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
+            android:label="@string/action_search"></activity>
         
         <!-- ImageShareActivity-->
         <activity 

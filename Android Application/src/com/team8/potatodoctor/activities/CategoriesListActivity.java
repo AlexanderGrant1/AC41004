@@ -2,7 +2,6 @@ package com.team8.potatodoctor.activities;
  
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -24,7 +23,6 @@ import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ExitActivity;
-import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
@@ -133,7 +131,7 @@ public class CategoriesListActivity extends Activity
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
-	    }
+	    } 
 	}
 	
 	/*
