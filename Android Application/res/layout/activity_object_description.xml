@@ -29,9 +29,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:maxLines="10"
-        android:scrollbars="vertical"
+        android:layout_marginRight="25dp"        
         android:text="@string/sampleText"
         android:textSize="18sp" />
     

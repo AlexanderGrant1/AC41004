@@ -93,7 +93,7 @@ public class ObjectDescriptionActivity extends Activity
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
-        textView.setMovementMethod(new ScrollingMovementMethod());
+        //textView.setMovementMethod(new ScrollingMovementMethod());
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
         disableHardwareMenuKey();
