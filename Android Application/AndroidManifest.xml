@@ -69,7 +69,7 @@
         <activity 
             android:name="com.team8.potatodoctor.activities.VideoGridActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.activities.VideoActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
         <!-- ========================== Menu Bar Activities ========================== -->
                 
