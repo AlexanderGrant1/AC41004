@@ -19,6 +19,7 @@ import android.view.ViewConfiguration;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.activities.VideoGridActivity;
 import com.team8.potatodoctor.models.AppUpdater;
 
 public class UpdateActivity extends Activity{
@@ -126,7 +127,7 @@ public class UpdateActivity extends Activity{
 		})
 		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
-				// do nothing
+				finish();
 			}
 		})
 		.setIcon(android.R.drawable.ic_dialog_alert)
