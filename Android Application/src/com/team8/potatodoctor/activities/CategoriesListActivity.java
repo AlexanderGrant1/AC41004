@@ -22,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
@@ -94,20 +95,6 @@ public class CategoriesListActivity extends Activity
 		return true;
 	}
 	
-	private File takeandReturn(Context context, boolean b) {
-		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(getFilesDir() +"/imagesharing/temp.jpg")) ); 
-		startActivityForResult(intent, 1);
-
-		final File path = new File( Environment.getExternalStorageDirectory(), context.getPackageName() );
-		if(!path.exists()){
-		  path.mkdir();
-		}
-
-		taken = true;
-		return new File(getFilesDir() +"/imagesharing/temp.jpg");
-		} 
-	boolean taken = false;
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -117,15 +104,7 @@ public class CategoriesListActivity extends Activity
 	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
-	    	final Intent intgent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	    intgent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(getFilesDir() +"/imagesharing/temp.jpg")) ); 
-		startActivityForResult(intgent, 1);
-
-		final File path = new File( Environment.getExternalStorageDirectory(), "temp.jpg" );
-		if(!path.exists()){
-		  path.mkdir();
-		}
-
+	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
 	        return true;
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));

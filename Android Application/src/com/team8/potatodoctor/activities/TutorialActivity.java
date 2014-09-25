@@ -31,7 +31,7 @@ public class TutorialActivity extends Activity
 		setContentView(R.layout.activity_video);
 		tutorialRepository = new TutorialRepository(getApplicationContext());
 		int position = 0;
-
+ 
 		//Extract parameters from the intent.
 		Bundle extras = getIntent().getExtras();
 		if(extras !=null)
