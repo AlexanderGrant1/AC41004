@@ -1,12 +1,18 @@
 package com.team8.potatodoctor.activities;
  
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -90,7 +96,21 @@ public class CategoriesListActivity extends Activity
 	
 		return true;
 	}
+	
+	private File takeandReturn(Context context, boolean b) {
+		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(getFilesDir() +"/imagesharing/temp.jpg")) ); 
+		startActivityForResult(intent, 1);
 
+		final File path = new File( Environment.getExternalStorageDirectory(), context.getPackageName() );
+		if(!path.exists()){
+		  path.mkdir();
+		}
+
+		taken = true;
+		return new File(getFilesDir() +"/imagesharing/temp.jpg");
+		} 
+	boolean taken = false;
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -100,7 +120,7 @@ public class CategoriesListActivity extends Activity
 	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
-	        this.startActivity(new Intent(this, ImageShareActivity.class));
+
 	        return true;
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));

@@ -1,10 +1,15 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
@@ -54,7 +59,30 @@ public class ImageShareActivity extends Activity{
 	        return super.onOptionsItemSelected(item);
 	    }
 	}
+	/*
+	private File takePhoto() {
+		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(getFilesDir() +"/imagesharing/temp.jpg")) ); 
+		startActivityForResult(intent, 1);
+
+		final File path = new File( Environment.getExternalStorageDirectory(), "temp.jpg" );
+		if(!path.exists()){
+		  path.mkdir();
+		}
+
+		return new File(getFilesDir() +"/imagesharing/temp.jpg");
+		} 
 	
+	public void sendEmail()
+	{
+	    File f =  takeandReturn(this, taken);
+	  
+	    Intent picMessageIntent = new Intent(android.content.Intent.ACTION_SEND);            
+	    picMessageIntent.setType("image/jpeg");
+	    picMessageIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(f));
+	    startActivity(Intent.createChooser(picMessageIntent, "Send Picture Using: "));
+	}
+	*/
 	/*
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
 	 */

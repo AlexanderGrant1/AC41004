@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
@@ -72,7 +73,7 @@ public class SearchActivity extends Activity {
 		
 		
 		searchTable = (TableLayout)findViewById(R.id.search_results);
-
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		disableHardwareMenuKey();
 	}
 	
@@ -88,26 +89,12 @@ public class SearchActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-	    switch (item.getItemId())
-	    {
-	    case (R.id.action_search):
-	        this.startActivity(new Intent(this, SearchActivity.class));
-	        return true;
-	    case (R.id.action_imageshare):
-	        this.startActivity(new Intent(this, ImageShareActivity.class));
-	        return true;
-	    case (R.id.action_update):
-	        this.startActivity(new Intent(this, UpdateActivity.class));
-	        return true;
-	    case (R.id.action_settings):
-	        this.startActivity(new Intent(this, SettingsActivity.class));
-	        return true;
-	    case (R.id.action_exit):
-	        this.startActivity(new Intent(this, ExitActivity.class));
-	        return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
 	}
 	
 	/*
@@ -170,7 +157,15 @@ public class SearchActivity extends Activity {
 				TextView pestObject = new TextView(this);
 				pestObject.setTextSize(18);
 				pestObject.setText(pest.getName()); 
-				
+				pestObject.setTextColor(Color.WHITE);
+				if(position % 2 == 0)
+				{
+					row.setBackgroundColor(Color.DKGRAY);
+				}
+				else
+				{
+					row.setBackgroundColor(Color.GRAY);
+				}
 				//Add the Textview to the TableRow
 			    row.addView(pestObject);
 			    row.setOnClickListener(new OnClickListener(){
@@ -219,7 +214,15 @@ public class SearchActivity extends Activity {
 				TextView plantObject = new TextView(this);
 				plantObject.setTextSize(18);
 				plantObject.setText(plant.getName()); 
-				
+				plantObject.setTextColor(Color.WHITE);
+				if(position % 2 == 0)
+				{
+					row.setBackgroundColor(Color.DKGRAY);
+				}
+				else
+				{
+					row.setBackgroundColor(Color.GRAY);
+				}
 				//Add the Textview to the TableRow
 			    row.addView(plantObject);
 			    row.setOnClickListener(new OnClickListener(){
@@ -268,7 +271,15 @@ public class SearchActivity extends Activity {
 				TextView tuberObject = new TextView(this);
 				tuberObject.setTextSize(18);
 				tuberObject.setText(tuber.getName()); 
-				
+				tuberObject.setTextColor(Color.WHITE);
+				if(position % 2 == 0)
+				{
+					row.setBackgroundColor(Color.DKGRAY);
+				}
+				else
+				{
+					row.setBackgroundColor(Color.GRAY);
+				}
 				//Add the Textview to the TableRow
 			    row.addView(tuberObject);
 			    
@@ -313,11 +324,13 @@ public class SearchActivity extends Activity {
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);
 				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+				row.setBackgroundColor(Color.DKGRAY);
 
 				//Create a TextView to hold pest details.
 				TextView tutorialObject = new TextView(this);
 				tutorialObject.setTextSize(18);
 				tutorialObject.setText(tutorial.getName()); 
+				tutorialObject.setTextColor(Color.WHITE);
 				
 				//Add the Textview to the TableRow
 			    row.addView(tutorialObject);
@@ -328,6 +341,7 @@ public class SearchActivity extends Activity {
 			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
 		}
+		
 	}
 	
 	/*

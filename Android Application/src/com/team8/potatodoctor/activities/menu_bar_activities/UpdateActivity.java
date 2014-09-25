@@ -19,6 +19,7 @@ import android.view.ViewConfiguration;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.activities.CategoriesListActivity;
 import com.team8.potatodoctor.models.AppUpdater;
 
 public class UpdateActivity extends Activity{
@@ -119,8 +120,7 @@ public class UpdateActivity extends Activity{
 				}
 
 				Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
-
-				UpdateActivity.this.finish();
+				startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
 
 			}
 		})
