@@ -72,7 +72,8 @@
         <activity 
             android:name="com.team8.potatodoctor.activities.TutorialActivity"
             android:label="@string/placeholder"
-        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"
+        	android:configChanges="keyboardHidden|orientation|screenSize"></activity>
         
         <!-- VideoGridActivity-->
         <activity 
