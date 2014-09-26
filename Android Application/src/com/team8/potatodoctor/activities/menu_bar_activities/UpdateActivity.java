@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
@@ -37,6 +38,7 @@ public class UpdateActivity extends Activity{
 		if(isNetworkConnected())
 		{
 			updateApplication();
+
 		}
 		else
 		{
@@ -129,41 +131,52 @@ public class UpdateActivity extends Activity{
 	 */
 	private void updateApplication()
 	{
-		new AlertDialog.Builder(this)
-		.setTitle("Update application")
-		.setMessage("Are you sure you want to update this application? There may be extra data charges.")
-		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+		//new AlertDialog.Builder(this)
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Update application");
+		builder.setMessage("Are you sure you want to update this application? There may be extra data charges.");
+		builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				// continue with update
-				AppUpdater apUp = new AppUpdater(getApplicationContext());
+				//doUpdate();
 
-				try {
-					apUp.updateDatabaseTables();
-					apUp.updateLocalFiles();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
-				startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
-				finish();
-
+				//Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
+				//startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
+				//finish();
+				
+				dialog.dismiss();
+				doUpdate();
 			}
 		})
 		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
+				startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
 				finish();
 			}
 		})
 		.setIcon(android.R.drawable.ic_dialog_alert)
 		.show();
+	}
+	
+	private void doUpdate()
+	{
+		AppUpdater apUp = new AppUpdater(getApplicationContext());
+
+		try {
+			apUp.updateDatabaseTables();
+			apUp.updateLocalFiles();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
 	}
 	
 	/*
