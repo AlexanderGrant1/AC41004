@@ -40,7 +40,7 @@ import com.team8.potatodoctor.models.repositories.TuberRepository;
  * Generalised class to extract information from the database related to a specific Pest/Symptom. 
  */
 @SuppressWarnings("deprecation")
-public class ObjectDescriptionActivity extends Activity implements OnSwipeTouchListener
+public class ObjectDescriptionActivity extends Activity
 {
 	//ImageView for full sized image when selected.
 	ImageView selectedImage;
