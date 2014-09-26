@@ -11,7 +11,7 @@ import android.view.ViewConfiguration;
 
 import com.team8.potatodoctor.R;
 
-public class SettingsActivity extends Activity{
+public class UserGuideActivity extends Activity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -44,8 +44,8 @@ public class SettingsActivity extends Activity{
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));
 	        return true;
-	    case (R.id.action_settings):
-	        this.startActivity(new Intent(this, SettingsActivity.class));
+	    case (R.id.action_userguide):
+	        this.startActivity(new Intent(this, UserGuideActivity.class));
 	        return true;
 	    case (R.id.action_exit):
 	    	Intent intent = new Intent(Intent.ACTION_MAIN); 

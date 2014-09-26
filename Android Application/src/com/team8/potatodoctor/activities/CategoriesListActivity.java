@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
-import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
+import com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
 import com.team8.potatodoctor.adapters.ImageAdapterMain;
 
@@ -103,10 +103,10 @@ public class CategoriesListActivity extends Activity
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));
 	        return true;
-	    case (R.id.action_settings):	        
+	    case (R.id.action_userguide):	        
     		if(isUpdated)
     		{
-    			this.startActivity(new Intent(this, SettingsActivity.class));
+    			this.startActivity(new Intent(this, UserGuideActivity.class));
     		}
     		else
     		{

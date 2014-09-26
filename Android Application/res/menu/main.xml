@@ -13,8 +13,8 @@
         android:id="@+id/action_update"
         android:title="@string/action_update"></item>
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"></item>
+        android:id="@+id/action_userguide"
+        android:title="@string/action_userguide"></item>
     <item
         android:id="@+id/action_exit"
         android:title="@string/action_exit"></item>
