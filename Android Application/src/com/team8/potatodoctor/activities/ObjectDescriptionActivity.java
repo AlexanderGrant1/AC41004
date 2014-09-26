@@ -101,17 +101,9 @@ public class ObjectDescriptionActivity extends Activity
         textView.setText(description);
         //textView.setMovementMethod(new ScrollingMovementMethod());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(ObjectDescriptionActivity.this) {
-            @Override
-            public void onSwipeLeft() {
-                Toast.makeText(getApplicationContext(), "Move left", Toast.LENGTH_LONG).show();
-            }
-            
-            @Override
-            public void onSwipeRight() {
-                Toast.makeText(getApplicationContext(), "Move Right", Toast.LENGTH_LONG).show();
-            }
-        };
+        
+        
+        
         disableHardwareMenuKey();
         
 	}
@@ -122,6 +114,18 @@ public class ObjectDescriptionActivity extends Activity
 	{	
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		
+		OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeLeft() {
+                Toast.makeText(getApplicationContext(), "Move left", Toast.LENGTH_LONG).show();
+            }
+            
+            @Override
+            public void onSwipeRight() {
+                Toast.makeText(getApplicationContext(), "Move Right", Toast.LENGTH_LONG).show();
+            }
+        };
 		
 		return true;
 	}
