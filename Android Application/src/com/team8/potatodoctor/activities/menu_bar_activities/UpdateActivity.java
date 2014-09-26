@@ -33,14 +33,14 @@ public class UpdateActivity extends Activity{
 		
 		disableHardwareMenuKey();
 		
+		//Check for internet connection before proceeding.
 		if(isNetworkConnected())
 		{
 			updateApplication();
 		}
 		else
 		{
-			Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show();
-			finish();
+			showUpdateNetworkErrorDialog();
 		}
 		
 		 
@@ -97,7 +97,32 @@ public class UpdateActivity extends Activity{
 			return false;
 		} else
 			return true;
-	}   
+	} 
+	
+	/*
+	 * Display dialog to connect to internet.
+	 */
+	public void showUpdateNetworkErrorDialog()
+	{
+		// 1. Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+				// 2. Chain together various setter methods to set the dialog characteristics
+				builder.setMessage("This feature requires connectivity to the internet. Please connect to a Wi-Fi or turn on Mobile Data.")
+				       .setTitle("No Internet Connection Detected")
+
+				// 3. set the Positive button option
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+				{
+					public void onClick(DialogInterface dialog, int which) {
+						//Close the activity
+						finish();
+					}
+				}) //End of .setPositiveButton()
+								
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.show();				
+	}
 	
 	/*
 	 * Prompt user to download update if available.
