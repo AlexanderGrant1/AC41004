@@ -13,10 +13,12 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
@@ -24,14 +26,15 @@ import com.team8.potatodoctor.activities.CategoriesListActivity;
 import com.team8.potatodoctor.models.AppUpdater;
 
 public class UpdateActivity extends Activity{
-	
+	ProgressBar spinner;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
-		
+		spinner = (ProgressBar)findViewById(R.id.progress);
+		spinner.setVisibility(View.INVISIBLE);
 		disableHardwareMenuKey();
 		
 		//Check for internet connection before proceeding.
@@ -144,9 +147,16 @@ public class UpdateActivity extends Activity{
 				//Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
 				//startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
 				//finish();
-				
+				spinner.setVisibility(View.VISIBLE);
+
 				dialog.dismiss();
-				doUpdate();
+			    new Thread(new Runnable() {
+			        public void run() {
+			        	Looper.prepare();
+			        	doUpdate();
+			        }
+			    }).start();
+
 			}
 		})
 		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -161,7 +171,7 @@ public class UpdateActivity extends Activity{
 	
 	private void doUpdate()
 	{
-		Toast.makeText(getApplicationContext(), "Updating...", Toast.LENGTH_LONG).show();
+		//Toast.makeText(getApplicationContext(), "Updating...", Toast.LENGTH_LONG).show();
 		AppUpdater apUp = new AppUpdater(getApplicationContext());
 
 		try {
@@ -177,10 +187,20 @@ public class UpdateActivity extends Activity{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
+		
+		Runnable show_toast = new Runnable()
+		{
+		    public void run()
+		    {
+		        Toast.makeText(UpdateActivity.this, "Update completed", Toast.LENGTH_LONG)
+		                    .show();
+		    }
+		};
+		
+		UpdateActivity.this.runOnUiThread(show_toast);
 		finish();
 	}
+	
 	
 	/*
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
