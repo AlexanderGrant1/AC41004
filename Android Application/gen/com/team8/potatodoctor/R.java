@@ -35,24 +35,21 @@ public final class R {
         public static final int ic_video=0x7f02000b;
     }
     public static final class id {
-        public static final int action_exit=0x7f0a0011;
-        public static final int action_imageshare=0x7f0a000e;
-        public static final int action_search=0x7f0a000d;
-        public static final int action_settings=0x7f0a0010;
-        public static final int action_update=0x7f0a000f;
+        public static final int action_exit=0x7f0a000e;
+        public static final int action_imageshare=0x7f0a000b;
+        public static final int action_search=0x7f0a000a;
+        public static final int action_settings=0x7f0a000d;
+        public static final int action_update=0x7f0a000c;
         public static final int gridview=0x7f0a0000;
         public static final int gridview_main=0x7f0a0001;
         public static final int imageGallery=0x7f0a0002;
         public static final int imageSelected=0x7f0a0003;
-        public static final int myVideo=0x7f0a000a;
-        public static final int pest_results=0x7f0a0006;
-        public static final int picture=0x7f0a000b;
-        public static final int plantleaf_results=0x7f0a0007;
+        public static final int myVideo=0x7f0a0007;
+        public static final int picture=0x7f0a0008;
         public static final int search_box=0x7f0a0005;
-        public static final int text=0x7f0a000c;
+        public static final int search_results=0x7f0a0006;
+        public static final int text=0x7f0a0009;
         public static final int textViewItem=0x7f0a0004;
-        public static final int tuber_results=0x7f0a0008;
-        public static final int tutorial_results=0x7f0a0009;
     }
     public static final class layout {
         public static final int activity_category=0x7f030000;
@@ -75,30 +72,35 @@ public final class R {
         public static final int test_video2=0x7f050002;
     }
     public static final class string {
-        public static final int action_exit=0x7f070009;
-        public static final int action_imageshare=0x7f070007;
+        public static final int action_exit=0x7f07000e;
+        public static final int action_imageshare=0x7f07000c;
         /**  Menu Bar Actions 
          */
-        public static final int action_search=0x7f070005;
-        public static final int action_settings=0x7f070006;
-        public static final int action_update=0x7f070008;
+        public static final int action_search=0x7f07000a;
+        public static final int action_settings=0x7f07000b;
+        public static final int action_update=0x7f07000d;
         /**  Search 
          */
-        public static final int app_label=0x7f070002;
+        public static final int app_label=0x7f070003;
         public static final int app_name=0x7f070000;
         /**  Categories Selection Screen 
          */
-        public static final int categories=0x7f07000a;
-        public static final int gridLinearLayout=0x7f07000f;
-        public static final int leaves=0x7f07000c;
-        public static final int pests=0x7f07000b;
+        public static final int categories=0x7f07000f;
+        public static final int description=0x7f070002;
+        public static final int gridLinearLayout=0x7f070014;
+        public static final int leaves=0x7f070011;
+        public static final int pest_header=0x7f070006;
+        public static final int pests=0x7f070010;
         public static final int placeholder=0x7f070001;
+        public static final int plant_header=0x7f070007;
         /**  GridView Screen 
          */
-        public static final int sampleText=0x7f07000e;
-        public static final int search=0x7f070004;
-        public static final int search_hint=0x7f070003;
-        public static final int tubers=0x7f07000d;
+        public static final int sampleText=0x7f070013;
+        public static final int search=0x7f070005;
+        public static final int search_hint=0x7f070004;
+        public static final int tuber_header=0x7f070008;
+        public static final int tubers=0x7f070012;
+        public static final int tutorial_header=0x7f070009;
     }
     public static final class style {
         /** 
