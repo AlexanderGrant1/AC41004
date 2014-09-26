@@ -14,11 +14,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Looper;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
@@ -36,7 +38,7 @@ public class UpdateActivity extends Activity{
 		spinner = (ProgressBar)findViewById(R.id.progress);
 		spinner.setVisibility(View.INVISIBLE);
 		disableHardwareMenuKey();
-		
+		//TextView instructions = (TextView)findViewById(R.id.updateInstructions);
 		//Check for internet connection before proceeding.
 		if(isNetworkConnected())
 		{

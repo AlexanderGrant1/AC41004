@@ -15,6 +15,9 @@
     <string name="tuber_header">Matches found for Tuber Symptoms:</string>
     <string name="tutorial_header">Matches found for Tutorials:</string>
     
+    <string name="updateTitle">Updating</string>
+    <string name="updateInstructions">Press back to cancel updating.</string>
+    
     <!-- Menu Bar Actions -->
     <string name="action_search">Search</string>
     <string name="action_settings">Settings</string>
