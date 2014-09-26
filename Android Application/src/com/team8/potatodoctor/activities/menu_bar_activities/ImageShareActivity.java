@@ -26,12 +26,13 @@ import com.team8.potatodoctor.R;
 
 public class ImageShareActivity extends Activity{
 
-	final String TEMP_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp.jpeg";
+	final String TEMP_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() +"/pd_temp/temp.jpeg";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
+		createTempFolderIfNotExists();
 		deleteTempPictureIfExists();
 		//Check for a network connection before proceeding.
 		if(isNetworkConnected())
@@ -45,6 +46,20 @@ public class ImageShareActivity extends Activity{
 		
 		disableHardwareMenuKey();
 	}  
+	
+	public void createTempFolderIfNotExists()
+	{
+		File tempFolder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/pd_temp");
+		if(!tempFolder.exists())
+		{
+			try {
+				tempFolder.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	private void deleteTempPictureIfExists()
 	{
