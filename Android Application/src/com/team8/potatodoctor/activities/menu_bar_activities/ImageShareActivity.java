@@ -1,22 +1,25 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.ViewConfiguration;
 
 import com.team8.potatodoctor.R;
@@ -29,6 +32,22 @@ public class ImageShareActivity extends Activity{
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
+		
+		//Check for a network connection before proceeding.
+		if(isNetworkConnected())
+		{
+			startUp();
+		}	
+		else
+		{
+			showImageShareNetworkErrorDialog();
+		}
+		
+		disableHardwareMenuKey();
+	}  
+	
+	public void startUp()
+	{
 		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp.jpeg");
 		try {
@@ -39,9 +58,9 @@ public class ImageShareActivity extends Activity{
 		}
 		Log.w("hello","hello");
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(TEMP_PATH))); 
+		
 		startActivityForResult(intent, 0);
-		disableHardwareMenuKey();
-	}  
+	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -82,8 +101,6 @@ public class ImageShareActivity extends Activity{
 	    }
 	};
 	
-
-	
 	/*
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
 	 */
@@ -100,5 +117,44 @@ public class ImageShareActivity extends Activity{
 		} catch (Exception ex) {
 			// Ignore
 		}
+	}
+	
+	/*
+	 * Referenced from: http://stackoverflow.com/questions/9570237/android-check-internet-connection
+	 */
+	private boolean isNetworkConnected() 
+	{
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo ni = cm.getActiveNetworkInfo();
+		if (ni == null) {
+			// There are no active networks.
+			return false;
+		} else
+			return true;
+	}  
+	 	
+	/*
+	 * Display dialog to connect to internet.
+	 */
+	public void showImageShareNetworkErrorDialog()
+	{
+		// 1. Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+				// 2. Chain together various setter methods to set the dialog characteristics
+				builder.setMessage("This feature requires connectivity to the internet. Please connect to a Wi-Fi or turn on Mobile Data.")
+				       .setTitle("No Internet Connection Detected")
+
+				// 3. set the Positive button option
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+				{
+					public void onClick(DialogInterface dialog, int which) {
+						//Close the activity
+						finish();
+					}
+				}) //End of .setPositiveButton()
+								
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.show();				
 	}
 }
