@@ -1,6 +1,7 @@
 package com.team8.potatodoctor.activities;
  
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -189,6 +190,8 @@ public class CategoriesListActivity extends Activity
 	{
 		Boolean isDBUpdated = true;//true for live, false for testing.
 		
+		File db = new File(getApplicationContext().getDatabasePath("potato.db").getAbsolutePath());
+		isDBUpdated = db.exists();
 		//for each table in database, check if they're null.
 		//if any are null, then set isUpdated to false.
 		
@@ -204,7 +207,7 @@ public class CategoriesListActivity extends Activity
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		// 2. Chain together various setter methods to set the dialog characteristics
-		builder.setMessage("Please update Potato Doctor through using the Update feature of Google Play Store.")
+		builder.setMessage("Please update Potato Doctor through using the Update feature or Google Play Store.")
 		       .setTitle("Update Required")
 
 		// 3. set the Positive button option
