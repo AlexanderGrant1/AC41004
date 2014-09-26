@@ -33,7 +33,6 @@ public class ImageShareActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
 		createTempFolderIfNotExists();
-		deleteTempPictureIfExists();
 		//Check for a network connection before proceeding.
 		if(isNetworkConnected())
 		{
