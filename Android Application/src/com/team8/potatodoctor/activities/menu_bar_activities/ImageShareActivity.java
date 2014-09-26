@@ -32,7 +32,7 @@ public class ImageShareActivity extends Activity{
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
-		
+		deleteTempPictureIfExists();
 		//Check for a network connection before proceeding.
 		if(isNetworkConnected())
 		{
@@ -45,6 +45,15 @@ public class ImageShareActivity extends Activity{
 		
 		disableHardwareMenuKey();
 	}  
+	
+	private void deleteTempPictureIfExists()
+	{
+		File temp = new File(TEMP_PATH);
+		if(temp.exists())
+		{
+			temp.delete();
+		}
+	}
 	
 	public void displayCamera()
 	{
