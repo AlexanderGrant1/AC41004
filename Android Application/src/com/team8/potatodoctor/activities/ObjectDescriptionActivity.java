@@ -106,6 +106,11 @@ public class ObjectDescriptionActivity extends Activity
             public void onSwipeLeft() {
                 Toast.makeText(getApplicationContext(), "Move left", Toast.LENGTH_LONG).show();
             }
+            
+            @Override
+            public void onSwipeRight() {
+                Toast.makeText(getApplicationContext(), "Move Right", Toast.LENGTH_LONG).show();
+            }
         };
         disableHardwareMenuKey();
         
