@@ -38,6 +38,7 @@ public class UpdateActivity extends Activity{
 		if(isNetworkConnected())
 		{
 			updateApplication();
+			//doUpdate();
 
 		}
 		else
@@ -160,6 +161,7 @@ public class UpdateActivity extends Activity{
 	
 	private void doUpdate()
 	{
+		Toast.makeText(getApplicationContext(), "Updating...", Toast.LENGTH_LONG).show();
 		AppUpdater apUp = new AppUpdater(getApplicationContext());
 
 		try {
@@ -177,6 +179,7 @@ public class UpdateActivity extends Activity{
 		}
 
 		Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
+		finish();
 	}
 	
 	/*
