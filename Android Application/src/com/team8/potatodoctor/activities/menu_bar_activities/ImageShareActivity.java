@@ -32,11 +32,11 @@ public class ImageShareActivity extends Activity{
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
-		
+		deleteTempPictureIfExists();
 		//Check for a network connection before proceeding.
 		if(isNetworkConnected())
 		{
-			startUp();
+			displayCamera();
 		}	
 		else
 		{
@@ -46,7 +46,16 @@ public class ImageShareActivity extends Activity{
 		disableHardwareMenuKey();
 	}  
 	
-	public void startUp()
+	private void deleteTempPictureIfExists()
+	{
+		File temp = new File(TEMP_PATH);
+		if(temp.exists())
+		{
+			temp.delete();
+		}
+	}
+	
+	public void displayCamera()
 	{
 		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp.jpeg");
@@ -70,8 +79,8 @@ public class ImageShareActivity extends Activity{
 	        picMessageIntent.setType("image/jpeg");
 	        picMessageIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(TEMP_PATH)));
 	        startActivity(Intent.createChooser(picMessageIntent, "Send Picture Using: "));
-	        ImageShareActivity.this.finish();
 		}
+		ImageShareActivity.this.finish();
 		Log.w("hello", "resultCode = "+resultCode + " requestCode = "+requestCode);
 	    		
 	}
