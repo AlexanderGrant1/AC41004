@@ -21,17 +21,20 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.ViewConfiguration;
+import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 
 public class ImageShareActivity extends Activity{
 
-	final String TEMP_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp.jpeg";
+	final String TEMP_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+System.currentTimeMillis()+".jpeg";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
+		Log.d("FilePath", ""+TEMP_PATH);
 		deleteTempPictureIfExists();
 		//Check for a network connection before proceeding.
 		if(isNetworkConnected())
@@ -66,7 +69,7 @@ public class ImageShareActivity extends Activity{
 			e.printStackTrace();
 		}
 		Log.w("hello","hello");
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(TEMP_PATH))); 
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(TEMP_PATH))); 		
 		
 		startActivityForResult(intent, 0);
 	}
@@ -78,6 +81,7 @@ public class ImageShareActivity extends Activity{
 			Intent picMessageIntent = new Intent(android.content.Intent.ACTION_SEND);            
 	        picMessageIntent.setType("image/jpeg");
 	        picMessageIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(TEMP_PATH)));
+	        Toast.makeText(this, "Saved to: "+TEMP_PATH, Toast.LENGTH_SHORT).show();
 	        startActivity(Intent.createChooser(picMessageIntent, "Send Picture Using: "));
 		}
 		ImageShareActivity.this.finish();

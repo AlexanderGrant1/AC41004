@@ -1,7 +1,11 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
  
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
+
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -45,6 +49,7 @@ public class SearchActivity extends Activity {
 	private PlantLeafRepository plantLeafRepository;
 	private PestRepository pestRepository;
 	private TutorialRepository tutorialRepository;
+	private String query = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -68,14 +73,14 @@ public class SearchActivity extends Activity {
 
 	        @Override
 	        public void onTextChanged(CharSequence s, int start, int before, int count) {
-	        	String query = searchBox.getText().toString();
-	        	searchDatabase(query);	        	
+				query = searchBox.getText().toString();
+		    	searchDatabase(query);     		    	
 	        }
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				String query = searchBox.getText().toString();
-	        	searchDatabase(query);
+				//String query = searchBox.getText().toString();
+	        	//searchDatabase(query);
 			} 
 
 	    });
@@ -157,6 +162,19 @@ public class SearchActivity extends Activity {
 	public void displaySearchResults(LinkedList<PestEntity> pests, LinkedList<PlantLeafEntity> plants, LinkedList<TuberEntity> tubers, LinkedList<TutorialEntity> tutorials)
 	{
 		searchTable.removeAllViews();
+		if(pests.isEmpty() && plants.isEmpty() && tubers.isEmpty() && tutorials.isEmpty())
+		{
+			TableRow headerRow = new TableRow(this);
+			headerRow.setPadding(40, 25, 10, 5);
+			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			TextView pestTitle = new TextView(this);
+			pestTitle.setTextSize(24);
+			pestTitle.setText("No results found."); 
+			pestTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			headerRow.addView(pestTitle);
+		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			return;
+		}
 		if(!pests.isEmpty())
 		{
 			TableRow headerRow = new TableRow(this);
