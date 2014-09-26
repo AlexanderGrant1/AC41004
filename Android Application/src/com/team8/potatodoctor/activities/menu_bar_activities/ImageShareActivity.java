@@ -166,7 +166,7 @@ public class ImageShareActivity extends Activity{
 	{
 		// 1. Instantiate an AlertDialog.Builder with its constructor
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
+				builder.setCancelable(false);
 				// 2. Chain together various setter methods to set the dialog characteristics
 				builder.setMessage("This feature requires connectivity to the internet. Please connect to a Wi-Fi or turn on Mobile Data.")
 				       .setTitle("No Internet Connection Detected")

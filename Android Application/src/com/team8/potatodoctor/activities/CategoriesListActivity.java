@@ -205,7 +205,7 @@ public class CategoriesListActivity extends Activity
 	{
 		// 1. Instantiate an AlertDialog.Builder with its constructor
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
+		builder.setCancelable(false);
 		// 2. Chain together various setter methods to set the dialog characteristics
 		builder.setMessage("Please update Potato Doctor through using the Update feature or Google Play Store.")
 		       .setTitle("Update Required")

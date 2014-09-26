@@ -139,6 +139,7 @@ public class UpdateActivity extends Activity{
 	{
 		//new AlertDialog.Builder(this)
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setCancelable(false);
 		builder.setTitle("Update application");
 		builder.setMessage("Are you sure you want to update this application? There may be extra data charges.");
 		builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
