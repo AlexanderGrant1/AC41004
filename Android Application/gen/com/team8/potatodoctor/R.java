@@ -87,15 +87,12 @@ public final class R {
          */
         public static final int categories=0x7f07000f;
         public static final int description=0x7f070002;
-        public static final int gridLinearLayout=0x7f070014;
+        public static final int gridLinearLayout=0x7f070013;
         public static final int leaves=0x7f070011;
         public static final int pest_header=0x7f070006;
         public static final int pests=0x7f070010;
         public static final int placeholder=0x7f070001;
         public static final int plant_header=0x7f070007;
-        /**  GridView Screen 
-         */
-        public static final int sampleText=0x7f070013;
         public static final int search=0x7f070005;
         public static final int search_hint=0x7f070004;
         public static final int tuber_header=0x7f070008;

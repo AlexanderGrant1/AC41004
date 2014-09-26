@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PotatoDoctor</string>
+    <string name="app_name">Potato Doctor</string>
     <string name="placeholder"> Sample Text</string>
     <string name="description">Enlarged Image</string>
     
@@ -28,14 +28,6 @@
     <string name="leaves">Plant / Leaf Symptons</string>
     <string name="tubers">Tuber Symptons</string>
     
-    <!-- GridView Screen -->
-    <string name="sampleText"> The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting. Wikipedia
-								\nHypoallergenic: No
-								\nHigher classification: Dog
-								\nLifespan: 12 – 15 y
-								\nTemperament: Charming, Alert, Faithful, Confident, Keen, Fearless
-								\nHeight: 35 – 43 cm (Adult, Male, At the withers), 33 – 41 cm (Adult, Female, At the withers)
-								\nMass: 8 kg on average (Adult, Female, At preferred size), 10 kg on average (Adult, Male, At preferred size)</string>
 	<string name="gridLinearLayout">Gridview Linear Layout</string>
 	
 </resources>
