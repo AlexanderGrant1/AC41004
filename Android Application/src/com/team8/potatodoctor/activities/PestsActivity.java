@@ -16,7 +16,7 @@ import android.widget.GridView;
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
-import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
+import com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
 import com.team8.potatodoctor.adapters.PestImageAdapter;
 
@@ -81,8 +81,8 @@ public class PestsActivity extends Activity
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));
 	        return true;
-	    case (R.id.action_settings):
-	        this.startActivity(new Intent(this, SettingsActivity.class));
+	    case (R.id.action_userguide):
+	        this.startActivity(new Intent(this, UserGuideActivity.class));
 	        return true;
 	    case (R.id.action_exit):
 	    	Intent intent = new Intent(Intent.ACTION_MAIN); 

@@ -20,7 +20,7 @@
     
     <!-- Menu Bar Actions -->
     <string name="action_search">Search</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_userguide">User Guide</string>
     <string name="action_imageshare">Image Share</string>
     <string name="action_update">Update</string>
     <string name="action_exit">Exit</string>

@@ -38,8 +38,8 @@ public final class R {
         public static final int action_exit=0x7f0a0010;
         public static final int action_imageshare=0x7f0a000d;
         public static final int action_search=0x7f0a000c;
-        public static final int action_settings=0x7f0a000f;
         public static final int action_update=0x7f0a000e;
+        public static final int action_userguide=0x7f0a000f;
         public static final int gridview=0x7f0a0000;
         public static final int gridview_main=0x7f0a0001;
         public static final int imageGallery=0x7f0a0002;
@@ -79,8 +79,8 @@ public final class R {
         /**  Menu Bar Actions 
          */
         public static final int action_search=0x7f07000c;
-        public static final int action_settings=0x7f07000d;
         public static final int action_update=0x7f07000f;
+        public static final int action_userguide=0x7f07000d;
         /**  Search 
          */
         public static final int app_label=0x7f070003;
