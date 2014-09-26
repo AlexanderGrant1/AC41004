@@ -57,13 +57,15 @@ public class UpdateActivity extends Activity{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-	    switch (item.getItemId())
-	    {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
 	    case (R.id.action_search):
 	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
-	        this.startActivity(new Intent(this, ImageShareActivity.class));
+	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
 	        return true;
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));
@@ -73,13 +75,14 @@ public class UpdateActivity extends Activity{
 	        return true;
 	    case (R.id.action_exit):
 	    	Intent intent = new Intent(Intent.ACTION_MAIN); 
-			intent.addCategory(Intent.CATEGORY_HOME);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
-			startActivity(intent);
+	    	intent.addCategory(Intent.CATEGORY_HOME);
+	    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+	    	startActivity(intent);
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
-	    }
+	    
+        }
 	}
 	
 	/*

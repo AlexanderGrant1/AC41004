@@ -15,6 +15,7 @@ import android.widget.VideoView;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
+import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
@@ -80,8 +81,28 @@ public class TutorialActivity extends Activity
         case android.R.id.home:
             this.finish();
             return true;
+	    case (R.id.action_search):
+	        this.startActivity(new Intent(this, SearchActivity.class));
+	        return true;
+	    case (R.id.action_imageshare):
+	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
+	        return true;
+	    case (R.id.action_update):
+	        this.startActivity(new Intent(this, UpdateActivity.class));
+	        return true;
+	    case (R.id.action_settings):
+	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        return true;
+	    case (R.id.action_exit):
+	    	Intent intent = new Intent(Intent.ACTION_MAIN); 
+	    	intent.addCategory(Intent.CATEGORY_HOME);
+	    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+	    	startActivity(intent);
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    
         }
-        return super.onOptionsItemSelected(item);
 	}
 
 	/*

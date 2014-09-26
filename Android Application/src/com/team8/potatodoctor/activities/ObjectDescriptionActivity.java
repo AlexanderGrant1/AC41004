@@ -8,15 +8,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
@@ -35,7 +40,7 @@ import com.team8.potatodoctor.models.repositories.TuberRepository;
  * Generalised class to extract information from the database related to a specific Pest/Symptom. 
  */
 @SuppressWarnings("deprecation")
-public class ObjectDescriptionActivity extends Activity
+public class ObjectDescriptionActivity extends Activity implements OnSwipeTouchListener
 {
 	//ImageView for full sized image when selected.
 	ImageView selectedImage;
@@ -47,11 +52,12 @@ public class ObjectDescriptionActivity extends Activity
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
 	
+    private GestureDetector gestureDetector;
+	
 	protected void onCreate(Bundle savedInstanceState) 
 	{		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_object_description);
-		
 		pestRepository = new PestRepository(getApplicationContext());
 		tuberRepository = new TuberRepository(getApplicationContext());
 		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
@@ -85,7 +91,7 @@ public class ObjectDescriptionActivity extends Activity
 	    	title = tuberRepository.getAllTubers().get(position).getName();
 	    	description = tuberRepository.getAllTubers().get(position).getDescription();
 	    }
-
+	    
 	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
@@ -95,7 +101,12 @@ public class ObjectDescriptionActivity extends Activity
         textView.setText(description);
         //textView.setMovementMethod(new ScrollingMovementMethod());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        
+        OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(ObjectDescriptionActivity.this) {
+            @Override
+            public void onSwipeLeft() {
+                Toast.makeText(getApplicationContext(), "Move left", Toast.LENGTH_LONG).show();
+            }
+        };
         disableHardwareMenuKey();
         
 	}
@@ -226,8 +237,28 @@ public class ObjectDescriptionActivity extends Activity
         case android.R.id.home:
             this.finish();
             return true;
+	    case (R.id.action_search):
+	        this.startActivity(new Intent(this, SearchActivity.class));
+	        return true;
+	    case (R.id.action_imageshare):
+	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
+	        return true;
+	    case (R.id.action_update):
+	        this.startActivity(new Intent(this, UpdateActivity.class));
+	        return true;
+	    case (R.id.action_settings):
+	        this.startActivity(new Intent(this, SettingsActivity.class));
+	        return true;
+	    case (R.id.action_exit):
+	    	Intent intent = new Intent(Intent.ACTION_MAIN); 
+	    	intent.addCategory(Intent.CATEGORY_HOME);
+	    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+	    	startActivity(intent);
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    
         }
-        return super.onOptionsItemSelected(item);
 	}
 	
 	/*
