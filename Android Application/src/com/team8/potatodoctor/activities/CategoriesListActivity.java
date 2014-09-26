@@ -212,6 +212,7 @@ public class CategoriesListActivity extends Activity
 		{
 			public void onClick(DialogInterface dialog, int which) {
 				//Proceed and update.
+				startActivity(new Intent(getBaseContext(),UpdateActivity.class));
 			}
 		}) //End of .setPositiveButton()
 		
