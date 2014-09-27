@@ -33,7 +33,6 @@ import com.team8.potatodoctor.adapters.ImageAdapterMain;
 public class CategoriesListActivity extends Activity
 {
 	ArrayList<String> categoriesNameList;
-	Boolean isUpdated = false;
 	
 	/*
 	 * Displays ArrayList of values onto the UI.
@@ -47,15 +46,9 @@ public class CategoriesListActivity extends Activity
 		//If the app has empty tables or fresh install/user cleared all app data
 		//Bring up dialog asking user to Update.
 		createCategories();
-		if(checkDatabase())
-		{
-			//Continue and create the UI.
-			isUpdated = true;
-		}
-		else
+		if(!checkDatabase())
 		{
 			//Prompt user to update and disable features.
-			isUpdated = false;
 			alertUser();
 		}	
 		
@@ -78,6 +71,7 @@ public class CategoriesListActivity extends Activity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+		boolean isUpdated = checkDatabase();
 	    switch (item.getItemId())
 	    {
 	    case (R.id.action_search):
