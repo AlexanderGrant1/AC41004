@@ -30,6 +30,8 @@ import com.team8.potatodoctor.models.AppUpdater;
 public class UpdateActivity extends Activity{
 	ProgressBar spinner;
 	Boolean isUpdating = false;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -228,7 +230,7 @@ public class UpdateActivity extends Activity{
 	@Override
 	public void onBackPressed()
 	{
-		if(isUpdating)
+		if(!isUpdating)
 		{
 			finish();
 		}
