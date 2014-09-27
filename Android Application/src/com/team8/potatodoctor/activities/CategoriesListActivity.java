@@ -201,7 +201,7 @@ public class CategoriesListActivity extends Activity
 		//for each table in database, check if they're null.
 		//if any are null, then set isUpdated to false.
 		
-		return false;
+		return isDBUpdated;
 	}
 	
 	/*
