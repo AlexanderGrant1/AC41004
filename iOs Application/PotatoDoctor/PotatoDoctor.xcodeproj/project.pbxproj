@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95034A8C19D599B3002375DB /* RootViewControlelr.m in Sources */ = {isa = PBXBuildFile; fileRef = 95034A8B19D599B3002375DB /* RootViewControlelr.m */; };
+		95035EEB19D4C1E2000BF434 /* Tuber.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EEA19D4C1E2000BF434 /* Tuber.m */; };
+		95035EEE19D4C1E3000BF434 /* PlantLeafPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EED19D4C1E3000BF434 /* PlantLeafPhoto.m */; };
+		95035EF119D4C1E3000BF434 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EF019D4C1E3000BF434 /* Tutorial.m */; };
+		95035EF419D4C1E3000BF434 /* TuberPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EF319D4C1E3000BF434 /* TuberPhoto.m */; };
+		95035EF719D4C1E3000BF434 /* Pest.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EF619D4C1E3000BF434 /* Pest.m */; };
+		95035EFA19D4C1E4000BF434 /* PestPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EF919D4C1E4000BF434 /* PestPhoto.m */; };
+		95035EFD19D4C1E4000BF434 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EFC19D4C1E4000BF434 /* Photo.m */; };
+		95035F0019D4C1E4000BF434 /* PlantLeaf.m in Sources */ = {isa = PBXBuildFile; fileRef = 95035EFF19D4C1E4000BF434 /* PlantLeaf.m */; };
+		95113C3819D6DCB700B949A5 /* EntityCelll.m in Sources */ = {isa = PBXBuildFile; fileRef = 95113C3719D6DCB700B949A5 /* EntityCelll.m */; };
+		95113C3B19D6DE8D00B949A5 /* DataModelWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 95113C3A19D6DE8D00B949A5 /* DataModelWrap.m */; };
+		95113C3E19D7182300B949A5 /* EntityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95113C3D19D7182300B949A5 /* EntityDetailViewController.m */; };
+		9553FA9119D4306E0084C9DA /* Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = 9553FA9019D4306E0084C9DA /* Updater.m */; };
+		9553FA9419D44FBF0084C9DA /* DbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9553FA9319D44FBF0084C9DA /* DbManager.m */; };
 		95CAD53A19D222B4000ECECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53919D222B4000ECECD /* main.m */; };
 		95CAD53D19D222B4000ECECD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53C19D222B4000ECECD /* AppDelegate.m */; };
 		95CAD54019D222B4000ECECD /* PotatoDoctor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */; };
@@ -28,6 +42,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		95034A8A19D599A0002375DB /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		95034A8B19D599B3002375DB /* RootViewControlelr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewControlelr.m; sourceTree = "<group>"; };
+		95035EE919D4C1E2000BF434 /* Tuber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuber.h; sourceTree = "<group>"; };
+		95035EEA19D4C1E2000BF434 /* Tuber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tuber.m; sourceTree = "<group>"; };
+		95035EEC19D4C1E3000BF434 /* PlantLeafPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantLeafPhoto.h; sourceTree = "<group>"; };
+		95035EED19D4C1E3000BF434 /* PlantLeafPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantLeafPhoto.m; sourceTree = "<group>"; };
+		95035EEF19D4C1E3000BF434 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
+		95035EF019D4C1E3000BF434 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
+		95035EF219D4C1E3000BF434 /* TuberPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuberPhoto.h; sourceTree = "<group>"; };
+		95035EF319D4C1E3000BF434 /* TuberPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuberPhoto.m; sourceTree = "<group>"; };
+		95035EF519D4C1E3000BF434 /* Pest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pest.h; sourceTree = "<group>"; };
+		95035EF619D4C1E3000BF434 /* Pest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pest.m; sourceTree = "<group>"; };
+		95035EF819D4C1E4000BF434 /* PestPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PestPhoto.h; sourceTree = "<group>"; };
+		95035EF919D4C1E4000BF434 /* PestPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PestPhoto.m; sourceTree = "<group>"; };
+		95035EFB19D4C1E4000BF434 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		95035EFC19D4C1E4000BF434 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		95035EFE19D4C1E4000BF434 /* PlantLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantLeaf.h; sourceTree = "<group>"; };
+		95035EFF19D4C1E4000BF434 /* PlantLeaf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantLeaf.m; sourceTree = "<group>"; };
+		95113C3619D6DCB700B949A5 /* EntityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityCell.h; sourceTree = "<group>"; };
+		95113C3719D6DCB700B949A5 /* EntityCelll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityCelll.m; sourceTree = "<group>"; };
+		95113C3919D6DE8D00B949A5 /* DataModelWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelWrap.h; sourceTree = "<group>"; };
+		95113C3A19D6DE8D00B949A5 /* DataModelWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelWrap.m; sourceTree = "<group>"; };
+		95113C3C19D7182300B949A5 /* EntityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityDetailViewController.h; sourceTree = "<group>"; };
+		95113C3D19D7182300B949A5 /* EntityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDetailViewController.m; sourceTree = "<group>"; };
+		9553FA9019D4306E0084C9DA /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
+		9553FA9219D430820084C9DA /* Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
+		9553FA9319D44FBF0084C9DA /* DbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbManager.m; sourceTree = "<group>"; };
+		9553FA9519D44FCF0084C9DA /* DbManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DbManager.h; sourceTree = "<group>"; };
 		95CAD53419D222B4000ECECD /* PotatoDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PotatoDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CAD53819D222B4000ECECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95CAD53919D222B4000ECECD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,6 +104,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95035EE819D4C166000BF434 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				95035EFE19D4C1E4000BF434 /* PlantLeaf.h */,
+				95035EFF19D4C1E4000BF434 /* PlantLeaf.m */,
+				95035EFB19D4C1E4000BF434 /* Photo.h */,
+				95035EFC19D4C1E4000BF434 /* Photo.m */,
+				95035EF819D4C1E4000BF434 /* PestPhoto.h */,
+				95035EF919D4C1E4000BF434 /* PestPhoto.m */,
+				95035EF519D4C1E3000BF434 /* Pest.h */,
+				95035EF619D4C1E3000BF434 /* Pest.m */,
+				95035EF219D4C1E3000BF434 /* TuberPhoto.h */,
+				95035EF319D4C1E3000BF434 /* TuberPhoto.m */,
+				95035EEF19D4C1E3000BF434 /* Tutorial.h */,
+				95035EF019D4C1E3000BF434 /* Tutorial.m */,
+				95035EEC19D4C1E3000BF434 /* PlantLeafPhoto.h */,
+				95035EED19D4C1E3000BF434 /* PlantLeafPhoto.m */,
+				95035EE919D4C1E2000BF434 /* Tuber.h */,
+				95035EEA19D4C1E2000BF434 /* Tuber.m */,
+				95113C3919D6DE8D00B949A5 /* DataModelWrap.h */,
+				95113C3A19D6DE8D00B949A5 /* DataModelWrap.m */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		9553FA8C19D42D600084C9DA /* Data Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9553FA9219D430820084C9DA /* Updater.h */,
+				9553FA9019D4306E0084C9DA /* Updater.m */,
+				9553FA9519D44FCF0084C9DA /* DbManager.h */,
+				9553FA9319D44FBF0084C9DA /* DbManager.m */,
+				95CAD56019D2280B000ECECD /* Controllers */,
+			);
+			name = "Data Managers";
+			sourceTree = "<group>";
+		};
 		95CAD52B19D222B4000ECECD = {
 			isa = PBXGroup;
 			children = (
@@ -83,16 +162,17 @@
 		95CAD53619D222B4000ECECD /* PotatoDoctor */ = {
 			isa = PBXGroup;
 			children = (
-				95CAD56019D2280B000ECECD /* Controllers */,
+				95035EE819D4C166000BF434 /* Data Models */,
+				9553FA8C19D42D600084C9DA /* Data Managers */,
 				95CAD53B19D222B4000ECECD /* AppDelegate.h */,
 				95CAD53C19D222B4000ECECD /* AppDelegate.m */,
-				95CAD54119D222B4000ECECD /* NavController.h */,
-				95CAD54219D222B4000ECECD /* NavController.m */,
 				95CAD54419D222B4000ECECD /* Main.storyboard */,
 				95CAD54719D222B4000ECECD /* Images.xcassets */,
 				95CAD54919D222B5000ECECD /* LaunchScreen.xib */,
 				95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */,
 				95CAD53719D222B4000ECECD /* Supporting Files */,
+				95113C3619D6DCB700B949A5 /* EntityCell.h */,
+				95113C3719D6DCB700B949A5 /* EntityCelll.m */,
 			);
 			path = PotatoDoctor;
 			sourceTree = "<group>";
@@ -126,6 +206,12 @@
 		95CAD56019D2280B000ECECD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				95CAD54119D222B4000ECECD /* NavController.h */,
+				95CAD54219D222B4000ECECD /* NavController.m */,
+				95034A8A19D599A0002375DB /* RootViewController.h */,
+				95034A8B19D599B3002375DB /* RootViewControlelr.m */,
+				95113C3C19D7182300B949A5 /* EntityDetailViewController.h */,
+				95113C3D19D7182300B949A5 /* EntityDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -230,10 +316,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95113C3E19D7182300B949A5 /* EntityDetailViewController.m in Sources */,
+				95035EFA19D4C1E4000BF434 /* PestPhoto.m in Sources */,
 				95CAD53D19D222B4000ECECD /* AppDelegate.m in Sources */,
+				95113C3B19D6DE8D00B949A5 /* DataModelWrap.m in Sources */,
+				9553FA9419D44FBF0084C9DA /* DbManager.m in Sources */,
+				9553FA9119D4306E0084C9DA /* Updater.m in Sources */,
+				95035EFD19D4C1E4000BF434 /* Photo.m in Sources */,
+				95035EF419D4C1E3000BF434 /* TuberPhoto.m in Sources */,
+				95034A8C19D599B3002375DB /* RootViewControlelr.m in Sources */,
 				95CAD53A19D222B4000ECECD /* main.m in Sources */,
+				95035F0019D4C1E4000BF434 /* PlantLeaf.m in Sources */,
+				95035EF719D4C1E3000BF434 /* Pest.m in Sources */,
+				95035EEE19D4C1E3000BF434 /* PlantLeafPhoto.m in Sources */,
 				95CAD54319D222B4000ECECD /* NavController.m in Sources */,
 				95CAD54019D222B4000ECECD /* PotatoDoctor.xcdatamodeld in Sources */,
+				95113C3819D6DCB700B949A5 /* EntityCelll.m in Sources */,
+				95035EEB19D4C1E2000BF434 /* Tuber.m in Sources */,
+				95035EF119D4C1E3000BF434 /* Tutorial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +526,7 @@
 				95CAD55C19D222B5000ECECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95CAD55D19D222B5000ECECD /* Build configuration list for PBXNativeTarget "PotatoDoctorTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +535,7 @@
 				95CAD55F19D222B5000ECECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
