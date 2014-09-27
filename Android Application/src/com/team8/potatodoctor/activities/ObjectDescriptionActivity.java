@@ -136,6 +136,26 @@ public class ObjectDescriptionActivity extends Activity
 	    return true;
 	}
 	
+	public void moveLeft()
+	{
+		if(canMoveLeft())
+		{
+			position--;
+			updateLeftRightButtons();
+			displayObjectDetails();	
+		}
+	}
+	
+	public void moveRight()
+	{
+		if(canMoveRight())
+		{
+			position++;
+			updateLeftRightButtons();
+			displayObjectDetails();	
+		}
+	}
+	
 	public void updateLeftRightButtons()
 	{
 		leftButton.setVisibility(View.VISIBLE);
@@ -295,26 +315,6 @@ public class ObjectDescriptionActivity extends Activity
     	{
     		return new Intent(this, CategoriesListActivity.class);
     	}
-	}
-	
-	public void moveLeft()
-	{
-		if(canMoveLeft())
-		{
-			position--;
-			updateLeftRightButtons();
-			displayObjectDetails();	
-		}
-	}
-	
-	public void moveRight()
-	{
-		if(canMoveRight())
-		{
-			position++;
-			updateLeftRightButtons();
-			displayObjectDetails();	
-		}
 	}
 	
 	@Override
