@@ -27,8 +27,12 @@ public final class R {
         public static final int ic_leaf=0x7f020003;
         public static final int ic_pest=0x7f020004;
         public static final int ic_potato=0x7f020005;
-        public static final int ic_tuber=0x7f020006;
-        public static final int ic_video=0x7f020007;
+        public static final int ic_shiba1=0x7f020006;
+        public static final int ic_shiba2=0x7f020007;
+        public static final int ic_shiba3=0x7f020008;
+        public static final int ic_shiba4=0x7f020009;
+        public static final int ic_tuber=0x7f02000a;
+        public static final int ic_video=0x7f02000b;
     }
     public static final class id {
         public static final int action_exit=0x7f0a0010;

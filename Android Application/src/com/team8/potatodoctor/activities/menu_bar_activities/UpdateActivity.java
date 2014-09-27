@@ -29,7 +29,7 @@ import com.team8.potatodoctor.models.AppUpdater;
 
 public class UpdateActivity extends Activity{
 	ProgressBar spinner;
-	Thread updateThread;
+	Boolean isUpdating = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -175,6 +175,7 @@ public class UpdateActivity extends Activity{
 	
 	private void doUpdate()
 	{
+		isUpdating = true;
 		//Toast.makeText(getApplicationContext(), "Updating...", Toast.LENGTH_LONG).show();
 		AppUpdater apUp = new AppUpdater(getApplicationContext());
 
@@ -221,6 +222,15 @@ public class UpdateActivity extends Activity{
 			}
 		} catch (Exception ex) {
 			// Ignore
+		}
+	}
+	
+	@Override
+	public void onBackPressed()
+	{
+		if(isUpdating)
+		{
+			finish();
 		}
 	}
 }
