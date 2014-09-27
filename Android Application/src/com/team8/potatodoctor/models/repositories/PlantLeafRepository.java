@@ -79,6 +79,24 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 
+	public int getIndexOfPlantLeafByName(String name)
+	{
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_PlantLeaf",null);
+        int index = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                if(cursor.getString(cursor.getColumnIndex("Name")).equals(name))
+                {
+                	return index;
+                }
+                index++;
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return -1;
+	}
 	
 	public LinkedList<PlantLeafEntity> searchPlantLeafSymptoms(String keywords)
 	{

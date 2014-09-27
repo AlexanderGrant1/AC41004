@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.team8.potatodoctor"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+ 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+ 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="20" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_potato"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo" >
+        
+        <!-- ========================== Primary Activities ========================== -->
+        
+        <!-- CategoriesListActivity -->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.CategoriesListActivity"
+            android:label="@string/app_name" >
+            
+            <!-- Set as startup Activity-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+                
+        </activity>
+        
+        <!-- PestsActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.PestsActivity"
+            android:label="@string/pests"
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- PlantSymptomActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.PlantSymptomActivity"
+            android:label="@string/leaves"
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- TuberSymptomActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.TuberSymptomActivity"
+            android:label="@string/tubers"
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- ObjectDescriptionActivity - No parentActivityName-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.ObjectDescriptionActivity"
+            android:label="@string/placeholder"
+        	></activity>
+        
+        <!-- TutorialActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.TutorialActivity"
+            android:label="@string/placeholder"
+        	android:parentActivityName="com.team8.potatodoctor.activities.VideoGridActivity"
+        	android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+        
+        <!-- VideoGridActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.VideoGridActivity"
+            android:label="@string/placeholder"
+        	android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
+        
+        <!-- ========================== Menu Bar Activities ========================== -->
+                
+        <!-- SearchActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity"
+            android:label="@string/action_search"></activity>
+        
+        <!-- ImageShareActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity"
+            android:label="@string/action_imageshare"></activity>
+        
+        <!-- UpdateActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity"
+            android:label="@string/action_update"></activity>
+        
+        <!-- UserGuideActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity"
+            android:label="@string/action_userguide"></activity>
+        
+        <!-- ExitActivity-->
+        <activity 
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.ExitActivity"
+            android:label="@string/action_exit"></activity>
+        
+    </application>
+    
+</manifest>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PotatoDoctor</string>
+    <string name="app_name">Potato Doctor</string>
     <string name="placeholder"> Sample Text</string>
     <string name="description">Enlarged Image</string>
     
@@ -15,9 +15,12 @@
     <string name="tuber_header">Matches found for Tuber Symptoms:</string>
     <string name="tutorial_header">Matches found for Tutorials:</string>
     
+    <string name="updateTitle">Updating</string>
+    <string name="updateInstructions">Updating the app...</string>
+    
     <!-- Menu Bar Actions -->
     <string name="action_search">Search</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_userguide">User Guide</string>
     <string name="action_imageshare">Image Share</string>
     <string name="action_update">Update</string>
     <string name="action_exit">Exit</string>
@@ -25,17 +28,9 @@
     <!-- Categories Selection Screen -->
     <string name="categories">Categories</string>
     <string name="pests">Pests</string>
-    <string name="leaves">Plant / Leaf Symptons</string>
-    <string name="tubers">Tuber Symptons</string>
+    <string name="leaves">Plant / Leaf Symptoms</string>
+    <string name="tubers">Tuber Symptoms</string>
     
-    <!-- GridView Screen -->
-    <string name="sampleText"> The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting. Wikipedia
-								\nHypoallergenic: No
-								\nHigher classification: Dog
-								\nLifespan: 12 – 15 y
-								\nTemperament: Charming, Alert, Faithful, Confident, Keen, Fearless
-								\nHeight: 35 – 43 cm (Adult, Male, At the withers), 33 – 41 cm (Adult, Female, At the withers)
-								\nMass: 8 kg on average (Adult, Female, At preferred size), 10 kg on average (Adult, Male, At preferred size)</string>
 	<string name="gridLinearLayout">Gridview Linear Layout</string>
 	
 </resources>

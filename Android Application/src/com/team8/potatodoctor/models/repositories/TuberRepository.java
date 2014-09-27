@@ -79,6 +79,25 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	public int getIndexOfTuberByName(String name)
+	{
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM potato_Tuber",null);
+        int index = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                if(cursor.getString(cursor.getColumnIndex("Name")).equals(name))
+                {
+                	return index;
+                }
+                index++;
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return -1;
+	}
+	
 	public LinkedList<TuberEntity> searchTubers(String keywords)
 	{
         LinkedList<TuberEntity> foundEntries = new LinkedList<TuberEntity>();

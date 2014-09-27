@@ -8,21 +8,27 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.activities.menu_bar_activities.ExitActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
-import com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity;
+import com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
 import com.team8.potatodoctor.adapters.GalleryImageAdapter;
 import com.team8.potatodoctor.database_objects.PestEntity;
@@ -44,21 +50,22 @@ public class ObjectDescriptionActivity extends Activity
 	private PestRepository pestRepository;
 	private TuberRepository tuberRepository;
 	private PlantLeafRepository plantLeafRepository;
+	
+	Button rightButton;
+	Button leftButton;
 		
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
-	
+	String type = "";
+	int position = 0;
 	protected void onCreate(Bundle savedInstanceState) 
 	{		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_object_description);
-		
 		pestRepository = new PestRepository(getApplicationContext());
 		tuberRepository = new TuberRepository(getApplicationContext());
 		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
-		String type = "";
-		int position = 0;
-		
+
 		//Extract parameters from the intent.
 	    Bundle extras = getIntent().getExtras();
 	    if(extras !=null)
@@ -67,6 +74,104 @@ public class ObjectDescriptionActivity extends Activity
 	    	position = extras.getInt("Position");
 	    }
 	    
+		displayObjectDetails();
+	    leftButton = (Button)findViewById(R.id.leftButton);
+	    rightButton = (Button)findViewById(R.id.rightButton);
+	    updateLeftRightButtons();
+	    
+	    leftButton.setOnClickListener(new OnClickListener()
+	    {
+			@Override
+			public void onClick(View v) {
+				moveLeft();
+				
+			}
+	    });
+	    
+
+	    rightButton.setOnClickListener(new OnClickListener()
+	    {
+			@Override
+			public void onClick(View v) {
+				moveRight();
+				
+			}
+	    });
+	   
+	    
+        //textView.setMovementMethod(new ScrollingMovementMethod());
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        disableHardwareMenuKey();
+        
+	}
+	
+	private boolean canMoveLeft()
+	{
+		return position > 0;
+	}
+	
+	private boolean canMoveRight()
+	{
+	    if(type.equals("potato_PlantLeaf"))
+	    {
+	    	if(position == plantLeafRepository.getAllPlantLeafs().size() - 1)
+	    	{
+	    		return false;
+	    	}
+	    }
+	    else if(type.equals("potato_Pest"))
+	    {
+	    	if(position == pestRepository.getAllPests().size() - 1)
+	    	{
+	    		return false;
+	    	}
+	    }
+	    else if(type.equals("potato_Tuber"))
+	    {
+	    	if(position == tuberRepository.getAllTubers().size() - 1)
+	    	{
+	    		return false;
+	    	}
+	    }
+	    return true;
+	}
+	
+	public void moveLeft()
+	{
+		if(canMoveLeft())
+		{
+			position--;
+			updateLeftRightButtons();
+			displayObjectDetails();	
+		}
+	}
+	
+	public void moveRight()
+	{
+		if(canMoveRight())
+		{
+			position++;
+			updateLeftRightButtons();
+			displayObjectDetails();	
+		}
+	}
+	
+	public void updateLeftRightButtons()
+	{
+		leftButton.setVisibility(View.VISIBLE);
+		rightButton.setVisibility(View.VISIBLE);
+		if(!canMoveLeft())
+		{
+			leftButton.setVisibility(View.INVISIBLE);
+		}
+		if(!canMoveRight())
+		{
+			rightButton.setVisibility(View.INVISIBLE);
+		}
+	}
+	
+	public void displayObjectDetails()
+	{
 	    String description = "";
 	    String title = "";
 	    
@@ -86,7 +191,6 @@ public class ObjectDescriptionActivity extends Activity
 	    	title = tuberRepository.getAllTubers().get(position).getName();
 	    	description = tuberRepository.getAllTubers().get(position).getDescription();
 	    }
-
 	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
@@ -94,12 +198,8 @@ public class ObjectDescriptionActivity extends Activity
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
-        textView.setMovementMethod(new ScrollingMovementMethod());
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        
-        disableHardwareMenuKey();
-        
 	}
+	
 
   
 	@Override
@@ -121,11 +221,10 @@ public class ObjectDescriptionActivity extends Activity
         gallery.setScaleY(1.7f);
         gallery.setY(80f);
         Bundle extras = getIntent().getExtras();
-        String type = extras.getString("Type");
         Log.w("hello","TYPE = "+type);
 	    	if(type.equals("potato_Pest"))
 	    	{
-                PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
+                PestEntity currentPest = pestRepository.getAllPests().get(position);
                 gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
                 if(currentPest.getPhotos().size() > 0)
                 {
@@ -139,7 +238,7 @@ public class ObjectDescriptionActivity extends Activity
 	    	} 
 	    	else if(type.equals("potato_Tuber"))
 	    	{
-	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
+	    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
 	            gallery.setAdapter(new GalleryImageAdapter(this,tuber));
 	    		if(tuber.getPhotos().size() > 0)
 	    		{
@@ -152,7 +251,7 @@ public class ObjectDescriptionActivity extends Activity
 	    	}
 	    	else if(type.equals("potato_PlantLeaf"))
 	    	{
-	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
+	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
 	            gallery.setAdapter(new GalleryImageAdapter(this,plantLeaf));
 	    		if(plantLeaf.getPhotos().size() > 0)
 	    		{
@@ -169,33 +268,27 @@ public class ObjectDescriptionActivity extends Activity
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
              
         	    Bundle extras = getIntent().getExtras();
-        	    String type;
         	    if(extras !=null)
         	    {
-        	    	type = extras.getString("Type");
         	    	if(type.equals("potato_Pest"))
         	    	{
-                        PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
+                        PestEntity currentPest = pestRepository.getAllPests().get(position);
                         selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else if(type.equals("potato_Tuber"))
         	    	{
-        	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
+        	    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
         	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else if(type.equals("potato_PlantLeaf"))
         	    	{
-        	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
+        	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
         	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else
         	    	{
         	    		Log.w("hello", "not implemented");
         	    	}
-        	    }
-        	    else
-        	    {
-        	    	Log.w("hello", "ERROR PLEASE HELP");
         	    }
 
             }
@@ -206,7 +299,7 @@ public class ObjectDescriptionActivity extends Activity
 	{
 		Bundle extras = getIntent().getExtras();
     	String type = extras.getString("Type");
-    	if(type.equals("potato_Pest"))
+    	if(type.equals("potato_Pest")) 
     	{
     		return new Intent(this, PestsActivity.class);
     	}
@@ -227,26 +320,32 @@ public class ObjectDescriptionActivity extends Activity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-	    switch (item.getItemId())
-	    {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
 	    case (R.id.action_search):
 	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
-	        this.startActivity(new Intent(this, ImageShareActivity.class));
+	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
 	        return true;
 	    case (R.id.action_update):
 	        this.startActivity(new Intent(this, UpdateActivity.class));
 	        return true;
-	    case (R.id.action_settings):
-	        this.startActivity(new Intent(this, SettingsActivity.class));
+	    case (R.id.action_userguide):
+	        this.startActivity(new Intent(this, UserGuideActivity.class));
 	        return true;
 	    case (R.id.action_exit):
-	        this.startActivity(new Intent(this, ExitActivity.class));
+	    	Intent intent = new Intent(Intent.ACTION_MAIN); 
+	    	intent.addCategory(Intent.CATEGORY_HOME);
+	    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+	    	startActivity(intent);
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
-	    }
+	    
+        }
 	}
 	
 	/*

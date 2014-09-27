@@ -26,8 +26,8 @@ public class LocalDbUpdater {
 	private PhotoRepository photoRepository;
 	private TutorialRepository tutorialRepository;
 	private DataFetcher dataFetcher;
-	public LocalDbUpdater(Context context)
-	{
+	public LocalDbUpdater(Context context) 
+	{ 
 		tuberRepository = new TuberRepository(context);
 		pestRepository = new PestRepository(context);
 		plantLeafRepository = new PlantLeafRepository(context);
