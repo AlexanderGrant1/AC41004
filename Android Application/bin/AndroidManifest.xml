@@ -88,10 +88,10 @@
             android:name="com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity"
             android:label="@string/action_update"></activity>
         
-        <!-- SettingsActivity-->
+        <!-- UserGuideActivity-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.menu_bar_activities.SettingsActivity"
-            android:label="@string/action_settings"></activity>
+            android:name="com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity"
+            android:label="@string/action_userguide"></activity>
         
         <!-- ExitActivity-->
         <activity 

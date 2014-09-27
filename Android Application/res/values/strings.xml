@@ -28,8 +28,8 @@
     <!-- Categories Selection Screen -->
     <string name="categories">Categories</string>
     <string name="pests">Pests</string>
-    <string name="leaves">Plant / Leaf Symptons</string>
-    <string name="tubers">Tuber Symptons</string>
+    <string name="leaves">Plant / Leaf Symptoms</string>
+    <string name="tubers">Tuber Symptoms</string>
     
 	<string name="gridLinearLayout">Gridview Linear Layout</string>
 	

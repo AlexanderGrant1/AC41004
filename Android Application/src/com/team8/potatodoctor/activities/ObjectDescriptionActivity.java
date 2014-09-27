@@ -78,19 +78,21 @@ public class ObjectDescriptionActivity extends Activity
 	    {
 	    	title = plantLeafRepository.getAllPlantLeafs().get(position).getName();
 	    	description = plantLeafRepository.getAllPlantLeafs().get(position).getDescription();
+	    	setTitle("Plant/Leafs > "+ title);
 	    }
 	    else if(type.equals("potato_Pest"))
 	    {
 	    	title = pestRepository.getAllPests().get(position).getName();
 	    	description = pestRepository.getAllPests().get(position).getDescription();
+	    	setTitle("Pests > "+ title);
 	    }
 	    else if(type.equals("potato_Tuber"))
 	    {
 	    	title = tuberRepository.getAllTubers().get(position).getName();
 	    	description = tuberRepository.getAllTubers().get(position).getDescription();
+	    	setTitle("Tubers > "+ title);
 	    }
 	    
-	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
 	     
