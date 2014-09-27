@@ -29,6 +29,7 @@ import com.team8.potatodoctor.models.AppUpdater;
 
 public class UpdateActivity extends Activity{
 	ProgressBar spinner;
+	Thread updateThread;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -53,7 +54,7 @@ public class UpdateActivity extends Activity{
 		
 		 
 	}
-	
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -61,7 +62,7 @@ public class UpdateActivity extends Activity{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+	*/
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{

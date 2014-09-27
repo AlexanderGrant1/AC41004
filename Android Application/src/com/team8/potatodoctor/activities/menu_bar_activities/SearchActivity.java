@@ -108,7 +108,7 @@ public class SearchActivity extends Activity {
             this.finish();
             return true;
 	    case (R.id.action_search):
-	        this.startActivity(new Intent(this, SearchActivity.class));
+	      //  this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
 	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
@@ -201,7 +201,7 @@ public class SearchActivity extends Activity {
 				pestObject.setTextSize(18);
 				pestObject.setText(pest.getName()); 
 				pestObject.setTextColor(Color.WHITE);
-				row.setBackgroundColor(Color.GRAY);
+				row.setBackgroundColor(Color.DKGRAY);
 				
 				//Add the Textview to the TableRow
 			    row.addView(pestObject);
@@ -244,7 +244,7 @@ public class SearchActivity extends Activity {
 				TableRow row = new TableRow(this);
 				row.setPadding(40, 25, 10, 5);				
 				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-
+				
 				//Create a TextView to hold pest details.
 				TextView plantObject = new TextView(this);
 				plantObject.setTextSize(18);

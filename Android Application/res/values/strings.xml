@@ -16,7 +16,7 @@
     <string name="tutorial_header">Matches found for Tutorials:</string>
     
     <string name="updateTitle">Updating</string>
-    <string name="updateInstructions">Press back to cancel updating.</string>
+    <string name="updateInstructions">Updating the app...</string>
     
     <!-- Menu Bar Actions -->
     <string name="action_search">Search</string>
