@@ -8,7 +8,7 @@ public interface IDatabaseObject {
 	public void setId(int id);
 	
 	public void setName(String name);
-	public String getName();
+	public String getName(); 
 	
 	public void setDescription(String description);
 	public String getDescription();
@@ -16,3 +16,4 @@ public interface IDatabaseObject {
 	public LinkedList<PhotoEntity> getPhotos();
 	public void setPhotos(LinkedList<PhotoEntity> photos);
 }
+ 

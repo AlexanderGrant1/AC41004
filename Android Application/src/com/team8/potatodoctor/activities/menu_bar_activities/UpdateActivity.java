@@ -42,7 +42,7 @@ public class UpdateActivity extends Activity{
 		spinner.setVisibility(View.INVISIBLE);
 		disableHardwareMenuKey();
 		//TextView instructions = (TextView)findViewById(R.id.updateInstructions);
-		//Check for internet connection before proceeding.
+		//Check for Internet connection before proceeding.
 		if(isNetworkConnected())
 		{
 			updateApplication();

@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
-<LinearLayout 
+<RelativeLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"> 
@@ -14,23 +14,58 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" />
 
+    
     <ImageView
         android:id="@+id/imageSelected"
         android:layout_marginTop="100dp"
         android:layout_width="250dp"
         android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:layout_height="250dp"
+        android:layout_below="@id/imageGallery"
         android:contentDescription="@string/description" />
+    
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/textViewTitle"
+        android:layout_alignTop="@id/textViewTitle"
+        android:layout_gravity="center_horizontal"
+        android:layout_toLeftOf="@+id/textViewTitle"
+        android:background="@drawable/ic_arrow_left"
+        android:visibility="visible" />
+    
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewItem"
+        android:layout_alignRight="@+id/textViewItem"
+        android:layout_below="@id/imageSelected"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp" />
+    
+        <Button
+            android:id="@+id/rightButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/textViewTitle"
+            android:layout_alignTop="@id/textViewTitle"
+            android:layout_gravity="center_horizontal"
+            android:layout_toRightOf="@id/textViewTitle"
+            android:background="@drawable/ic_arrow_right"
+            android:visibility="visible" />
     
     <TextView
         android:id="@+id/textViewItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_below="@id/textViewTitle"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"        
-        android:textSize="18sp" />
-    
-</LinearLayout>
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:textSize="18sp"
+    />
+</RelativeLayout>
 </ScrollView>

@@ -207,7 +207,7 @@ public class ObjectDescriptionActivity extends Activity
 	{
 		Bundle extras = getIntent().getExtras();
     	String type = extras.getString("Type");
-    	if(type.equals("potato_Pest"))
+    	if(type.equals("potato_Pest")) 
     	{
     		return new Intent(this, PestsActivity.class);
     	}
