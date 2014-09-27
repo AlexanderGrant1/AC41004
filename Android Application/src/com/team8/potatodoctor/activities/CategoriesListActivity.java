@@ -46,11 +46,11 @@ public class CategoriesListActivity extends Activity
 		
 		//If the app has empty tables or fresh install/user cleared all app data
 		//Bring up dialog asking user to Update.
+		createCategories();
 		if(checkDatabase())
 		{
 			//Continue and create the UI.
 			isUpdated = true;
-			createCategories();
 		}
 		else
 		{
@@ -157,26 +157,32 @@ public class CategoriesListActivity extends Activity
 					//Argument position gives the index of item which is clicked.
 					public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3)
 					{
-
-						if(position == 0)
+						if(checkDatabase())
 						{
-							Intent intentPests = new Intent(getApplicationContext(),PestsActivity.class);
-							startActivity(intentPests);
+							if(position == 0)
+							{
+								Intent intentPests = new Intent(getApplicationContext(),PestsActivity.class);
+								startActivity(intentPests);
+							}
+							else if(position == 1)
+							{
+								Intent intentLeaves = new Intent(getApplicationContext(),PlantSymptomActivity.class);
+								startActivity(intentLeaves);
+							}
+							else if(position == 2)
+							{
+								Intent intentTuber = new Intent(getApplicationContext(),TuberSymptomActivity.class);
+								startActivity(intentTuber);
+							}
+							else if(position == 3)
+							{
+								Intent intentVideo = new Intent(getApplicationContext(),VideoGridActivity.class);
+								startActivity(intentVideo);
+							}
 						}
-						else if(position == 1)
+						else
 						{
-							Intent intentLeaves = new Intent(getApplicationContext(),PlantSymptomActivity.class);
-							startActivity(intentLeaves);
-						}
-						else if(position == 2)
-						{
-							Intent intentTuber = new Intent(getApplicationContext(),TuberSymptomActivity.class);
-							startActivity(intentTuber);
-						}
-						else if(position == 3)
-						{
-							Intent intentVideo = new Intent(getApplicationContext(),VideoGridActivity.class);
-							startActivity(intentVideo);
+							Toast.makeText(getApplicationContext(), "Please update to proceed", Toast.LENGTH_LONG).show();
 						}
 					}
 
@@ -195,7 +201,7 @@ public class CategoriesListActivity extends Activity
 		//for each table in database, check if they're null.
 		//if any are null, then set isUpdated to false.
 		
-		return isDBUpdated;
+		return false;
 	}
 	
 	/*
