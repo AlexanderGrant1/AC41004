@@ -14,10 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,10 +50,14 @@ public class ObjectDescriptionActivity extends Activity
 	private PestRepository pestRepository;
 	private TuberRepository tuberRepository;
 	private PlantLeafRepository plantLeafRepository;
+	
+	Button rightButton;
+	Button leftButton;
 		
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
-	
+	String type = "";
+	int position = 0;
 	protected void onCreate(Bundle savedInstanceState) 
 	{		
 		super.onCreate(savedInstanceState);
@@ -59,9 +65,7 @@ public class ObjectDescriptionActivity extends Activity
 		pestRepository = new PestRepository(getApplicationContext());
 		tuberRepository = new TuberRepository(getApplicationContext());
 		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
-		String type = "";
-		int position = 0;
-		
+
 		//Extract parameters from the intent.
 	    Bundle extras = getIntent().getExtras();
 	    if(extras !=null)
@@ -70,6 +74,84 @@ public class ObjectDescriptionActivity extends Activity
 	    	position = extras.getInt("Position");
 	    }
 	    
+		displayObjectDetails();
+	    leftButton = (Button)findViewById(R.id.leftButton);
+	    rightButton = (Button)findViewById(R.id.rightButton);
+	    updateLeftRightButtons();
+	    
+	    leftButton.setOnClickListener(new OnClickListener()
+	    {
+			@Override
+			public void onClick(View v) {
+				moveLeft();
+				
+			}
+	    });
+	    
+
+	    rightButton.setOnClickListener(new OnClickListener()
+	    {
+			@Override
+			public void onClick(View v) {
+				moveRight();
+				
+			}
+	    });
+	   
+	    
+        //textView.setMovementMethod(new ScrollingMovementMethod());
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        disableHardwareMenuKey();
+        
+	}
+	
+	private boolean canMoveLeft()
+	{
+		return position > 0;
+	}
+	
+	private boolean canMoveRight()
+	{
+	    if(type.equals("potato_PlantLeaf"))
+	    {
+	    	if(position == plantLeafRepository.getAllPlantLeafs().size() - 1)
+	    	{
+	    		return false;
+	    	}
+	    }
+	    else if(type.equals("potato_Pest"))
+	    {
+	    	if(position == pestRepository.getAllPests().size() - 1)
+	    	{
+	    		return false;
+	    	}
+	    }
+	    else if(type.equals("potato_Tuber"))
+	    {
+	    	if(position == tuberRepository.getAllTubers().size() - 1)
+	    	{
+	    		return false;
+	    	}
+	    }
+	    return true;
+	}
+	
+	public void updateLeftRightButtons()
+	{
+		leftButton.setVisibility(View.VISIBLE);
+		rightButton.setVisibility(View.VISIBLE);
+		if(!canMoveLeft())
+		{
+			leftButton.setVisibility(View.INVISIBLE);
+		}
+		if(!canMoveRight())
+		{
+			rightButton.setVisibility(View.INVISIBLE);
+		}
+	}
+	
+	public void displayObjectDetails()
+	{
 	    String description = "";
 	    String title = "";
 	    
@@ -78,31 +160,24 @@ public class ObjectDescriptionActivity extends Activity
 	    {
 	    	title = plantLeafRepository.getAllPlantLeafs().get(position).getName();
 	    	description = plantLeafRepository.getAllPlantLeafs().get(position).getDescription();
-	    	setTitle("Plant/Leafs > "+ title);
 	    }
 	    else if(type.equals("potato_Pest"))
 	    {
 	    	title = pestRepository.getAllPests().get(position).getName();
 	    	description = pestRepository.getAllPests().get(position).getDescription();
-	    	setTitle("Pests > "+ title);
 	    }
 	    else if(type.equals("potato_Tuber"))
 	    {
 	    	title = tuberRepository.getAllTubers().get(position).getName();
 	    	description = tuberRepository.getAllTubers().get(position).getDescription();
-	    	setTitle("Tubers > "+ title);
 	    }
-	    
+	    setTitle(title);
 	    //Setup ImageGallery
 	    setImageGallery();
 	     
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
-        //textView.setMovementMethod(new ScrollingMovementMethod());
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        disableHardwareMenuKey();
-        
 	}
 	
 
@@ -126,11 +201,10 @@ public class ObjectDescriptionActivity extends Activity
         gallery.setScaleY(1.7f);
         gallery.setY(80f);
         Bundle extras = getIntent().getExtras();
-        String type = extras.getString("Type");
         Log.w("hello","TYPE = "+type);
 	    	if(type.equals("potato_Pest"))
 	    	{
-                PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
+                PestEntity currentPest = pestRepository.getAllPests().get(position);
                 gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
                 if(currentPest.getPhotos().size() > 0)
                 {
@@ -144,7 +218,7 @@ public class ObjectDescriptionActivity extends Activity
 	    	} 
 	    	else if(type.equals("potato_Tuber"))
 	    	{
-	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
+	    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
 	            gallery.setAdapter(new GalleryImageAdapter(this,tuber));
 	    		if(tuber.getPhotos().size() > 0)
 	    		{
@@ -157,7 +231,7 @@ public class ObjectDescriptionActivity extends Activity
 	    	}
 	    	else if(type.equals("potato_PlantLeaf"))
 	    	{
-	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
+	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
 	            gallery.setAdapter(new GalleryImageAdapter(this,plantLeaf));
 	    		if(plantLeaf.getPhotos().size() > 0)
 	    		{
@@ -174,23 +248,21 @@ public class ObjectDescriptionActivity extends Activity
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
              
         	    Bundle extras = getIntent().getExtras();
-        	    String type;
         	    if(extras !=null)
         	    {
-        	    	type = extras.getString("Type");
         	    	if(type.equals("potato_Pest"))
         	    	{
-                        PestEntity currentPest = pestRepository.getAllPests().get(extras.getInt("Position"));
+                        PestEntity currentPest = pestRepository.getAllPests().get(position);
                         selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else if(type.equals("potato_Tuber"))
         	    	{
-        	    		TuberEntity tuber = tuberRepository.getAllTubers().get(extras.getInt("Position"));
+        	    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
         	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else if(type.equals("potato_PlantLeaf"))
         	    	{
-        	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(extras.getInt("Position"));
+        	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
         	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getFullyQualifiedPath()));
         	    	}
         	    	else
@@ -223,6 +295,26 @@ public class ObjectDescriptionActivity extends Activity
     	{
     		return new Intent(this, CategoriesListActivity.class);
     	}
+	}
+	
+	public void moveLeft()
+	{
+		if(canMoveLeft())
+		{
+			position--;
+			updateLeftRightButtons();
+			displayObjectDetails();	
+		}
+	}
+	
+	public void moveRight()
+	{
+		if(canMoveRight())
+		{
+			position++;
+			updateLeftRightButtons();
+			displayObjectDetails();	
+		}
 	}
 	
 	@Override
