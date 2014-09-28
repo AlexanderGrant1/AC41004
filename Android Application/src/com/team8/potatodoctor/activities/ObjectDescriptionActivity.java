@@ -77,12 +77,11 @@ public class ObjectDescriptionActivity extends Activity
 		createLeftRightButtons();	    
 	   
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        disableHardwareMenuKey();
-        
+        disableHardwareMenuKey();      
 	}
 	
 	/**
-	 * 
+	 * Create the Left/Right Navigation buttons.
 	 */
 	private void createLeftRightButtons() 
 	{
@@ -94,8 +93,7 @@ public class ObjectDescriptionActivity extends Activity
 	    {
 			@Override
 			public void onClick(View v) {
-				moveLeft();
-				
+				moveLeft();				
 			}
 	    });
 	    
@@ -107,10 +105,8 @@ public class ObjectDescriptionActivity extends Activity
 				moveRight();
 				
 			}
-	    });
-		
+	    });		
 	}
-
 	
 	/**
 	 * Check if there is an previous object in the list to display.
@@ -171,7 +167,7 @@ public class ObjectDescriptionActivity extends Activity
 	}
 	
 	/**
-	 * Display the next ovject in the list if exists.
+	 * Display the next object in the list if exists.
 	 */
 	public void moveRight()
 	{
