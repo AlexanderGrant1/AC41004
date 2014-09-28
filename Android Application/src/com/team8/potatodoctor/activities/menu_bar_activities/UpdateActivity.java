@@ -67,6 +67,7 @@ public class UpdateActivity extends Activity{
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -182,9 +183,7 @@ public class UpdateActivity extends Activity{
 	private void doUpdate()
 	{
 		isUpdating = true;
-
 		AppUpdater apUp = new AppUpdater(getApplicationContext());
-
 		try {
 			apUp.updateDatabaseTables();
 			apUp.updateLocalFiles();

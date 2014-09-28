@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PhotoEntity;
@@ -19,6 +20,9 @@ import com.team8.potatodoctor.models.repositories.PlantLeafRepository;
 import com.team8.potatodoctor.models.repositories.TuberRepository;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
 
+/**
+ * Provides functionality that updates the app's database and local files
+ */
 public class AppUpdater {
 
 	private PestRepository pestRepository;
@@ -41,6 +45,13 @@ public class AppUpdater {
 		localFileUpdater = new LocalFileUpdater(context);
 		this.context = context;
 	}
+	
+	/**
+	 * Clears all database tables and updates them with the latest data from the server.
+	 * 
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public void updateDatabaseTables() throws InterruptedException, ExecutionException
 	{
 		photoRepository.dropPhotoTableIfExists();
@@ -62,92 +73,24 @@ public class AppUpdater {
 		plantLeafRepository.createPlantLeafTablesIfNotExists();
 		localDbUpdater.updatePlantLeafTables();
 	}
-	//You must update the database before calling this method
-	public int getNumberOfPhotosToDownload()
-	{
-		try {
-			updateDatabaseTables();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		int count = 0;
-		File pestDir = new File(context.getFilesDir() + "/Pests");
-		if(pestDir.isDirectory())
-		{
-			LinkedList<String> fileNames = getImagesInFolder("Pests");
-			LinkedList<String> serverPestPhotos = new LinkedList<String>();
-			for(PestEntity pest : pestRepository.getAllPests())
-			{
-				for(PhotoEntity photo : pest.getPhotos())
-				{
-					serverPestPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
-				}
-			}
-			for(String serverPhoto : serverPestPhotos)
-			{
-				if(!fileNames.contains(serverPhoto))
-				{
-					count++;
-				}
-			}
-		}
-		File tuberDir = new File(context.getFilesDir() + "/Tubers");
-		if(tuberDir.isDirectory())
-		{
-			LinkedList<String> fileNames = getImagesInFolder("Tubers");
-			LinkedList<String> serverPestPhotos = new LinkedList<String>();
-			for(TuberEntity tuber : tuberRepository.getAllTubers())
-			{
-				for(PhotoEntity photo : tuber.getPhotos())
-				{
-					serverPestPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
-				}
-			}
-			for(String serverPhoto : serverPestPhotos)
-			{
-				if(!fileNames.contains(serverPhoto))
-				{
-					count++;
-				}
-			}
-		}
-		File plantLeafDir = new File(context.getFilesDir() + "/PlantLeaf");
-		if(plantLeafDir.isDirectory())
-		{
-			LinkedList<String> fileNames = getImagesInFolder("PlantLeaf");
-			LinkedList<String> serverPestPhotos = new LinkedList<String>();
-			for(PlantLeafEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
-			{
-				for(PhotoEntity photo : plantLeaf.getPhotos())
-				{
-					serverPestPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
-				}
-			}
-			for(String serverPhoto : serverPestPhotos)
-			{
-				if(!fileNames.contains(serverPhoto))
-				{
-					count++;
-				}
-			}
-		}
-		return count;
-	}
 	
+	/** Downloads any new files that the app is missing and deletes the old content that is no longer used
+	 * 
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws JSONException
+	 */
 	public void updateLocalFiles() throws InterruptedException, ExecutionException, JSONException
 	{
 		deleteUnusedPestPhotos();
 		deleteUnusedTuberPhotos();
 		deleteUnusedPlantLeafPhotos();
+		deleteUnusedTutorialVideos();
 		for(PestEntity pest : pestRepository.getAllPests())
 		{
 			for(PhotoEntity photo : pest.getPhotos())
 			{
-				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
+				String imageNameAndExtension = getFileNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
 				if(!fileExists(imageNameAndExtension,"Pests"))
 				{
 					localFileUpdater.fetchPestImage(imageNameAndExtension);
@@ -158,7 +101,7 @@ public class AppUpdater {
 		{
 			for(PhotoEntity photo : tuber.getPhotos())
 			{
-				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
+				String imageNameAndExtension = getFileNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
 				if(!fileExists(imageNameAndExtension,"Tubers"))
 				{
 					localFileUpdater.fetchTuberImage(imageNameAndExtension);
@@ -169,7 +112,7 @@ public class AppUpdater {
 		{
 			for(PhotoEntity photo : plantLeaf.getPhotos())
 			{
-				String imageNameAndExtension = getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
+				String imageNameAndExtension = getFileNameAndExtensionFromFilePath(photo.getFullyQualifiedPath());
 				if(!fileExists(imageNameAndExtension,"PlantLeaf"))
 				{
 					localFileUpdater.fetchPlantLeafImage(imageNameAndExtension);
@@ -178,14 +121,19 @@ public class AppUpdater {
 		}
 		for(TutorialEntity tutorial : tutorialRepository.getAllTutorials())
 		{
-			String videoNameAndExtension = getImageNameAndExtensionFromFilePath(tutorial.getFullyQualifiedPath());
+			String videoNameAndExtension = getFileNameAndExtensionFromFilePath(tutorial.getFullyQualifiedPath());
 			if(!fileExists(videoNameAndExtension,"Tutorials"))
 			{
 				localFileUpdater.fetchTutorialVideo(videoNameAndExtension);
 			}
 		}
 	} 
-	//REFACTOR ME
+	
+	
+	/**
+	 * Deletes all pest photos that are no longer used by the app.
+	 * 
+	 */
 	private void deleteUnusedPestPhotos()
 	{
 		File dir = new File(context.getFilesDir() + "/" +"Pests");
@@ -202,65 +150,7 @@ public class AppUpdater {
 			{
 				for(PhotoEntity photo : pest.getPhotos())
 				{
-					serverPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
-				}
-			}
-			for(String fileName : fileNames)
-			{
-				if(!serverPhotos.contains(fileName))
-				{
-					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
-					f.delete();
-				}
-			}
-		}
-		else
-		{
-			dir.mkdir();
-		}
-	}
-	//REFACTOR ME
-	private void deleteUnusedTuberPhotos()
-	{
-		File dir = new File(context.getFilesDir() + "/" +"Tubers");
-		if(dir.isDirectory())
-		{
-			LinkedList<String> fileNames = getImagesInFolder("Tubers");
-			LinkedList<String> serverPhotos = new LinkedList<String>();
-			for(TuberEntity tuber : tuberRepository.getAllTubers())
-			{
-				for(PhotoEntity photo : tuber.getPhotos())
-				{
-					serverPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
-				}
-			}
-			for(String fileName : fileNames)
-			{
-				if(!serverPhotos.contains(fileName))
-				{
-					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
-					f.delete();
-				}
-			}
-		}
-		else
-		{
-			dir.mkdir();
-		}
-	}
-	//REFACTOR ME
-	private void deleteUnusedPlantLeafPhotos()
-	{
-		File dir = new File(context.getFilesDir() + "/" +"PlantLeaf");
-		if(dir.isDirectory())
-		{
-			LinkedList<String> fileNames = getImagesInFolder("PlantLeaf");
-			LinkedList<String> serverPhotos = new LinkedList<String>();
-			for(PlantLeafEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
-			{
-				for(PhotoEntity photo : plantLeaf.getPhotos())
-				{
-					serverPhotos.add(getImageNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
+					serverPhotos.add(getFileNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
 				}
 			}
 			for(String fileName : fileNames)
@@ -278,7 +168,106 @@ public class AppUpdater {
 		}
 	}
 	
-	public LinkedList<String> getImagesInFolder(String folder)
+	/**
+	 * Deletes all tuber photos that are no longer used by the app.
+	 * 
+	 */
+	private void deleteUnusedTuberPhotos()
+	{
+		File dir = new File(context.getFilesDir() + "/" +"Tubers");
+		if(dir.isDirectory())
+		{
+			LinkedList<String> fileNames = getFilesInFolder("Tubers");
+			LinkedList<String> serverPhotos = new LinkedList<String>();
+			for(TuberEntity tuber : tuberRepository.getAllTubers())
+			{
+				for(PhotoEntity photo : tuber.getPhotos())
+				{
+					serverPhotos.add(getFileNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String fileName : fileNames)
+			{
+				if(!serverPhotos.contains(fileName))
+				{
+					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
+					f.delete();
+				}
+			}
+		}
+		else
+		{
+			dir.mkdir();
+		}
+	}
+	
+	/**
+	 * Deletes all plant/leaf symptom photos that are no longer used by the app.
+	 * 
+	 */
+	private void deleteUnusedPlantLeafPhotos()
+	{
+		File dir = new File(context.getFilesDir() + "/" +"PlantLeaf");
+		if(dir.isDirectory())
+		{
+			LinkedList<String> fileNames = getFilesInFolder("PlantLeaf");
+			LinkedList<String> serverPhotos = new LinkedList<String>();
+			for(PlantLeafEntity plantLeaf : plantLeafRepository.getAllPlantLeafs())
+			{
+				for(PhotoEntity photo : plantLeaf.getPhotos())
+				{
+					serverPhotos.add(getFileNameAndExtensionFromFilePath(photo.getFullyQualifiedPath()));
+				}
+			}
+			for(String fileName : fileNames)
+			{
+				if(!serverPhotos.contains(fileName))
+				{
+					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
+					f.delete();
+				}
+			}
+		}
+		else
+		{
+			dir.mkdir();
+		}
+	}
+	
+	/**
+	 * Deletes all tutorial videos that are no longer used
+	 */
+	private void deleteUnusedTutorialVideos()
+	{
+		File dir = new File(context.getFilesDir() + "/" +"Tutorials");
+		if(dir.isDirectory())
+		{
+			LinkedList<String> fileNames = getFilesInFolder("PlantLeaf");
+			LinkedList<String> serverVideos = new LinkedList<String>();
+			for(TutorialEntity tutorial : tutorialRepository.getAllTutorials())
+			{
+				serverVideos.add(getFileNameAndExtensionFromFilePath(tutorial.getFullyQualifiedPath()));
+			}
+			for(String fileName : fileNames)
+			{
+				if(!serverVideos.contains(fileName))
+				{
+					Log.w("hello", "deleted "+fileName);
+					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
+					f.delete();
+				}
+			}
+		}
+		else
+		{
+			dir.mkdir();
+		}
+	}
+	/**
+	 * Returns a list of all images in a given folder in the application's file directory.
+	 * 
+	 */
+	public LinkedList<String> getFilesInFolder(String folder)
 	{
 		File dir = new File(context.getFilesDir() + "/" +folder);
 		LinkedList<String> fileNames = new LinkedList<String>();
@@ -290,12 +279,24 @@ public class AppUpdater {
 		return fileNames;
 	} 
 	
-	private String getImageNameAndExtensionFromFilePath(String fullyQualifiedPath)
+	/**
+	 * Returns the name and extension of a file 
+	 * 
+	 * @param fullyQualifiedPath The fully qualified path of the file
+	 * @return
+	 */
+	private String getFileNameAndExtensionFromFilePath(String fullyQualifiedPath)
 	{
 		String[] splitPath = fullyQualifiedPath.split("/");
 		return splitPath[splitPath.length - 1];
 	}
 	
+	/**Determines whether a file exists in a given folder in the application's folder directory
+	 * 
+	 * @param fileName The name of the file to check for
+	 * @param folderName The name of the folder in the file directory
+	 * @return Returns true if the file exists in the folder
+	 */
 	private boolean fileExists(String fileName, String folderName)
 	{
 		File dir = new File(context.getFilesDir() + "/" +folderName);
