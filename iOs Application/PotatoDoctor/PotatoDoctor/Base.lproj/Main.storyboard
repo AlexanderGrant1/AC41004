@@ -231,13 +231,18 @@
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAS-E9-wQe">
-                                                <rect key="frame" x="180" y="125" width="240" height="128"/>
+                                                <rect key="frame" x="81" y="120" width="240" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="CyM-kS-ccj"/>
+                                                    <constraint firstAttribute="height" constant="128" id="eAI-eh-1XR"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.21855325063098741" blue="0.30676348410513321" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="1Ef-89-Jbw" secondAttribute="bottom" id="4vA-tw-ENc"/>
-                                            <constraint firstAttribute="centerX" secondItem="sAS-E9-wQe" secondAttribute="centerX" id="EbC-cJ-Yk5"/>
+                                            <constraint firstAttribute="centerX" secondItem="sAS-E9-wQe" secondAttribute="centerX" id="KaU-tO-STQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -254,7 +259,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mainImageView" destination="sAS-E9-wQe" id="NaY-wV-bPK"/>
+                        <outlet property="mainImageView" destination="sAS-E9-wQe" id="Zic-pp-J0f"/>
                         <outlet property="textLabel" destination="1Ef-89-Jbw" id="Wez-28-Z2c"/>
                     </connections>
                 </viewController>

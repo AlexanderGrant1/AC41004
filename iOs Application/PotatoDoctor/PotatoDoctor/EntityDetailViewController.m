@@ -15,9 +15,10 @@
 @implementation EntityDetailViewController
 
 - (void)viewDidLoad {
-    [self refreshMe];
+
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+        [self refreshMe];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,7 +31,11 @@
 {
     [self.textLabel setText:[self.dataModel getDescription]];
     [self.mainImageView setImage: [self.dataModel getMainPhoto]];
-
+    
+    if (self.mainImageView.bounds.size.width > ((UIImage*) [self.dataModel getMainPhoto]).size.width && self.mainImageView.bounds.size.height > ((UIImage*) [self.dataModel getMainPhoto]).size.height) {
+        self.mainImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+;
 }
 
 
