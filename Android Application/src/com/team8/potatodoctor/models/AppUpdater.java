@@ -21,7 +21,7 @@ import com.team8.potatodoctor.models.repositories.TuberRepository;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
 
 /**
- * 
+ * Provides functionality that updates the app's database and local files
  */
 public class AppUpdater {
 
@@ -234,6 +234,9 @@ public class AppUpdater {
 		}
 	}
 	
+	/**
+	 * Deletes all tutorial videos that are no longer used
+	 */
 	private void deleteUnusedTutorialVideos()
 	{
 		File dir = new File(context.getFilesDir() + "/" +"Tutorials");
@@ -276,12 +279,24 @@ public class AppUpdater {
 		return fileNames;
 	} 
 	
+	/**
+	 * Returns the name and extension of a file 
+	 * 
+	 * @param fullyQualifiedPath The fully qualified path of the file
+	 * @return
+	 */
 	private String getFileNameAndExtensionFromFilePath(String fullyQualifiedPath)
 	{
 		String[] splitPath = fullyQualifiedPath.split("/");
 		return splitPath[splitPath.length - 1];
 	}
 	
+	/**Determines whether a file exists in a given folder in the application's folder directory
+	 * 
+	 * @param fileName The name of the file to check for
+	 * @param folderName The name of the folder in the file directory
+	 * @return Returns true if the file exists in the folder
+	 */
 	private boolean fileExists(String fileName, String folderName)
 	{
 		File dir = new File(context.getFilesDir() + "/" +folderName);
