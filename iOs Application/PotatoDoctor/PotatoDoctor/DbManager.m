@@ -146,6 +146,8 @@ static DbManager *coreDataManager;
     [self clearTable:@"Photo"];
     [self clearTable:@"Tuber"];
     [self clearTable:@"PlantLeaf"];
+    
+    [self saveContext];
 }
 
 -(void) clearTable: (NSString*) tableName
@@ -233,6 +235,7 @@ static DbManager *coreDataManager;
        // NSLog(@"des: %@", pest.descriptionText);
         
   //  }
+    
     
     return fetchedObjects;
 }

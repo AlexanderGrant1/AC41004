@@ -11,12 +11,12 @@
 #import <CoreData/CoreData.h>
 
 #import "Pest.h"
-#import "PestPhoto.h"
+
 #import "Photo.h"
 #import "Tuber.h"
-#import "TuberPhoto.h"
+
 #import "PlantLeaf.h"
-#import "PlantLeafPhoto.h"
+
 #import "Tutorial.h"
 
 

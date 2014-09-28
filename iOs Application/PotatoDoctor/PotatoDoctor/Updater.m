@@ -68,118 +68,195 @@
                                                                     options:0 error:&jsonParsingError];
     
     
-    NSArray *entries = [responseArray valueForKey:@"Entries"];
-    NSArray *photos = [responseArray valueForKey:@"Photos"];
+    NSArray *jsonEntries = [responseArray valueForKey:@"Entries"];
+    NSArray *jsonPhotos = [responseArray valueForKey:@"Photos"];
     
     NSManagedObjectContext *context = [[DbManager sharedManager] managedObjectContext];
     
-    for(NSDictionary *entity in entries)
+    // Pre-define the objects
+    Pest *pestEntry = Nil;
+    Tuber *tuberEntry = Nil;
+    PlantLeaf *plantLeafEntry = Nil;
+    
+    for(NSDictionary *jsonEntity in jsonEntries)
     {
         // Add Entry to the db.
-        
+
         @try{
-            NSString *description = [entity objectForKey:@"Description"];
-            NSString *name        = [entity objectForKey:@"Name"];
-            NSInteger objId       = [[entity objectForKey:@"Id"] intValue];
             
-            NSManagedObject *entries = [NSEntityDescription
-                                            insertNewObjectForEntityForName:tableName
-                                            inManagedObjectContext:context];
+            NSString *description = [jsonEntity objectForKey:@"Description"];
+            NSString *name        = [jsonEntity objectForKey:@"Name"];
+            NSInteger objId       = [[jsonEntity objectForKey:@"Id"] intValue];
             
-            [entries setValue:[NSNumber numberWithInt:objId] forKey:@"id"];
-            [entries setValue:name forKey:@"name"];
-            [entries setValue:description forKey:@"descriptionText"];
+
+            
+            
+            // Pre-define the objects
+            pestEntry = Nil;
+            tuberEntry = Nil;
+            plantLeafEntry = Nil;
+            
+            
+            switch(section)
+            {
+                case PESTS:
+                {
+                    pestEntry = (Pest*)[NSEntityDescription
+                                                insertNewObjectForEntityForName:tableName
+                                                inManagedObjectContext:context];
+                    
+                    [pestEntry setValue:name forKey:@"name"];
+                    [pestEntry setValue:description forKey:@"descriptionText"];
+                    
+                    
+       
+                    break;
+                }
+                case PLANTLEAF:
+                {
+                    plantLeafEntry = (PlantLeaf*)[NSEntityDescription
+                                                insertNewObjectForEntityForName:tableName
+                                                inManagedObjectContext:context];
+                    
+                    [plantLeafEntry setValue:name forKey:@"name"];
+                    [plantLeafEntry setValue:description forKey:@"descriptionText"];
+                    
+
+                    break;
+                }
+                    
+                case TUBERS:
+                {
+                    tuberEntry = (Tuber*)[NSEntityDescription
+                                                insertNewObjectForEntityForName:tableName
+                                                inManagedObjectContext:context];
+                    
+                    [tuberEntry setValue:name forKey:@"name"];
+                    [tuberEntry setValue:description forKey:@"descriptionText"];
+                    
+       
+                    break;
+                }
+                    
+                    
+            }
+
             
             
             // Get all photos for this entry ( really bad way, don't have time for proper implementation, sorry.. ;( )
-            for(NSDictionary *photo in photos)
+            for(NSDictionary *jsonPhoto in jsonPhotos)
             {
                 // Check whether the id matches the id of this entry.
-                NSInteger entryId = [[photo objectForKey:@"Id"] intValue];
+                NSInteger entryId = [[jsonPhoto objectForKey:@"EntryId"] intValue];
                 
                 if(entryId == objId)
                 {
+                
                     // This photo belongs to this entry.
                     
                     // Add the photo to the
-                    NSString *imgName = [photo objectForKey:@"ImageName"];
-                    NSInteger entryId = [[photo objectForKey:@"Id"] intValue];
+                    NSString *imgName = [jsonPhoto objectForKey:@"ImageName"];
                     
-                    Photo *photo = (Photo *)[NSEntityDescription
-                                               insertNewObjectForEntityForName:@"Photo"
-                                               inManagedObjectContext:context];
-                    
-                    photo.name = imgName;
-                    
+        
+                
                     
                     // Create the linker
                     switch(section)
                     {
                         case PESTS:
                             {
-                            // Add Pest photo linker.
-                            PestPhoto *photoLinker = (PestPhoto *)[NSEntityDescription
-                                                                   insertNewObjectForEntityForName:@"PestPhoto"
-                                                                    inManagedObjectContext:context];
-
-                                photoLinker.pestRel = (Pest *)entries;
-                                photoLinker.photoRel = photo;
+                         
                                 
-                            // Get the pest object
-                            
+                                // Add plant leaf photo linker.
+                                Photo *photo = (Photo *)[NSEntityDescription
+                                                         insertNewObjectForEntityForName:@"Photo"
+                                                         inManagedObjectContext:pestEntry.managedObjectContext];
+                                
+                                photo.name = imgName;
+                                
+                               [photo addPestPhotoRelObject:pestEntry];
+
+                              
+
                             break;
                             }
                         case PLANTLEAF:
                             {
                                 // Add plant leaf photo linker.
-                                PlantLeafPhoto *photoLinker = (PlantLeafPhoto *)[NSEntityDescription
-                                                                       insertNewObjectForEntityForName:@"PlantLeafPhoto"
-                                                                       inManagedObjectContext:context];
+                                Photo *photo = (Photo *)[NSEntityDescription
+                                                         insertNewObjectForEntityForName:@"Photo"
+                                                         inManagedObjectContext:plantLeafEntry.managedObjectContext];
                                 
-                                photoLinker.plantLeafRel = (PlantLeaf *)entries;
-                                photoLinker.photoRel     = photo;
+                                photo.name = imgName;
                                 
-                                // Get the pest object
-                                
-                                
+                                [photo addPlantLeafRelObject:plantLeafEntry];
                                 break;
                             }
                             
                         case TUBERS:
                             {
                                 // Add plant leaf photo linker.
-                                TuberPhoto *photoLinker = (TuberPhoto *)[NSEntityDescription
-                                                                                 insertNewObjectForEntityForName:@"TuberPhoto"
-                                                                                 inManagedObjectContext:context];
+                                Photo *photo = (Photo *)[NSEntityDescription
+                                                         insertNewObjectForEntityForName:@"Photo"
+                                                         inManagedObjectContext:tuberEntry.managedObjectContext];
                                 
-                                photoLinker.tuberRel = (Tuber *)entries;
-                                photoLinker.photoRel = photo;
+                                photo.name = imgName;
                                 
-                                // Get the pest object
-                                
+                                [photo addTuberPhotoRelObject:tuberEntry];
                                 
                                 break;
                             }
                             
 
                     }
+                    
+                    
+                    // Download the image
+
+                    NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                    NSString  *documentsDirectory = [paths objectAtIndex:0];
+                    
+                    NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,imgName];
+                    
+                    //NSLog(@"%@",filePath);
+                    
+                    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+                        
+                    if(!fileExists)
+                    {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                           
+                            NSLog(@"Downloading Started");
+                            NSString *urlToDownload = [NSString stringWithFormat:@"%@images/u/%@", self.serverDomain, imgName];
+                            NSURL  *url = [NSURL URLWithString:urlToDownload];
+                            NSData *urlData = [NSData dataWithContentsOfURL:url];
+                            
+
+                            if ( urlData )
+                            {
+                                //saving is done on main thread
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [urlData writeToFile:filePath atomically:YES];
+                                    NSLog(@"File Saved !");
+                                });
+                            }
+                            
+                        });
+                    }
 
                     
                 }
+                
             }
             
-            
+
             
         }
         @catch (NSException *exception) {
         }
     }
-    
-    
-    //NSError *error;
-    //if (![context save:&error]) {
-     //   NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-  //  }
+
+  
 
 }
 
@@ -198,7 +275,7 @@
                 return @"Tuber";
             break;
         case TUTORIALS:
-                return @"Tutorial";\
+                return @"Tutorial";
             break;
     }
     

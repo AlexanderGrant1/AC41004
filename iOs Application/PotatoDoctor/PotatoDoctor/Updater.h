@@ -11,11 +11,11 @@
 
 #import "PlantLeaf.h"
 #import "Photo.h"
-#import "PestPhoto.h"
+
 #import "Pest.h"
-#import "TuberPhoto.h"
+
 #import "Tutorial.h"
-#import "PlantLeafPhoto.h"
+
 #import "Tuber.h"
 #import "DataModelWrap.h"
 

@@ -13,6 +13,7 @@
 -(void) refreshMe
 {
     [self.textLabel setText:[self.dataModel getName]];
+    [self.imageView setImage: [self.dataModel getMainPhoto]];
     
     NSLog(@"SS%@", [self.dataModel getName]);
 }

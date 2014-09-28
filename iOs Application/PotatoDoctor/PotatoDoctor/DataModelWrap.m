@@ -59,26 +59,70 @@
 
 }
 
--(NSString*) getPicture
+-(UIImage *) getMainPhoto
 {
+    NSString *imgName = @"";
+    
     if(self.pestModel != Nil)
     {
-        return self.pestModel.descriptionText;
+        NSArray *myArray = [(NSSet*)self.pestModel.photoRel allObjects];
+        
+        if([myArray count] > 0)
+        {
+            NSLog(@"AAZXXASAFAS");
+
+            Photo *photo        = (Photo *)[myArray objectAtIndex:0];
+            imgName = photo.name;
+
+        
+           // imgName = photo.name;
+            NSLog(@"%@", imgName);
+        }
     }
     else if(self.tuberModel != Nil)
     {
-        return self.tuberModel.descriptionText;
-    }
-    else if(self.tutorialModel != Nil)
-    {
-        return self.tutorialModel.descriptionText;
+        NSArray *myArray = [(NSSet*)self.tuberModel.photoRel allObjects];
+        
+        if([myArray count] > 0)
+        {
+            NSLog(@"AAZXXASAFAS");
+            
+            Photo *photo        = (Photo *)[myArray objectAtIndex:0];
+            imgName = photo.name;
+            
+            
+            // imgName = photo.name;
+            NSLog(@"%@", imgName);
+        }
+
     }
     else if(self.plantLeafModel != Nil)
     {
-        return self.plantLeafModel.descriptionText;
-    }
+        NSArray *myArray = [(NSSet*)self.plantLeafModel.photoRel allObjects];
+        
+        if([myArray count] > 0)
+        {
+            NSLog(@"AAZXXASAFAS");
+            
+            Photo *photo        = (Photo *)[myArray objectAtIndex:0];
+            imgName = photo.name;
+            
+            
+            // imgName = photo.name;
+            NSLog(@"%@", imgName);
+        }
 
-    return @"";
+    }
+    
+    NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString  *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,imgName];
+
+    NSLog(@"%@", filePath);
+    UIImage *coverImage = [[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@",filePath]];
+    
+    return coverImage;
 }
 
 @end

@@ -136,10 +136,10 @@
                 dmw.pestModel = self.data[indexPath.row];
             break;
         case PLANTLEAF:
-                dmw.tuberModel = self.data[indexPath.row];
+                dmw.plantLeafModel = self.data[indexPath.row];
             break;
         case TUBERS:
-                dmw.plantLeafModel = self.data[indexPath.row];
+                dmw.tuberModel = self.data[indexPath.row];
             break;
     }
     
@@ -165,10 +165,10 @@
             dmw.pestModel = self.data[indexPath.row];
             break;
         case PLANTLEAF:
-            dmw.tuberModel = self.data[indexPath.row];
+            dmw.plantLeafModel = self.data[indexPath.row];
             break;
         case TUBERS:
-            dmw.plantLeafModel = self.data[indexPath.row];
+            dmw.tuberModel = self.data[indexPath.row];
             break;
     }
     

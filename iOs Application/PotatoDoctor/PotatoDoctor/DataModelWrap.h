@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Pest.h"
 #import "Tuber.h"
 #import "PlantLeaf.h"
 #import "Tutorial.h"
+#import "Photo.h"
 
 
 @interface DataModelWrap : NSObject
@@ -23,5 +25,8 @@
 -(NSString*) getName;
 -(NSString*) getDescription;
 -(NSString*) getPicture;
+
+-(UIImage *) getMainPhoto;
+
 
 @end
