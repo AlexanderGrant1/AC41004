@@ -55,27 +55,25 @@
 -(void) updateTutorials: (NSData *) data
 {
      // Insert Tutorial data inside the db.
-   // [self insertEntries:TUTORIALS :data];
 }
 
 
 -(void) insertEntries: (SECTIONS) section :  (NSData *) data
 {
-    NSString *tableName = [self sectionName:section];
+    NSString *tableName       = [self sectionName:section];
     NSError *jsonParsingError = nil;
     
     NSMutableArray *responseArray = [NSJSONSerialization JSONObjectWithData:data
                                                                     options:0 error:&jsonParsingError];
     
-    
     NSArray *jsonEntries = [responseArray valueForKey:@"Entries"];
-    NSArray *jsonPhotos = [responseArray valueForKey:@"Photos"];
+    NSArray *jsonPhotos  = [responseArray valueForKey:@"Photos"];
     
     NSManagedObjectContext *context = [[DbManager sharedManager] managedObjectContext];
     
     // Pre-define the objects
-    Pest *pestEntry = Nil;
-    Tuber *tuberEntry = Nil;
+    Pest *pestEntry           = Nil;
+    Tuber *tuberEntry         = Nil;
     PlantLeaf *plantLeafEntry = Nil;
     
     for(NSDictionary *jsonEntity in jsonEntries)
@@ -89,11 +87,9 @@
             NSInteger objId       = [[jsonEntity objectForKey:@"Id"] intValue];
             
 
-            
-            
             // Pre-define the objects
-            pestEntry = Nil;
-            tuberEntry = Nil;
+            pestEntry      = Nil;
+            tuberEntry     = Nil;
             plantLeafEntry = Nil;
             
             
@@ -109,7 +105,6 @@
                     [pestEntry setValue:description forKey:@"descriptionText"];
                     
                     
-       
                     break;
                 }
                 case PLANTLEAF:
@@ -137,8 +132,6 @@
        
                     break;
                 }
-                    
-                    
             }
 
             
@@ -151,22 +144,17 @@
                 
                 if(entryId == objId)
                 {
-                
                     // This photo belongs to this entry.
                     
                     // Add the photo to the
                     NSString *imgName = [jsonPhoto objectForKey:@"ImageName"];
-                    
-        
-                
+
                     
                     // Create the linker
                     switch(section)
                     {
                         case PESTS:
                             {
-                         
-                                
                                 // Add plant leaf photo linker.
                                 Photo *photo = (Photo *)[NSEntityDescription
                                                          insertNewObjectForEntityForName:@"Photo"
@@ -174,11 +162,9 @@
                                 
                                 photo.name = imgName;
                                 
-                               [photo addPestPhotoRelObject:pestEntry];
+                                [photo addPestPhotoRelObject:pestEntry];
 
-                              
-
-                            break;
+                                break;
                             }
                         case PLANTLEAF:
                             {
@@ -190,6 +176,7 @@
                                 photo.name = imgName;
                                 
                                 [photo addPlantLeafRelObject:plantLeafEntry];
+                                
                                 break;
                             }
                             
@@ -206,20 +193,16 @@
                                 
                                 break;
                             }
-                            
-
                     }
                     
-                    
+        
                     // Download the image
 
                     NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                     NSString  *documentsDirectory = [paths objectAtIndex:0];
                     
                     NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,imgName];
-                    
-                    //NSLog(@"%@",filePath);
-                    
+
                     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
                         
                     if(!fileExists)
@@ -243,21 +226,12 @@
                             
                         });
                     }
-
-                    
                 }
-                
             }
-            
-
-            
         }
         @catch (NSException *exception) {
         }
     }
-
-  
-
 }
 
 

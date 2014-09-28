@@ -19,7 +19,6 @@
     }
     else if(self.tuberModel != Nil)
     {
-        NSLog(@"AA");
         return self.tuberModel.name;
     }
     else if(self.tutorialModel != Nil)
