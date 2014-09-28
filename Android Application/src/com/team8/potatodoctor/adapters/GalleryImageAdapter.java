@@ -2,7 +2,6 @@ package com.team8.potatodoctor.adapters;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,7 +10,9 @@ import android.widget.ImageView;
 
 import com.team8.potatodoctor.database_objects.IDatabaseObject;
 
-// Refer to: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
+/**
+ * Referenced from: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
+ */
 @SuppressWarnings("deprecation")
 public class GalleryImageAdapter extends BaseAdapter
 {
