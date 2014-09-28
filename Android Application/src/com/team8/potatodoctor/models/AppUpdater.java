@@ -252,7 +252,6 @@ public class AppUpdater {
 			{
 				if(!serverVideos.contains(fileName))
 				{
-					Log.w("hello", "deleted "+fileName);
 					File f = new File(dir.getAbsoluteFile() + "/"+fileName);
 					f.delete();
 				}

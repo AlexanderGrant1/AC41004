@@ -2,7 +2,7 @@
 //  DbManager.m
 //  PotatoDoctor
 //
-//  Created by Jekabs Stikans on 25/09/2014.
+// Example taken from http://natashatherobot.com/ios-core-data-singleton-example/
 //  Copyright (c) 2014 Jekabs Stikans. All rights reserved.
 //
 
@@ -58,11 +58,13 @@ static DbManager *coreDataManager;
                                                                                                  URL:self.persistentURL
                                                                                              options:nil
                                                                                                error:&error];
-    if (self.persistentStore) {
+    if (self.persistentStore)
+    {
         self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        
         self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
-    } else {
+    }
+    else
+    {
         NSLog(@"ERROR: %@", error.description);
     }
 }
@@ -152,31 +154,6 @@ static DbManager *coreDataManager;
 
 -(void) clearTable: (NSString*) tableName
 {
-    /*
-    NSError *error;
-    [self.managedObjectContext reset];
-    
-    
-    if([self.persistentStoreCoordinator removePersistentStore:self.persistentStore error:&error])
-    {
-        NSLog(@"Store removed");
-         [[NSFileManager defaultManager] removeItemAtPath:self.persistentURL.path error:&error];
-        
-        // Create new persisten store.
-        self.persistentStore = [self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                             configuration:nil
-                                                                                       URL:self.persistentURL
-                                                                                   options:nil
-                                                                                     error:&error];
-        
-        [self.managedObjectContext reset];
-
-    }
-    else{
-        NSLog(@"Store was not removed");
-    }
-     */
-    
     NSFetchRequest * allPests = [[NSFetchRequest alloc] init];
     [allPests setEntity:[NSEntityDescription entityForName:[NSString stringWithFormat:@"%@",tableName] inManagedObjectContext:self.managedObjectContext]];
     [allPests setIncludesPropertyValues:NO]; //only fetch the managedObjectID
@@ -193,16 +170,6 @@ static DbManager *coreDataManager;
     
     NSError *saveError = nil;
     [self.managedObjectContext save:&saveError];
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
 }
 
 - (void)saveContext {
@@ -222,20 +189,13 @@ static DbManager *coreDataManager;
 {
 
     NSManagedObjectContext *context = [self managedObjectContext];
-      NSError *error = nil;
-    // Test listing all FailedBankInfos from the store
+    NSError *error = nil;
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Pest"
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-   // for (Pest *pest in fetchedObjects) {
-        // NSLog(@"id: %@", pest.objectID);
-       // NSLog(@"Name: %@", pest.name);
-       // NSLog(@"des: %@", pest.descriptionText);
-        
-  //  }
-    
     
     return fetchedObjects;
 }
@@ -245,19 +205,13 @@ static DbManager *coreDataManager;
     
     NSManagedObjectContext *context = [self managedObjectContext];
     NSError *error = nil;
-    // Test listing all FailedBankInfos from the store
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tuber"
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    // for (Pest *pest in fetchedObjects) {
-    // NSLog(@"id: %@", pest.objectID);
-    // NSLog(@"Name: %@", pest.name);
-    // NSLog(@"des: %@", pest.descriptionText);
-    
-    //  }
-    
+
     return fetchedObjects;
 }
 
@@ -266,18 +220,13 @@ static DbManager *coreDataManager;
     
     NSManagedObjectContext *context = [self managedObjectContext];
     NSError *error = nil;
-    // Test listing all FailedBankInfos from the store
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlantLeaf"
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    // for (Pest *pest in fetchedObjects) {
-    // NSLog(@"id: %@", pest.objectID);
-    // NSLog(@"Name: %@", pest.name);
-    // NSLog(@"des: %@", pest.descriptionText);
-    
-    //  }
+
     
     return fetchedObjects;
 }

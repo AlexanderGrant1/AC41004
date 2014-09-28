@@ -7,18 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DbManager.h"
 
+#import "DbManager.h"
 #import "PlantLeaf.h"
 #import "Photo.h"
-
 #import "Pest.h"
-
 #import "Tutorial.h"
-
 #import "Tuber.h"
 #import "DataModelWrap.h"
-
 
 @protocol UpdaterDelegate <NSObject>
 
@@ -40,16 +36,13 @@ typedef enum{
 
 @property SECTIONS apiSections;
 
-//-(NSMutableArray *) parseMessages: (NSData *)serverResponse;
 -(void) queryBackend;
 -(void) updatePests: (NSData *) data;
 -(void) updatePlantLeafs: (NSData *) data;
 -(void) updateTubers: (NSData *) data;
 -(void) updateTutorials: (NSData *) data;
-
 -(void) queryBackend: (SECTIONS)reqSection;
 
 -(NSString *) sectionName: (SECTIONS) section;
-
 
 @end
