@@ -47,8 +47,6 @@ public class GalleryImageAdapter extends BaseAdapter
 	@Override
 	public View getView(int index, View view, ViewGroup viewGroup) {
 		ImageView i = new ImageView(mContext);
-		Log.w("hello", "Name = "+dbItem.getName());
-		Log.w("hello", "Index = "+index);
         i.setImageURI(Uri.parse(dbItem.getPhotos().get(index).getFullyQualifiedPath()));
         i.setLayoutParams(new Gallery.LayoutParams(100, 100));
     
