@@ -55,6 +55,9 @@ public class PestRepository extends SQLiteOpenHelper
 		onCreate(db);	
 	}
 	
+	/**
+	 * Creates the pest table in the local database if it doesn't exist
+	 */
 	public void createPestTablesIfNotExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -63,6 +66,9 @@ public class PestRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Drops the local pest table in the database
+	 */
 	public void dropPestTableIfExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -71,6 +77,9 @@ public class PestRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Clears the local pest table
+	 */
 	public void clearPestTables()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -79,6 +88,11 @@ public class PestRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/** Returns the index in the database of a pest object
+	 * 
+	 * @param name The name of the pest object to get the index of
+	 * @return The index of the pest object
+	 */
 	public int getIndexOfPestByName(String name)
 	{
         SQLiteDatabase db = getWritableDatabase();
@@ -99,6 +113,11 @@ public class PestRepository extends SQLiteOpenHelper
 	}
 	
 	
+	/** Returns a linked list of pest objects whose description or name matches supplied keywords
+	 *  
+	 * @param keywords Keywords to search pest objects with
+	 * @return A linked list of pest objects that match the keywords provided
+	 */
 	public LinkedList<PestEntity> searchPests(String keywords)
 	{
         LinkedList<PestEntity> foundPests = new LinkedList<PestEntity>();
@@ -113,7 +132,7 @@ public class PestRepository extends SQLiteOpenHelper
                 pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
                 pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
-                pest.setPhotos(getPlantLeafPhotos(pest));
+                pest.setPhotos(getPestPhotos(pest));
                 foundPests.add(pest);
             }
             while (cursor.moveToNext());
@@ -122,6 +141,10 @@ public class PestRepository extends SQLiteOpenHelper
         return foundPests;
 	}
 	
+    /** Returns a linked list of pest objects taken from the database
+     * 
+     * @return A linked list of pest objects taken from the database
+     */
     public LinkedList<PestEntity> getAllPests() {
         LinkedList<PestEntity> pests = new LinkedList<PestEntity>();
 
@@ -134,7 +157,7 @@ public class PestRepository extends SQLiteOpenHelper
                 pest.setId(cursor.getInt(cursor.getColumnIndex("Id")));
                 pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
-                pest.setPhotos(getPlantLeafPhotos(pest));
+                pest.setPhotos(getPestPhotos(pest));
                 pests.add(pest);
             }
             while (cursor.moveToNext());
@@ -142,7 +165,12 @@ public class PestRepository extends SQLiteOpenHelper
         db.close();
         return pests;
     }
+    
 	
+	/** Inserts a pest object into the local database
+	 * 
+	 * @param pest The pest to insert into the local database
+	 */
 	public void insertPest(PestEntity pest)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -181,7 +209,12 @@ public class PestRepository extends SQLiteOpenHelper
         return photoIds;
     }
 	
-	public LinkedList<PhotoEntity> getPlantLeafPhotos(PestEntity pest)
+	/** Returns all photo objects associated with a pest
+	 * 
+	 * @param pest The pest to get photos for
+	 * @return A linked list of photo objects associated with the given pest
+	 */
+	public LinkedList<PhotoEntity> getPestPhotos(PestEntity pest)
 	{
 		LinkedList<Integer> photoIds = getPestPhotoLinkersForPest(pest);
 		if(photoIds.size() == 0)

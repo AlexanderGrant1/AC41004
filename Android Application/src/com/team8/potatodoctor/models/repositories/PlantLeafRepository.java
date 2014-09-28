@@ -55,6 +55,9 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		onCreate(db);	
 	}
 	
+	/**
+	 * Creates a plant leaf table in the local database if it doesn't already exist
+	 */
 	public void createPlantLeafTablesIfNotExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -63,6 +66,9 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Drops the plant leaf table in the local database if it already exists
+	 */
 	public void dropPlantLeafTablesIfExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -71,6 +77,9 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Clears the plant leaf table and plant leaf linker table in the local database
+	 */
 	public void clearPlantLeafTables()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -79,6 +88,11 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 
+	/** Returns the index of plant leaf with the provided name in the local plant leaf table
+	 * 
+	 * @param name The name of the plant leaf to find the index of
+	 * @return The index of the plant leaf with the given name
+	 */
 	public int getIndexOfPlantLeafByName(String name)
 	{
         SQLiteDatabase db = getWritableDatabase();
@@ -98,6 +112,11 @@ public class PlantLeafRepository extends SQLiteOpenHelper
         return -1;
 	}
 	
+	/** Searches the local plant leaf table for plant leaf objects that match the given keywords
+	 * 
+	 * @param keywords The keywords to search the database for
+	 * @return A linked list of plant leaf objects that match the given keywords
+	 */
 	public LinkedList<PlantLeafEntity> searchPlantLeafSymptoms(String keywords)
 	{
         LinkedList<PlantLeafEntity> foundEntries = new LinkedList<PlantLeafEntity>();
