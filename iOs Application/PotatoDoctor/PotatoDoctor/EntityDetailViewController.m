@@ -29,7 +29,7 @@
 -(void) refreshMe
 {
     [self.textLabel setText:[self.dataModel getDescription]];
-
+    [self.mainImageView setImage: [self.dataModel getMainPhoto]];
 
 }
 

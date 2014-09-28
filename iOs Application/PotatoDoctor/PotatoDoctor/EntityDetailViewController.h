@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textLabel;
 
 @property (nonatomic, strong) DataModelWrap* dataModel;
+@property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
 
 -(void) refreshMe;
 

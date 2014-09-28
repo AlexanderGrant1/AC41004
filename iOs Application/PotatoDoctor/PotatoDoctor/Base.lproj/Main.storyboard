@@ -254,6 +254,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mainImageView" destination="sAS-E9-wQe" id="NaY-wV-bPK"/>
                         <outlet property="textLabel" destination="1Ef-89-Jbw" id="Wez-28-Z2c"/>
                     </connections>
                 </viewController>
