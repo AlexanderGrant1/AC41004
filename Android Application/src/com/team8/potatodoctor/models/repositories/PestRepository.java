@@ -182,6 +182,10 @@ public class PestRepository extends SQLiteOpenHelper
 			db.close();
 	}
 	
+	/** Inserts a pest photo linker into the local database.
+	 * 
+	 * @param linker The pest photo linker to add to the database.
+	 */
 	public void insertPestPhotoLinker(PhotoLinkerEntity linker)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -193,7 +197,12 @@ public class PestRepository extends SQLiteOpenHelper
 			db.close();
 	}
 	
-    private LinkedList<Integer> getPestPhotoLinkersForPest(PestEntity pest) {
+    /** Returns a linked list of photo ids for the photos of a given pest
+     * 
+     * @param pest The pest object to return photo ids for.
+     * @return A linked list of photo ids for the photos of a given pest
+     */
+    private LinkedList<Integer> getPestPhotoIdsForPest(PestEntity pest) {
         LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
         SQLiteDatabase db = getWritableDatabase();
@@ -216,7 +225,7 @@ public class PestRepository extends SQLiteOpenHelper
 	 */
 	public LinkedList<PhotoEntity> getPestPhotos(PestEntity pest)
 	{
-		LinkedList<Integer> photoIds = getPestPhotoLinkersForPest(pest);
+		LinkedList<Integer> photoIds = getPestPhotoIdsForPest(pest);
 		if(photoIds.size() == 0)
 		{
 			return new LinkedList<PhotoEntity>();

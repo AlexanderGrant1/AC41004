@@ -198,7 +198,7 @@ public class TuberRepository extends SQLiteOpenHelper
 	     * @param tuber The tuber to get photo linkers for.
 	     * @return A linked list of photo ids for a tuber.
 	     */
-	    private LinkedList<Integer> getPhotoLinkersForTuber(TuberEntity tuber) {
+	    private LinkedList<Integer> getPhotoIdsForTuber(TuberEntity tuber) {
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -221,7 +221,7 @@ public class TuberRepository extends SQLiteOpenHelper
 		 */
 		public LinkedList<PhotoEntity> getTuberPhotos(TuberEntity tuber)
 		{
-			LinkedList<Integer> photoIds = getPhotoLinkersForTuber(tuber);
+			LinkedList<Integer> photoIds = getPhotoIdsForTuber(tuber);
 			if(photoIds.size() == 0)
 			{
 				return new LinkedList<PhotoEntity>();
