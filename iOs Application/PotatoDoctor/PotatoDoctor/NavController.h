@@ -14,14 +14,13 @@
 
 @interface NavController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
-
 typedef enum{
     PESTS, PLANTLEAF, TUBERS, TUTORIALS
 } SECTIONS;
 
-@property (nonatomic) SECTIONS section;
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
+@property (nonatomic) SECTIONS section;
 @property (nonatomic, strong) NSMutableArray *data;
 
 @end

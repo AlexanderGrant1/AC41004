@@ -129,7 +129,6 @@
 				9553FA9019D4306E0084C9DA /* Updater.m */,
 				9553FA9519D44FCF0084C9DA /* DbManager.h */,
 				9553FA9319D44FBF0084C9DA /* DbManager.m */,
-				95CAD56019D2280B000ECECD /* Controllers */,
 			);
 			name = "Data Managers";
 			sourceTree = "<group>";
@@ -157,6 +156,7 @@
 			children = (
 				95035EE819D4C166000BF434 /* Data Models */,
 				9553FA8C19D42D600084C9DA /* Data Managers */,
+				95CAD56019D2280B000ECECD /* Controllers */,
 				95CAD53B19D222B4000ECECD /* AppDelegate.h */,
 				95CAD53C19D222B4000ECECD /* AppDelegate.m */,
 				95CAD54419D222B4000ECECD /* Main.storyboard */,
