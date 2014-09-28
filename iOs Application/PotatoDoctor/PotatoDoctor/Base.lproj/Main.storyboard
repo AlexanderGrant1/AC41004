@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rDQ-Ap-dP6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -23,7 +24,7 @@
         <!--Test-->
         <scene sceneID="7z8-lE-Z2e">
             <objects>
-                <viewController id="PyQ-Hz-8We" sceneMemberID="viewController">
+                <viewController id="PyQ-Hz-8We" customClass="RootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UVi-GP-M1E"/>
                         <viewControllerLayoutGuide type="bottom" id="cja-oQ-jk6"/>
@@ -32,22 +33,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-Ds-HUn">
-                                <rect key="frame" x="281" y="188" width="39" height="30"/>
-                                <state key="normal" title="Pests">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="6zT-rc-dSh" kind="push" id="r7Q-6d-vAh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fc8-kx-aFY">
                                 <rect key="frame" x="243" y="271" width="115" height="30"/>
                                 <state key="normal" title="Tuber symptoms">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="143" y="271" width="115" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="343" y="271" width="115" height="30"/>
+                                </variation>
                                 <connections>
-                                    <segue destination="iYX-bf-vFP" kind="push" id="sY1-Vi-qxg"/>
+                                    <action selector="tuberClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="z9q-XC-WLH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J67-MB-6yQ">
@@ -55,8 +53,14 @@
                                 <state key="normal" title="Plant / Leaf Symptoms">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="122" y="323" width="157" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="322" y="323" width="157" height="30"/>
+                                </variation>
                                 <connections>
-                                    <segue destination="Okx-5K-nD1" kind="push" id="brl-hg-kGg"/>
+                                    <action selector="PlantLeafClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="jZV-Ph-5iW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eY8-Co-rMu">
@@ -64,8 +68,29 @@
                                 <state key="normal" title="Tutorials">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="171" y="371" width="58" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="371" y="371" width="58" height="30"/>
+                                </variation>
                                 <connections>
                                     <segue destination="4IU-5y-UBz" kind="push" id="bRd-vc-WTM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-Ds-HUn">
+                                <rect key="frame" x="281" y="199" width="39" height="30"/>
+                                <state key="normal" title="Pests">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="181" y="199" width="39" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="381" y="199" width="39" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="pestClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="wvS-dU-zqz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -100,50 +125,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wzm-jc-jN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839" y="517"/>
-        </scene>
-        <!--Plant / Leaf Symptoms-->
-        <scene sceneID="eL2-hs-n4N">
-            <objects>
-                <viewController id="Okx-5K-nD1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GbJ-mu-2y8"/>
-                        <viewControllerLayoutGuide type="bottom" id="Nte-8p-hMf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bpe-xi-OTJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Plant / Leaf Symptoms" id="cuw-7Z-Ed7"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZBt-Nz-wLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1118" y="517"/>
-        </scene>
-        <!--Tuber Symptoms-->
-        <scene sceneID="HiX-ry-BEF">
-            <objects>
-                <viewController id="iYX-bf-vFP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TmH-YF-4gE"/>
-                        <viewControllerLayoutGuide type="bottom" id="iZr-ip-Sx1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Pcx-yk-206">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Tuber Symptoms" id="kcl-IP-5JW"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZZ-bz-A3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1839" y="-371"/>
+            <point key="canvasLocation" x="1193" y="581"/>
         </scene>
         <!--Pests-->
         <scene sceneID="hDy-DS-PCi">
             <objects>
-                <viewController id="6zT-rc-dSh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThumbStory" id="6zT-rc-dSh" customClass="NavController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hMu-4E-dk0"/>
                         <viewControllerLayoutGuide type="bottom" id="keK-8o-gey"/>
@@ -151,13 +138,134 @@
                     <view key="view" contentMode="scaleToFill" id="jK2-BO-Rhy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="myCol" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DXh-XX-Z7N">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JWg-bG-G8z">
+                                    <size key="itemSize" width="154" height="154"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EntityCell" id="DEK-1R-9Tb" customClass="EntityCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J7a-X4-S4k">
+                                                    <rect key="frame" x="-25" y="0.0" width="179" height="154"/>
+                                                </imageView>
+                                                <view alpha="0.10000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUZ-7E-2JO">
+                                                    <rect key="frame" x="0.0" y="109" width="154" height="45"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVD-0f-hSg">
+                                                            <rect key="frame" x="0.0" y="2" width="154" height="43"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="J7a-X4-S4k" id="Pqv-hI-8hB"/>
+                                            <outlet property="textLabel" destination="nVD-0f-hSg" id="8ta-Yp-IBC"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="6zT-rc-dSh" id="hmf-Jz-RE5"/>
+                                    <outlet property="delegate" destination="6zT-rc-dSh" id="BcP-9g-3TA"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" secondItem="DXh-XX-Z7N" secondAttribute="height" id="IKA-6g-a2T"/>
+                            <constraint firstAttribute="width" secondItem="DXh-XX-Z7N" secondAttribute="width" id="veK-xA-Mvh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pests" id="Q2u-iI-Lmb"/>
+                    <connections>
+                        <outlet property="collectionView" destination="DXh-XX-Z7N" id="vHT-g3-GZi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oY-uv-roj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1118" y="-380"/>
+            <point key="canvasLocation" x="1103" y="-373"/>
+        </scene>
+        <!--Entity Detail View Controller-->
+        <scene sceneID="HCA-tz-AJY">
+            <objects>
+                <viewController storyboardIdentifier="EntityDetailVc" id="z1J-mJ-TMj" customClass="EntityDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gGd-Ah-Tcm"/>
+                        <viewControllerLayoutGuide type="bottom" id="uwF-KA-4a7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3nM-4h-EV4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FwF-80-sJ5">
+                                <rect key="frame" x="-23" y="-20" width="627" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftJ-q2-FBN" userLabel="Container view">
+                                        <rect key="frame" x="24" y="0.0" width="595" height="610"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" text="rewrrwerewrerewrewrwerewrewr\n\n\n\nerewre" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-89-Jbw">
+                                                <rect key="frame" x="0.0" y="290" width="600" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAS-E9-wQe">
+                                                <rect key="frame" x="81" y="120" width="240" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="CyM-kS-ccj"/>
+                                                    <constraint firstAttribute="height" constant="128" id="eAI-eh-1XR"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.21855325063098741" blue="0.30676348410513321" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="1Ef-89-Jbw" secondAttribute="bottom" id="4vA-tw-ENc"/>
+                                            <constraint firstAttribute="centerX" secondItem="sAS-E9-wQe" secondAttribute="centerX" id="KaU-tO-STQ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ftJ-q2-FBN" firstAttribute="top" secondItem="FwF-80-sJ5" secondAttribute="top" id="Xnc-XR-SyJ"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="ftJ-q2-FBN" secondAttribute="bottom" id="uqh-ch-iBH"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Ef-89-Jbw" firstAttribute="width" secondItem="3nM-4h-EV4" secondAttribute="width" id="gop-DD-pWd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainImageView" destination="sAS-E9-wQe" id="Zic-pp-J0f"/>
+                        <outlet property="textLabel" destination="1Ef-89-Jbw" id="Wez-28-Z2c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rmr-WQ-njW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="-373"/>
         </scene>
     </scenes>
 </document>

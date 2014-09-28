@@ -1,4 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Pest" representedClassName="Pest" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photoRel" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Photo" inverseName="pestPhotoRel" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="PestPhoto" representedClassName="PestPhoto" syncable="YES">
+        <attribute name="pestId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="photoId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="pestRel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pest" syncable="YES"/>
+        <relationship name="photoObjRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pestPhotoRel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pest" inverseName="photoRel" inverseEntity="Pest" syncable="YES"/>
+        <relationship name="plantLeafRel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlantLeaf" inverseName="photoRel" inverseEntity="PlantLeaf" syncable="YES"/>
+        <relationship name="tuberPhotoRel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tuber" inverseName="photoRel" inverseEntity="Tuber" syncable="YES"/>
+    </entity>
+    <entity name="PlantLeaf" representedClassName="PlantLeaf" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photoRel" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Photo" inverseName="plantLeafRel" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="PlantLeafPhoto" representedClassName="PlantLeafPhoto" parentEntity="PlantLeaf" syncable="YES">
+        <attribute name="photoId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="plantLeafId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="photoObjRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" syncable="YES"/>
+        <relationship name="plantLeafRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlantLeaf" syncable="YES"/>
+    </entity>
+    <entity name="Tuber" representedClassName="Tuber" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photoRel" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Photo" inverseName="tuberPhotoRel" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="TuberPhoto" representedClassName="TuberPhoto" parentEntity="Tuber" syncable="YES">
+        <attribute name="photoId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="tuberId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="photoObjRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" syncable="YES"/>
+        <relationship name="tuberRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tuber" syncable="YES"/>
+    </entity>
+    <entity name="Tutorial" representedClassName="Tutorial" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Pest" positionX="61" positionY="-171" width="128" height="88"/>
+        <element name="PestPhoto" positionX="18" positionY="54" width="128" height="103"/>
+        <element name="Photo" positionX="0" positionY="36" width="128" height="103"/>
+        <element name="PlantLeaf" positionX="-18" positionY="27" width="128" height="88"/>
+        <element name="PlantLeafPhoto" positionX="-9" positionY="36" width="128" height="103"/>
+        <element name="Tuber" positionX="-47" positionY="-198" width="128" height="88"/>
+        <element name="TuberPhoto" positionX="376" positionY="-90" width="128" height="103"/>
+        <element name="Tutorial" positionX="151" positionY="-450" width="128" height="90"/>
+    </elements>
 </model>
