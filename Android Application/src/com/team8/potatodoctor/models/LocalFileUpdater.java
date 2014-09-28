@@ -87,7 +87,7 @@ public class LocalFileUpdater {
 	/**
 	 * Removes all of the backslashes present in a JSON url
 	 * 
-	 * @param jsonURL
+	 * @param jsonURL A url taken from a JSON string
 	 * @return Returns the cleaned JSON url
 	 */
 	private String cleanJSONUrl(String jsonURL)

@@ -40,6 +40,10 @@ public class PhotoRepository extends SQLiteOpenHelper
 		onCreate(db);	
 	}
 	
+	
+	/**
+	 * Creates a photo table in the local database if it doesn't exist
+	 */
 	public void createPhotoTableIfNotExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -47,6 +51,9 @@ public class PhotoRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Clears the photo table in the local database if it doesn't exist
+	 */
 	public void clearPhotoTable()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -54,6 +61,9 @@ public class PhotoRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Drops the photo table if it doesn't exist
+	 */
 	public void dropPhotoTableIfExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -61,6 +71,10 @@ public class PhotoRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+    /** Returns a linked list of photo objects in the local database
+     * 
+     * @return A linked list of photo objects in the local database
+     */
     public LinkedList<PhotoEntity> getAllPhotos() {
         LinkedList<PhotoEntity> photos = new LinkedList<PhotoEntity>();
 
@@ -81,6 +95,11 @@ public class PhotoRepository extends SQLiteOpenHelper
         return photos;
     }
 	
+    
+	/** Inserts a photo into the local database
+	 * 
+	 * @param photo The photo to insert into the local database
+	 */
 	public void insertPhoto(PhotoEntity photo)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();

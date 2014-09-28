@@ -15,6 +15,10 @@ import com.team8.potatodoctor.database_objects.PlantLeafEntity;
 import com.team8.potatodoctor.database_objects.TuberEntity;
 import com.team8.potatodoctor.database_objects.TutorialEntity;
 
+/**
+ * Fetches data from the server
+ *
+ */
 public class DataFetcher {
 	
 	private Context context;
@@ -24,11 +28,16 @@ public class DataFetcher {
 		this.context = context;
 	}
 	
-	public LinkedList<TuberEntity> parseTuberSymptoms(String Message)
+	/** Returns all tuber symptoms stored on the server
+	 * 
+	 * @param tuberJSON A JSON giving tuber information pulled from the server
+	 * @return A linked list of tubers
+	 */
+	public LinkedList<TuberEntity> parseTuberSymptoms(String tuberJSON)
 	{
 		LinkedList<TuberEntity> tuberSymptoms = new LinkedList<TuberEntity>();
 		try {
-			JSONObject obj = new JSONObject(Message);
+			JSONObject obj = new JSONObject(tuberJSON);
 			JSONArray arr = obj.getJSONArray("Entries");
 			for(int i = 0; i < arr.length(); i++)
 			{
@@ -44,11 +53,16 @@ public class DataFetcher {
 		return tuberSymptoms;
 	}
 	
-	public LinkedList<PhotoLinkerEntity> parsePhotoLinker(String Message)
+	/** Returns a linked list of photo linkers from a JSON string
+	 * 
+	 * @param JSON A JSON string to parse photo linkers from
+	 * @return A linked list of photo linkers
+	 */
+	public LinkedList<PhotoLinkerEntity> parsePhotoLinker(String JSON)
 	{
 		LinkedList<PhotoLinkerEntity> tuberSymptomsLinker = new LinkedList<PhotoLinkerEntity>();
 		try {
-			JSONObject obj = new JSONObject(Message);
+			JSONObject obj = new JSONObject(JSON);
 			JSONArray arr = obj.getJSONArray("PhotoLinker");
 			for(int i = 0; i < arr.length(); i++)
 			{
@@ -64,11 +78,15 @@ public class DataFetcher {
 		return tuberSymptomsLinker;
 	}
 	
-	public LinkedList<PhotoEntity> parsePhotos(String Message)
+	/** Returns a linked list of photo objects parsed from a JSON string
+	 * @param jsonString A JSON string to parse for photos
+	 * @return A linked list of photo objects
+	 */
+	public LinkedList<PhotoEntity> parsePhotos(String jsonString)
 	{
 		LinkedList<PhotoEntity> photos = new LinkedList<PhotoEntity>();
 		try {
-			JSONObject obj = new JSONObject(Message);
+			JSONObject obj = new JSONObject(jsonString);
 			JSONArray arr = obj.getJSONArray("Photos");
 			for(int i = 0; i < arr.length(); i++)
 			{
@@ -83,11 +101,16 @@ public class DataFetcher {
 		return photos;
 	}
 	
-	public LinkedList<PestEntity> parsePests(String Message)
+	/** Returns a linked list of pest objects parsed from a JSON string
+	 *  
+	 * @param pestJSON A JSON string to parse pests from
+	 * @return A linked list of pest objects
+	 */
+	public LinkedList<PestEntity> parsePests(String pestJSON)
 	{
 		LinkedList<PestEntity> pests = new LinkedList<PestEntity>();
 		try {
-			JSONObject obj = new JSONObject(Message);
+			JSONObject obj = new JSONObject(pestJSON);
 			JSONArray arr = obj.getJSONArray("Entries");
 			for(int i = 0; i < arr.length(); i++)
 			{
@@ -103,11 +126,16 @@ public class DataFetcher {
 		return pests;
 	}
 	
-	public LinkedList<PlantLeafEntity> parsePlantAndLeafSymptoms(String Message)
+	/** Returns a linked list of plant leaf symptom objects parsed from a JSON string
+	 * 
+	 * @param plantLeafJSON A JSON string to parse tutorials from
+	 * @return A linked list of plant/leaf symptom objects
+	 */
+	public LinkedList<PlantLeafEntity> parsePlantAndLeafSymptoms(String plantLeafJSON)
 	{
 		LinkedList<PlantLeafEntity> plantLeafSymptoms = new LinkedList<PlantLeafEntity>();
 		try {
-			JSONObject obj = new JSONObject(Message);
+			JSONObject obj = new JSONObject(plantLeafJSON);
 			JSONArray arr = obj.getJSONArray("Entries");
 			for(int i = 0; i < arr.length(); i++)
 			{
@@ -123,11 +151,16 @@ public class DataFetcher {
 		return plantLeafSymptoms;
 	}
 	
-	public LinkedList<TutorialEntity> parseTutorials(String Message)
+	/** Returns a linked list of tutorial objects parsed from a JSON string
+	 * 
+	 * @param tutorialJSON A JSON string to parse tutorials from
+	 * @return A linked list of tutorial objects
+	 */
+	public LinkedList<TutorialEntity> parseTutorials(String tutorialJSON)
 	{
 		LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
 		try {
-			JSONObject obj = new JSONObject(Message);
+			JSONObject obj = new JSONObject(tutorialJSON);
 			JSONArray arr = obj.getJSONArray("Entries");
 			for(int i = 0; i < arr.length(); i++)
 			{
