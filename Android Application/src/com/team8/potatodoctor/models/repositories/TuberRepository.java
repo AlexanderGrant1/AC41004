@@ -55,6 +55,9 @@ public class TuberRepository extends SQLiteOpenHelper
 		onCreate(db);	
 	}
 	
+	/**
+	 * Creates a tuber table and a tuber photo table if it doesn't already exist.
+	 */
 	public void createTuberTablesIfNotExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -63,6 +66,9 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Drops the tuber and tuber photo linker tables from the database if they exist.
+	 */
 	public void dropTuberTablesIfExists()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -71,6 +77,9 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Clears both the tuber and tuber photo linker tables
+	 */
 	public void clearTuberTables()
 	{
 		SQLiteDatabase db = getWritableDatabase();
@@ -79,6 +88,10 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/** Returns the index of a given tuber name in the database
+	 * @param name
+	 * @return
+	 */
 	public int getIndexOfTuberByName(String name)
 	{
         SQLiteDatabase db = getWritableDatabase();
@@ -98,6 +111,10 @@ public class TuberRepository extends SQLiteOpenHelper
         return -1;
 	}
 	
+	/** Returns a linked list of tubers whose description and name contain given keywords.
+	 * @param keywords A string of keywords to search a tuber's name and description for.
+	 * @return A linked list of tubers whose description and name contain given keywords.
+	 */
 	public LinkedList<TuberEntity> searchTubers(String keywords)
 	{
         LinkedList<TuberEntity> foundEntries = new LinkedList<TuberEntity>();
@@ -121,7 +138,10 @@ public class TuberRepository extends SQLiteOpenHelper
         return foundEntries;
 	}
 	
-	 public LinkedList<TuberEntity> getAllTubers() {
+	 /** Returns a linked list of tubers from the database.
+	 * @return A linked list of tubers from the database.
+	 */
+	public LinkedList<TuberEntity> getAllTubers() {
 	        LinkedList<TuberEntity> tubers = new LinkedList<TuberEntity>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -143,6 +163,10 @@ public class TuberRepository extends SQLiteOpenHelper
 	        return tubers;
 	    }
 		
+		/** Inserts a given tuber into the database.
+		 * 
+		 * @param tuber The tuber to add to the database.
+		 */
 		public void insertTuber(TuberEntity tuber)
 		{
 				SQLiteDatabase db = this.getWritableDatabase();
@@ -154,6 +178,10 @@ public class TuberRepository extends SQLiteOpenHelper
 				db.close();
 		}
 		
+		/** Inserts a tuber photo linker into the database
+		 * 
+		 * @param linker A tuber photo linker object to add to the database
+		 */
 		public void insertTuberPhotoLinker(PhotoLinkerEntity linker)
 		{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -165,6 +193,11 @@ public class TuberRepository extends SQLiteOpenHelper
 			db.close();
 		}
 		
+	    /** Returns all photo ids for a tuber.
+	     * 
+	     * @param tuber The tuber to get photo linkers for.
+	     * @return A linked list of photo ids for a tuber.
+	     */
 	    private LinkedList<Integer> getPhotoLinkersForTuber(TuberEntity tuber) {
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
@@ -181,6 +214,11 @@ public class TuberRepository extends SQLiteOpenHelper
 	        return photoIds;
 	    }
 		
+		/** Returns a linked list of photos for the given tuber.
+		 * 
+		 * @param tuber The tuber to get photos for.
+		 * @return A linked list of photos for the given tuber.
+		 */
 		public LinkedList<PhotoEntity> getTuberPhotos(TuberEntity tuber)
 		{
 			LinkedList<Integer> photoIds = getPhotoLinkersForTuber(tuber);

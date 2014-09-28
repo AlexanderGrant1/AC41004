@@ -141,6 +141,9 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	}
 	
 	
+    /** Returns a linked list of all plant leaf objects in the database
+     * @return A linked list of all plant leaf objects in the database
+     */
     public LinkedList<PlantLeafEntity> getAllPlantLeafs() {
         LinkedList<PlantLeafEntity> plantLeafs = new LinkedList<PlantLeafEntity>();
 
@@ -163,17 +166,25 @@ public class PlantLeafRepository extends SQLiteOpenHelper
         return plantLeafs;
     }
 	
-	public void insertPlantLeaf(PlantLeafEntity pest)
+	/** Inserts a plant leaf object into the database.
+	 * 
+	 * @param plantLeaf The plant leaf object to add to the database.
+	 */
+	public void insertPlantLeaf(PlantLeafEntity plantLeaf)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
 			ContentValues values = new ContentValues();
-			values.put("Id", pest.getId());
-			values.put("Name", pest.getName());
-			values.put("Description", pest.getDescription());
+			values.put("Id", plantLeaf.getId());
+			values.put("Name", plantLeaf.getName());
+			values.put("Description", plantLeaf.getDescription());
 			db.insert("potato_PlantLeaf", null, values);
 			db.close();
 	}
 	
+	/** Inserts a plant leaf photo linker into the database.
+	 * 
+	 * @param linker The linker to add to the database.
+	 */
 	public void insertPlantLeafPhotoLinker(PhotoLinkerEntity linker)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -185,7 +196,11 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
-	 private LinkedList<Integer> getPestPhotoLinkersForPlantLeaf(PlantLeafEntity plantLeaf) {
+	 /** Returns a linked list of the photo ids for a plant leaf in the database.
+	 * @param plantLeaf
+	 * @return A linked list of the photo ids for a plant leaf in the database.
+	 */
+	private LinkedList<Integer> getPestPhotoLinkersForPlantLeaf(PlantLeafEntity plantLeaf) {
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -201,6 +216,10 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	        return photoIds;
 	    }
 		
+		/** Returns a linked list of photo objects for a plant leaf object.
+		 * @param plantLeaf The plant leaf object to get all photos for.
+		 * @return A linked list of photo objects for a plant leaf object.
+		 */
 		public LinkedList<PhotoEntity> getPlantLeafPhotos(PlantLeafEntity plantLeaf)
 		{
 			LinkedList<Integer> photoIds = getPestPhotoLinkersForPlantLeaf(plantLeaf);

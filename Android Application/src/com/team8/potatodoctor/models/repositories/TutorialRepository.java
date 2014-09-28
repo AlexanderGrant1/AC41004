@@ -46,6 +46,9 @@ public class TutorialRepository extends SQLiteOpenHelper
 		onCreate(db);	
 	}
 	
+	/**
+	 * Creates a tutorial table in the local database if it doesn't already exist.
+	 */
 	public void createTutorialTableIfNotExists()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -53,6 +56,9 @@ public class TutorialRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Drops a tutorial table in the local database if it doesn't already exist.
+	 */
 	public void dropTutorialTableIfExists()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -60,6 +66,9 @@ public class TutorialRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/**
+	 * Clears the tutorial table in the local database.
+	 */
 	public void clearTutorialTable()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -67,6 +76,11 @@ public class TutorialRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
+	/** Returns the index of a tutorial in the local database with a given name.
+	 * 
+	 * @param name The name of the tutorial to find the index of.
+	 * @return The index of the tutorial or -1 if the tutorial does not exist.
+	 */
 	public int getIndexOfTutorialByName(String name)
 	{
         SQLiteDatabase db = getWritableDatabase();
@@ -86,7 +100,11 @@ public class TutorialRepository extends SQLiteOpenHelper
         return -1;
 	}
 	
-	 public LinkedList<TutorialEntity> getAllTutorials() {
+	 /** Returns a linked list of all tutorial objects in the local database.
+	  * 
+	 * @return A linked list of all tutorial objects in the local database.
+	 */
+	public LinkedList<TutorialEntity> getAllTutorials() {
 	        LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
 
 	        SQLiteDatabase db = getWritableDatabase();
@@ -108,6 +126,10 @@ public class TutorialRepository extends SQLiteOpenHelper
 	        return tutorials;
 	    }
 	
+	/** Inserts a tutorial into the local database.
+	 * 
+	 * @param tutorial The tutorial object to add to the database.
+	 */
 	public void insertTutorial(TutorialEntity tutorial)
 	{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -120,6 +142,11 @@ public class TutorialRepository extends SQLiteOpenHelper
 			db.close();
 	}
 	
+	/** Returns a linked list of tutorial objects whose description or name matches the provided keywords.
+	 * 
+	 * @param keywords The keywords to search the tutorial objects' name and descriptions for.
+	 * @return A linked list of tutorial objects whose description or name matches the provided keywords.
+	 */
 	public LinkedList<TutorialEntity> searchTutorials(String keywords)
 	{
         LinkedList<TutorialEntity> foundEntries = new LinkedList<TutorialEntity>();
