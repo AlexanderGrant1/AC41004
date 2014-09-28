@@ -54,9 +54,7 @@
         
         <!-- ObjectDescriptionActivity - No parentActivityName-->
         <activity 
-            android:name="com.team8.potatodoctor.activities.ObjectDescriptionActivity"
-            android:label="@string/placeholder"
-        	></activity>
+            android:name="com.team8.potatodoctor.activities.ObjectDescriptionActivity"></activity>
         
         <!-- TutorialActivity-->
         <activity 
