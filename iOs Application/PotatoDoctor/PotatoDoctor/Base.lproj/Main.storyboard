@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-428" y="146"/>
         </scene>
-        <!--Test-->
+        <!--Potato Doctor-->
         <scene sceneID="7z8-lE-Z2e">
             <objects>
                 <viewController id="PyQ-Hz-8We" customClass="RootViewController" sceneMemberID="viewController">
@@ -102,7 +102,7 @@
                             <constraint firstAttribute="centerX" secondItem="eY8-Co-rMu" secondAttribute="centerX" id="U0k-PI-IhT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Test" id="Ly2-Bs-vrI"/>
+                    <navigationItem key="navigationItem" title="Potato Doctor" id="Ly2-Bs-vrI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLg-VG-zNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
