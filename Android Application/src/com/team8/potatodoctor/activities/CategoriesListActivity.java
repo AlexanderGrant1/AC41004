@@ -1,6 +1,5 @@
 package com.team8.potatodoctor.activities;
  
-
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class CategoriesListActivity extends Activity
 	{
 		Log.d("Problem Determination", "onCreate() ENTRY");
 		super.onCreate(saveInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_category_selection);
 		
 		//If the app has empty tables or fresh install/user cleared all app data
 		//Bring up dialog asking user to Update.

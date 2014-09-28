@@ -52,7 +52,8 @@ public class ImageAdapterMain extends BaseAdapter {
             v = inflater.inflate(R.layout.grid_layout, viewGroup, false);
             v.setTag(R.id.picture, v.findViewById(R.id.picture));
             v.setTag(R.id.text, v.findViewById(R.id.text));
-            v.setPadding(50,0,50,50);
+            //v.setPadding(50,0,50,50);
+            v.setPadding(5, 5, 5, 5);
         }
 
         picture = (ImageView)v.getTag(R.id.picture);

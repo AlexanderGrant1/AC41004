@@ -4,8 +4,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    <GridView
+    >      
+        <GridView
+        android:id="@+id/gridview_main"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="0dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:paddingTop="50dp"
+        android:numColumns="2" 
+        />
+        
+    <!-- Layout for old 1 column style -->           
+    <!--  <GridView
         android:id="@+id/gridview_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,8 +26,9 @@
         android:verticalSpacing="0dp"
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
-        android:numColumns="1" 
-        />
+        android:numColumns="2" 
+        />-->
+        
 </FrameLayout>
 
 

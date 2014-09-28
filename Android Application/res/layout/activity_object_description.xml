@@ -41,7 +41,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewItem"
+        android:layout_alignStart="@+id/textViewItem"
         android:layout_alignRight="@+id/textViewItem"
+        android:layout_alignEnd="@+id/textViewItem"
         android:layout_below="@id/imageSelected"
         android:layout_marginTop="25dp"
         android:textSize="20sp" />
@@ -54,6 +56,7 @@
             android:layout_alignTop="@id/textViewTitle"
             android:layout_gravity="center_horizontal"
             android:layout_toRightOf="@id/textViewTitle"
+            android:layout_toEndOf="@id/textViewTitle"
             android:background="@drawable/ic_arrow_right"
             android:visibility="visible" />
     
