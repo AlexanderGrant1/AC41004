@@ -32,7 +32,7 @@ public class CategoriesListActivity extends Activity
 {
 	ArrayList<String> categoriesNameList;
 	
-	/*
+	/**
 	 * Display Categories and checks if the database is empty.
 	 * 
 	 * (non-Javadoc)
@@ -57,7 +57,7 @@ public class CategoriesListActivity extends Activity
 	}
 	
 
-	/*
+	/**
 	 * Creates the Menu Bar.
 	 * 
 	 * (non-Javadoc)
@@ -72,7 +72,7 @@ public class CategoriesListActivity extends Activity
 		return true;
 	}
 	
-	/*
+	/**
 	 * Event Handlers for Menu Bar.
 	 * 
 	 * (non-Javadoc)
@@ -133,7 +133,7 @@ public class CategoriesListActivity extends Activity
 	    } 
 	}
 	
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
 	 */
 	private void disableHardwareMenuKey()
@@ -151,7 +151,7 @@ public class CategoriesListActivity extends Activity
 		}
 	}
 	
-	/*
+	/**
 	 * Populate ListView with selectable categories.
 	 */
 	private void createCategories()
@@ -198,7 +198,7 @@ public class CategoriesListActivity extends Activity
 		}); 
 	}
 	
-	/*
+	/**
 	 * Check if Database is completely empty I.e. fresh install/user cleared data.
 	 * 
 	 *  @return isDBUpdated represents if the Datbase is empty.
@@ -215,7 +215,7 @@ public class CategoriesListActivity extends Activity
 		return isDBEmpty;
 	}
 	
-	/*
+	/**
 	 * Displays a Dialog asking user to update the application
 	 * when the Database is null.
 	 * 
