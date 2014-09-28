@@ -18,6 +18,10 @@ import com.team8.potatodoctor.models.repositories.TuberRepository;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
 import com.team8.potatodoctor.utilities.Constants;
 
+/**
+ * Updates the local database with the data from the server.
+ *
+ */
 public class LocalDbUpdater {
 	
 	private TuberRepository tuberRepository;
@@ -36,6 +40,12 @@ public class LocalDbUpdater {
 		dataFetcher = new DataFetcher(context);
 	}
 	
+	/**
+	 * Updates the local database with information about tubers and information about tuber photos.
+	 * 
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public void updateTuberTables() throws InterruptedException, ExecutionException
 	{
 		String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
@@ -58,6 +68,12 @@ public class LocalDbUpdater {
 		}
 	}
 	
+	/**
+	 * Updates the local database with information about pests and information about pest photos.
+	 * 
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public void updatePestTables() throws InterruptedException, ExecutionException
 	{
 		String response = new HttpGetRequest().execute(Constants.PEST_API_URL).get();
@@ -80,6 +96,12 @@ public class LocalDbUpdater {
 		}
 	}
 	
+	/**
+	 * Updates the local database with information about plant leaf symptoms and information about plant leaf photos.
+	 * 
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public void updatePlantLeafTables() throws InterruptedException, ExecutionException
 	{
 		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
@@ -102,6 +124,12 @@ public class LocalDbUpdater {
 		}
 	}
 	
+	/**
+	 * Updates the local database with information about tutorials and tutorial videos.
+	 * 
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public void updateTutorialTables() throws InterruptedException, ExecutionException
 	{
 		String response = new HttpGetRequest().execute(Constants.TUTORIAL_API_URL).get();

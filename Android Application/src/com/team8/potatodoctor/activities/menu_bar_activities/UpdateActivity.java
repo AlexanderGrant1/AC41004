@@ -41,30 +41,17 @@ public class UpdateActivity extends Activity{
 		spinner = (ProgressBar)findViewById(R.id.progress);
 		spinner.setVisibility(View.INVISIBLE);
 		disableHardwareMenuKey();
-		//TextView instructions = (TextView)findViewById(R.id.updateInstructions);
 		//Check for Internet connection before proceeding.
 		if(isNetworkConnected())
 		{
 			updateApplication();
-			//doUpdate();
-
 		}
 		else
 		{
 			showUpdateNetworkErrorDialog();
 		}
-		
-		 
 	}
-	/*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	*/
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -147,12 +134,6 @@ public class UpdateActivity extends Activity{
 		builder.setMessage("Are you sure you want to update this application? There may be extra data charges.");
 		builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
-				// continue with update
-				//doUpdate();
-
-				//Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
-				//startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
-				//finish();
 				spinner.setVisibility(View.VISIBLE);
 
 				dialog.dismiss();
@@ -178,9 +159,7 @@ public class UpdateActivity extends Activity{
 	private void doUpdate()
 	{
 		isUpdating = true;
-		//Toast.makeText(getApplicationContext(), "Updating...", Toast.LENGTH_LONG).show();
 		AppUpdater apUp = new AppUpdater(getApplicationContext());
-
 		try {
 			apUp.updateDatabaseTables();
 			apUp.updateLocalFiles();
