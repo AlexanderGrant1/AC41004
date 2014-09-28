@@ -220,101 +220,67 @@ public class ObjectDescriptionActivity extends Activity
         gallery.setScaleX(1.7f);
         gallery.setScaleY(1.7f);
         gallery.setY(80f);
-        Bundle extras = getIntent().getExtras();
-        Log.w("hello","TYPE = "+type);
-	    	if(type.equals("potato_Pest"))
-	    	{
-                PestEntity currentPest = pestRepository.getAllPests().get(position);
-                gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
-                if(currentPest.getPhotos().size() > 0)
-                {
-                	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getFullyQualifiedPath()));
-                }
-                else
-                {
-                	selectedImage.setImageResource(R.drawable.ic_default);
-                }
-                 
-	    	} 
-	    	else if(type.equals("potato_Tuber"))
-	    	{
-	    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
-	            gallery.setAdapter(new GalleryImageAdapter(this,tuber));
-	    		if(tuber.getPhotos().size() > 0)
-	    		{
-	    			selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(0).getFullyQualifiedPath()));
-	    		}
-                else
-                {
-                	selectedImage.setImageResource(R.drawable.ic_default);
-                }
-	    	}
-	    	else if(type.equals("potato_PlantLeaf"))
-	    	{
-	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
-	            gallery.setAdapter(new GalleryImageAdapter(this,plantLeaf));
-	    		if(plantLeaf.getPhotos().size() > 0)
-	    		{
-	    			selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(0).getFullyQualifiedPath()));
-	    		}
-                else
-                {
-                	selectedImage.setImageResource(R.drawable.ic_default);
-                }
-	    	}
-        
-        //Set up Event Listener for Images.
-        gallery.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-             
-        	    Bundle extras = getIntent().getExtras();
-        	    if(extras !=null)
-        	    {
-        	    	if(type.equals("potato_Pest"))
-        	    	{
-                        PestEntity currentPest = pestRepository.getAllPests().get(position);
-                        selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(position).getFullyQualifiedPath()));
-        	    	}
-        	    	else if(type.equals("potato_Tuber"))
-        	    	{
-        	    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
-        	    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(position).getFullyQualifiedPath()));
-        	    	}
-        	    	else if(type.equals("potato_PlantLeaf"))
-        	    	{
-        	    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
-        	    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(position).getFullyQualifiedPath()));
-        	    	}
-        	    	else
-        	    	{
-        	    		Log.w("hello", "not implemented");
-        	    	}
-        	    }
-
-            }
-        });
-	}
-	@Override
-	public Intent getParentActivityIntent()
-	{
-		Bundle extras = getIntent().getExtras();
-    	String type = extras.getString("Type");
-    	if(type.equals("potato_Pest")) 
+    	if(type.equals("potato_Pest"))
     	{
-    		return new Intent(this, PestsActivity.class);
-    	}
+            PestEntity currentPest = pestRepository.getAllPests().get(position);
+            gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
+            if(currentPest.getPhotos().size() > 0)
+            {
+            	selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(0).getFullyQualifiedPath()));
+            }
+            else
+            {
+            	selectedImage.setImageResource(R.drawable.ic_default);
+            }
+             
+    	} 
     	else if(type.equals("potato_Tuber"))
     	{
-    		return new Intent(this, TuberSymptomActivity.class);
+    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
+            gallery.setAdapter(new GalleryImageAdapter(this,tuber));
+    		if(tuber.getPhotos().size() > 0)
+    		{
+    			selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(0).getFullyQualifiedPath()));
+    		}
+            else
+            {
+            	selectedImage.setImageResource(R.drawable.ic_default);
+            }
     	}
     	else if(type.equals("potato_PlantLeaf"))
     	{
-    		return new Intent(this, PlantSymptomActivity.class);
+    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
+            gallery.setAdapter(new GalleryImageAdapter(this,plantLeaf));
+    		if(plantLeaf.getPhotos().size() > 0)
+    		{
+    			selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(0).getFullyQualifiedPath()));
+    		}
+            else
+            {
+            	selectedImage.setImageResource(R.drawable.ic_default);
+            }
     	}
-    	else
-    	{
-    		return new Intent(this, CategoriesListActivity.class);
-    	}
+    
+	    //Set up Event Listener for Images.
+	    gallery.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+		    	if(type.equals("potato_Pest"))
+		    	{
+	                PestEntity currentPest = pestRepository.getAllPests().get(position);
+	                selectedImage.setImageURI(Uri.parse(currentPest.getPhotos().get(pos).getFullyQualifiedPath()));
+		    	}
+		    	else if(type.equals("potato_Tuber"))
+		    	{
+		    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
+		    		selectedImage.setImageURI(Uri.parse(tuber.getPhotos().get(pos).getFullyQualifiedPath()));
+		    	}
+		    	else if(type.equals("potato_PlantLeaf"))
+		    	{
+		    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
+		    		selectedImage.setImageURI(Uri.parse(plantLeaf.getPhotos().get(pos).getFullyQualifiedPath()));
+		    	}
+	        }
+	    });
 	}
 	
 	@Override

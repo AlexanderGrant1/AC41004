@@ -2,6 +2,7 @@ package com.team8.potatodoctor.adapters;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -46,7 +47,6 @@ public class GalleryImageAdapter extends BaseAdapter
 	@Override
 	public View getView(int index, View view, ViewGroup viewGroup) {
 		ImageView i = new ImageView(mContext);
-		
         i.setImageURI(Uri.parse(dbItem.getPhotos().get(index).getFullyQualifiedPath()));
         i.setLayoutParams(new Gallery.LayoutParams(100, 100));
     

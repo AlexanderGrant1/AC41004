@@ -26,7 +26,7 @@ public class PlantSymptomActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_category);
+		setContentView(R.layout.activity_image_selection);
 		
 	    setupGridView();
 	    disableHardwareMenuKey();

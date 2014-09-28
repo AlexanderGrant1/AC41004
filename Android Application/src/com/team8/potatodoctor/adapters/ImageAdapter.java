@@ -20,8 +20,7 @@ public abstract class ImageAdapter extends BaseAdapter {
     private LayoutInflater inflater;
 
     public ImageAdapter(Context context) {
-        inflater = LayoutInflater.from(context);
-        
+        inflater = LayoutInflater.from(context);       
     }
 
     abstract void addItems();
