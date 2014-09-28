@@ -11,12 +11,9 @@
 #import <CoreData/CoreData.h>
 
 #import "Pest.h"
-
 #import "Photo.h"
 #import "Tuber.h"
-
 #import "PlantLeaf.h"
-
 #import "Tutorial.h"
 
 
