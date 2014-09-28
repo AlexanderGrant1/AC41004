@@ -245,6 +245,11 @@ public class SearchActivity extends Activity {
 		}		
 	}
 
+	
+	/** Adds a header to the search display
+	 * 
+	 * @param title The title displayed for the header
+	 */
 	private void createTableSectionHeader(String title) {
 		TableRow headerRow = new TableRow(this);
 		headerRow.setPadding(40, 50, 10, 5);
@@ -261,6 +266,12 @@ public class SearchActivity extends Activity {
 		searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	}
 	
+	/** Adds a search result to the search display
+	 * 
+	 * @param name The name to display on the search result
+	 * @param type The type passed to the object description page
+	 * @param position The index of the object in the object description page
+	 */
 	private void createSearchResult(String name, final String type, final int position)
 	{
 		//Create new Table Row, to be added to pestTable.
