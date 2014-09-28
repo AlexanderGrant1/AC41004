@@ -31,28 +31,9 @@
 {
     [self.textLabel setText:[self.dataModel getDescription]];
     [self.mainImageView setImage: [self.dataModel getMainPhoto]];
-    
-        self.mainImageView.contentMode = UIViewContentModeCenter;
-    
-self.mainImageView.contentMode  = UIViewContentModeScaleAspectFit;
 
-
-    
-;
+    self.mainImageView.contentMode  = UIViewContentModeScaleAspectFit;
 }
 
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

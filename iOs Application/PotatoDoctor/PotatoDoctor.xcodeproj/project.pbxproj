@@ -159,14 +159,14 @@
 				95CAD56019D2280B000ECECD /* Controllers */,
 				95CAD53B19D222B4000ECECD /* AppDelegate.h */,
 				95CAD53C19D222B4000ECECD /* AppDelegate.m */,
+				95113C3619D6DCB700B949A5 /* EntityCell.h */,
+				95113C3719D6DCB700B949A5 /* EntityCelll.m */,
 				95CAD54419D222B4000ECECD /* Main.storyboard */,
 				95CAD54719D222B4000ECECD /* Images.xcassets */,
 				95CAD54919D222B5000ECECD /* LaunchScreen.xib */,
 				95CAD53E19D222B4000ECECD /* PotatoDoctor.xcdatamodeld */,
 				95113C3F19D75F1900B949A5 /* Menu */,
 				95CAD53719D222B4000ECECD /* Supporting Files */,
-				95113C3619D6DCB700B949A5 /* EntityCell.h */,
-				95113C3719D6DCB700B949A5 /* EntityCelll.m */,
 			);
 			path = PotatoDoctor;
 			sourceTree = "<group>";
