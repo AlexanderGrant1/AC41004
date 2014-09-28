@@ -9,6 +9,10 @@ import android.content.Context;
 
 import com.team8.potatodoctor.utilities.Constants;
 
+/**
+ * Provides methods for downloading individual files from the server
+ *
+ */
 public class LocalFileUpdater {
 	
 	private Context context;
@@ -17,6 +21,14 @@ public class LocalFileUpdater {
 		this.context = context;
 	}
 	
+	/**
+	 * Pulls down a pest image from the server with the given image name.
+	 * 
+	 * @param imageName The name and extension of the image to download.
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws JSONException
+	 */
 	public void fetchPestImage(String imageName) throws InterruptedException, ExecutionException, JSONException
 	{
 		String response = new HttpGetRequest().execute(Constants.PEST_API_URL).get();
@@ -25,6 +37,15 @@ public class LocalFileUpdater {
 		new MediaFetcher().execute(photoPath + imageName,context.getFilesDir()+"/Pests");
 	}
 	
+	
+	/**
+	 * Pulls down a tuber image from the server with the given image name.
+	 * 
+	 * @param imageName The name and extension of the image to download.
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws JSONException
+	 */
 	public void fetchTuberImage(String imageName) throws InterruptedException, ExecutionException, JSONException
 	{
 		String response = new HttpGetRequest().execute(Constants.TUBER_API_URL).get();
@@ -33,6 +54,14 @@ public class LocalFileUpdater {
 		new MediaFetcher().execute(photoPath + imageName,context.getFilesDir()+"/Tubers");
 	}
 	
+	/**
+	 * Pulls down a plant/leaf symptom image from the server with the given image name.
+	 * 
+	 * @param imageName The name and extension of the image to download.
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws JSONException
+	 */
 	public void fetchPlantLeafImage(String imageName) throws InterruptedException, ExecutionException, JSONException
 	{
 		String response = new HttpGetRequest().execute(Constants.PLANT_LEAF_API_URL).get();
@@ -41,6 +70,12 @@ public class LocalFileUpdater {
 		new MediaFetcher().execute(photoPath + imageName,context.getFilesDir()+"/PlantLeaf");
 	}
 	
+	/**
+	 * @param VideoName The name and extension of the video to download
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 * @throws JSONException
+	 */
 	public void fetchTutorialVideo(String VideoName) throws InterruptedException, ExecutionException, JSONException 
 	{
 		String response = new HttpGetRequest().execute(Constants.TUTORIAL_API_URL).get();
@@ -49,6 +84,12 @@ public class LocalFileUpdater {
 		new MediaFetcher().execute(videoPath + VideoName,context.getFilesDir()+"/Tutorials");
 	}
 	
+	/**
+	 * Removes all of the backslashes present in a JSON url
+	 * 
+	 * @param jsonURL
+	 * @return Returns the cleaned JSON url
+	 */
 	private String cleanJSONUrl(String jsonURL)
 	{
 		return jsonURL.replace("\\", "");
