@@ -69,14 +69,8 @@
         
         if([myArray count] > 0)
         {
-            NSLog(@"AAZXXASAFAS");
-
-            Photo *photo        = (Photo *)[myArray objectAtIndex:0];
+            Photo *photo = (Photo *)[myArray objectAtIndex:0];
             imgName = photo.name;
-
-        
-           // imgName = photo.name;
-            NSLog(@"%@", imgName);
         }
     }
     else if(self.tuberModel != Nil)
@@ -85,16 +79,9 @@
         
         if([myArray count] > 0)
         {
-            NSLog(@"AAZXXASAFAS");
-            
-            Photo *photo        = (Photo *)[myArray objectAtIndex:0];
+            Photo *photo = (Photo *)[myArray objectAtIndex:0];
             imgName = photo.name;
-            
-            
-            // imgName = photo.name;
-            NSLog(@"%@", imgName);
         }
-
     }
     else if(self.plantLeafModel != Nil)
     {
@@ -102,24 +89,15 @@
         
         if([myArray count] > 0)
         {
-            NSLog(@"AAZXXASAFAS");
-            
-            Photo *photo        = (Photo *)[myArray objectAtIndex:0];
+            Photo *photo = (Photo *)[myArray objectAtIndex:0];
             imgName = photo.name;
-            
-            
-            // imgName = photo.name;
-            NSLog(@"%@", imgName);
         }
-
     }
     
-    NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString  *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *paths               = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,imgName];
-
-    NSLog(@"%@", filePath);
+    NSString *filePath  = [NSString stringWithFormat:@"%@/%@", documentsDirectory,imgName];
     UIImage *coverImage = [[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@",filePath]];
     
     return coverImage;

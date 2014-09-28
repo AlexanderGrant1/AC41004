@@ -25,7 +25,6 @@
 -(NSString*) getName;
 -(NSString*) getDescription;
 -(NSString*) getPicture;
-
 -(UIImage *) getMainPhoto;
 
 
