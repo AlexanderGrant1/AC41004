@@ -33,6 +33,7 @@
         android:layout_alignTop="@id/textViewTitle"
         android:layout_gravity="center_horizontal"
         android:layout_toLeftOf="@+id/textViewTitle"
+        android:layout_toStartOf="@+id/textViewTitle"
         android:background="@drawable/ic_arrow_left"
         android:visibility="visible" />
     
