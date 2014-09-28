@@ -2,6 +2,9 @@ package com.team8.potatodoctor.database_objects;
 
 import java.util.LinkedList;
 
+/**
+ * An interface that all database objects (Pest, PlantLeaf, Tuber) inherit from
+ */
 public interface IDatabaseObject {
 
 	public int getId();

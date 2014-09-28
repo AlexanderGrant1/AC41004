@@ -1,5 +1,8 @@
 package com.team8.potatodoctor.database_objects;
 
+/**
+ * Represents a photo entry in the database.
+ */
 public class PhotoEntity {
 
 	private int id;

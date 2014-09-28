@@ -2,6 +2,9 @@ package com.team8.potatodoctor.database_objects;
 
 import java.util.LinkedList;
 
+/**
+ * Represents a plant leaf entry in the database.
+ */
 public class PlantLeafEntity implements IDatabaseObject {
 
 	private int id;

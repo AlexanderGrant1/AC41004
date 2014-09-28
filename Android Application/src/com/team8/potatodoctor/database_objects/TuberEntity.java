@@ -2,6 +2,9 @@ package com.team8.potatodoctor.database_objects;
 
 import java.util.LinkedList;
 
+/**
+ * Represents a tuber entry in the database.
+ */
 public class TuberEntity implements IDatabaseObject {
 	
 	private int id;

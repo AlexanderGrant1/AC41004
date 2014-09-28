@@ -1,5 +1,8 @@
 package com.team8.potatodoctor.database_objects;
 
+/**
+ * Represents a tutorial entry in the database.
+ */
 public class TutorialEntity {
 
 	private int Id;

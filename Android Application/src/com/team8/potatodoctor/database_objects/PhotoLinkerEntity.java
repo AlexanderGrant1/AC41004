@@ -1,5 +1,8 @@
 package com.team8.potatodoctor.database_objects;
 
+/**
+ * Represents a photo linker entry in the database
+ */
 public class PhotoLinkerEntity {
 
 	private int Id;
