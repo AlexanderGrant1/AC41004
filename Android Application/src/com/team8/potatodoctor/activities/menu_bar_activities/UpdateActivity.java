@@ -14,57 +14,59 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Looper;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.CategoriesListActivity;
 import com.team8.potatodoctor.models.AppUpdater;
 
+/**
+ * Handles updating of the database.
+ */
 public class UpdateActivity extends Activity{
-	ProgressBar spinner;
+	ProgressBar updateProgress;
 	Boolean isUpdating = false;
-	
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
-		spinner = (ProgressBar)findViewById(R.id.progress);
-		spinner.setVisibility(View.INVISIBLE);
+		updateProgress = (ProgressBar)findViewById(R.id.progress);
+		updateProgress.setVisibility(View.INVISIBLE);
 		disableHardwareMenuKey();
-		//TextView instructions = (TextView)findViewById(R.id.updateInstructions);
+
 		//Check for Internet connection before proceeding.
 		if(isNetworkConnected())
 		{
 			updateApplication();
-			//doUpdate();
-
 		}
 		else
 		{
 			showUpdateNetworkErrorDialog();
-		}
-		
-		 
+		}		 
 	}
-	/*
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	*/
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -96,7 +98,9 @@ public class UpdateActivity extends Activity{
         }
 	}
 	
-	/*
+	/**
+	 * Check if the device is connected to a network.
+	 * 
 	 * Referenced from: http://stackoverflow.com/questions/9570237/android-check-internet-connection
 	 */
 	private boolean isNetworkConnected() 
@@ -110,7 +114,7 @@ public class UpdateActivity extends Activity{
 			return true;
 	} 
 	
-	/*
+	/**
 	 * Display dialog to connect to internet.
 	 */
 	public void showUpdateNetworkErrorDialog()
@@ -135,7 +139,7 @@ public class UpdateActivity extends Activity{
 				.show();				
 	}
 	
-	/*
+	/**
 	 * Prompt user to download update if available.
 	 */
 	private void updateApplication()
@@ -145,15 +149,11 @@ public class UpdateActivity extends Activity{
 		builder.setCancelable(false);
 		builder.setTitle("Update application");
 		builder.setMessage("Are you sure you want to update this application? There may be extra data charges.");
+		
 		builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				// continue with update
-				//doUpdate();
-
-				//Toast.makeText(getApplicationContext(), "Update completed", Toast.LENGTH_LONG).show();
-				//startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
-				//finish();
-				spinner.setVisibility(View.VISIBLE);
+				updateProgress.setVisibility(View.VISIBLE);
 
 				dialog.dismiss();
 			    new Thread(new Runnable() {
@@ -165,6 +165,7 @@ public class UpdateActivity extends Activity{
 
 			}
 		})
+		
 		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				startActivity(new Intent(getBaseContext(),CategoriesListActivity.class)); 
@@ -175,23 +176,23 @@ public class UpdateActivity extends Activity{
 		.show();
 	}
 	
+	/**
+	 * Begins updating the databases.
+	 */
 	private void doUpdate()
 	{
 		isUpdating = true;
-		//Toast.makeText(getApplicationContext(), "Updating...", Toast.LENGTH_LONG).show();
+
 		AppUpdater apUp = new AppUpdater(getApplicationContext());
 
 		try {
 			apUp.updateDatabaseTables();
 			apUp.updateLocalFiles();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -209,8 +210,10 @@ public class UpdateActivity extends Activity{
 	}
 	
 	
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 * 
+	 * Referenced from: http://stackoverflow.com/questions/9286822/how-to-force-use-of-overflow-menu-on-devices-with-menu-button
 	 */
 	private void disableHardwareMenuKey()
 	{
@@ -227,6 +230,9 @@ public class UpdateActivity extends Activity{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed()
 	{

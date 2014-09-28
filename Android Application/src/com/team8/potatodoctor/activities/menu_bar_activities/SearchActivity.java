@@ -1,11 +1,7 @@
 package com.team8.potatodoctor.activities.menu_bar_activities;
  
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
-
-import org.apache.http.client.ClientProtocolException;
-import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,11 +23,7 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
-import com.team8.potatodoctor.activities.CategoriesListActivity;
 import com.team8.potatodoctor.activities.ObjectDescriptionActivity;
-import com.team8.potatodoctor.activities.PestsActivity;
-import com.team8.potatodoctor.activities.PlantSymptomActivity;
-import com.team8.potatodoctor.activities.TuberSymptomActivity;
 import com.team8.potatodoctor.activities.TutorialActivity;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
@@ -41,7 +33,11 @@ import com.team8.potatodoctor.models.repositories.PestRepository;
 import com.team8.potatodoctor.models.repositories.PlantLeafRepository;
 import com.team8.potatodoctor.models.repositories.TuberRepository;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
-  
+
+/**
+ * Searches the local database for matches with the user's search query.
+ * Returns results separated into tables.
+ */
 public class SearchActivity extends Activity {
 
 	public TableLayout searchTable;
@@ -51,17 +47,19 @@ public class SearchActivity extends Activity {
 	private TutorialRepository tutorialRepository;
 	private String query = "";
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
-		Log.v("Problem Determination", "SearchActivity.onCreate() ENTRY");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
+		
 		tuberRepository = new TuberRepository(getApplicationContext());
 		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
 		pestRepository = new PestRepository(getApplicationContext());
 		tutorialRepository = new TutorialRepository(getApplicationContext());
-		Log.v("Problem Determination", "SearchActivity.onCreate() EXIT");
 		
 		final EditText searchBox = (EditText)findViewById(R.id.search_box);
 		searchBox.addTextChangedListener(new TextWatcher() {
@@ -82,15 +80,16 @@ public class SearchActivity extends Activity {
 				//String query = searchBox.getText().toString();
 	        	//searchDatabase(query);
 			} 
-
 	    });
-		
-		
+			
 		searchTable = (TableLayout)findViewById(R.id.search_results);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		disableHardwareMenuKey();
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -100,6 +99,9 @@ public class SearchActivity extends Activity {
 		return true;
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -108,7 +110,7 @@ public class SearchActivity extends Activity {
             this.finish();
             return true;
 	    case (R.id.action_search):
-	      //  this.startActivity(new Intent(this, SearchActivity.class));
+	    	//this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;
 	    case (R.id.action_imageshare):
 	    	 this.startActivity(new Intent(this, ImageShareActivity.class));
@@ -131,7 +133,7 @@ public class SearchActivity extends Activity {
         }
 	}
 	
-	/*
+	/**
 	 * Takes entered query and search all database tables for matches.
 	 */
 	public void searchDatabase(String query)
@@ -156,7 +158,7 @@ public class SearchActivity extends Activity {
 		}
 	}
 	
-	/*
+	/**
 	 * Recieves LinkList(s) for DB Entities and populate the corresponding tablelayouts.
 	 */
 	public void displaySearchResults(LinkedList<PestEntity> pests, LinkedList<PlantLeafEntity> plants, LinkedList<TuberEntity> tubers, LinkedList<TutorialEntity> tutorials)
@@ -180,13 +182,17 @@ public class SearchActivity extends Activity {
 			TableRow headerRow = new TableRow(this);
 			headerRow.setPadding(40, 25, 10, 5);
 			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			
 			TextView pestTitle = new TextView(this);
+			
 			pestTitle.setTextSize(24);
 			pestTitle.setText("Pests"); 
 			pestTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			
 			headerRow.addView(pestTitle);
 		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			//pestTable
+			
+		    //pestTable
 			for(PestEntity pest : pests)
 			{
 				
@@ -215,10 +221,8 @@ public class SearchActivity extends Activity {
 			        	intentObjectDescription.putExtra("Type", "potato_Pest"); //DB Table name.
 			        	intentObjectDescription.putExtra("Position", count); //DB Table row index.
 			        	
-			    		startActivity(intentObjectDescription);     
-						
-					}
-			    	
+			    		startActivity(intentObjectDescription);     					
+					}			    	
 			    });
 			    //Add the Table Row to the Pest Table
 			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
@@ -230,12 +234,17 @@ public class SearchActivity extends Activity {
 			TableRow headerRow = new TableRow(this);
 			headerRow.setPadding(40, 50, 10, 5);
 			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			
 			TextView plantTitle = new TextView(this);
+			
 			plantTitle.setTextSize(24);
 			plantTitle.setText("Plant/Leaf Symptoms"); 
 			plantTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			
 			headerRow.addView(plantTitle);
+			
 		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		    
 			//plantleafTable
 			for(PlantLeafEntity plant : plants)
 			{
@@ -278,12 +287,17 @@ public class SearchActivity extends Activity {
 			TableRow headerRow = new TableRow(this);
 			headerRow.setPadding(40, 50, 10, 5);
 			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			
 			TextView tuberTitle = new TextView(this);
+			
 			tuberTitle.setTextSize(24);
 			tuberTitle.setText("Tubers"); 
 			tuberTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			
 			headerRow.addView(tuberTitle);
+			
 		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		    
 			//tuberTable
 		    int position = 0;
 			for(TuberEntity tuber : tubers)
@@ -329,12 +343,17 @@ public class SearchActivity extends Activity {
 			TableRow headerRow = new TableRow(this);
 			headerRow.setPadding(40, 50, 10, 5);
 			headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			
 			TextView tutorialTitle = new TextView(this);
+			
 			tutorialTitle.setTextSize(24);
 			tutorialTitle.setText("Tutorials"); 
 			tutorialTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+			
 			headerRow.addView(tutorialTitle);
+			
 		    searchTable.addView(headerRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		    
 			//tutorialTable
 		    int position = 0;
 			for(TutorialEntity tutorial : tutorials)
@@ -364,19 +383,19 @@ public class SearchActivity extends Activity {
 			        	
 			    		startActivity(tutorialActivity); 
 						
-					}
-			    	
+					}		    	
 			    });
 			    
 			    //Add the Table Row to the Tuber Table
 			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
-		}
-		
+		}		
 	}
 	
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 * 
+	 * Referenced from: http://stackoverflow.com/questions/9286822/how-to-force-use-of-overflow-menu-on-devices-with-menu-button
 	 */
 	private void disableHardwareMenuKey()
 	{

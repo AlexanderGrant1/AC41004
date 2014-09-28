@@ -25,16 +25,26 @@ import android.widget.Toast;
 
 import com.team8.potatodoctor.R;
 
+/**
+ * Opens camera, take a photo then upload the image to an application of user's choice.
+ * 
+ * Referenced from: http://stackoverflow.com/questions/10679571/calling-camera-from-an-activity-capturing-an-image-and-uploading-to-a-server
+ */
 public class ImageShareActivity extends Activity{
 
 	final String TEMP_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+System.currentTimeMillis()+".jpeg";
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_imageshare);
+		
 		createTempFolderIfNotExists();
+		
 		//Check for a network connection before proceeding.
 		if(isNetworkConnected())
 		{
@@ -48,6 +58,9 @@ public class ImageShareActivity extends Activity{
 		disableHardwareMenuKey();
 	}  
 	
+	/**
+	 * Create a new folder to store new images if it does not exist.
+	 */
 	public void createTempFolderIfNotExists()
 	{
 		File tempFolder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/pd_temp");
@@ -56,21 +69,14 @@ public class ImageShareActivity extends Activity{
 			try {
 				tempFolder.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	private void deleteTempPictureIfExists()
-	{
-		File temp = new File(TEMP_PATH);
-		if(temp.exists())
-		{
-			temp.delete();
-		}
-	}
-	
+	/**
+	 * Start new intent to open up the camera.
+	 */
 	public void displayCamera()
 	{
 		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -87,6 +93,10 @@ public class ImageShareActivity extends Activity{
 		startActivityForResult(intent, 0);
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if(resultCode == -1)
@@ -102,6 +112,9 @@ public class ImageShareActivity extends Activity{
 	    		
 	}
 	 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -110,25 +123,10 @@ public class ImageShareActivity extends Activity{
 		return true;
 	}
 	
-	private PictureCallback mPicture = new PictureCallback() {
-
-	    @Override
-	    public void onPictureTaken(byte[] data, Camera camera) {
-	        Log.w("hello", "Getting output media file");
-	        File pictureFile = new File(TEMP_PATH);
-	        try {
-	            FileOutputStream fos = new FileOutputStream(pictureFile);
-	            fos.write(data);
-	            fos.close();
-	            ImageShareActivity.this.finish();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } 
-	    }
-	};
-	
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 * 
+	 * Referenced from: http://stackoverflow.com/questions/9286822/how-to-force-use-of-overflow-menu-on-devices-with-menu-button
 	 */
 	private void disableHardwareMenuKey()
 	{
@@ -145,8 +143,12 @@ public class ImageShareActivity extends Activity{
 		}
 	}
 	
-	/*
+	/**
+	 * Check if the device is connected to a network.
+	 * 
 	 * Referenced from: http://stackoverflow.com/questions/9570237/android-check-internet-connection
+	 * 
+	 * @param true/false if the device to connected to a network.
 	 */
 	private boolean isNetworkConnected() 
 	{
@@ -159,8 +161,8 @@ public class ImageShareActivity extends Activity{
 			return true;
 	}  
 	 	
-	/*
-	 * Display dialog to connect to internet.
+	/**
+	 * Display dialog to tell user to connect to internet.
 	 */
 	public void showImageShareNetworkErrorDialog()
 	{
