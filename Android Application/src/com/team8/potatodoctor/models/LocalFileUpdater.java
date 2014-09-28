@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
-import com.team8.potatodoctor.Constants;
+import com.team8.potatodoctor.utilities.Constants;
 
 public class LocalFileUpdater {
 	

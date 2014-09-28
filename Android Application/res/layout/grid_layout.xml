@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
              
-    <com.team8.potatodoctor.SquareImageView
+    <com.team8.potatodoctor.utilities.SquareImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

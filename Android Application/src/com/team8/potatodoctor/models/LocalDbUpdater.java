@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutionException;
 
 import android.content.Context;
 
-import com.team8.potatodoctor.Constants;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PhotoEntity;
 import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
@@ -17,6 +16,7 @@ import com.team8.potatodoctor.models.repositories.PhotoRepository;
 import com.team8.potatodoctor.models.repositories.PlantLeafRepository;
 import com.team8.potatodoctor.models.repositories.TuberRepository;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
+import com.team8.potatodoctor.utilities.Constants;
 
 public class LocalDbUpdater {
 	
