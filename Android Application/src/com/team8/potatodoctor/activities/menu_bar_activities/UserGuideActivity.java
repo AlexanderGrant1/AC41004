@@ -11,8 +11,14 @@ import android.view.ViewConfiguration;
 
 import com.team8.potatodoctor.R;
 
+/**
+ * Displays a User Guide video on how to use Potato Doctor.
+ */
 public class UserGuideActivity extends Activity{
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -22,6 +28,9 @@ public class UserGuideActivity extends Activity{
 		disableHardwareMenuKey();
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -30,6 +39,9 @@ public class UserGuideActivity extends Activity{
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -58,8 +70,10 @@ public class UserGuideActivity extends Activity{
 	    }
 	}
 	
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 * 
+	 * Referenced from: http://stackoverflow.com/questions/9286822/how-to-force-use-of-overflow-menu-on-devices-with-menu-button
 	 */
 	private void disableHardwareMenuKey()
 	{

@@ -38,8 +38,8 @@ public final class R {
         public static final int action_search=0x7f0a000f;
         public static final int action_update=0x7f0a0011;
         public static final int action_userguide=0x7f0a0012;
-        public static final int gridview=0x7f0a0000;
-        public static final int gridview_main=0x7f0a0001;
+        public static final int gridview=0x7f0a0001;
+        public static final int gridview_main=0x7f0a0000;
         public static final int imageGallery=0x7f0a0002;
         public static final int imageSelected=0x7f0a0003;
         public static final int leftButton=0x7f0a0004;
@@ -55,10 +55,10 @@ public final class R {
         public static final int updateInstructions=0x7f0a000a;
     }
     public static final class layout {
-        public static final int activity_category=0x7f030000;
+        public static final int activity_category_selection=0x7f030000;
         public static final int activity_exit=0x7f030001;
-        public static final int activity_imageshare=0x7f030002;
-        public static final int activity_main=0x7f030003;
+        public static final int activity_image_selection=0x7f030002;
+        public static final int activity_imageshare=0x7f030003;
         public static final int activity_object_description=0x7f030004;
         public static final int activity_search=0x7f030005;
         public static final int activity_settings=0x7f030006;

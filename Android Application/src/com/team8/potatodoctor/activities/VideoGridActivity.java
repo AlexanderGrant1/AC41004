@@ -20,8 +20,14 @@ import com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
 import com.team8.potatodoctor.adapters.VideoAdapter;
 
+/**
+ * Displays Gridview of Thumbnails for all Tutorial Videos in the database.
+ */
 public class VideoGridActivity extends Activity
 {
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -34,6 +40,9 @@ public class VideoGridActivity extends Activity
 		disableHardwareMenuKey();
 	}
  
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -43,7 +52,7 @@ public class VideoGridActivity extends Activity
 		return true;
 	} 
 
-	/*
+	/**
 	 * Constructs the Grid View and populates with Images via the PestImageAdapter.
 	 */
 	private void setupGridView()
@@ -67,6 +76,9 @@ public class VideoGridActivity extends Activity
 	    });
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -98,8 +110,10 @@ public class VideoGridActivity extends Activity
         }
 	}
 	
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 * 
+	 * Referenced from: http://stackoverflow.com/questions/9286822/how-to-force-use-of-overflow-menu-on-devices-with-menu-button
 	 */
 	private void disableHardwareMenuKey()
 	{
