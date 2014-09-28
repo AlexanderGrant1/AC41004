@@ -31,25 +31,9 @@
 {
     [self.textLabel setText:[self.dataModel getDescription]];
     [self.mainImageView setImage: [self.dataModel getMainPhoto]];
-    
-    if (self.mainImageView.bounds.size.width > ((UIImage*) [self.dataModel getMainPhoto]).size.width && self.mainImageView.bounds.size.height > ((UIImage*) [self.dataModel getMainPhoto]).size.height) {
-        self.mainImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-;
+
+    self.mainImageView.contentMode  = UIViewContentModeScaleAspectFit;
 }
 
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
