@@ -32,9 +32,12 @@
     [self.textLabel setText:[self.dataModel getDescription]];
     [self.mainImageView setImage: [self.dataModel getMainPhoto]];
     
-    if (self.mainImageView.bounds.size.width > ((UIImage*) [self.dataModel getMainPhoto]).size.width && self.mainImageView.bounds.size.height > ((UIImage*) [self.dataModel getMainPhoto]).size.height) {
-        self.mainImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
+        self.mainImageView.contentMode = UIViewContentModeCenter;
+    
+self.mainImageView.contentMode  = UIViewContentModeScaleAspectFit;
+
+
+    
 ;
 }
 
