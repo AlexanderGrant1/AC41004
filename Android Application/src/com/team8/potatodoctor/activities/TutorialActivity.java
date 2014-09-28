@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
@@ -16,16 +15,21 @@ import android.widget.VideoView;
 import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.activities.menu_bar_activities.ImageShareActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.SearchActivity;
-import com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity;
 import com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity;
+import com.team8.potatodoctor.activities.menu_bar_activities.UserGuideActivity;
 import com.team8.potatodoctor.models.repositories.TutorialRepository;
 
-/*
+/**
+ * Displays the selected video.
  * Refer to: http://code.tutsplus.com/tutorials/streaming-video-in-android-apps--cms-19888
  */
 public class TutorialActivity extends Activity
 {
 	private TutorialRepository tutorialRepository;
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
@@ -46,6 +50,9 @@ public class TutorialActivity extends Activity
 
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -55,7 +62,9 @@ public class TutorialActivity extends Activity
 		return true;
 	}
 
-	/*
+	/**
+	 * Creates the Media Player to show the videos.
+	 * 
 	 * Refer to: http://code.tutsplus.com/tutorials/streaming-video-in-android-apps--cms-19888
 	 */
 	private void setupMediaPlayer(int position)
@@ -72,6 +81,9 @@ public class TutorialActivity extends Activity
 		vidView.start();
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -103,8 +115,10 @@ public class TutorialActivity extends Activity
         }
 	}
 
-	/*
+	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
+	 * 
+	 * Referenced from: http://stackoverflow.com/questions/9286822/how-to-force-use-of-overflow-menu-on-devices-with-menu-button
 	 */
 	private void disableHardwareMenuKey()
 	{
