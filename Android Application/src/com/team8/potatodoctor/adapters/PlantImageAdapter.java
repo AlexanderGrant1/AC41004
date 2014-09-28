@@ -7,8 +7,17 @@ import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
 import com.team8.potatodoctor.models.repositories.PlantLeafRepository;
 
+/**
+ * Adapter that reads Plant/Leaf objects from the database and adds it to the Grid View.
+ */
 public class PlantImageAdapter extends ImageAdapter {
 	private Context context;
+	
+	/**
+	 * Instantiates a new instance of the PlantImageAdapter class.
+	 * 
+	 * @param context The Context of the application.
+	 */
 	public PlantImageAdapter(Context context) {
 		super(context);
 		this.context = context;
@@ -16,6 +25,9 @@ public class PlantImageAdapter extends ImageAdapter {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.team8.potatodoctor.adapters.ImageAdapter#addItems()
+	 */
 	@Override
 	void addItems() {
 		PlantLeafRepository plantLeafRepository = new PlantLeafRepository(context);

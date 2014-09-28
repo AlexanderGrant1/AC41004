@@ -7,9 +7,17 @@ import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.models.repositories.PestRepository;
 
+/**
+ * Adapter that reads Pest objects from the database and adds it to the Grid View.
+ */
 public class PestImageAdapter extends ImageAdapter {
-	
 	private Context context;
+	
+	/**
+	 * Instantiates a new instance of the PestImageAdapter class.
+	 * 
+	 * @param context The Context of the application.
+	 */
 	public PestImageAdapter(Context context) {
 		super(context);
 		this.context = context;
@@ -17,6 +25,9 @@ public class PestImageAdapter extends ImageAdapter {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.team8.potatodoctor.adapters.ImageAdapter#addItems()
+	 */
 	@Override
 	void addItems() {
 		PestRepository pestRepository = new PestRepository(context);

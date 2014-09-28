@@ -13,10 +13,18 @@ import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
 
+/**
+ * Adapter that takes the icons for categories and adds them to the Grid View.
+ */
 public class ImageAdapterMain extends BaseAdapter {
     private List<Item> items = new ArrayList<Item>();
     private LayoutInflater inflater;
 
+    /**
+     * Instantiates a new instance of the ImageAdapterMain class.
+     * 
+     * @param context The Context of the application/object.
+     */
     public ImageAdapterMain(Context context) {
         inflater = LayoutInflater.from(context);
 
@@ -27,21 +35,33 @@ public class ImageAdapterMain extends BaseAdapter {
         
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getCount()
+     */
     @Override
     public int getCount() {
         return items.size();
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItem(int)
+     */
     @Override
     public Object getItem(int i) {
         return items.get(i);
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItemId(int)
+     */
     @Override
     public long getItemId(int i) {
         return items.get(i).drawableId;
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
@@ -52,7 +72,6 @@ public class ImageAdapterMain extends BaseAdapter {
             v = inflater.inflate(R.layout.grid_layout, viewGroup, false);
             v.setTag(R.id.picture, v.findViewById(R.id.picture));
             v.setTag(R.id.text, v.findViewById(R.id.text));
-            //v.setPadding(50,0,50,50);
             v.setPadding(5, 5, 5, 5);
         }
 
@@ -67,6 +86,9 @@ public class ImageAdapterMain extends BaseAdapter {
         return v;
     }
 
+    /**
+     * Creates a new Item to add to the Adapter.
+     */
     private class Item {
         final String name;
         final int drawableId;

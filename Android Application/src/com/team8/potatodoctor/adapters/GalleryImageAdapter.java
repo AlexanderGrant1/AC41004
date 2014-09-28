@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import com.team8.potatodoctor.database_objects.IDatabaseObject;
 
 /**
+ * Adapter for Image Gallery, extracts the Image from the database. 
+ * 
  * Referenced from: http://www.learn-android-easily.com/2013/07/android-gallery-view-example.html
  */
 @SuppressWarnings("deprecation")
@@ -18,33 +20,47 @@ public class GalleryImageAdapter extends BaseAdapter
 {
 	private Context mContext;
 	private IDatabaseObject dbItem;
-    
-	//Constructor
+    	
+    /**
+     * Initialises an instance of the GalleryImageAdapter
+     * 
+     * @param context The Context of the application.
+     * @param dbItem The database object to read Image from.
+     */
     public GalleryImageAdapter(Context context, IDatabaseObject dbItem) 
     {
         mContext = context;
         this.dbItem = dbItem;
     }
-    
-    //Required Method
+       
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getCount()
+	 */
 	@Override
 	public int getCount() {
 		return dbItem.getPhotos().size();
 	}
 
-	//Required Method
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItem(int)
+	 */
 	@Override
 	public Object getItem(int position) {
 		return position;
 	}
 
-	//Required Method
+
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getItemId(int)
+	 */
 	@Override
 	public long getItemId(int position) {
 		return position;
 	}
 
-	//Required Method
+	/* (non-Javadoc)
+	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int index, View view, ViewGroup viewGroup) {
 		ImageView i = new ImageView(mContext);

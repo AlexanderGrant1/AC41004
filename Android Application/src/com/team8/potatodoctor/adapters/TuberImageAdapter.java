@@ -7,8 +7,17 @@ import com.team8.potatodoctor.R;
 import com.team8.potatodoctor.database_objects.TuberEntity;
 import com.team8.potatodoctor.models.repositories.TuberRepository;
 
+/**
+ * Adapter that reads Tuber objects from the database and adds it to the Grid View.
+ */
 public class TuberImageAdapter extends ImageAdapter {
 	private Context context;
+	
+	/**
+	 * Instantiates a new instance of the TuberImageAdapter class.
+	 * 
+	 * @param context The Context of the application.
+	 */
 	public TuberImageAdapter(Context context) {
 		super(context);
 		this.context = context;
@@ -16,6 +25,9 @@ public class TuberImageAdapter extends ImageAdapter {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.team8.potatodoctor.adapters.ImageAdapter#addItems()
+	 */
 	@Override
 	void addItems() {
 		TuberRepository tuberRepository = new TuberRepository(context);

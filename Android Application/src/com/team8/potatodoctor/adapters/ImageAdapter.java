@@ -15,31 +15,52 @@ import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
 
+/**
+ * Adapter that reads all images from the database to populate the gridview.
+ */
 public abstract class ImageAdapter extends BaseAdapter {
     public List<Item> items = new ArrayList<Item>();
     private LayoutInflater inflater;
 
+    /**
+     * @param context Context of the Application.
+     */
     public ImageAdapter(Context context) {
         inflater = LayoutInflater.from(context);       
     }
 
+    /**
+     * Adds Items to the Adapter.
+     */
     abstract void addItems();
     
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getCount()
+     */
     @Override
     public int getCount() {
         return items.size();
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItem(int)
+     */
     @Override
     public Object getItem(int i) {
         return items.get(i);
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItemId(int)
+     */
     @Override
     public long getItemId(int i) {
     	return items.get(i).drawableId;
     }
 
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = view;
@@ -77,6 +98,9 @@ public abstract class ImageAdapter extends BaseAdapter {
         return v;
     }
 
+    /**
+     * Creates a new Item based on the parameters.
+     */
     class Item {
         final String name;
         final Uri imageUri;
