@@ -220,11 +220,9 @@ public class ObjectDescriptionActivity extends Activity
         gallery.setScaleX(1.7f);
         gallery.setScaleY(1.7f);
         gallery.setY(80f);
-        Log.w("hello","TYPE = "+type);
     	if(type.equals("potato_Pest"))
     	{
             PestEntity currentPest = pestRepository.getAllPests().get(position);
-            Log.w("hello", "position = "+position);
             gallery.setAdapter(new GalleryImageAdapter(this,currentPest));
             if(currentPest.getPhotos().size() > 0)
             {
@@ -283,28 +281,6 @@ public class ObjectDescriptionActivity extends Activity
 		    	}
 	        }
 	    });
-	}
-	@Override
-	public Intent getParentActivityIntent()
-	{
-		Bundle extras = getIntent().getExtras();
-    	String type = extras.getString("Type");
-    	if(type.equals("potato_Pest")) 
-    	{
-    		return new Intent(this, PestsActivity.class);
-    	}
-    	else if(type.equals("potato_Tuber"))
-    	{
-    		return new Intent(this, TuberSymptomActivity.class);
-    	}
-    	else if(type.equals("potato_PlantLeaf"))
-    	{
-    		return new Intent(this, PlantSymptomActivity.class);
-    	}
-    	else
-    	{
-    		return new Intent(this, CategoriesListActivity.class);
-    	}
 	}
 	
 	@Override

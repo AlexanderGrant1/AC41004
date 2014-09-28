@@ -63,8 +63,6 @@ public class TutorialActivity extends Activity
 		tutorialRepository.getAllTutorials();
 		String videoPath = tutorialRepository.getAllTutorials().get(position).getFullyQualifiedPath();
 		VideoView vidView = (VideoView)findViewById(R.id.myVideo);
-		Log.d("Problem Determination", Integer.toString(position));
-		Log.w("hello","VIDEO PATH: "+videoPath);
 		Uri vidUri = Uri.parse(videoPath);
 
 		vidView.setVideoURI(vidUri);
