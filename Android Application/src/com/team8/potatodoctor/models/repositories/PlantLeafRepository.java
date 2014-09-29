@@ -170,6 +170,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
             	plantLeaf.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	plantLeaf.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
             	plantLeaf.setPhotos(getPlantLeafPhotos(plantLeaf));
+            	plantLeaf.setTutorials(getPlantLeafTutorials(plantLeaf));
             	plantLeafs.add(plantLeaf);
             }
             while (cursor.moveToNext());
@@ -275,7 +276,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
 
 	        SQLiteDatabase db = getWritableDatabase();
-	        Cursor cursor = db.rawQuery("SELECT TutorialId FROM potato_PlantLeaf_tutorial WHERE TuberId = "+tuber.getId(), null);
+	        Cursor cursor = db.rawQuery("SELECT TutorialId FROM potato_PlantLeaf_tutorial WHERE PlantLeafId = "+tuber.getId(), null);
 
 	        if (cursor.moveToFirst()) {
 	            do {

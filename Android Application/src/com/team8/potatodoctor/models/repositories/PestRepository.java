@@ -145,6 +145,7 @@ public class PestRepository extends SQLiteOpenHelper
                 pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
                 pest.setPhotos(getPestPhotos(pest));
+                pest.setTutorials(getPestTutorials(pest));
                 foundPests.add(pest);
             }
             while (cursor.moveToNext());

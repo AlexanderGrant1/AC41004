@@ -133,6 +133,7 @@ public class TuberRepository extends SQLiteOpenHelper
             	tuber.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	tuber.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
             	tuber.setPhotos(getTuberPhotos(tuber));
+            	tuber.setTutorials(getTuberTutorials(tuber));
                 foundEntries.add(tuber);
             }
             while (cursor.moveToNext());
