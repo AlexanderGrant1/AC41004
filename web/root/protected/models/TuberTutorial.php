@@ -1,23 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "potato_PlantLeaf_tutorial".
+ * This is the model class for table "potato_Tuber_tutorial".
  *
- * The followings are the available columns in table 'potato_PlantLeaf_tutorial':
+ * The followings are the available columns in table 'potato_Tuber_tutorial':
  * @property integer $Id
- * @property integer $PlantLeafId
+ * @property integer $TuberId
  * @property integer $TutorialId
  *
  * The followings are the available model relations:
- * @property PotatoPlantLeaf $plantLeaf
+ * @property PotatoTuber $tuber
  * @property PotatoTutorial $tutorial
  */
-class PlantLeafTutorial extends CActiveRecord
+class TuberTutorial extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return PlantLeafTutorial the static model class
+	 * @return TuberTutorial the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -29,7 +29,7 @@ class PlantLeafTutorial extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'potato_PlantLeaf_tutorial';
+		return 'potato_Tuber_tutorial';
 	}
 
 	/**
@@ -40,11 +40,11 @@ class PlantLeafTutorial extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PlantLeafId, TutorialId', 'required'),
-			array('PlantLeafId, TutorialId', 'numerical', 'integerOnly'=>true),
+			array('TuberId, TutorialId', 'required'),
+			array('TuberId, TutorialId', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('Id, PlantLeafId, TutorialId', 'safe', 'on'=>'search'),
+			array('Id, TuberId, TutorialId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +56,7 @@ class PlantLeafTutorial extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'plantLeaf' => array(self::BELONGS_TO, 'PlantLeaf', 'PlantLeafId'),
+			'tuber' => array(self::BELONGS_TO, 'Tuber', 'TuberId'),
 			'tutorial' => array(self::BELONGS_TO, 'Tutorial', 'TutorialId'),
 		);
 	}
@@ -68,7 +68,7 @@ class PlantLeafTutorial extends CActiveRecord
 	{
 		return array(
 			'Id' => 'ID',
-			'PlantLeafId' => 'Plant Leaf',
+			'TuberId' => 'Tuber',
 			'TutorialId' => 'Tutorial',
 		);
 	}
@@ -85,7 +85,7 @@ class PlantLeafTutorial extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('Id',$this->Id);
-		$criteria->compare('PlantLeafId',$this->PlantLeafId);
+		$criteria->compare('TuberId',$this->TuberId);
 		$criteria->compare('TutorialId',$this->TutorialId);
 
 		return new CActiveDataProvider($this, array(

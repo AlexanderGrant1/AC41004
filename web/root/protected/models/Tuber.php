@@ -61,6 +61,7 @@ class Tuber extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'images' => array(self::HAS_MANY, 'TuberPhoto', 'TuberId'),
+			'tuberTutorials' => array(self::HAS_MANY, 'TuberTutorial', 'TuberId'),
 		);
 	}
 

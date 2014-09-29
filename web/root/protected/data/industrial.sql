@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS `potato_Pest` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
-	UNIQUE(`Name`),
 	PRIMARY KEY(`Id`)
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
@@ -39,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `potato_PlantLeaf` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
-	UNIQUE(`Name`),
 	PRIMARY KEY(`Id`)
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
@@ -60,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `potato_Tuber` (
 	`Id` smallint unsigned NOT NULL auto_increment,
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
-	UNIQUE(`Name`),
 	PRIMARY KEY(`Id`)
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
@@ -82,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `potato_Tutorial` (
 	`Name` varchar(50) NOT NULL,
 	`Description` text NOT NULL,
 	`VideoName` varchar(37),
-	UNIQUE(`Name`),
 	PRIMARY KEY(`Id`)
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
