@@ -212,37 +212,10 @@ public class SearchActivity extends Activity {
 			{
 				final int count = tutorialRepository.getIndexOfTutorialByName(tutorial.getName());
 				//Create new Table Row, to be added to tuberTable.
-				TableRow row = new TableRow(this);
-				row.setPadding(40, 25, 10, 5);
-				row.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-				row.setBackgroundColor(Color.DKGRAY);
-
-				//Create a TextView to hold pest details.
-				TextView tutorialObject = new TextView(this);
-				tutorialObject.setTextSize(18);
-				tutorialObject.setText(tutorial.getName()); 
-				tutorialObject.setTextColor(Color.WHITE);
-				
-				//Add the Textview to the TableRow
-			    row.addView(tutorialObject);
-			    row.setOnClickListener(new OnClickListener()
-			    {
-
-					@Override
-					public void onClick(View v) {
-						Intent tutorialActivity = new Intent(getApplicationContext(),TutorialActivity.class);
-						tutorialActivity.putExtra("Position", count); //DB Table row index.
-			        	
-			    		startActivity(tutorialActivity); 
-						
-					}		    	
-			    });
-			    
-			    //Add the Table Row to the Tuber Table
-			    searchTable.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
 		}		
 	}
+	
 
 	
 	/** Adds a header to the search display

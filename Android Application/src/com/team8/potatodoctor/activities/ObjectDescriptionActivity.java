@@ -1,21 +1,27 @@
 package com.team8.potatodoctor.activities;
 
 import java.lang.reflect.Field;
+import java.util.LinkedList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
@@ -27,6 +33,7 @@ import com.team8.potatodoctor.adapters.GalleryImageAdapter;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
 import com.team8.potatodoctor.database_objects.TuberEntity;
+import com.team8.potatodoctor.database_objects.TutorialEntity;
 import com.team8.potatodoctor.models.repositories.PestRepository;
 import com.team8.potatodoctor.models.repositories.PlantLeafRepository;
 import com.team8.potatodoctor.models.repositories.TuberRepository;
@@ -47,7 +54,7 @@ public class ObjectDescriptionActivity extends Activity
 	//Navigation buttons to other objects.
 	Button rightButton;
 	Button leftButton;
-		
+	TableLayout tutorialLayout;
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
 	String type = "";
@@ -64,7 +71,9 @@ public class ObjectDescriptionActivity extends Activity
 		pestRepository = new PestRepository(getApplicationContext());
 		tuberRepository = new TuberRepository(getApplicationContext());
 		plantLeafRepository = new PlantLeafRepository(getApplicationContext());
-
+		
+		tutorialLayout = (TableLayout)findViewById(R.id.tutorials);
+	
 		//Extract parameters from the intent.
 	    Bundle extras = getIntent().getExtras();
 	    if(extras !=null)
@@ -77,7 +86,36 @@ public class ObjectDescriptionActivity extends Activity
 		createLeftRightButtons();	    
 	   
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        disableHardwareMenuKey();      
+        disableHardwareMenuKey();    
+     
+	}
+	
+	private void addRelatedTutorial(String name, final int position)
+	{
+		TableRow row = new TableRow(this);
+		row.setPadding(40, 25, 10, 5);
+
+		//Create a TextView to hold pest details.
+		TextView tutorialObject = new TextView(this);
+		tutorialObject.setTextSize(18);
+		tutorialObject.setText(name); 
+		tutorialObject.setTextColor(Color.WHITE);
+		
+		//Add the Textview to the TableRow
+	    row.addView(tutorialObject);
+	    row.setOnClickListener(new OnClickListener()
+	    {
+
+			@Override
+			public void onClick(View v) {
+				Intent tutorialActivity = new Intent(getApplicationContext(),TutorialActivity.class);
+				tutorialActivity.putExtra("Position", position); //DB Table row index.
+	        	
+	    		startActivity(tutorialActivity); 
+				
+			}		    	
+	    });
+	    tutorialLayout.addView(row);
 	}
 	
 	/**
@@ -257,7 +295,8 @@ public class ObjectDescriptionActivity extends Activity
         gallery.setScaleX(1.7f);
         gallery.setScaleY(1.7f);
         gallery.setY(80f);
-        
+        boolean hasVideos = false;
+        LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
     	if(type.equals("potato_Pest"))
     	{
             PestEntity currentPest = pestRepository.getAllPests().get(position);
@@ -269,6 +308,11 @@ public class ObjectDescriptionActivity extends Activity
             else
             {
             	selectedImage.setImageResource(R.drawable.ic_default);
+            }
+            if(currentPest.getTutorials().size() > 0)
+            {
+            	hasVideos = true;
+            	tutorials = currentPest.getTutorials();
             }
              
     	} 
@@ -284,6 +328,11 @@ public class ObjectDescriptionActivity extends Activity
             {
             	selectedImage.setImageResource(R.drawable.ic_default);
             }
+            if(tuber.getTutorials().size() > 0)
+            {
+            	hasVideos = true;
+            	tutorials = tuber.getTutorials();
+            }
     	}
     	else if(type.equals("potato_PlantLeaf"))
     	{
@@ -296,6 +345,12 @@ public class ObjectDescriptionActivity extends Activity
             else
             {
             	selectedImage.setImageResource(R.drawable.ic_default);
+            }
+            if(plantLeaf.getTutorials().size() > 0)
+            {
+            	Log.w("hello", "displaying related tutorials");
+            	hasVideos = true;
+            	tutorials = plantLeaf.getTutorials();
             }
     	}
     
@@ -319,6 +374,33 @@ public class ObjectDescriptionActivity extends Activity
 		    	}
 	        }
 	    });
+	    
+	    if(hasVideos)
+	    {
+	    	Log.w("hello", "ORNGERIONGHI]R");
+	    	//TextView relatedTutorials = new TextView(getApplicationContext());
+	    	//relatedTutorials.setText("Related Tutorials");
+	    	
+	    	for(TutorialEntity tutorial : tutorials)
+    		{
+	    		TextView tutorialText = new TextView(getApplicationContext());
+	    		tutorialText.setText(tutorial.getName());
+	    		tutorialText.setOnClickListener(new OnClickListener()
+	    		{
+
+					@Override
+					public void onClick(View v) {
+						Intent tutorialActivity = new Intent(getApplicationContext(),TutorialActivity.class);
+						tutorialActivity.putExtra("Position", position); //DB Table row index.
+			        	
+			    		startActivity(tutorialActivity); 
+					}
+	    			
+	    		});
+	    		tutorialLayout.addView(tutorialText);
+    		}
+	    }
+	    
 	}
 	
 	/* (non-Javadoc)
