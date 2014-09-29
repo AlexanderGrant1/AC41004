@@ -52,7 +52,7 @@ class TuberController extends Controller
 			{
 				// Get all images for current tuber entry.
 				$images    = $tuber->images;
-				$tutorials = $images = $pestModel->tuberTutorials;
+				$tutorials = $images = $tuber->tuberTutorials;
 
 				if($images != null)
 				{
