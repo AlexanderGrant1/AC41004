@@ -40,7 +40,7 @@ public class TuberRepository extends SQLiteOpenHelper
 	
 	private static final String CREATE_TUBER_TUTORIAL_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Tuber_tutorial` ("+
 	"`Id` smallint unsigned NOT NULL,"+
-	"`PestId` smallint unsigned NOT NULL,"+
+	"`TuberId` smallint unsigned NOT NULL,"+
 	"`TutorialId` smallint unsigned NOT NULL,"+
 	"PRIMARY KEY(`Id`));";
 	
