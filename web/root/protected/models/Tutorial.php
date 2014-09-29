@@ -88,7 +88,7 @@ class Tutorial extends CActiveRecord
 			}while(file_exists(Yii::app()->params['projectPath'].Yii::app()->params['videoPath'].$this->VideoName));
 
 			// Save the video.
-			move_uploaded_file($this->video->getTempName(),Yii::app()->params['projectPath'].Yii::app()->params['videoPath'].$this->VideoName);
+			copy($this->video->getTempName(),Yii::app()->params['projectPath'].Yii::app()->params['videoPath'].$this->VideoName);
 		}
 
 		return true;

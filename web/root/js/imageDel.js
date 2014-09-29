@@ -22,7 +22,7 @@ $.fn.imageDel = function (url,options)
             if(!isNaN(objId))
             {
             	$.ajax({
-				    url: url+objType+"/delpic/"+objId,
+				    url: url+objType+"/delmedia/"+objId,
 				    type: 'DELETE',
 				    success: function(result) {
 				        alert('deleted');

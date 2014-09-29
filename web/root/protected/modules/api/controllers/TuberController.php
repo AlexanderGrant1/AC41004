@@ -57,7 +57,7 @@ class TuberController extends Controller
 					foreach ($images as $image)
 					{
 						$response['PhotoLinker'][] = array('Id'=>$image->Id, 'EntryId' => $image->TuberId, 'PhotoId' => $image->PhotoId);
-						$response['Photos'][] = array("Id" => $image->photo->Id, "ImageName" => $image->photo->Name);
+						$response['Photos'][] = array("Id" => $image->photo->Id, "ImageName" => $image->photo->Name, "EntryId" => $tuber->Id);
 					}
 				}
 

@@ -15,12 +15,11 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Tutorial #<?php echo $model->Id; ?></h1>
+<h1>View Tutorial "<?php echo $model->Name; ?>"</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'Id',
 		'Name',
 		'Description',
 		'VideoName',
