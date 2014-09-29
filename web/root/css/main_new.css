@@ -104,3 +104,12 @@ p.main-greet {
   color: #2693FF;
 	line-height: 40px;
 }
+
+.checkbox-list label {
+  display: inline!important;
+}
+
+.checkbox-list input {
+  display: inline !important;
+  margin: 0px !important;
+}
