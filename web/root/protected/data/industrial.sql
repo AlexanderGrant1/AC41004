@@ -98,6 +98,16 @@ CREATE TABLE IF NOT EXISTS `potato_Tuber_tutorial` (
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
 
+CREATE TABLE IF NOT EXISTS `potato_Pest_tutorial` (
+	`Id` smallint unsigned NOT NULL auto_increment,
+	`PestId` smallint unsigned NOT NULL,
+	`TutorialId` smallint unsigned NOT NULL,
+	PRIMARY KEY(`Id`),
+	FOREIGN KEY(`PestId`) REFERENCES `potato_Pest`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`TutorialId`) REFERENCES `potato_Tutorial`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB CHARACTER SET utf8
+COLLATE utf8_general_ci;
+
 
 
 
