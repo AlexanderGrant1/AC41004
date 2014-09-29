@@ -3,13 +3,13 @@
 /* @var $model PlantLeaf */
 
 $this->breadcrumbs=array(
-	'Plant Leaves'=>array('index'),
+	'Plant / Leaf Symptoms'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List PlantLeaf', 'url'=>array('index')),
-	array('label'=>'Create PlantLeaf', 'url'=>array('create')),
+	array('label'=>'List Plant / Leaf Symptoms', 'url'=>array('index')),
+	array('label'=>'Create Plant / Leaf Symptoms', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,12 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Plant Leaves</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<h1>Manage Plant / Leaf Symptoms</h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -45,7 +40,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'Id',
 		'Name',
 		'Description',
 		array(

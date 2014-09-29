@@ -15,13 +15,14 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Pest #<?php echo $model->Id; ?></h1>
+<h1>View Pest "<?php echo $model->Name; ?>"</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'Id',
 		'Name',
 		'Description',
 	),
 )); ?>
+
+<?php echo $this->renderPartial('//site/_imageManager', array('model'=>$model, 'canDelete' => false)); ?>

@@ -3,18 +3,18 @@
 /* @var $model PlantLeaf */
 
 $this->breadcrumbs=array(
-	'Plant Leaves'=>array('index'),
+	'Plant / Leaf Symptoms'=>array('index'),
 	$model->Name=>array('view','id'=>$model->Id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List PlantLeaf', 'url'=>array('index')),
-	array('label'=>'Create PlantLeaf', 'url'=>array('create')),
-	array('label'=>'View PlantLeaf', 'url'=>array('view', 'id'=>$model->Id)),
+	array('label'=>'List Plant / Leaf Symptoms', 'url'=>array('index')),
+	array('label'=>'Create Plant / Leaf Symptoms', 'url'=>array('create')),
+	array('label'=>'View Plant / Leaf Symptoms', 'url'=>array('view', 'id'=>$model->Id)),
 );
 ?>
 
-<h1>Update PlantLeaf <?php echo $model->Id; ?></h1>
+<h1>Update Plant / Leaf Symptom "<?php echo $model->Name; ?>"</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

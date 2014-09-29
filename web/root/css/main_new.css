@@ -66,16 +66,29 @@ div#content.split { width: 70%; float:left; }
 }
 
 #image-manager .entry {
-  width: 230px;
+  width: 150px;
+height: 70px;
   float: left;
   margin-right: 10px;
   border: 1px solid gray;
   border-left: 0px;
 }
 
+#image-manager .etnry > img {
+width:150px;
+hright:70px;
+
+}
+
+#image-manager .entry.delete {
+	width: 230px;
+}
+
 #image-manager .pic {
   width: 150px;
+height:70px;
   display: inline-block;
+overflow:hidden;
 }
 
 #image-manager .remove {
@@ -89,4 +102,5 @@ p.main-greet {
   margin-top: 150px;
   font-size:34px;
   color: #2693FF;
+	line-height: 40px;
 }

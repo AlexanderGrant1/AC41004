@@ -42,7 +42,7 @@
 <?php $this->endWidget(); ?>
 
 	<?php if(!$model->isNewRecord): ?>
-	<?php echo $this->renderPartial('//site/_imageManager', array('model'=>$model)); ?>
+	<?php echo $this->renderPartial('//site/_imageManager', array('model'=>$model, 'canDelete' => true)); ?>
 	<?php endif; ?>
 
 </div><!-- form -->

@@ -3,25 +3,26 @@
 /* @var $model Tuber */
 
 $this->breadcrumbs=array(
-	'Tubers'=>array('index'),
+	'Tuber Symptoms'=>array('index'),
 	$model->Name,
 );
 
 $this->menu=array(
-	array('label'=>'List Tuber', 'url'=>array('index')),
-	array('label'=>'Create Tuber', 'url'=>array('create')),
-	array('label'=>'Update Tuber', 'url'=>array('update', 'id'=>$model->Id)),
-	array('label'=>'Delete Tuber', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'List Tuber Symptoms', 'url'=>array('index')),
+	array('label'=>'Create Tuber Symptoms', 'url'=>array('create')),
+	array('label'=>'Update Tuber Symptoms', 'url'=>array('update', 'id'=>$model->Id)),
+	array('label'=>'Delete Tuber Symptoms', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
 );
 ?>
 
-<h1>View Tuber #<?php echo $model->Id; ?></h1>
+<h1>View Tuber Symptom "<?php echo $model->Name; ?>"</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'Id',
 		'Name',
 		'Description',
 	),
 )); ?>
+
+<?php echo $this->renderPartial('//site/_imageManager', array('model'=>$model, 'canDelete' => false)); ?>
