@@ -40,6 +40,7 @@ class PestController extends Controller
 		$response['Entries']  	 = array();
 		$response['Photos']  	 = array();
 		$response['PhotoLinker'] = array();
+		$response['Tutorials']   = array();
 
 		$pestModels = Pest::model()->findAll();
 
@@ -52,7 +53,8 @@ class PestController extends Controller
 			foreach ($pestModels as $pestModel) 
 			{
 				// Get all images for current pestModel entry.
-				$images = $pestModel->images;
+				$images    = $pestModel->images;
+				$tutorials = $pestModel->pestTutorials;
 
 				if($images != null)
 				{
@@ -60,6 +62,14 @@ class PestController extends Controller
 					{
 						$response['PhotoLinker'][] = array('Id'=>$image->Id, 'EntryId' => $image->PestId, 'PhotoId' => $image->PhotoId);
 						$response['Photos'][] = array("Id" => $image->photo->Id, "ImageName" => $image->photo->Name, "EntryId" => $pestModel->Id);
+					}
+				}
+
+				if($tutorials != null)
+				{
+					foreach ($tutorials as $tutorial)
+					{
+						$response['TutorialLinker'][] = array('Id'=>$tutorial->Id, 'EntryId' => $tutorial->PestId, 'TutorialId' => $tutorial->TutorialId);
 					}
 				}
 

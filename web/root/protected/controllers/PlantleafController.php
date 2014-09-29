@@ -63,9 +63,14 @@ class PlantLeafController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		/* Retrieve a list of all tutorials */
+		$tutorialData = Tutorial::model()->findAll(array('order' => 'Name'));
+		$tutorialList = CHtml::listData($tutorialData, 'Id', 'Name');
+
 		if(isset($_POST['PlantLeaf']))
 		{
 			$model->attributes=$_POST['PlantLeaf'];
+			$this->manageTutorials($model->Id);
 
 			if(isset($_POST['PlantLeaf']['image']))
         	{
@@ -79,6 +84,8 @@ class PlantLeafController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'tutorialList' => $tutorialList
+
 		));
 	}
 
@@ -94,9 +101,14 @@ class PlantLeafController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		/* Retrieve a list of all tutorials */
+		$tutorialData = Tutorial::model()->findAll(array('order' => 'Name'));
+		$tutorialList = CHtml::listData($tutorialData, 'Id', 'Name');
+
 		if(isset($_POST['PlantLeaf']))
 		{
 			$model->attributes=$_POST['PlantLeaf'];
+			$this->manageTutorials($model->Id);
 
 			if(isset($_POST['PlantLeaf']['image']))
         	{
@@ -110,8 +122,58 @@ class PlantLeafController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'tutorialList' => $tutorialList
 		));
 	}
+
+	/**
+	 * Adds selected tutorials to a specific plantLeaf model.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function manageTutorials($id)
+	{
+		// Drop all previous relations.
+		PlantLeafTutorial::model()->deleteAllByAttributes(array(
+		    	'PlantLeafId'=>$id,
+			));
+
+		if(isset($_POST['PlantLeaf']['Tutorials']))
+		{
+			// Tutorials Have been added, create linker.
+			foreach ($_POST['PlantLeaf']['Tutorials'] as $key => $value)
+			{
+				if(is_numeric($value))
+				{
+					// Check if such tutorial exists.
+					$tutorialModel = Tutorial::model()->findByPk($value);
+
+					if($tutorialModel != null)
+					{
+						// Tutorial exists, add it to the PlantLeaf.
+						$criteria = new CDbCriteria();
+
+						$criteria->condition = "PlantLeafId=:plantLeaf_id AND TutorialId=:tutorial_id";
+						$criteria->params = array(':plantLeaf_id' => $id, ':tutorial_id'=>$value);
+
+						$linker = PlantLeafTutorial::model()->findAll($criteria);
+
+						// Just in case check if such relation does not exist already.
+						if($linker == null)
+						{
+							$linkerModel = new PlantLeafTutorial;
+							$linkerModel->PlantLeafId = $id;
+							$linkerModel->TutorialId  = $value;
+
+							$linkerModel->save();
+						}
+					}
+				}
+			}
+
+			$model = $this->loadModel($id);
+		}
+	}
+
 
 	/**
 	 * Deletes a particular model.

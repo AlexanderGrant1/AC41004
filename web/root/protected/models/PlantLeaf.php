@@ -57,6 +57,7 @@ class PlantLeaf extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'images' => array(self::HAS_MANY, 'PlantLeafPhoto', 'PlantLeafId'),
+			'plantLeafTutorials' => array(self::HAS_MANY, 'PlantLeafTutorial', 'PlantLeafId'),
 		);
 	}
 

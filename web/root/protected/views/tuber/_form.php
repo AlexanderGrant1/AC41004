@@ -35,6 +35,24 @@
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
+	<div id="tutorial-list" class="row">
+	<label for="Pest_Tutorials" class="required">Link this Tuber symptom with a tutorial</label>
+		<div class="checkbox-list">		
+		<?php
+			$selected_keys = array();
+
+
+			if(!$model->isNewRecord)
+			{
+				/* Create an array of html options - which tutorials were selected. */
+				$selected_keys = array_keys(CHtml::listData($model->tuberTutorials, 'TutorialId' , 'TutorialId'));
+			}
+
+
+			echo CHtml::checkBoxList(get_class($model).'[Tutorials][]', $selected_keys, $tutorialList); ?>
+		</div>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

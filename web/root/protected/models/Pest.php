@@ -58,6 +58,7 @@ class Pest extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'images' => array(self::HAS_MANY, 'PestPhoto', 'PestId'),
+			'pestTutorials' => array(self::HAS_MANY, 'PestTutorial', 'PestId'),
 		);
 	}
 

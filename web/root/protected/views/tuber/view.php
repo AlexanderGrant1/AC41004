@@ -11,7 +11,6 @@ $this->menu=array(
 	array('label'=>'List Tuber Symptoms', 'url'=>array('index')),
 	array('label'=>'Create Tuber Symptoms', 'url'=>array('create')),
 	array('label'=>'Update Tuber Symptoms', 'url'=>array('update', 'id'=>$model->Id)),
-	array('label'=>'Delete Tuber Symptoms', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
 );
 ?>
 
