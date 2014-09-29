@@ -40,6 +40,7 @@ class PlantLeafController extends Controller
 		$response['Entries']	 = array();
 		$response['Photos']  	 = array();
 		$response['PhotoLinker'] = array();
+		$response['Tutorials']   = array();
 
 		$plantLeafModels = PlantLeaf::model()->findAll();
 
@@ -52,7 +53,8 @@ class PlantLeafController extends Controller
 			foreach ($plantLeafModels as $plantLeafModel) 
 			{
 				// Get all images for current plantLeafModel entry.
-				$images = $plantLeafModel->images;
+				$images    = $plantLeafModel->images;
+				$tutorials = $images = $pestModel->plantLeafTutorials;
 
 				if($images != null)
 				{
@@ -60,6 +62,14 @@ class PlantLeafController extends Controller
 					{
 						$response['PhotoLinker'][] = array('Id'=>$image->Id, 'EntryId' => $image->PlantLeafId, 'PhotoId' => $image->PhotoId);
 						$response['Photos'][] = array("Id" => $image->photo->Id, "ImageName" => $image->photo->Name, "EntryId" => $plantLeafModel->Id);
+					}
+				}
+
+				if($tutorials != null)
+				{
+					foreach ($tutorials as $tutorial)
+					{
+						$response['TutorialLinker'][] = array('Id'=>$tutorial->Id, 'EntryId' => $tutorial->PlantLeafId, 'TutorialId' => $tutorial->TutorialId);
 					}
 				}
 
