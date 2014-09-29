@@ -264,17 +264,15 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" text="rewrrwerewrerewrewrwerewrewr\n\n\n\nerewre" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-89-Jbw">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-89-Jbw">
                                                 <rect key="frame" x="-3" y="316" width="600" height="30"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.21855325063098741" blue="0.30676348410513321" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="1Ef-89-Jbw" secondAttribute="bottom" id="4vA-tw-ENc"/>
                                             <constraint firstAttribute="bottom" secondItem="5R5-l9-TMW" secondAttribute="bottom" constant="311" id="eFq-U5-5mT"/>
@@ -283,7 +281,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ftJ-q2-FBN" firstAttribute="top" secondItem="FwF-80-sJ5" secondAttribute="top" id="Xnc-XR-SyJ"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="ftJ-q2-FBN" secondAttribute="bottom" id="uqh-ch-iBH"/>
