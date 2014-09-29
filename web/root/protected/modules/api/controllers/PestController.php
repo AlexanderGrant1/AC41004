@@ -54,7 +54,7 @@ class PestController extends Controller
 			{
 				// Get all images for current pestModel entry.
 				$images    = $pestModel->images;
-				$tutorials = $images = $pestModel->pestTutorials;
+				$tutorials = $pestModel->pestTutorials;
 
 				if($images != null)
 				{

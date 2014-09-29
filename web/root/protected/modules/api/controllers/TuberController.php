@@ -52,7 +52,7 @@ class TuberController extends Controller
 			{
 				// Get all images for current tuber entry.
 				$images    = $tuber->images;
-				$tutorials = $images = $tuber->tuberTutorials;
+				$tutorials = $tuber->tuberTutorials;
 
 				if($images != null)
 				{
@@ -66,7 +66,7 @@ class TuberController extends Controller
 					{
 						foreach ($tutorials as $tutorial)
 						{
-							$response['TutorialLinker'][] = array('Id'=>$tutorial->Id, 'EntryId' => $tutorial->TuberfId, 'TutorialId' => $tutorial->TutorialId);
+							$response['TutorialLinker'][] = array('Id'=>$tutorial->Id, 'EntryId' => $tutorial->TuberId, 'TutorialId' => $tutorial->TutorialId);
 						}
 					}
 				}

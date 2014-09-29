@@ -54,7 +54,7 @@ class PlantLeafController extends Controller
 			{
 				// Get all images for current plantLeafModel entry.
 				$images    = $plantLeafModel->images;
-				$tutorials = $images = $plantLeafModel->plantLeafTutorials;
+				$tutorials = $plantLeafModel->plantLeafTutorials;
 
 				if($images != null)
 				{
