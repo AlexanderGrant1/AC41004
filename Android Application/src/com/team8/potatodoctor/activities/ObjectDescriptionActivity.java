@@ -9,14 +9,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -57,6 +55,7 @@ public class ObjectDescriptionActivity extends Activity
 	Button rightButton;
 	Button leftButton;
 	TableLayout tutorialLayout;
+	
 	//TextView to contain text for specific Pest/Disease.
 	TextView textView;
 	String type = "";
@@ -157,10 +156,9 @@ public class ObjectDescriptionActivity extends Activity
 	{
 		return position > 0;
 	}
-	
-	
+		
 	/**
-	 *  Check if there is a child object in the list to display.
+	 * Check if there is a child object in the list to display.
 	 *  
 	 * @return true if there is a child object.
 	 */
@@ -191,8 +189,7 @@ public class ObjectDescriptionActivity extends Activity
 	    }
 	    return canMoveRight;
 	}
-	
-	
+		
 	/**
 	 * Display the previous object in the list if exists.
 	 */
@@ -265,13 +262,12 @@ public class ObjectDescriptionActivity extends Activity
 	    setTitle(title);
 	    setImageGallery();
 	    displayRelatedTutorials();
+	    
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
 	}
-	
-
-  
+	 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
@@ -283,8 +279,7 @@ public class ObjectDescriptionActivity extends Activity
 		
 		return true;
 	}
-	
-	
+		
 	/**
 	 * Grab an entity and populate the Image Gallery with the first object.
 	 */
@@ -360,6 +355,9 @@ public class ObjectDescriptionActivity extends Activity
 	    });
 	}
 	
+	/**
+	 * Display the related tutorial videos if exists in the object.
+	 */
 	private void displayRelatedTutorials()
 	{
 		tutorialLayout.removeAllViews();
