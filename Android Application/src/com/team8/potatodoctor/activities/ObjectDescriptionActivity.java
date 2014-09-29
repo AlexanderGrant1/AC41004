@@ -91,6 +91,11 @@ public class ObjectDescriptionActivity extends Activity
      
 	}
 	
+	/**
+	 * Adds related tutorial videos to the table.
+	 * @param name Name of the tutorial video
+	 * @param position Position index of the table row
+	 */
 	private void addRelatedTutorial(String name, final int position)
 	{
 		TableRow row = new TableRow(this);
