@@ -28,9 +28,11 @@
 	<?php endforeach; ?>
 	</div>
 
+<?php if($canDelete): ?>
 	<script type="text/javascript">
         $(document).ready(function () {
         	$('#image-manager').imageDel('<?php echo Yii::app()->params['siteDomain'];?>');
         });
     </script>
+  <?php endif; ?>
 <?php endif; ?>
