@@ -11,6 +11,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PhotoEntity;
 import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
+import com.team8.potatodoctor.database_objects.TuberEntity;
+import com.team8.potatodoctor.database_objects.TutorialEntity;
 
 public class PestRepository extends SQLiteOpenHelper
 
@@ -35,9 +37,17 @@ public class PestRepository extends SQLiteOpenHelper
 	"`PhotoId` smallint unsigned NOT NULL,"+
 	"PRIMARY KEY(`Id`));";
 	
+	private static final String CREATE_PEST_TUTORIAL_TABLE = "CREATE TABLE IF NOT EXISTS `potato_Pest_tutorial` ("+
+	"`Id` smallint unsigned NOT NULL,"+
+	"`PestId` smallint unsigned NOT NULL,"+
+	"`TutorialId` smallint unsigned NOT NULL,"+
+	"PRIMARY KEY(`Id`));";
+	
 	private static final String CLEAR_PEST_PHOTOS_TABLE = "DELETE FROM `potato_Pest_photo`";
 	
 	private static final String DROP_PESTS_PHOTO_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Pest_photo`";
+	
+	private static final String DROP_PEST_TUTORIAL_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_Pest_tutorial`";
 	
 	private Context context;
 	
@@ -62,6 +72,7 @@ public class PestRepository extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CREATE_PEST_TABLE);
+		db.execSQL(CREATE_PEST_TUTORIAL_TABLE);
 		db.execSQL(CREATE_PEST_PHOTOS_TABLE);
 		db.close();
 	}
@@ -74,6 +85,7 @@ public class PestRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(DROP_PESTS_TABLE_IF_EXISTS);
 		db.execSQL(DROP_PESTS_PHOTO_TABLE_IF_EXISTS);
+		db.execSQL(DROP_PEST_TUTORIAL_TABLE_IF_EXISTS);
 		db.close();
 	}
 	
@@ -158,6 +170,7 @@ public class PestRepository extends SQLiteOpenHelper
                 pest.setName(cursor.getString(cursor.getColumnIndex("Name")));
                 pest.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
                 pest.setPhotos(getPestPhotos(pest));
+                pest.setTutorials(getPestTutorials(pest));
                 pests.add(pest);
             }
             while (cursor.moveToNext());
@@ -254,5 +267,66 @@ public class PestRepository extends SQLiteOpenHelper
         }
         db.close();
         return photos;
+	}
+	
+	 /** Returns all photo ids for a tuber.
+     * 
+     * @param pest The tuber to get photo linkers for.
+     * @return A linked list of photo ids for a tuber.
+     */
+    private LinkedList<Integer> getTutorialIdsForPest(PestEntity pest) {
+        LinkedList<Integer> photoIds = new LinkedList<Integer>();
+
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT TutorialId FROM potato_Pest_tutorial WHERE PestId = "+pest.getId(), null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	photoIds.add(cursor.getInt(cursor.getColumnIndex("TutorialId")));
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return photoIds;
+    }
+	
+	/** Returns a linked list of photos for the given tuber.
+	 * 
+	 * @param tuber The tuber to get photos for.
+	 * @return A linked list of photos for the given tuber.
+	 */
+	public LinkedList<TutorialEntity> getPestTutorials(PestEntity pest)
+	{
+		LinkedList<Integer> tutorialIds = getTutorialIdsForPest(pest);
+		if(tutorialIds.size() == 0)
+		{
+			return new LinkedList<TutorialEntity>();
+		}
+		String SQLQuery = "SELECT * FROM potato_Tutorial WHERE Id = ";
+		for(int i = 0; i < tutorialIds.size(); i++)
+		{
+			SQLQuery+= tutorialIds.get(i).toString();
+			if(i < tutorialIds.size() - 1)
+			{
+				SQLQuery+= " OR Id = ";
+			}
+		}
+		LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(SQLQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+            	TutorialEntity tutorial = new TutorialEntity();
+            	tutorial.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+            	tutorial.setName(cursor.getString(cursor.getColumnIndexOrThrow("Name")));
+            	tutorial.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("Description")));
+            	tutorial.setFullyQualifiedPath(context.getFilesDir()+"/Tutorials/"+cursor.getString(cursor.getColumnIndex("VideoName")));
+            	tutorials.add(tutorial);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return tutorials;
 	}
 }
