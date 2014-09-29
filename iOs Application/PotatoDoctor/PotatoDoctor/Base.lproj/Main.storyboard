@@ -34,73 +34,107 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fc8-kx-aFY">
-                                <rect key="frame" x="243" y="271" width="115" height="30"/>
-                                <state key="normal" title="Tuber symptoms">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="143" y="271" width="115" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="343" y="271" width="115" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="tuberClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="z9q-XC-WLH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J67-MB-6yQ">
-                                <rect key="frame" x="222" y="323" width="157" height="30"/>
-                                <state key="normal" title="Plant / Leaf Symptoms">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="122" y="323" width="157" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="322" y="323" width="157" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="PlantLeafClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="jZV-Ph-5iW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eY8-Co-rMu">
-                                <rect key="frame" x="271" y="371" width="58" height="30"/>
-                                <state key="normal" title="Tutorials">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="171" y="371" width="58" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="371" y="371" width="58" height="30"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="4IU-5y-UBz" kind="push" id="bRd-vc-WTM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-Ds-HUn">
-                                <rect key="frame" x="281" y="199" width="39" height="30"/>
-                                <state key="normal" title="Pests">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="181" y="199" width="39" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="381" y="199" width="39" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="pestClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="wvS-dU-zqz"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWC-Li-aN2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RK9-NP-pP2">
+                                        <rect key="frame" x="5" y="84" width="590" height="433"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LqP-hX-2GG" userLabel="Tuber Button ContainerView">
+                                                <rect key="frame" x="302" y="0.0" width="279" height="204"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luV-iv-ya8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="279" height="204"/>
+                                                        <state key="normal" backgroundImage="ic_tuber">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tuberClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="ZAi-gt-wWG"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="luV-iv-ya8" secondAttribute="width" id="V1T-Im-ihV"/>
+                                                    <constraint firstAttribute="height" secondItem="luV-iv-ya8" secondAttribute="height" id="qOA-g2-xOA"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SCN-lh-gg8" userLabel="Plant/Leaf button cont">
+                                                <rect key="frame" x="8" y="226" width="279" height="204"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odg-hm-CAk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="279" height="204"/>
+                                                        <state key="normal" backgroundImage="ic_leaf">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="PlantLeafClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="hYf-p1-EKy"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" secondItem="odg-hm-CAk" secondAttribute="height" id="Kem-0P-Sww"/>
+                                                    <constraint firstAttribute="width" secondItem="odg-hm-CAk" secondAttribute="width" id="WLy-7R-1g3"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ic-VZ-cnm" userLabel="Pest Button container">
+                                                <rect key="frame" x="8" y="0.0" width="279" height="204"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hjf-Jr-E1p">
+                                                        <rect key="frame" x="0.0" y="0.0" width="279" height="204"/>
+                                                        <state key="normal" backgroundImage="ic_pest">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="pestClick:" destination="PyQ-Hz-8We" eventType="touchUpInside" id="Zri-7J-hr6"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0Ic-VZ-cnm" secondAttribute="height" multiplier="280:207" id="G48-T7-s9t"/>
+                                                    <constraint firstItem="Hjf-Jr-E1p" firstAttribute="height" secondItem="0Ic-VZ-cnm" secondAttribute="height" id="YuI-h1-dLI"/>
+                                                    <constraint firstItem="Hjf-Jr-E1p" firstAttribute="width" secondItem="0Ic-VZ-cnm" secondAttribute="width" id="bHY-Kz-2S9"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="LqP-hX-2GG" secondAttribute="trailing" priority="998" constant="8" id="0ek-N2-2aO"/>
+                                            <constraint firstItem="LqP-hX-2GG" firstAttribute="leading" secondItem="0Ic-VZ-cnm" secondAttribute="trailing" constant="14" id="4rF-9Y-qjW"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="trailing" secondItem="SCN-lh-gg8" secondAttribute="trailing" priority="998" id="65c-oB-W0h"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="height" secondItem="LqP-hX-2GG" secondAttribute="height" priority="999" id="8ZH-x6-big"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="leading" secondItem="RK9-NP-pP2" secondAttribute="leading" priority="998" constant="8" id="Pir-hi-edo"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="width" secondItem="LqP-hX-2GG" secondAttribute="width" priority="999" id="SLe-RY-cWX"/>
+                                            <constraint firstItem="SCN-lh-gg8" firstAttribute="top" secondItem="0Ic-VZ-cnm" secondAttribute="bottom" constant="19" id="UY2-kd-wGO"/>
+                                            <constraint firstItem="SCN-lh-gg8" firstAttribute="leading" secondItem="RK9-NP-pP2" secondAttribute="leading" priority="998" constant="8" id="Zpe-Y2-Smh"/>
+                                            <constraint firstItem="LqP-hX-2GG" firstAttribute="top" secondItem="RK9-NP-pP2" secondAttribute="top" priority="998" id="bYc-kc-9Dd"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="width" secondItem="SCN-lh-gg8" secondAttribute="width" priority="999" id="cIK-HF-lyV"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="top" secondItem="RK9-NP-pP2" secondAttribute="top" priority="998" id="dja-GU-3nE"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="bottom" secondItem="LqP-hX-2GG" secondAttribute="bottom" priority="998" id="fAh-sF-yj3"/>
+                                            <constraint firstAttribute="bottom" secondItem="SCN-lh-gg8" secondAttribute="bottom" priority="998" id="rpj-tp-Olj"/>
+                                            <constraint firstItem="0Ic-VZ-cnm" firstAttribute="height" secondItem="SCN-lh-gg8" secondAttribute="height" priority="999" id="sZT-q4-Yxp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RK9-NP-pP2" firstAttribute="leading" secondItem="cWC-Li-aN2" secondAttribute="leading" priority="996" constant="5" id="32m-ZY-e6Q"/>
+                                    <constraint firstItem="RK9-NP-pP2" firstAttribute="top" secondItem="cWC-Li-aN2" secondAttribute="top" priority="996" constant="84" id="47k-GW-MiM"/>
+                                    <constraint firstAttribute="bottom" secondItem="RK9-NP-pP2" secondAttribute="bottom" priority="996" constant="83" id="5Gp-ZS-tGp"/>
+                                    <constraint firstAttribute="trailing" secondItem="RK9-NP-pP2" secondAttribute="trailing" priority="996" constant="5" id="9CI-mU-mDC"/>
+                                    <constraint firstItem="RK9-NP-pP2" firstAttribute="centerX" secondItem="cWC-Li-aN2" secondAttribute="centerX" priority="998" id="z5v-gc-00c"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Qel-Ds-HUn" secondAttribute="centerX" id="2wN-Xw-KHu"/>
-                            <constraint firstAttribute="centerX" secondItem="fc8-kx-aFY" secondAttribute="centerX" id="6E5-P5-caW"/>
-                            <constraint firstAttribute="centerX" secondItem="J67-MB-6yQ" secondAttribute="centerX" id="Om8-7m-v0I"/>
-                            <constraint firstAttribute="centerX" secondItem="eY8-Co-rMu" secondAttribute="centerX" id="U0k-PI-IhT"/>
+                            <constraint firstAttribute="centerY" secondItem="cWC-Li-aN2" secondAttribute="centerY" id="6J5-K8-QBu"/>
+                            <constraint firstAttribute="trailing" secondItem="cWC-Li-aN2" secondAttribute="trailing" id="GpM-e1-uEu"/>
+                            <constraint firstAttribute="bottom" secondItem="cWC-Li-aN2" secondAttribute="bottom" id="jdw-PG-hme"/>
+                            <constraint firstAttribute="width" secondItem="cWC-Li-aN2" secondAttribute="width" id="lSZ-Ce-M4z"/>
+                            <constraint firstItem="cWC-Li-aN2" firstAttribute="top" secondItem="mPV-a2-2oy" secondAttribute="top" id="lk7-9C-eLK"/>
+                            <constraint firstItem="cWC-Li-aN2" firstAttribute="leading" secondItem="mPV-a2-2oy" secondAttribute="leading" id="o9G-lD-lfY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Potato Doctor" id="Ly2-Bs-vrI"/>
@@ -160,19 +194,17 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J7a-X4-S4k">
                                                     <rect key="frame" x="-25" y="0.0" width="179" height="154"/>
                                                 </imageView>
-                                                <view alpha="0.10000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUZ-7E-2JO">
+                                                <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUZ-7E-2JO">
                                                     <rect key="frame" x="0.0" y="109" width="154" height="45"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVD-0f-hSg">
-                                                            <rect key="frame" x="0.0" y="2" width="154" height="43"/>
-                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVD-0f-hSg">
+                                                    <rect key="frame" x="8" y="106" width="138" height="43"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -264,17 +296,15 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" text="rewrrwerewrerewrewrwerewrewr\n\n\n\nerewre" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-89-Jbw">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-89-Jbw">
                                                 <rect key="frame" x="-3" y="316" width="600" height="30"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.21855325063098741" blue="0.30676348410513321" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="1Ef-89-Jbw" secondAttribute="bottom" id="4vA-tw-ENc"/>
                                             <constraint firstAttribute="bottom" secondItem="5R5-l9-TMW" secondAttribute="bottom" constant="311" id="eFq-U5-5mT"/>
@@ -283,7 +313,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ftJ-q2-FBN" firstAttribute="top" secondItem="FwF-80-sJ5" secondAttribute="top" id="Xnc-XR-SyJ"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="ftJ-q2-FBN" secondAttribute="bottom" id="uqh-ch-iBH"/>
@@ -306,4 +335,9 @@
             <point key="canvasLocation" x="1822" y="-373"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_leaf" width="600" height="450"/>
+        <image name="ic_pest" width="650" height="650"/>
+        <image name="ic_tuber" width="600" height="450"/>
+    </resources>
 </document>
