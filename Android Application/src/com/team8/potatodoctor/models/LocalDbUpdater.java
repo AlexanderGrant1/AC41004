@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 
 import android.content.Context;
 
+import com.team8.potatodoctor.database_objects.TutorialLinker;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PhotoEntity;
 import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
@@ -65,6 +66,11 @@ public class LocalDbUpdater {
 		for(PhotoEntity tuberPhoto : tuberPhotos)
 		{
 			photoRepository.insertPhoto(tuberPhoto);
+		}
+		LinkedList<TutorialLinker> tuberTutorials = dataFetcher.parseTutorialLinker(response);
+		for(TutorialLinker tuberTutorial : tuberTutorials)
+		{
+			tuberRepository.insertTuberTutorialLinker(tuberTutorial);
 		}
 	}
 	

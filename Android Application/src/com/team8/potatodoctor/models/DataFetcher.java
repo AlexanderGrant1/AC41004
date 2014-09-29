@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.team8.potatodoctor.database_objects.TutorialLinker;
 import com.team8.potatodoctor.database_objects.PestEntity;
 import com.team8.potatodoctor.database_objects.PhotoEntity;
 import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
@@ -70,6 +71,26 @@ public class DataFetcher {
 				tuberSymptom.setId(Integer.parseInt(arr.getJSONObject(i).getString("Id")));
 				tuberSymptom.setEntryId((Integer.parseInt(arr.getJSONObject(i).getString("EntryId"))));
 				tuberSymptom.setPhotoId(Integer.parseInt(arr.getJSONObject(i).getString("PhotoId")));
+				tuberSymptomsLinker.add(tuberSymptom);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return tuberSymptomsLinker;
+	}
+	
+	public LinkedList<TutorialLinker> parseTutorialLinker(String JSON)
+	{
+		LinkedList<TutorialLinker> tuberSymptomsLinker = new LinkedList<TutorialLinker>();
+		try {
+			JSONObject obj = new JSONObject(JSON);
+			JSONArray arr = obj.getJSONArray("TutorialLinker");
+			for(int i = 0; i < arr.length(); i++)
+			{
+				TutorialLinker tuberSymptom = new TutorialLinker();
+				tuberSymptom.setId(Integer.parseInt(arr.getJSONObject(i).getString("Id")));
+				tuberSymptom.setEntryId((Integer.parseInt(arr.getJSONObject(i).getString("EntryId"))));
+				tuberSymptom.setTutorialId(Integer.parseInt(arr.getJSONObject(i).getString("TutorialId")));
 				tuberSymptomsLinker.add(tuberSymptom);
 			}
 		} catch (JSONException e) {
