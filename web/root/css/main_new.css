@@ -113,3 +113,7 @@ p.main-greet {
   display: inline !important;
   margin: 0px !important;
 }
+
+textarea {
+  width: 80% !important;
+}
