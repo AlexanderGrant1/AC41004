@@ -11,6 +11,7 @@ public class PlantLeafEntity implements IDatabaseObject {
 	private String name;
 	private String description;
 	private LinkedList<PhotoEntity> photos;
+	private LinkedList<TutorialEntity> tutorials;
 	
 	public int getId() {
 		return id;
@@ -35,5 +36,11 @@ public class PlantLeafEntity implements IDatabaseObject {
 	}
 	public void setPhotos(LinkedList<PhotoEntity> photos) {
 		this.photos = photos;
+	}
+	public LinkedList<TutorialEntity> getTutorials() {
+		return tutorials;
+	}
+	public void setTutorials(LinkedList<TutorialEntity> tutorials) {
+		this.tutorials = tutorials;
 	}
 }

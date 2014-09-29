@@ -11,6 +11,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.team8.potatodoctor.database_objects.PhotoEntity;
 import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
+import com.team8.potatodoctor.database_objects.TuberEntity;
+import com.team8.potatodoctor.database_objects.TutorialEntity;
 
 public class PlantLeafRepository extends SQLiteOpenHelper
 
@@ -23,6 +25,12 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	"`Name` varchar(50) NOT NULL,"+
 	"`Description` text NOT NULL,"+
 	"UNIQUE(`Name`),"+
+	"PRIMARY KEY(`Id`));";
+	
+	private static final String CREATE_PLANTLEAF_TUTORIAL_TABLE = "CREATE TABLE IF NOT EXISTS `potato_PlantLeaf_tutorial` ("+
+	"`Id` smallint unsigned NOT NULL,"+
+	"`PlantLeafId` smallint unsigned NOT NULL,"+
+	"`TutorialId` smallint unsigned NOT NULL,"+
 	"PRIMARY KEY(`Id`));";
 	
 	private static final String CLEAR_PLANT_LEAF_TABLE = "DELETE FROM `potato_PlantLeaf`";
@@ -38,6 +46,8 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	private static final String CLEAR_PLANT_LEAF_PHOTO_TABLE = "DELETE FROM `potato_PlantLeaf_photo`";
 	
 	private static final String DROP_PLANT_LEAF_PHOTO_TABLE_EXISTS = "DROP TABLE IF EXISTS `potato_PlantLeaf_photo`";
+	
+	private static final String DROP_PLANT_LEAF_TUTORIAL_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS `potato_PlantLeaf_tutorial`";
 	
 	private Context context;
 	
@@ -62,6 +72,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(CREATE_PLANT_LEAF_TABLE);
+		db.execSQL(CREATE_PLANTLEAF_TUTORIAL_TABLE);
 		db.execSQL(CREATE_PLANT_LEAF_PHOTO_TABLE);
 		db.close();
 	}
@@ -74,6 +85,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		SQLiteDatabase db = getWritableDatabase();
 		db.execSQL(DROP_PLANT_LEAF_TABLE_IF_EXISTS);
 		db.execSQL(DROP_PLANT_LEAF_PHOTO_TABLE_EXISTS);
+		db.execSQL(DROP_PLANT_LEAF_TUTORIAL_TABLE_IF_EXISTS);
 		db.close();
 	}
 	
@@ -132,6 +144,7 @@ public class PlantLeafRepository extends SQLiteOpenHelper
             	plantLeaf.setName(cursor.getString(cursor.getColumnIndex("Name")));
             	plantLeaf.setDescription(cursor.getString(cursor.getColumnIndex("Description")));
                 plantLeaf.setPhotos(getPlantLeafPhotos(plantLeaf));
+                plantLeaf.setTutorials(getPlantLeafTutorials(plantLeaf));
                 foundEntries.add(plantLeaf);
             }
             while (cursor.moveToNext());
@@ -251,5 +264,66 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 	        }
 	        db.close();
 	        return photos;
+		}
+		
+		 /** Returns all photo ids for a tuber.
+	     * 
+	     * @param tuber The tuber to get photo linkers for.
+	     * @return A linked list of photo ids for a tuber.
+	     */
+	    private LinkedList<Integer> getTutorialIdsForPlantLeaf(PlantLeafEntity tuber) {
+	        LinkedList<Integer> photoIds = new LinkedList<Integer>();
+
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery("SELECT TutorialId FROM potato_PlantLeaf_tutorial WHERE TuberId = "+tuber.getId(), null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	photoIds.add(cursor.getInt(cursor.getColumnIndex("TutorialId")));
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return photoIds;
+	    }
+		
+		/** Returns a linked list of photos for the given tuber.
+		 * 
+		 * @param tuber The tuber to get photos for.
+		 * @return A linked list of photos for the given tuber.
+		 */
+		public LinkedList<TutorialEntity> getPlantLeafTutorials(PlantLeafEntity tuber)
+		{
+			LinkedList<Integer> tutorialIds = getTutorialIdsForPlantLeaf(tuber);
+			if(tutorialIds.size() == 0)
+			{
+				return new LinkedList<TutorialEntity>();
+			}
+			String SQLQuery = "SELECT * FROM potato_Tutorial WHERE Id = ";
+			for(int i = 0; i < tutorialIds.size(); i++)
+			{
+				SQLQuery+= tutorialIds.get(i).toString();
+				if(i < tutorialIds.size() - 1)
+				{
+					SQLQuery+= " OR Id = ";
+				}
+			}
+			LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
+	        SQLiteDatabase db = getWritableDatabase();
+	        Cursor cursor = db.rawQuery(SQLQuery, null);
+
+	        if (cursor.moveToFirst()) {
+	            do {
+	            	TutorialEntity tutorial = new TutorialEntity();
+	            	tutorial.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+	            	tutorial.setName(cursor.getString(cursor.getColumnIndexOrThrow("Name")));
+	            	tutorial.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("Description")));
+	            	tutorial.setFullyQualifiedPath(context.getFilesDir()+"/Tutorials/"+cursor.getString(cursor.getColumnIndex("VideoName")));
+	            	tutorials.add(tutorial);
+	            }
+	            while (cursor.moveToNext());
+	        }
+	        db.close();
+	        return tutorials;
 		}
 }

@@ -90,16 +90,6 @@ public class TuberRepository extends SQLiteOpenHelper
 		db.close();
 	}
 	
-	/**
-	 * Clears both the tuber and tuber photo linker tables
-	 */
-	public void clearTuberTables()
-	{
-		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL(CLEAR_TUBER_TABLE);
-		db.execSQL(CLEAR_TUBER_PHOTO_TABLE);
-		db.close();
-	}
 	
 	/** Returns the index of a given tuber name in the database
 	 * @param name
