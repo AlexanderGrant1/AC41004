@@ -44,7 +44,7 @@
 
 			if(!$model->isNewRecord)
 			{
-				/* Create an array of html options - which teams were selected. */
+				/* Create an array of html options - which tutorials were selected. */
 				$selected_keys = array_keys(CHtml::listData($model->plantLeafTutorials, 'Id' , 'Id'));
 			}
 
