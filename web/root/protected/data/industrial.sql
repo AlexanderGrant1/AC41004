@@ -108,6 +108,15 @@ CREATE TABLE IF NOT EXISTS `potato_Pest_tutorial` (
 )ENGINE=InnoDB CHARACTER SET utf8
 COLLATE utf8_general_ci;
 
+CREATE TABLE IF NOT EXISTS `potato_PlantLeaf_tutorial` (
+	`Id` smallint unsigned NOT NULL auto_increment,
+	`PlantLeafId` smallint unsigned NOT NULL,
+	`TutorialId` smallint unsigned NOT NULL,
+	PRIMARY KEY(`Id`),
+	FOREIGN KEY(`PlantLeafId`) REFERENCES `potato_PlantLeaf`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`TutorialId`) REFERENCES `potato_Tutorial`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB CHARACTER SET utf8
+COLLATE utf8_general_ci;
 
 
 
