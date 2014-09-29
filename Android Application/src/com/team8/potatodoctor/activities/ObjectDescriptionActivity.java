@@ -6,9 +6,11 @@ import java.util.LinkedList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -262,7 +264,7 @@ public class ObjectDescriptionActivity extends Activity
 	    
 	    setTitle(title);
 	    setImageGallery();
-	     
+	    displayRelatedTutorials();
         //Find TextView and allow scrolling.
         textView = (TextView)findViewById(R.id.textViewItem);
         textView.setText(description);
@@ -295,8 +297,6 @@ public class ObjectDescriptionActivity extends Activity
         gallery.setScaleX(1.7f);
         gallery.setScaleY(1.7f);
         gallery.setY(80f);
-        boolean hasVideos = false;
-        LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
     	if(type.equals("potato_Pest"))
     	{
             PestEntity currentPest = pestRepository.getAllPests().get(position);
@@ -308,11 +308,6 @@ public class ObjectDescriptionActivity extends Activity
             else
             {
             	selectedImage.setImageResource(R.drawable.ic_default);
-            }
-            if(currentPest.getTutorials().size() > 0)
-            {
-            	hasVideos = true;
-            	tutorials = currentPest.getTutorials();
             }
              
     	} 
@@ -328,11 +323,6 @@ public class ObjectDescriptionActivity extends Activity
             {
             	selectedImage.setImageResource(R.drawable.ic_default);
             }
-            if(tuber.getTutorials().size() > 0)
-            {
-            	hasVideos = true;
-            	tutorials = tuber.getTutorials();
-            }
     	}
     	else if(type.equals("potato_PlantLeaf"))
     	{
@@ -345,12 +335,6 @@ public class ObjectDescriptionActivity extends Activity
             else
             {
             	selectedImage.setImageResource(R.drawable.ic_default);
-            }
-            if(plantLeaf.getTutorials().size() > 0)
-            {
-            	Log.w("hello", "displaying related tutorials");
-            	hasVideos = true;
-            	tutorials = plantLeaf.getTutorials();
             }
     	}
     
@@ -374,33 +358,68 @@ public class ObjectDescriptionActivity extends Activity
 		    	}
 	        }
 	    });
-	    
-	    if(hasVideos)
-	    {
-	    	Log.w("hello", "ORNGERIONGHI]R");
-	    	//TextView relatedTutorials = new TextView(getApplicationContext());
-	    	//relatedTutorials.setText("Related Tutorials");
-	    	
-	    	for(TutorialEntity tutorial : tutorials)
+	}
+	
+	private void displayRelatedTutorials()
+	{
+		tutorialLayout.removeAllViews();
+		LinkedList<TutorialEntity> tutorials = new LinkedList<TutorialEntity>();
+    	if(type.equals("potato_Pest"))
+    	{
+            PestEntity currentPest = pestRepository.getAllPests().get(position);
+            if(currentPest.getTutorials().size() > 0)
+            {
+            	tutorials = currentPest.getTutorials();
+            }
+             
+    	} 
+    	else if(type.equals("potato_Tuber"))
+    	{
+    		TuberEntity tuber = tuberRepository.getAllTubers().get(position);
+            if(tuber.getTutorials().size() > 0)
+            {
+            	tutorials = tuber.getTutorials();
+            }
+    	}
+    	else if(type.equals("potato_PlantLeaf"))
+    	{
+    		PlantLeafEntity plantLeaf = plantLeafRepository.getAllPlantLeafs().get(position);
+            if(plantLeaf.getTutorials().size() > 0)
+            {
+            	tutorials = plantLeaf.getTutorials();
+            }
+    	}
+    	if(tutorials.size() > 0)
+    	{
+    		TextView tutorialTitle = new TextView(getApplicationContext());
+    		tutorialTitle.setText("Related Tutorials");
+    		tutorialTitle.setTextSize(24);
+    		tutorialTitle.setTextColor(Color.parseColor("#FFFFFF"));
+    		tutorialTitle.setGravity(Gravity.CENTER_HORIZONTAL);
+    		tutorialLayout.addView(tutorialTitle);
+    		tutorialLayout.addView(new TextView(getApplicationContext()));
+    	}
+    	for(TutorialEntity tutorial : tutorials)
+		{
+    		TextView relatedTutorial = new TextView(getApplicationContext());
+    		relatedTutorial.setText(tutorial.getName());
+    		relatedTutorial.setTextSize(18);
+    		relatedTutorial.setTextColor(Color.parseColor("#0000AA"));
+    		relatedTutorial.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+    		relatedTutorial.setOnClickListener(new OnClickListener()
     		{
-	    		TextView tutorialText = new TextView(getApplicationContext());
-	    		tutorialText.setText(tutorial.getName());
-	    		tutorialText.setOnClickListener(new OnClickListener()
-	    		{
 
-					@Override
-					public void onClick(View v) {
-						Intent tutorialActivity = new Intent(getApplicationContext(),TutorialActivity.class);
-						tutorialActivity.putExtra("Position", position); //DB Table row index.
-			        	
-			    		startActivity(tutorialActivity); 
-					}
-	    			
-	    		});
-	    		tutorialLayout.addView(tutorialText);
-    		}
-	    }
-	    
+				@Override
+				public void onClick(View v) {
+					Intent tutorialActivity = new Intent(getApplicationContext(),TutorialActivity.class);
+					tutorialActivity.putExtra("Position", position); //DB Table row index.
+		        	
+		    		startActivity(tutorialActivity); 
+				}
+    			
+    		});
+    		tutorialLayout.addView(relatedTutorial);
+		}
 	}
 	
 	/* (non-Javadoc)
