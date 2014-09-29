@@ -63,9 +63,15 @@ class PestController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		/* Retrieve a list of all tutorials */
+		$tutorialData = Tutorial::model()->findAll(array('order' => 'Name'));
+		$tutorialList = CHtml::listData($tutorialData, 'Id', 'Name');
+
 		if(isset($_POST['Pest']))
 		{
 			$model->attributes=$_POST['Pest'];
+
+			$this->manageTutorials($model->Id);
 
 			if(isset($_POST['Pest']['image']))
         	{
@@ -78,6 +84,7 @@ class PestController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'tutorialList' => $tutorialList
 		));
 	}
 
@@ -93,9 +100,15 @@ class PestController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		/* Retrieve a list of all tutorials */
+		$tutorialData = Tutorial::model()->findAll(array('order' => 'Name'));
+		$tutorialList = CHtml::listData($tutorialData, 'Id', 'Name');
+
 		if(isset($_POST['Pest']))
 		{
 			$model->attributes=$_POST['Pest'];
+
+			$this->manageTutorials($model->Id);
 
 			if(isset($_POST['Pest']['image']))
         	{
@@ -108,6 +121,7 @@ class PestController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'tutorialList' => $tutorialList
 		));
 	}
 
@@ -152,6 +166,55 @@ class PestController extends Controller
 
 		$model->delete();
 	}
+
+	/**
+	 * Adds selected tutorials to a specific pest model.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function manageTutorials($id)
+	{
+		// Drop all previous relations.
+		PestTutorial::model()->deleteAllByAttributes(array(
+		    	'PestId'=>$id,
+			));
+
+		if(isset($_POST['Pest']['Tutorials']))
+		{
+			// Tutorials Have been added, create linker.
+			foreach ($_POST['Pest']['Tutorials'] as $key => $value)
+			{
+				if(is_numeric($value))
+				{
+					// Check if such tutorial exists.
+					$tutorialModel = Tutorial::model()->findByPk($value);
+
+					if($tutorialModel != null)
+					{
+						// Tutorial exists, add it to the Pest.
+						$criteria = new CDbCriteria();
+
+						$criteria->condition = "PestId=:pest_id AND TutorialId=:tutorial_id";
+						$criteria->params = array(':pest_id' => $id, ':tutorial_id'=>$value);
+
+						$linker = PestTutorial::model()->findAll($criteria);
+
+						// Just in case check if such relation does not exist already.
+						if($linker == null)
+						{
+							$linkerModel = new PestTutorial;
+							$linkerModel->PestId = $id;
+							$linkerModel->TutorialId  = $value;
+
+							$linkerModel->save();
+						}
+					}
+				}
+			}
+
+			$model = $this->loadModel($id);
+		}
+	}
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
