@@ -82,6 +82,10 @@ public class PlantSymptomActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
         switch (item.getItemId()) {
+        case (R.id.action_home):
+        	this.startActivity(new Intent(this, CategoriesListActivity.class));
+        	this.finish();
+        	return true;
         case android.R.id.home:
             this.finish();
             return true;

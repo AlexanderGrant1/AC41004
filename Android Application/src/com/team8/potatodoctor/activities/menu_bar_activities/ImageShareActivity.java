@@ -89,8 +89,7 @@ public class ImageShareActivity extends Activity{
 		
 		startActivityForResult(intent, 0);
 	}
-	
-	
+		
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
 	 */

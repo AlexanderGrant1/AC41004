@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.ViewConfiguration;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.activities.CategoriesListActivity;
 
 /**
  * Displays a User Guide video on how to use Potato Doctor.
@@ -47,6 +48,10 @@ public class UserGuideActivity extends Activity{
 	{
 	    switch (item.getItemId())
 	    {
+	    case (R.id.action_home):
+        	this.startActivity(new Intent(this, CategoriesListActivity.class));
+        	this.finish();
+        	return true;
 	    case (R.id.action_search):
 	        this.startActivity(new Intent(this, SearchActivity.class));
 	        return true;

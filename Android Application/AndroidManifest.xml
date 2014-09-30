@@ -86,7 +86,8 @@
         <!-- UpdateActivity-->
         <activity 
             android:name="com.team8.potatodoctor.activities.menu_bar_activities.UpdateActivity"
-            android:label="@string/action_update"></activity>
+            android:label="@string/action_update"
+            android:parentActivityName="com.team8.potatodoctor.activities.CategoriesListActivity"></activity>
         
         <!-- UserGuideActivity-->
         <activity 

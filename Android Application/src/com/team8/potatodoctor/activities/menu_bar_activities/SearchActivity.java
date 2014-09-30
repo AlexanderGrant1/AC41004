@@ -22,6 +22,7 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import com.team8.potatodoctor.R;
+import com.team8.potatodoctor.activities.CategoriesListActivity;
 import com.team8.potatodoctor.activities.ObjectDescriptionActivity;
 import com.team8.potatodoctor.activities.TutorialActivity;
 import com.team8.potatodoctor.database_objects.PestEntity;
@@ -105,6 +106,10 @@ public class SearchActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
         switch (item.getItemId()) {
+        case (R.id.action_home):
+        	this.startActivity(new Intent(this, CategoriesListActivity.class));
+        	this.finish();
+        	return true;
         case android.R.id.home:
             this.finish();
             return true;
@@ -215,8 +220,6 @@ public class SearchActivity extends Activity {
 			}
 		}		
 	}
-	
-
 	
 	/** Adds a header to the search display
 	 * 

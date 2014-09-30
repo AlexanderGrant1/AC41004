@@ -72,6 +72,10 @@ public class UpdateActivity extends Activity{
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
         switch (item.getItemId()) {
+        case (R.id.action_home):
+        	this.startActivity(new Intent(this, CategoriesListActivity.class));
+        	this.finish();
+        	return true;
         case android.R.id.home:
             this.finish();
             return true;
@@ -207,8 +211,7 @@ public class UpdateActivity extends Activity{
 		UpdateActivity.this.runOnUiThread(show_toast);
 		finish();
 	}
-	
-	
+		
 	/**
 	 * Disable Hardware Menu Button on phones. Force Menu drop down on Action Bar.
 	 * 
