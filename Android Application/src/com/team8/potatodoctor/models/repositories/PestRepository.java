@@ -13,6 +13,7 @@ import com.team8.potatodoctor.database_objects.PhotoEntity;
 import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
 import com.team8.potatodoctor.database_objects.TuberEntity;
 import com.team8.potatodoctor.database_objects.TutorialEntity;
+import com.team8.potatodoctor.database_objects.TutorialLinker;
 
 public class PestRepository extends SQLiteOpenHelper
 
@@ -270,7 +271,18 @@ public class PestRepository extends SQLiteOpenHelper
         return photos;
 	}
 	
-	 /** Returns all photo ids for a tuber.
+	public void insertPestTutorialLinker(TutorialLinker linker)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("Id", linker.getId());
+		values.put("TutorialId", linker.getTutorialId());
+		values.put("PestId", linker.getEntryId());
+		db.insert("potato_Pest_tutorial", null, values);
+		db.close();
+	}
+	
+	 /** Returns all tutorial ids for a tuber.
      * 
      * @param pest The tuber to get photo linkers for.
      * @return A linked list of photo ids for a tuber.

@@ -100,6 +100,12 @@ public class LocalDbUpdater {
 		{
 			photoRepository.insertPhoto(pestPhoto);
 		}
+		
+		LinkedList<TutorialLinker> pestTutorials = dataFetcher.parseTutorialLinker(response);
+		for(TutorialLinker tuberTutorial : pestTutorials)
+		{
+			pestRepository.insertPestTutorialLinker(tuberTutorial);
+		}
 	}
 	
 	/**
@@ -127,6 +133,11 @@ public class LocalDbUpdater {
 		for(PhotoEntity plantLeafSymptomPhoto : plantLeafSymptomPhotos)
 		{
 			photoRepository.insertPhoto(plantLeafSymptomPhoto);
+		}
+		LinkedList<TutorialLinker> plantLeafTutorials = dataFetcher.parseTutorialLinker(response);
+		for(TutorialLinker tuberTutorial : plantLeafTutorials)
+		{
+			plantLeafRepository.insertPlantLeafTutorialLinker(tuberTutorial);
 		}
 	}
 	
