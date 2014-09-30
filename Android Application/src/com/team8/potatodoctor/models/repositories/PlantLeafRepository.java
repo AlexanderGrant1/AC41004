@@ -13,6 +13,7 @@ import com.team8.potatodoctor.database_objects.PhotoLinkerEntity;
 import com.team8.potatodoctor.database_objects.PlantLeafEntity;
 import com.team8.potatodoctor.database_objects.TuberEntity;
 import com.team8.potatodoctor.database_objects.TutorialEntity;
+import com.team8.potatodoctor.database_objects.TutorialLinker;
 
 public class PlantLeafRepository extends SQLiteOpenHelper
 
@@ -100,6 +101,17 @@ public class PlantLeafRepository extends SQLiteOpenHelper
 		db.close();
 	}
 
+	public void insertPlantLeafTutorialLinker(TutorialLinker linker)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("Id", linker.getId());
+		values.put("TutorialId", linker.getTutorialId());
+		values.put("PlantLeafId", linker.getEntryId());
+		db.insert("potato_PlantLeaf_tutorial", null, values);
+		db.close();
+	}
+	
 	/** Returns the index of plant leaf with the provided name in the local plant leaf table
 	 * 
 	 * @param name The name of the plant leaf to find the index of
