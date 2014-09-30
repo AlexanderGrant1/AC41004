@@ -407,8 +407,9 @@ public class ObjectDescriptionActivity extends Activity
     		TextView relatedTutorial = new TextView(getApplicationContext());
     		relatedTutorial.setText(tutorial.getName());
     		relatedTutorial.setTextSize(18);
-    		relatedTutorial.setTextColor(Color.parseColor("#0000AA"));
+    		relatedTutorial.setTextColor(Color.parseColor("#FFFFFF"));
     		relatedTutorial.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+    		relatedTutorial.setPadding(10, 0, 0, 10);
     		relatedTutorial.setOnClickListener(new OnClickListener()
     		{
 
