@@ -19,6 +19,7 @@
     <string name="updateInstructions">Updating the app...</string>
     
     <!-- Menu Bar Actions -->
+    <string name="action_home">Home</string>
     <string name="action_search">Search</string>
     <string name="action_userguide">User Guide</string>
     <string name="action_imageshare">Image Share</string>
