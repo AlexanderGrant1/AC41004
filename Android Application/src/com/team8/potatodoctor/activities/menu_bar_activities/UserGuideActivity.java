@@ -4,10 +4,13 @@ import java.lang.reflect.Field;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.team8.potatodoctor.R;
 
@@ -23,9 +26,10 @@ public class UserGuideActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_settings);
+		setContentView(R.layout.activity_video);
 		
 		disableHardwareMenuKey();
+		setupMediaPlayer();
 	}
 	
 	/* (non-Javadoc)
@@ -37,6 +41,19 @@ public class UserGuideActivity extends Activity{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	private void setupMediaPlayer()
+	{
+		VideoView vidView = (VideoView)findViewById(R.id.myVideo);
+		String videoPath = "android.resource://com.team8.potatodoctor/raw/annotated_user_manual";
+		Uri vidUri = Uri.parse(videoPath);
+
+		vidView.setVideoURI(vidUri);
+		MediaController vidControl = new MediaController(this);
+		vidControl.setAnchorView(vidView);
+		vidView.setMediaController(vidControl);
+		vidView.start();
 	}
 
 	/* (non-Javadoc)

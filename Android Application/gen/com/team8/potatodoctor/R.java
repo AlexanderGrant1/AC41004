@@ -71,9 +71,7 @@ public final class R {
         public static final int main=0x7f090000;
     }
     public static final class raw {
-        public static final int test_video0=0x7f050000;
-        public static final int test_video1=0x7f050001;
-        public static final int test_video2=0x7f050002;
+        public static final int annotated_user_manual=0x7f050000;
     }
     public static final class string {
         public static final int action_exit=0x7f070010;
