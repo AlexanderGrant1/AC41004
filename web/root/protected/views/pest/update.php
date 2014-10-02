@@ -17,4 +17,4 @@ $this->menu=array(
 
 <h1>Update Pest "<?php echo $model->Name; ?>"</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model,'tutorialList' => $tutorialList)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

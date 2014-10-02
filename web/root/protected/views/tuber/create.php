@@ -14,4 +14,4 @@ $this->menu=array(
 
 <h1>Create Tuber Symptoms</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model,'tutorialList' => $tutorialList)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

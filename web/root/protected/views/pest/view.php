@@ -11,6 +11,7 @@ $this->menu=array(
 	array('label'=>'List Pest', 'url'=>array('index')),
 	array('label'=>'Create Pest', 'url'=>array('create')),
 	array('label'=>'Update Pest', 'url'=>array('update', 'id'=>$model->Id)),
+	array('label'=>'Delete Pest', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
 );
 ?>
 

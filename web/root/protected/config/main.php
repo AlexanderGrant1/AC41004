@@ -60,6 +60,8 @@ return array(
 				'gii' => 'gii/default/login',
 				'gii/<controller:\w+>'=>'gii/<controller>',
 				'gii/<controller:\w+>/<action:\w+>/'=>'gii/<controller>/<action>',
+				
+				//array('pest/delmedia', 'pattern' => '<controller:(pest)>/delpic/<id:\d+>', 'verb' => 'DELETE'),
 
 				'admin/<controller:\w+>/<id:\d+>'=>'<controller>admin/view',
 				'admin/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>admin/<action>',
@@ -76,10 +78,10 @@ return array(
 		),*/
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=',
+			'connectionString' => 'mysql:host=SILVA;dbname=14indt8db',
 			'emulatePrepare' => true,
-			'username' => '',
-			'password' => '',
+			'username' => '14indt8',
+			'password' => '111.acc',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
@@ -110,8 +112,8 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		'projectPath' => '/home/exitmusi/public_html/potato/',
-		'siteDomain' => 'http://beberry.lv/potato/',
+		'projectPath' => 'C:/websites/2014-projects/team8/web/',
+		'siteDomain' => 'https://zeno.computing.dundee.ac.uk/2014-projects/team8/web/',
 		'imagePath' => 'images/u/',
 		'videoPath' => 'videos/u/',
 		// this is used in contact page

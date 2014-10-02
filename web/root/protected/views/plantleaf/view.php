@@ -11,6 +11,7 @@ $this->menu=array(
 	array('label'=>'List Plant / Leaf Symptoms', 'url'=>array('index')),
 	array('label'=>'Create Plant / Leaf Symptoms', 'url'=>array('create')),
 	array('label'=>'Update Plant / Leaf Symptoms', 'url'=>array('update', 'id'=>$model->Id)),
+	array('label'=>'Delete Plant / Leaf Symptoms', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->Id),'confirm'=>'Are you sure you want to delete this item?')),
 );
 ?>
 

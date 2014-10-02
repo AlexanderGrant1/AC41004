@@ -62,15 +62,9 @@ class TuberController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-
-		/* Retrieve a list of all tutorials */
-		$tutorialData = Tutorial::model()->findAll(array('order' => 'Name'));
-		$tutorialList = CHtml::listData($tutorialData, 'Id', 'Name');
-
 		if(isset($_POST['Tuber']))
 		{
 			$model->attributes=$_POST['Tuber'];
-			$this->manageTutorials($model->Id);
 
 			if(isset($_POST['Tuber']['image']))
         	{
@@ -84,7 +78,6 @@ class TuberController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'tutorialList' => $tutorialList
 		));
 	}
 
@@ -100,15 +93,9 @@ class TuberController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		/* Retrieve a list of all tutorials */
-		$tutorialData = Tutorial::model()->findAll(array('order' => 'Name'));
-		$tutorialList = CHtml::listData($tutorialData, 'Id', 'Name');
-
-
 		if(isset($_POST['Tuber']))
 		{
 			$model->attributes=$_POST['Tuber'];
-			$this->manageTutorials($model->Id);
 
 
 			if(isset($_POST['Tuber']['image']))
@@ -123,7 +110,6 @@ class TuberController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
-			'tutorialList' => $tutorialList
 		));
 	}
 
@@ -168,55 +154,6 @@ class TuberController extends Controller
 
 		$model->delete();
 	}
-
-	/**
-	 * Adds selected tutorials to a specific tuber model.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function manageTutorials($id)
-	{
-		// Drop all previous relations.
-		TuberTutorial::model()->deleteAllByAttributes(array(
-		    	'TuberId'=>$id,
-			));
-
-		if(isset($_POST['Tuber']['Tutorials']))
-		{
-			// Tutorials Have been added, create linker.
-			foreach ($_POST['Tuber']['Tutorials'] as $key => $value)
-			{
-				if(is_numeric($value))
-				{
-					// Check if such tutorial exists.
-					$tutorialModel = Tutorial::model()->findByPk($value);
-
-					if($tutorialModel != null)
-					{
-						// Tutorial exists, add it to the Tuber.
-						$criteria = new CDbCriteria();
-
-						$criteria->condition = "TuberId=:tuber_id AND TutorialId=:tutorial_id";
-						$criteria->params = array(':tuber_id' => $id, ':tutorial_id'=>$value);
-
-						$linker = TuberTutorial::model()->findAll($criteria);
-
-						// Just in case check if such relation does not exist already.
-						if($linker == null)
-						{
-							$linkerModel = new TuberTutorial;
-							$linkerModel->TuberId = $id;
-							$linkerModel->TutorialId  = $value;
-
-							$linkerModel->save();
-						}
-					}
-				}
-			}
-
-			$model = $this->loadModel($id);
-		}
-	}
-
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
